@@ -1,6 +1,16 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function ForgotPassword() {
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = function (event) {
+    event.preventDefault();
+    const userEmail = { email };
+    navigate("/");
+  };
+
   return (
     <div className="col-lg-6 login-wrap-bg">
       <div className="login-wrapper">
@@ -18,12 +28,17 @@ function ForgotPassword() {
               </div>
               <h2>Reset Password</h2>
               {/* <!-- Form --> */}
-              <form action="login.html">
+              <form onSubmit={handleSubmit}>
                 <div className="input-block">
                   <label>
                     Email <span className="login-danger">*</span>
                   </label>
-                  <input className="form-control" type="text" />
+                  <input
+                    className="form-control"
+                    type="text"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                  />
                 </div>
                 <div className="input-block login-btn">
                   <button className="btn btn-primary btn-block" type="submit">
