@@ -35,13 +35,12 @@ function Login() {
                 <div className="forgotpass">
                   <div className="remember-me">
                     <label className="custom_check mr-2 mb-0 d-inline-flex remember-me">
-                      {" "}
                       Remember me
                       <input type="checkbox" name="radio" />
                       <span className="checkmark"></span>
                     </label>
                   </div>
-                  <a href="forgot-password.html">Forgot Password?</a>
+                  <Link to="/forgot-password">Forgot Password?</Link>
                 </div>
                 <div className="input-block login-btn">
                   <button className="btn btn-primary btn-block" type="submit">
