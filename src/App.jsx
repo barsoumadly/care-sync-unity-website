@@ -1,17 +1,24 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import DashboardLayout from "./features/ui/DashboardLayout";
-import Login from "./features/authentication/Login";
-import Register from "./features/authentication/Register";
 import Patient from "./features/user/patient";
 import Clinic from "./features/user/Clinic";
 import Error from "./features/ui/Error";
 import Home from "./features/ui/Home";
+import AuthenticationLayout from "./features/authentication/AuthenticationLayout";
+import Register from "./features/authentication/Register";
+import Login from "./features/authentication/Login";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home />, errorElement: <Error /> },
-  { path: "/login", element: <Login />, errorElement: <Error /> },
-  { path: "/register", element: <Register />, errorElement: <Error /> },
+  {
+    element: <AuthenticationLayout />,
+    errorElement: <Error />,
+    children: [
+      { path: "/register", element: <Register /> },
+      { path: "/login", element: <Login /> },
+    ],
+  },
   {
     element: <DashboardLayout />,
     errorElement: <Error />,
