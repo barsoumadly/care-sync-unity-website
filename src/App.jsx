@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import DashboardLayout from "./features/ui/DashboardLayout";
-import Login from "./features/authentication/login";
+import Login from "./features/authentication/Login";
 import Register from "./features/authentication/Register";
 import Patient from "./features/user/patient";
 import Clinic from "./features/user/Clinic";
