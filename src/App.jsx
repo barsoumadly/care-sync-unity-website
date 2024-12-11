@@ -8,6 +8,7 @@ import Home from "./features/ui/Home";
 import AuthenticationLayout from "./features/authentication/AuthenticationLayout";
 import Register from "./features/authentication/Register";
 import Login from "./features/authentication/Login";
+import ForgotPassword from "./features/authentication/ForgotPassword";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home />, errorElement: <Error /> },
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/register", element: <Register /> },
       { path: "/login", element: <Login /> },
+      { path: "/forgot-password", element: <ForgotPassword /> },
     ],
   },
   {
