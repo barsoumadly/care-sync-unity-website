@@ -1,6 +1,19 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [userType, setUserType] = useState("Patient");
+  const [isEyeOpen, setIsEyeOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = function (event) {
+    event.preventDefault();
+    const userCredentials = { email, password, userType };
+    navigate("/");
+  };
+
   return (
     <div className="col-lg-6 login-wrap-bg">
       <div className="login-wrapper">
@@ -18,28 +31,54 @@ function Login() {
               </div>
               <h2>Login</h2>
               {/* <!-- Form --> */}
-              <form action="index.html">
+              <form action="index.html" onSubmit={handleSubmit}>
                 <div className="input-block">
                   <label>
                     Email <span className="login-danger">*</span>
                   </label>
-                  <input className="form-control" type="text" />
+                  <input
+                    className="form-control"
+                    type="text"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    required
+                  />
                 </div>
                 <div className="input-block">
                   <label>
                     Password <span className="login-danger">*</span>
                   </label>
-                  <input className="form-control pass-input" type="password" />
-                  <span className="profile-views feather-eye-off toggle-password"></span>
+                  <input
+                    className="form-control pass-input"
+                    type={`${isEyeOpen ? "text" : "password"}`}
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    required
+                  />
+                  <span
+                    onClick={() => setIsEyeOpen(!isEyeOpen)}
+                    className={`profile-views feather-eye${
+                      isEyeOpen ? "" : "-off"
+                    } confirm-password`}
+                  ></span>
+                </div>
+                <div className="input-block">
+                  <label>
+                    User Role
+                    <span className="login-danger">*</span>
+                  </label>
+                  <select
+                    className="form-control pass-input"
+                    value={userType}
+                    onChange={(event) => setUserType(event.target.value)}
+                  >
+                    <option value="CLINIC_ADMIN">Clinic Admin</option>
+                    <option value="PHARMACY_ADMIN">Pharmacy Admin</option>
+                    <option value="LABORATORY_ADMIN">Laboratory Admin</option>
+                    <option value="Patient">Patient</option>
+                  </select>
                 </div>
                 <div className="forgotpass">
-                  <div className="remember-me">
-                    <label className="custom_check mr-2 mb-0 d-inline-flex remember-me">
-                      Remember me
-                      <input type="checkbox" name="radio" />
-                      <span className="checkmark"></span>
-                    </label>
-                  </div>
                   <Link to="/forgot-password">Forgot Password?</Link>
                 </div>
                 <div className="input-block login-btn">
