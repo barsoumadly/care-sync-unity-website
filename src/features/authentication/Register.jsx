@@ -16,7 +16,7 @@ function Register() {
   const handleSubmit = function (event) {
     event.preventDefault();
     if (password !== confirmPassword) {
-      setErrorMessage(true);
+      return setErrorMessage(true);
     }
 
     const userData = { fullname, email, password, userType };
