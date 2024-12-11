@@ -7,7 +7,6 @@ import Patient from "./features/user/patient";
 import Clinic from "./features/user/Clinic";
 import Error from "./features/ui/Error";
 import Home from "./features/ui/Home";
-import "../public/styles/style.css";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home />, errorElement: <Error /> },
