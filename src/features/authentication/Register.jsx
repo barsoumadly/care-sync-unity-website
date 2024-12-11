@@ -1,6 +1,28 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setconfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [isEyeOpen1, setIsEyeOpen1] = useState(false);
+  const [isEyeOpen2, setIsEyeOpen2] = useState(false);
+  const [userType, setUserType] = useState("Patient");
+
+  const navigate = useNavigate();
+
+  const handleSubmit = function (event) {
+    event.preventDefault();
+    if (password !== confirmPassword) {
+      setErrorMessage(true);
+    }
+
+    const userData = { fullname, email, password, userType };
+    navigate("/login");
+  };
+
   return (
     <div className="col-lg-6 login-wrap-bg">
       <div className="login-wrapper">
@@ -18,25 +40,48 @@ function Register() {
               </div>
               <h2>Getting Started</h2>
               {/* <!-- Form --> */}
-              <form action="login.html">
+              <form action="login.html" onSubmit={handleSubmit}>
                 <div className="input-block">
                   <label>
                     Full Name <span className="login-danger">*</span>
                   </label>
-                  <input className="form-control" type="text" />
+                  <input
+                    className="form-control"
+                    type="text"
+                    value={fullname}
+                    onChange={(event) => setFullname(event.target.value)}
+                    required
+                  />
                 </div>
                 <div className="input-block">
                   <label>
                     Email <span className="login-danger">*</span>
                   </label>
-                  <input className="form-control" type="text" />
+                  <input
+                    className="form-control"
+                    type="text"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    required
+                  />
                 </div>
                 <div className="input-block">
                   <label>
                     Password <span className="login-danger">*</span>
                   </label>
-                  <input className="form-control pass-input" type="password" />
-                  <span className="profile-views feather-eye-off toggle-password"></span>
+                  <input
+                    className="form-control pass-input"
+                    type={`${isEyeOpen1 ? "text" : "password"}`}
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    required
+                  />
+                  <span
+                    onClick={() => setIsEyeOpen1(!isEyeOpen1)}
+                    className={`profile-views feather-eye${
+                      isEyeOpen1 ? "" : "-off"
+                    } confirm-password`}
+                  ></span>
                 </div>
                 <div className="input-block">
                   <label>
@@ -45,21 +90,35 @@ function Register() {
                   </label>
                   <input
                     className="form-control pass-input-confirm"
-                    type="password"
+                    type={`${isEyeOpen2 ? "text" : "password"}`}
+                    value={confirmPassword}
+                    onChange={(event) => setconfirmPassword(event.target.value)}
+                    required
                   />
-                  <span className="profile-views feather-eye-off confirm-password"></span>
+                  <span
+                    onClick={() => setIsEyeOpen2(!isEyeOpen2)}
+                    className={`profile-views feather-eye${
+                      isEyeOpen2 ? "" : "-off"
+                    } confirm-password`}
+                  ></span>
+                  {errorMessage && <p>Password are not same</p>}
                 </div>
-                <div className="forgotpass">
-                  <div className="remember-me">
-                    <label className="custom_check mr-2 mb-0 d-inline-flex remember-me">
-                      I agree to the
-                      <a href="javascript:;">&nbsp; terms of service </a>
-                      &nbsp; and
-                      <a href="javascript:;">&nbsp; privacy policy </a>
-                      <input type="checkbox" name="radio" />
-                      <span className="checkmark"></span>
-                    </label>
-                  </div>
+
+                <div className="input-block">
+                  <label>
+                    User Role
+                    <span className="login-danger">*</span>
+                  </label>
+                  <select
+                    className="form-control pass-input"
+                    value={userType}
+                    onChange={(event) => setUserType(event.target.value)}
+                  >
+                    <option value="CLINIC_ADMIN">Clinic Admin</option>
+                    <option value="PHARMACY_ADMIN">Pharmacy Admin</option>
+                    <option value="LABORATORY_ADMIN">Laboratory Admin</option>
+                    <option value="Patient">Patient</option>
+                  </select>
                 </div>
                 <div className="input-block login-btn">
                   <button className="btn btn-primary btn-block" type="submit">
