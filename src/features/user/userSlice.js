@@ -19,6 +19,23 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    createAccount: {
+      prepare(fullname, email, password) {
+        return {
+          payload: {
+            fullname,
+            email,
+            password,
+          },
+        };
+      },
+
+      reducer(state, action) {
+        state.fullname = action.payload.fullname;
+        state.email = action.payload.email;
+        state.password = action.payload.password;
+      },
+    },
     updateFullName(state, action) {
       state.fullname = action.payload;
     },
@@ -51,6 +68,7 @@ export const {
   updateGender,
   updateLocation,
   updatePhoneNumber,
+  createAccount,
 } = userSlice.actions;
 
 export default userSlice.reducer;
