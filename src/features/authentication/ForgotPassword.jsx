@@ -38,6 +38,7 @@ function ForgotPassword() {
                     type="text"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
+                    required
                   />
                 </div>
                 <div className="input-block login-btn">
