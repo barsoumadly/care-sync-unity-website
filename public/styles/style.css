@@ -1551,7 +1551,7 @@ textarea.form-control {
 }
 .login-wrap .login-sec {
   position: absolute;
-  background-image: url("../img/login-0l.png");
+  background-image: url("../images/auth/login-01.png");
   background-repeat: no-repeat;
   background-position: top right;
   background-size: cover, auto;
@@ -7740,7 +7740,7 @@ blockquote p {
 .blog-views li:first-child {
   margin-right: 10px;
 }
-.blog-grp-blk {
+log-img .blog-grp-blk {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
