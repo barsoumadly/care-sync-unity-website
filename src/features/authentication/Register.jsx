@@ -23,7 +23,12 @@ function Register() {
     const userData = { fullname, email, password, userType };
     navigate("/login");
   };
-
+  const handlePasswordEye1 = function (result) {
+    setIsEyeOpen1(result);
+  };
+  const handlePasswordEye2 = function (result) {
+    setIsEyeOpen2(result);
+  };
   return (
     <>
       <h2>Getting Started</h2>
@@ -65,7 +70,10 @@ function Register() {
             onChange={(event) => setPassword(event.target.value)}
             required
           />
-          <PasswordEye isEyeOpen={isEyeOpen1} setIsEyeOpen={setIsEyeOpen1} />
+          <PasswordEye
+            isEyeOpen={isEyeOpen1}
+            setIsEyeOpen={handlePasswordEye1}
+          />
         </div>
         <div className="input-block">
           <label>
@@ -79,7 +87,10 @@ function Register() {
             onChange={(event) => setconfirmPassword(event.target.value)}
             required
           />
-          <PasswordEye isEyeOpen={isEyeOpen2} setIsEyeOpen={setIsEyeOpen2} />
+          <PasswordEye
+            isEyeOpen={isEyeOpen2}
+            setIsEyeOpen={handlePasswordEye2}
+          />
           {errorMessage && <p>Password are not same</p>}
         </div>
 
