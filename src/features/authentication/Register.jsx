@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import PasswordEye from "./PasswordEye";
 
 function Register() {
   const [fullname, setFullname] = useState("");
@@ -76,12 +77,10 @@ function Register() {
                     onChange={(event) => setPassword(event.target.value)}
                     required
                   />
-                  <span
-                    onClick={() => setIsEyeOpen1(!isEyeOpen1)}
-                    className={`profile-views feather-eye${
-                      isEyeOpen1 ? "" : "-off"
-                    } confirm-password`}
-                  ></span>
+                  <PasswordEye
+                    isEyeOpen={isEyeOpen1}
+                    setIsEyeOpen={setIsEyeOpen1}
+                  />
                 </div>
                 <div className="input-block">
                   <label>
@@ -95,12 +94,10 @@ function Register() {
                     onChange={(event) => setconfirmPassword(event.target.value)}
                     required
                   />
-                  <span
-                    onClick={() => setIsEyeOpen2(!isEyeOpen2)}
-                    className={`profile-views feather-eye${
-                      isEyeOpen2 ? "" : "-off"
-                    } confirm-password`}
-                  ></span>
+                  <PasswordEye
+                    isEyeOpen={isEyeOpen2}
+                    setIsEyeOpen={setIsEyeOpen2}
+                  />
                   {errorMessage && <p>Password are not same</p>}
                 </div>
 
