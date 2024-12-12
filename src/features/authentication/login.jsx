@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import PasswordEye from "./PasswordEye";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -55,12 +56,10 @@ function Login() {
                     onChange={(event) => setPassword(event.target.value)}
                     required
                   />
-                  <span
-                    onClick={() => setIsEyeOpen(!isEyeOpen)}
-                    className={`profile-views feather-eye${
-                      isEyeOpen ? "" : "-off"
-                    } confirm-password`}
-                  ></span>
+                  <PasswordEye
+                    isEyeOpen={isEyeOpen}
+                    setIsEyeOpen={setIsEyeOpen}
+                  />
                 </div>
                 <div className="input-block">
                   <label>
