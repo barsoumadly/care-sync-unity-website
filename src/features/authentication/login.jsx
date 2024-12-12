@@ -64,8 +64,7 @@ function Login() {
                 </div>
                 <div className="input-block">
                   <label>
-                    User Role
-                    <span className="login-danger">*</span>
+                    User Role <span className="login-danger">*</span>
                   </label>
                   <select
                     className="form-control pass-input"
@@ -75,7 +74,8 @@ function Login() {
                     <option value="CLINIC_ADMIN">Clinic Admin</option>
                     <option value="PHARMACY_ADMIN">Pharmacy Admin</option>
                     <option value="LABORATORY_ADMIN">Laboratory Admin</option>
-                    <option value="Patient">Patient</option>
+                    <option value="PATIENT">Patient</option>
+                    <option value="DOCTOR">Doctor</option>
                   </select>
                 </div>
                 <div className="forgotpass">
