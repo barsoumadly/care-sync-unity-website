@@ -15,7 +15,7 @@ function Login() {
     navigate("/");
   };
 
-  const handlePasswardeye = function (result) {
+  const handlePasswordEye = function (result) {
     setIsEyeOpen(result);
   };
 
@@ -48,7 +48,7 @@ function Login() {
             onChange={(event) => setPassword(event.target.value)}
             required
           />
-          <PasswordEye isEyeOpen={isEyeOpen} setIsEyeOpen={handlePasswardeye} />
+          <PasswordEye isEyeOpen={isEyeOpen} setIsEyeOpen={handlePasswordEye} />
         </div>
         <div className="input-block">
           <label>
