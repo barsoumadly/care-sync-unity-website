@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 function AuthenticationLayout() {
   return (
@@ -17,7 +17,28 @@ function AuthenticationLayout() {
                 </div>
               </div>
             </div>
-            <Outlet />
+            <div className="col-lg-6 login-wrap-bg">
+              <div className="login-wrapper">
+                <div className="loginbox">
+                  <div className="login-right">
+                    <div className="login-right-wrap">
+                      <div className="account-logo">
+                        <Link to="/">
+                          <img
+                            src="/images/logo/care-sync-unity-logo.png"
+                            alt=""
+                            width={280}
+                          />
+                        </Link>
+                      </div>
+                      {/* <!-- Form --> */}
+                      <Outlet />
+                      {/* <!-- /Form --> */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
