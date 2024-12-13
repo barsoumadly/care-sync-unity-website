@@ -12671,3 +12671,8 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
     transform: scale(1.3);
   }
 }
+
+.password-eye {
+  color: #950606;
+  text-align: center;
+}
