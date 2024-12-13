@@ -9,6 +9,7 @@ import AuthenticationLayout from "./features/authentication/AuthenticationLayout
 import Register from "./features/authentication/Register";
 import Login from "./features/authentication/Login";
 import ForgotPassword from "./features/authentication/ForgotPassword";
+import ResetPassword from "./features/authentication/ResetPassword";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home />, errorElement: <Error /> },
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/login", element: <Login /> },
       { path: "/forgot-password", element: <ForgotPassword /> },
+      { path: "/reset-password", element: <ResetPassword /> },
     ],
   },
   {
