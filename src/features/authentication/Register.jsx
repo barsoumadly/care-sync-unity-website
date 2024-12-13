@@ -1,40 +1,54 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordEye from "./PasswordEye";
+import ErrorMessage from "./ErrorMessage";
+import userRoleArr from "../../data/constants";
+import UserRole from "./UserRole";
 
 function Register() {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(false);
+  const [userRole, setUserRole] = useState("PATIENT");
+
   const [isEyeOpen1, setIsEyeOpen1] = useState(false);
   const [isEyeOpen2, setIsEyeOpen2] = useState(false);
-  const [userType, setUserType] = useState("Patient");
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = function (event) {
     event.preventDefault();
     if (password !== confirmPassword) {
-      return setErrorMessage(true);
+      setErrorMessage("Passwords are not same");
+      return setIsVisible(true);
     }
 
-    const userData = { fullname, email, password, userType };
+    const userData = { fullname, email, password, userRole };
     navigate("/login");
   };
+
   const handlePasswordEye1 = function (result) {
     setIsEyeOpen1(result);
   };
+
   const handlePasswordEye2 = function (result) {
     setIsEyeOpen2(result);
   };
+
+  const handleUserRole = function (userRole) {
+    setUserRole(userRole);
+  };
+
   return (
     <>
       <h2>Getting Started</h2>
 
       {/* <!-- Form --> */}
-      <form action="login.html" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="input-block">
           <label>
             Full Name <span className="login-danger">*</span>
@@ -47,6 +61,7 @@ function Register() {
             required
           />
         </div>
+
         <div className="input-block">
           <label>
             Email <span className="login-danger">*</span>
@@ -59,6 +74,7 @@ function Register() {
             required
           />
         </div>
+
         <div className="input-block">
           <label>
             Password <span className="login-danger">*</span>
@@ -75,6 +91,7 @@ function Register() {
             setIsEyeOpen={handlePasswordEye1}
           />
         </div>
+
         <div className="input-block">
           <label>
             Confirm Password
@@ -91,25 +108,15 @@ function Register() {
             isEyeOpen={isEyeOpen2}
             setIsEyeOpen={handlePasswordEye2}
           />
-          {errorMessage && <p>Password are not same</p>}
         </div>
 
-        <div className="input-block">
-          <label>
-            User Role
-            <span className="login-danger">*</span>
-          </label>
-          <select
-            className="form-control pass-input"
-            value={userType}
-            onChange={(event) => setUserType(event.target.value)}
-          >
-            <option value="CLINIC_ADMIN">Clinic Admin</option>
-            <option value="PHARMACY_ADMIN">Pharmacy Admin</option>
-            <option value="LABORATORY_ADMIN">Laboratory Admin</option>
-            <option value="Patient">Patient</option>
-          </select>
-        </div>
+        <UserRole
+          userRoleArr={userRoleArr.slice().splice(0, 4)}
+          userRole={userRole}
+          setUserRole={handleUserRole}
+        />
+
+        <ErrorMessage errorMessage={errorMessage} isVisible={isVisible} />
         <div className="input-block login-btn">
           <button className="btn btn-primary btn-block" type="submit">
             Sign up
