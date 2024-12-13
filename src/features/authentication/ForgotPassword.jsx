@@ -39,7 +39,7 @@ function ForgotPassword() {
 
       <div className="next-sign">
         <p className="account-subtitle">
-          Need an account? <Link to="/login">Login</Link>
+          Return to <Link to="/login">Login</Link>
         </p>
       </div>
     </>
