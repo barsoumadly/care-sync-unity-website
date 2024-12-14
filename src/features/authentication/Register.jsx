@@ -116,7 +116,7 @@ function Register() {
           setUserRole={handleUserRole}
         />
 
-        <ErrorMessage errorMessage={errorMessage} isVisible={isVisible} />
+        {isVisible && <ErrorMessage errorMessage={errorMessage} />}
         <div className="input-block login-btn">
           <button className="btn btn-primary btn-block" type="submit">
             Sign up
