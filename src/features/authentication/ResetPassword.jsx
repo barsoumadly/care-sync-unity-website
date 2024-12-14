@@ -68,7 +68,7 @@ function ResetPassword() {
             setIsEyeOpen={handlePasswordEye2}
           />
         </div>
-        <ErrorMessage errorMessage={errorMessage} isVisible={isVisible} />
+        {isVisible && <ErrorMessage errorMessage={errorMessage} />}
         <div className="input-block login-btn">
           <button className="btn btn-primary btn-block" type="submit">
             Reset
