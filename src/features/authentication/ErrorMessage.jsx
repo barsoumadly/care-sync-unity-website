@@ -1,18 +1,18 @@
-function ErrorMessage({ errorMessage, isVisible }) {
+function ErrorMessage({ errorMessage }) {
   return (
-    isVisible && (
-      <div className="input-block password-eye">
-        <img
-          className="img-fluid mb-0"
-          src="/images/error/icons/danger.svg"
-          alt="Logo"
-          width={23}
-        />
-        <span style={{ marginLeft: "10px", paddingTop: "45px" }}>
-          {errorMessage}
-        </span>
-      </div>
-    )
+    <div className="input-block password-eye">
+      <img
+        className="img-fluid mb-0"
+        src="/images/error/icons/danger.svg"
+        alt="Logo"
+        width={21}
+      />
+      <span
+        style={{ marginLeft: "10px", paddingTop: "45px", fontSize: "15px" }}
+      >
+        {errorMessage}
+      </span>
+    </div>
   );
 }
 
