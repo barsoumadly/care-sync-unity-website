@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import DashboardLayout from "./features/ui/DashboardLayout";
+import DashboardLayout from "./ui/DashboardLayout";
 import Patient from "./features/user/patient";
 import Clinic from "./features/user/Clinic";
-import Error from "./features/ui/Error";
-import Home from "./features/ui/Home";
+import Error from "./ui/Error";
+import Home from "./ui/Home";
 import AuthenticationLayout from "./features/authentication/AuthenticationLayout";
 import Register from "./features/authentication/Register";
 import Login from "./features/authentication/Login";
