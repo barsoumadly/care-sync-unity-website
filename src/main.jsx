@@ -1,9 +1,12 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import React from "react";
+
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../public/styles/style.css";
-import "../public/styles/feather.css";
+import "./styles/style.css";
+import "./styles/feather.css";
+
+import App from "./App.jsx";
+
 import { Provider } from "react-redux";
 import store from "./store.js";
 
