@@ -3,13 +3,15 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DashboardLayout from "./ui/DashboardLayout";
 import Patient from "./features/user/patient";
 import Clinic from "./features/user/Clinic";
+import Loader from "./ui/Loader";
 import Error from "./ui/Error";
 import Home from "./ui/Home";
-import AuthenticationLayout from "./features/authentication/AuthenticationLayout";
-import Register from "./features/authentication/Register";
-import Login from "./features/authentication/Login";
+import AuthenticationLayout from "./ui/AuthenticationLayout";
+import Register from "./pages/Register";
+import Login from "./pages/login";
 import ForgotPassword from "./features/authentication/ForgotPassword";
 import ResetPassword from "./features/authentication/ResetPassword";
+import { useState } from "react";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home />, errorElement: <Error /> },
@@ -34,7 +36,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  const [isLoading, setIsLoading] = useState(true);
+  setTimeout(() => setIsLoading(false), 3000);
+  return (
+    <div>{isLoading ? <Loader /> : <RouterProvider router={router} />}</div>
+  );
 }
 
 export default App;
