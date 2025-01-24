@@ -37,7 +37,7 @@ const router = createBrowserRouter([
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  setTimeout(() => setIsLoading(false), 3000);
+  setTimeout(() => setIsLoading(false), 2000);
   return (
     <div>{isLoading ? <Loader /> : <RouterProvider router={router} />}</div>
   );
