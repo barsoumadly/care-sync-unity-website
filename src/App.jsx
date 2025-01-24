@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import DashboardLayout from "./ui/DashboardLayout";
 import Patient from "./features/user/patient";
+import Doctor from "./features/user/Doctor";
 import Clinic from "./features/user/Clinic";
 import Loader from "./ui/Loader";
 import Error from "./ui/Error";
@@ -29,8 +30,9 @@ const router = createBrowserRouter([
     element: <DashboardLayout />,
     errorElement: <Error />,
     children: [
-      { path: "/dashboard/patient", element: <Patient /> },
-      { path: "/dashboard/clinic", element: <Clinic /> },
+      { path: "/patient", element: <Patient /> },
+      { path: "/doctor", element: <Doctor /> },
+      { path: "/clinic", element: <Clinic /> },
     ],
   },
 ]);
