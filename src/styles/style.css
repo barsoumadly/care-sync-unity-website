@@ -11528,7 +11528,7 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
   }
   .mini-sidebar .sidebar .sidebar-menu ul > li > a span {
     display: none;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.4s ease-in-out;
     opacity: 0;
   }
   .mini-sidebar.expand-menu .sidebar .sidebar-menu ul > li > a span {
