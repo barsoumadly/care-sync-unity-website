@@ -761,9 +761,9 @@ textarea.form-control {
 }
 .logo span {
   color: #2e37a4;
-  font-size: 20px;
-  font-weight: 500;
-  margin-left: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 5px;
 }
 .header .navbar-nav .badge {
   position: absolute;
@@ -965,8 +965,35 @@ textarea.form-control {
   transition: all 0.2s ease-in-out;
   border-top-right-radius: 40px;
   box-shadow: 5px 20px 14px rgba(46, 55, 164, 0.05);
-  overflow-y: hidden;
+
   height: 100vh;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  margin: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #eee;
+}
+.sidebar:hover {
+  ::-webkit-scrollbar-thumb {
+    background: #eee;
+  }
 }
 .sidebar.opened {
   -webkit-transition: all 0.4s ease;
@@ -975,7 +1002,8 @@ textarea.form-control {
 }
 .sidebar-inner {
   height: 100%;
-  transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0.3s;
+  overflow: scroll;
 }
 .sidebar-menu ul {
   font-size: 14px;
