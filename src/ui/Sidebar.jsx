@@ -5,11 +5,14 @@ import { AiFillSchedule } from "react-icons/ai";
 import { GrSchedules } from "react-icons/gr";
 import { BsChatText } from "react-icons/bs";
 import { IoIosArrowForward } from "react-icons/io";
-
-function Sidebar({ minbar }) {
+function Sidebar({ minbar, showbar }) {
   return (
     <div className={minbar ? "mini-sidebar" : ""}>
-      <div className="sidebar" id="sidebar" style={{ display: "block" }}>
+      <div
+        className="sidebar"
+        id="sidebar"
+        style={{ marginLeft: `${showbar ? "0px" : "-225px"}` }}
+      >
         <div className="sidebar-inner slimscroll scroll">
           <div id="sidebar-menu" className="sidebar-menu">
             <ul>
