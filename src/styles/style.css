@@ -1151,9 +1151,7 @@ textarea.form-control {
   line-height: 18px;
   top: 23px;
 }
-.sidebar-menu .menu-arrow:before {
-  content: "\f105";
-}
+
 .sidebar-menu li a.subdrop .menu-arrow {
   -ms-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
