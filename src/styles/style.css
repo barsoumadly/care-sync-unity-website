@@ -11783,7 +11783,7 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
   .slide-nav .sidebar {
     margin-left: 0;
   }
-  a.mobile_btn {
+.mobile_btn {
     color: #fff;
     font-size: 24px;
     height: 70px;
