@@ -1,25 +1,30 @@
 import { NavLink } from "react-router-dom";
 import UserAvatar from "../features/authentication/UserAvatar";
 
-function Header({ setMinbar }) {
+function Header({ setShowbar, setMinbar }) {
   return (
     <div className="header">
       <div className="header-left">
-        <NavLink to="/" className="logo">
-          <img
-            src="/images/logo/care-sync-unity-logo.png"
-            width="190"
-            height="50"
-            alt=""
-          />{" "}
-        </NavLink>
+        <div className="logo">
+          <NavLink to="/">
+            <img
+              src="/images/logo/care-sync-unity-logo.png"
+              width="190"
+              height="50"
+              alt=""
+            />{" "}
+          </NavLink>
+        </div>
       </div>
 
       <div id="toggle_btn" onClick={() => setMinbar((min) => !min)}>
         <img src="/images/dashborad/icons/bar-icon.svg" alt="" />
       </div>
 
-      <div id="mobile_btn" className="mobile_btn float-start">
+      <div
+        className="mobile_btn float-start"
+        onClick={() => setShowbar((show) => !show)}
+      >
         <img src="/images/dashborad/icons/bar-icon.svg" alt="" />
       </div>
 
