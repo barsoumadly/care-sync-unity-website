@@ -1,13 +1,14 @@
+import { NavLink } from "react-router-dom";
 import UserAvatar from "../features/authentication/UserAvatar";
 
 function Header({ setMinbar }) {
   return (
     <div className="header">
       <div className="header-left">
-        <a className="logo">
-          <img src="/images/logo/logo-icon.png" width="35" height="35" alt="" />{" "}
-          <span>CSU</span>
-        </a>
+        <NavLink to="/" className="logo">
+          <img src="/images/logo/logo-icon.png" width="50" height="50" alt="" />{" "}
+          <span>Care Sync Unity</span>
+        </NavLink>
       </div>
 
       <div id="toggle_btn" onClick={() => setMinbar((min) => !min)}>
