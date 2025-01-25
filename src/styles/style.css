@@ -965,7 +965,7 @@ textarea.form-control {
   transition: all 0.2s ease-in-out;
   border-top-right-radius: 40px;
   box-shadow: 5px 20px 14px rgba(46, 55, 164, 0.05);
-
+  overflow: hidden;
   height: 100vh;
 }
 
@@ -974,7 +974,11 @@ textarea.form-control {
   width: 8px;
   margin: 20px;
 }
-
+.scroll {
+  height: 200px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 /* Track */
 ::-webkit-scrollbar-track {
   border-radius: 10px;
@@ -1003,7 +1007,7 @@ textarea.form-control {
 .sidebar-inner {
   height: 100%;
   transition: all 0.2s ease-in-out 0.3s;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 .sidebar-menu ul {
   font-size: 14px;
