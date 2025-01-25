@@ -6,8 +6,12 @@ function Header({ setMinbar }) {
     <div className="header">
       <div className="header-left">
         <NavLink to="/" className="logo">
-          <img src="/images/logo/logo-icon.png" width="50" height="50" alt="" />{" "}
-          <span>Care Sync Unity</span>
+          <img
+            src="/images/logo/care-sync-unity-logo.png"
+            width="190"
+            height="50"
+            alt=""
+          />{" "}
         </NavLink>
       </div>
 
