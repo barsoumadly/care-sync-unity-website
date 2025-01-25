@@ -1,5 +1,12 @@
+import { MdDashboard } from "react-icons/md";
+import { FaUserDoctor, FaPeopleRoof } from "react-icons/fa6";
+import { ImUserTie } from "react-icons/im";
+import { AiFillSchedule } from "react-icons/ai";
+import { GrSchedules } from "react-icons/gr";
+import { BsChatText } from "react-icons/bs";
+import { IoIosArrowForward } from "react-icons/io";
+
 function Sidebar({ minbar }) {
-  console.log(minbar);
   return (
     <div className={minbar ? "mini-sidebar" : ""}>
       <div className="sidebar" id="sidebar" style={{ display: "block" }}>
@@ -10,12 +17,12 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="#">
                   <span className="menu-side">
-                    <img
-                      src="/images/dashborad/icons/menu-icon-01.svg"
-                      alt=""
-                    />
+                    <MdDashboard />
                   </span>{" "}
-                  <span> Dashboard </span> <span className="menu-arrow" />
+                  <span> Dashboard </span>{" "}
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -32,12 +39,12 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="#">
                   <span className="menu-side">
-                    <img
-                      src="/images/dashborad/icons/menu-icon-02.svg"
-                      alt=""
-                    />
+                    <FaUserDoctor />
                   </span>{" "}
-                  <span> Doctors </span> <span className="menu-arrow" />
+                  <span> Doctors </span>{" "}
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -59,12 +66,12 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="#">
                   <span className="menu-side">
-                    <img
-                      src="/images/dashborad/icons/menu-icon-03.svg"
-                      alt=""
-                    />
+                    <FaPeopleRoof />
                   </span>{" "}
-                  <span>Patients </span> <span className="menu-arrow" />
+                  <span>Patients </span>{" "}
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -84,12 +91,12 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="#">
                   <span className="menu-side">
-                    <img
-                      src="/images/dashborad/icons/menu-icon-08.svg"
-                      alt=""
-                    />
+                    <ImUserTie />
                   </span>{" "}
-                  <span> Staff </span> <span className="menu-arrow" />
+                  <span> Staff </span>{" "}
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -115,12 +122,12 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="#">
                   <span className="menu-side">
-                    <img
-                      src="/images/dashborad/icons/menu-icon-04.svg"
-                      alt=""
-                    />
+                    <AiFillSchedule />
                   </span>{" "}
-                  <span> Appointments </span> <span className="menu-arrow" />
+                  <span> Appointments </span>{" "}
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -137,12 +144,12 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="#">
                   <span className="menu-side">
-                    <img
-                      src="/images/dashborad/icons/menu-icon-05.svg"
-                      alt=""
-                    />
+                    <GrSchedules />
                   </span>{" "}
-                  <span> Doctor Schedule </span> <span className="menu-arrow" />
+                  <span> Doctor Schedule </span>{" "}
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -164,7 +171,10 @@ function Sidebar({ minbar }) {
                       alt=""
                     />
                   </span>{" "}
-                  <span> Departments </span> <span className="menu-arrow" />
+                  <span> Departments </span>{" "}
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -186,7 +196,10 @@ function Sidebar({ minbar }) {
                       alt=""
                     />
                   </span>{" "}
-                  <span> Accounts </span> <span className="menu-arrow" />
+                  <span> Accounts </span>{" "}
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -214,7 +227,10 @@ function Sidebar({ minbar }) {
                       alt=""
                     />
                   </span>{" "}
-                  <span> Payroll </span> <span className="menu-arrow" />
+                  <span> Payroll </span>{" "}
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -226,14 +242,14 @@ function Sidebar({ minbar }) {
                 </ul>
               </li>
               <li>
-                <a href="chat.html">
+                <a>
                   <span className="menu-side">
-                    <img
-                      src="/images/dashborad/icons/menu-icon-10.svg"
-                      alt=""
-                    />
+                    <BsChatText />
                   </span>{" "}
-                  <span>Chat</span>
+                  <span>Chat</span>{" "}
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
               </li>
               <li className="submenu">
@@ -244,7 +260,10 @@ function Sidebar({ minbar }) {
                       alt=""
                     />
                   </span>{" "}
-                  <span> Calls</span> <span className="menu-arrow" />
+                  <span> Calls</span>{" "}
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -266,7 +285,10 @@ function Sidebar({ minbar }) {
                       alt=""
                     />
                   </span>{" "}
-                  <span> Email</span> <span className="menu-arrow" />
+                  <span> Email</span>{" "}
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -288,7 +310,10 @@ function Sidebar({ minbar }) {
                       alt=""
                     />
                   </span>{" "}
-                  <span> Blog</span> <span className="menu-arrow" />
+                  <span> Blog</span>{" "}
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -324,7 +349,9 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="#">
                   <i className="fa fa-flag" /> <span> Reports </span>{" "}
-                  <span className="menu-arrow" />
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -343,7 +370,10 @@ function Sidebar({ minbar }) {
                       alt=""
                     />
                   </span>{" "}
-                  <span> Invoice </span> <span className="menu-arrow" />
+                  <span> Invoice </span>{" "}
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -381,7 +411,9 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="#">
                   <i className="fa fa-laptop" /> <span> Base UI</span>{" "}
-                  <span className="menu-arrow" />
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -473,7 +505,9 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="#">
                   <i className="fa fa-box" /> <span> Elements</span>{" "}
-                  <span className="menu-arrow" />
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -517,7 +551,9 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="#">
                   <i className="fa fa-chart-simple" /> <span>Charts</span>{" "}
-                  <span className="menu-arrow" />
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -543,7 +579,9 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="#">
                   <i className="fa fa-award" /> <span>Icons</span>{" "}
-                  <span className="menu-arrow" />
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -581,7 +619,9 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="#">
                   <i className="fa fa-edit" /> <span> Forms</span>{" "}
-                  <span className="menu-arrow" />
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -613,7 +653,9 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="#">
                   <i className="fa fa-table" /> <span> Tables</span>{" "}
-                  <span className="menu-arrow" />
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -633,7 +675,9 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="#">
                   <i className="fa fa-columns" /> <span>Pages</span>{" "}
-                  <span className="menu-arrow" />
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li>
@@ -671,12 +715,17 @@ function Sidebar({ minbar }) {
               <li className="submenu">
                 <a href="javascript:void(0);">
                   <i className="fa fa-share-alt" /> <span>Multi Level</span>{" "}
-                  <span className="menu-arrow" />
+                  <span className="menu-arrow">
+                    <IoIosArrowForward />
+                  </span>
                 </a>
                 <ul style={{ display: "none" }}>
                   <li className="submenu">
                     <a href="javascript:void(0);">
-                      <span>Level 1</span> <span className="menu-arrow" />
+                      <span>Level 1</span>{" "}
+                      <span className="menu-arrow">
+                        <IoIosArrowForward />
+                      </span>
                     </a>
                     <ul style={{ display: "none" }}>
                       <li>
@@ -687,7 +736,10 @@ function Sidebar({ minbar }) {
                       <li className="submenu">
                         <a href="javascript:void(0);">
                           {" "}
-                          <span> Level 2</span> <span className="menu-arrow" />
+                          <span> Level 2</span>{" "}
+                          <span className="menu-arrow">
+                            <IoIosArrowForward />
+                          </span>
                         </a>
                         <ul style={{ display: "none" }}>
                           <li>
