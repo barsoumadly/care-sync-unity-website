@@ -4,10 +4,11 @@ import Sidebar from "./Sidebar";
 
 function DashboardBox() {
   const [minbar, setMinbar] = useState(false);
+  const [showbar, setShowbar] = useState(true);
   return (
     <>
-      <Header minbar={minbar} setMinbar={setMinbar} />
-      <Sidebar minbar={minbar} />
+      <Header setShowbar={setShowbar} setMinbar={setMinbar} />
+      <Sidebar minbar={minbar} showbar={showbar} />
     </>
   );
 }
