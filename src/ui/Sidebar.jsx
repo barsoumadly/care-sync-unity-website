@@ -10,7 +10,7 @@ function Sidebar({ minbar }) {
   return (
     <div className={minbar ? "mini-sidebar" : ""}>
       <div className="sidebar" id="sidebar" style={{ display: "block" }}>
-        <div className="sidebar-inner slimscroll">
+        <div className="sidebar-inner slimscroll scroll">
           <div id="sidebar-menu" className="sidebar-menu">
             <ul>
               <li className="menu-title">Main</li>
