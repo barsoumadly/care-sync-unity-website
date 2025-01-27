@@ -13,7 +13,7 @@ import Register from "./pages/Register";
 import Login from "./pages/login";
 
 import ClinicLayout from "./features/dashboard/clinic/ClinicLayout";
-import Dashboard from "./features/dashboard/clinic/Dashboard";
+import ClinicDashboard from "./features/dashboard/clinic/ClinicDashboard";
 import Doctors from "./features/dashboard/clinic/Doctors";
 import Patients from "./features/dashboard/clinic/Patients";
 import Staff from "./features/dashboard/clinic/Staff";
@@ -22,6 +22,11 @@ import DoctorSchedule from "./features/dashboard/clinic/DoctorSchedule";
 import Chat from "./features/dashboard/clinic/Chat";
 import Reports from "./features/dashboard/clinic/Reports";
 import Invoice from "./features/dashboard/clinic/Invoice";
+
+import DoctorLayout from "./features/dashboard/doctor/DoctorLayout";
+import DoctorDashboard from "./features/dashboard/doctor/DoctorDashboard";
+import MyProfile from "./features/dashboard/doctor/MyProfile";
+import EditProfile from "./features/dashboard/doctor/EditProfile";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home />, errorElement: <Error /> },
@@ -39,7 +44,7 @@ const router = createBrowserRouter([
     element: <ClinicLayout />,
     errorElement: <Error />,
     children: [
-      { path: "/clinic/dashboard", element: <Dashboard /> },
+      { path: "/clinic/dashboard", element: <ClinicDashboard /> },
       /* Doctors */
       { path: "/clinic/doctor-list", element: <Doctors /> },
       { path: "/clinic/add-doctor", element: <Doctors /> },
@@ -65,8 +70,19 @@ const router = createBrowserRouter([
       { path: "/clinic/invoice", element: <Invoice /> },
     ],
   },
-  // { path: "/patient", element: <Patient /> },
-  // { path: "/doctor", element: <Doctor /> },
+  {
+    element: <DoctorLayout />,
+    errorElement: <Error />,
+    children: [
+      { path: "/doctor/dashboard", element: <DoctorDashboard /> },
+      /* Doctors */
+      { path: "/doctor/patients", element: <Patients /> },
+      { path: "/doctor/chat", element: <Chat /> },
+      /* Patients */
+      { path: "/doctor/my-profile", element: <MyProfile /> },
+      { path: "/doctor/edit-profile", element: <EditProfile /> },
+    ],
+  },
 ]);
 
 function App() {
