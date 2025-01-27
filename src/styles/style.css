@@ -2662,7 +2662,7 @@ table.dataTable thead .sorting_desc_disabled:after {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #00d3c7;
+  background: #2e37a4;
 }
 .pulse:before {
   content: "";
@@ -2672,9 +2672,9 @@ table.dataTable thead .sorting_desc_disabled:after {
   height: 10px;
   position: absolute;
   border-radius: 50%;
-  background: rgb(0 211 199 / 50%);
+  background: rgba(56, 68, 202, 0.5);
   cursor: pointer;
-  box-shadow: 0 0 0 rgb(0 211 199);
+  box-shadow: 0 0 0 rgb(46 55 164);
   animation: pulse 1s linear infinite;
   z-index: 1;
 }
