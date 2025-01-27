@@ -4,30 +4,48 @@ import { BsChatText } from "react-icons/bs";
 import { FaFlag, FaPeopleRoof, FaUserDoctor } from "react-icons/fa6";
 import { GrSchedules } from "react-icons/gr";
 import { ImUserTie } from "react-icons/im";
-import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { IoReceipt } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 function ClinicSidebar({ minbar }) {
   const [toggle, setToggle] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
   function hanbleClick(index) {
-    setToggle(index);
-    if (toggle === index || toggle === 0) setIsOpen((isOpen) => !isOpen);
+    if (toggle !== index) {
+      setToggle(index);
+    } else {
+      setToggle(0);
+    }
   }
   return (
     <>
       {/* Dashboard */}
       <li className="submenu">
-        <NavLink to={"/clinic/dashboard"} className="link">
+        <NavLink
+          to={"/clinic/dashboard"}
+          className="link"
+          onClick={() => hanbleClick(0)}
+        >
           <span className="menu-side">
             <MdDashboard />
-          </span>{" "}
-          <span> Dashboard </span>{" "}
-          <span className="menu-arrow" onClick={() => hanbleClick(1)}>
-            <IoIosArrowForward />
           </span>
+          <span> Dashboard </span>
+        </NavLink>
+      </li>
+
+      {/* Chat */}
+      <li>
+        <NavLink
+          to={"/clinic/chat"}
+          className="link"
+          onClick={() => hanbleClick(0)}
+        >
+          <span className="menu-side">
+            <BsChatText />
+          </span>
+          <span>Chat</span>
+          <span className="menu-arrow"></span>
         </NavLink>
       </li>
 
@@ -36,15 +54,15 @@ function ClinicSidebar({ minbar }) {
         <a className="link" onClick={() => hanbleClick(1)}>
           <span className="menu-side">
             <FaUserDoctor />
-          </span>{" "}
-          <span> Doctors </span>{" "}
+          </span>
+          <span> Doctors </span>
           <span className="menu-arrow">
-            <IoIosArrowForward />
+            {toggle === 1 ? <IoIosArrowDown /> : <IoIosArrowForward />}
           </span>
         </a>
         <ul
           style={{
-            display: `${toggle === 1 && isOpen && !minbar ? "block" : "none"}`,
+            display: `${toggle === 1 && !minbar ? "block" : "none"}`,
           }}
         >
           <li>
@@ -65,15 +83,15 @@ function ClinicSidebar({ minbar }) {
         <a className="link" onClick={() => hanbleClick(2)}>
           <span className="menu-side">
             <FaPeopleRoof />
-          </span>{" "}
-          <span>Patients </span>{" "}
+          </span>
+          <span>Patients </span>
           <span className="menu-arrow">
-            <IoIosArrowForward />
+            {toggle === 2 ? <IoIosArrowDown /> : <IoIosArrowForward />}
           </span>
         </a>
         <ul
           style={{
-            display: `${toggle === 2 && isOpen && !minbar ? "block" : "none"}`,
+            display: `${toggle === 2 && !minbar ? "block" : "none"}`,
           }}
         >
           <li>
@@ -99,15 +117,15 @@ function ClinicSidebar({ minbar }) {
         <a className="link" onClick={() => hanbleClick(3)}>
           <span className="menu-side">
             <ImUserTie />
-          </span>{" "}
-          <span> Staff </span>{" "}
+          </span>
+          <span> Staff </span>
           <span className="menu-arrow">
-            <IoIosArrowForward />
+            {toggle === 3 ? <IoIosArrowDown /> : <IoIosArrowForward />}
           </span>
         </a>
         <ul
           style={{
-            display: `${toggle === 3 && isOpen && !minbar ? "block" : "none"}`,
+            display: `${toggle === 3 && !minbar ? "block" : "none"}`,
           }}
         >
           <li>
@@ -133,15 +151,15 @@ function ClinicSidebar({ minbar }) {
         <a className="link" onClick={() => hanbleClick(4)}>
           <span className="menu-side">
             <AiFillSchedule />
-          </span>{" "}
-          <span> Appointments </span>{" "}
+          </span>
+          <span> Appointments </span>
           <span className="menu-arrow">
-            <IoIosArrowForward />
+            {toggle === 4 ? <IoIosArrowDown /> : <IoIosArrowForward />}
           </span>
         </a>
         <ul
           style={{
-            display: `${toggle === 4 && isOpen && !minbar ? "block" : "none"}`,
+            display: `${toggle === 4 && !minbar ? "block" : "none"}`,
           }}
         >
           <li>
@@ -167,15 +185,15 @@ function ClinicSidebar({ minbar }) {
         <a className="link" onClick={() => hanbleClick(5)}>
           <span className="menu-side">
             <GrSchedules />
-          </span>{" "}
-          <span> Doctor Schedule </span>{" "}
+          </span>
+          <span> Doctor Schedule </span>
           <span className="menu-arrow">
-            <IoIosArrowForward />
+            {toggle === 5 ? <IoIosArrowDown /> : <IoIosArrowForward />}
           </span>
         </a>
         <ul
           style={{
-            display: `${toggle === 5 && isOpen && !minbar ? "block" : "none"}`,
+            display: `${toggle === 5 && !minbar ? "block" : "none"}`,
           }}
         >
           <li>
@@ -196,23 +214,6 @@ function ClinicSidebar({ minbar }) {
         </ul>
       </li>
 
-      {/* Chat */}
-      <li>
-        <NavLink
-          to={"/clinic/chat"}
-          className="link"
-          onClick={() => hanbleClick(0)}
-        >
-          <span className="menu-side">
-            <BsChatText />
-          </span>{" "}
-          <span>Chat</span>{" "}
-          <span className="menu-arrow">
-            <IoIosArrowForward />
-          </span>
-        </NavLink>
-      </li>
-
       {/* Reports */}
       <li className="submenu">
         <NavLink
@@ -222,10 +223,10 @@ function ClinicSidebar({ minbar }) {
         >
           <span className="menu-side">
             <FaFlag />
-          </span>{" "}
-          <span> Reports </span>{" "}
+          </span>
+          <span> Reports </span>
           <span className="menu-arrow">
-            <IoIosArrowForward />
+            {toggle === 6 ? <IoIosArrowDown /> : <IoIosArrowForward />}
           </span>
         </NavLink>
         <ul style={{ display: "none" }}>
@@ -247,8 +248,8 @@ function ClinicSidebar({ minbar }) {
         >
           <span className="menu-side">
             <IoReceipt />
-          </span>{" "}
-          <span> Invoice </span>{" "}
+          </span>
+          <span> Invoice </span>
           <span className="menu-arrow">
             <IoIosArrowForward />
           </span>
