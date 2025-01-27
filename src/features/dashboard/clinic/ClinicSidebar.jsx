@@ -198,7 +198,11 @@ function ClinicSidebar({ minbar }) {
 
       {/* Chat */}
       <li>
-        <NavLink to={"/clinic/chat"} className="link">
+        <NavLink
+          to={"/clinic/chat"}
+          className="link"
+          onClick={() => hanbleClick(0)}
+        >
           <span className="menu-side">
             <BsChatText />
           </span>{" "}
@@ -211,7 +215,11 @@ function ClinicSidebar({ minbar }) {
 
       {/* Reports */}
       <li className="submenu">
-        <NavLink to={"/clinic/reports"} className="link">
+        <NavLink
+          to={"/clinic/reports"}
+          className="link"
+          onClick={() => hanbleClick(0)}
+        >
           <span className="menu-side">
             <FaFlag />
           </span>{" "}
@@ -232,7 +240,11 @@ function ClinicSidebar({ minbar }) {
 
       {/* Invoice */}
       <li className="submenu">
-        <NavLink to={"/clinic/invoice"} className="link">
+        <NavLink
+          to={"/clinic/invoice"}
+          className="link"
+          onClick={() => hanbleClick(0)}
+        >
           <span className="menu-side">
             <IoReceipt />
           </span>{" "}
