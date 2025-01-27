@@ -18,7 +18,7 @@ function Sidebar({ minbar, showbar, children }) {
               <NavLink to={"/login"} className="link">
                 <span className="menu-side">
                   <img src="/images/dashborad/icons/logout.svg" alt="" />
-                </span>{" "}
+                </span>
                 <span>Logout</span>
               </NavLink>
             </div>
