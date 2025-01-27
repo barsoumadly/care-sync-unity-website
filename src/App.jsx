@@ -25,8 +25,17 @@ import Invoice from "./features/dashboard/clinic/Invoice";
 
 import DoctorLayout from "./features/dashboard/doctor/DoctorLayout";
 import DoctorDashboard from "./features/dashboard/doctor/DoctorDashboard";
+import DoctorPatientsList from "./features/dashboard/doctor/Patients";
+import DoctorChat from "./features/dashboard/doctor/Chat";
 import MyProfile from "./features/dashboard/doctor/MyProfile";
 import EditProfile from "./features/dashboard/doctor/EditProfile";
+
+import PatientLayout from "./features/dashboard/patient/PatientLayout";
+import PatientDashboard from "./features/dashboard/patient/PatientDashboard";
+import ClinicsList from "./features/dashboard/patient/ClinicsList";
+import PatientAppointments from "./features/dashboard/patient/Appointments";
+import PatientChat from "./features/dashboard/patient/Chat";
+import EditProfilePatient from "./features/dashboard/patient/EditProfile";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home />, errorElement: <Error /> },
@@ -75,12 +84,22 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { path: "/doctor/dashboard", element: <DoctorDashboard /> },
-      /* Doctors */
-      { path: "/doctor/patients", element: <Patients /> },
-      { path: "/doctor/chat", element: <Chat /> },
-      /* Patients */
+      { path: "/doctor/patients", element: <DoctorPatientsList /> },
+      { path: "/doctor/chat", element: <DoctorChat /> },
       { path: "/doctor/my-profile", element: <MyProfile /> },
       { path: "/doctor/edit-profile", element: <EditProfile /> },
+    ],
+  },
+
+  {
+    element: <PatientLayout />,
+    errorElement: <Error />,
+    children: [
+      { path: "/patient/dashboard", element: <PatientDashboard /> },
+      { path: "/patient/clinics", element: <ClinicsList /> },
+      { path: "/patient/chat", element: <PatientChat /> },
+      { path: "/patient/appointments", element: <PatientAppointments /> },
+      { path: "/patient/edit-profile", element: <EditProfilePatient /> },
     ],
   },
 ]);
