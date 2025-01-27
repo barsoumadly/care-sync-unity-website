@@ -215,7 +215,8 @@ table.table td h2 {
   padding: 0;
   vertical-align: middle;
 }
-table.table td h2 a {
+table.table td h2 a,
+.link {
   color: #757575;
 }
 table.table td h2 a:hover {
@@ -770,7 +771,8 @@ textarea.form-control {
   right: 7px;
   top: 4px;
 }
-.header .dropdown-menu > li > a {
+.header .dropdown-menu > li > a,
+.header .dropdown-menu > li > .link {
   position: relative;
 }
 .header .dropdown-toggle:after {
@@ -793,7 +795,8 @@ textarea.form-control {
   position: relative;
   z-index: 99;
 }
-.user-menu.nav > li > a {
+.user-menu.nav > li > a,
+.user-menu.nav > li > .link {
   color: #fff;
   font-size: 16px;
   line-height: 70px;
@@ -925,7 +928,8 @@ textarea.form-control {
   align-items: center;
   padding: 0px 10px !important;
 }
-.user-menu.nav li.user-profile-list a {
+.user-menu.nav li.user-profile-list a,
+.user-menu.nav li.user-profile-list .link {
   line-height: 20px;
 }
 .user-names {
@@ -1015,14 +1019,17 @@ textarea.form-control {
   margin: 0;
   padding: 0;
 }
-.sidebar-menu li a {
+.sidebar-menu li a,
+.sidebar-menu li .link {
   color: #888;
   display: block;
   font-size: 15px;
   height: auto;
   padding: 0 20px;
+  cursor: pointer;
 }
-.sidebar-menu li a:hover {
+.sidebar-menu li a:hover,
+.sidebar-menu li .link:hover {
   color: #2e37a4;
 }
 .sidebar-menu ul li .active img {
@@ -1034,7 +1041,8 @@ textarea.form-control {
   -ms-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
 }
-.sidebar-menu li.active a {
+.sidebar-menu li.active a,
+.sidebar-menu li.active .link {
   color: #2e37a4;
 }
 .menu-title {
@@ -1047,13 +1055,15 @@ textarea.form-control {
   float: right;
   line-height: 40px;
 }
-.sidebar-menu li.menu-title a {
+.sidebar-menu li.menu-title a,
+.sidebar-menu li.menu-title .link {
   color: #009efb;
   display: inline-block;
   float: right;
   padding: 0;
 }
-.sidebar-menu li.menu-title a.btn {
+.sidebar-menu li.menu-title a.btn,
+.sidebar-menu li.menu-title .link.btn {
   color: #fff;
   display: block;
   float: none;
@@ -1085,7 +1095,8 @@ textarea.form-control {
   -ms-transform: translate(0, -50%);
   transform: translate(0, -50%);
 }
-.sidebar-menu ul ul a.active {
+.sidebar-menu ul ul a.active,
+.sidebar-menu ul ul .link.active {
   color: #2e37a4;
   font-weight: 500;
 }
@@ -1103,14 +1114,17 @@ textarea.form-control {
   width: 50px;
   z-index: 10;
 }
-.mobile-user-menu > a {
+.mobile-user-menu > a,
+.mobile-user-menu > .link {
   color: #fff;
   padding: 0;
 }
-.mobile-user-menu > a:hover {
+.mobile-user-menu > a:hover,
+.mobile-user-menu > .link:hover {
   color: #fff;
 }
-.mobile-user-menu > .dropdown-menu > a {
+.mobile-user-menu > .dropdown-menu > a,
+.mobile-user-menu > .dropdown-menu > .link {
   line-height: 23px;
 }
 .profile-rightbar {
@@ -1134,16 +1148,19 @@ textarea.form-control {
 .mobile_btn {
   display: none;
 }
-.sidebar .sidebar-menu > ul > li > a span {
+.sidebar .sidebar-menu > ul > li > a span,
+.sidebar .sidebar-menu > ul > li > .link span {
   transition: all 0.2s ease-in-out 0s;
   margin-left: 10px;
   white-space: nowrap;
 }
-.sidebar .sidebar-menu > ul > li > a span.badge {
+.sidebar .sidebar-menu > ul > li > a span.badge,
+.sidebar .sidebar-menu > ul > li > .link span.badge {
   color: #fff;
   margin-left: auto;
 }
-.sidebar-menu ul ul a {
+.sidebar-menu ul ul a,
+.sidebar-menu ul ul .link {
   display: block;
   font-size: 14px;
   padding: 9px 10px 9px 60px;
@@ -1154,10 +1171,12 @@ textarea.form-control {
 .sidebar-menu ul ul {
   display: none;
 }
-.sidebar-menu ul ul ul a {
+.sidebar-menu ul ul ul a,
+.sidebar-menu ul ul ul .link {
   padding-left: 70px;
 }
-.sidebar-menu ul ul ul ul a {
+.sidebar-menu ul ul ul ul a,
+.sidebar-menu ul ul ul ul .link {
   padding-left: 90px;
 }
 .sidebar-menu > ul > li {
@@ -1184,23 +1203,27 @@ textarea.form-control {
   top: 23px;
 }
 
-.sidebar-menu li a.subdrop .menu-arrow {
+.sidebar-menu li a.subdrop .menu-arrow,
+.sidebar-menu li .link.subdrop .menu-arrow {
   -ms-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
   -o-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-.sidebar-menu ul ul a .menu-arrow {
+.sidebar-menu ul ul a .menu-arrow,
+.sidebar-menu ul ul .link .menu-arrow {
   top: 6px;
 }
-.sidebar-menu a {
+.sidebar-menu a,
+.sidebar-menu .link {
   transition: unset;
   -moz-transition: unset;
   -o-transition: unset;
   -ms-transition: unset;
   -webkit-transition: unset;
 }
-.sidebar-menu > ul > li > a {
+.sidebar-menu > ul > li > a,
+.sidebar-menu > ul > li > .link {
   padding: 12px 20px;
   align-items: center;
   display: flex;
@@ -1210,7 +1233,8 @@ textarea.form-control {
   color: rgba(51, 53, 72, 0.75);
   font-weight: 500;
 }
-.sidebar-menu ul li a i {
+.sidebar-menu ul li a i,
+.sidebar-menu ul li .link i {
   font-size: 18px;
   min-height: 24px;
   line-height: 18px;
@@ -1230,7 +1254,8 @@ textarea.form-control {
   -webkit-justify-content: center;
   -ms-flex-pack: center;
 }
-.sidebar-menu ul li a span.menu-side {
+.sidebar-menu ul li a span.menu-side,
+.sidebar-menu ul li .link span.menu-side {
   font-size: 18px;
   min-height: 24px;
   line-height: 18px;
@@ -1259,7 +1284,8 @@ textarea.form-control {
   -ms-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
 }
-.sidebar-menu li a:hover img {
+.sidebar-menu li a:hover img,
+.sidebar-menu li .link:hover img {
   filter: invert(13%) sepia(85%) saturate(7478%) hue-rotate(266deg)
     brightness(50%) contrast(340%);
   transition: all 0.5s ease;
@@ -1268,7 +1294,8 @@ textarea.form-control {
   -ms-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
 }
-.sidebar-menu ul li.menu-title a i {
+.sidebar-menu ul li.menu-title a i,
+.sidebar-menu ul li.menu-title .link i {
   font-size: 16px;
   margin-right: 0;
   text-align: right;
@@ -1277,7 +1304,8 @@ textarea.form-control {
 .logout-btn {
   margin: 50px 0px;
 }
-.logout-btn a span.menu-side {
+.logout-btn a span.menu-side,
+.logout-btn .link span.menu-side {
   font-size: 18px;
   min-height: 24px;
   line-height: 18px;
@@ -1298,7 +1326,8 @@ textarea.form-control {
   -ms-flex-pack: center;
   flex-shrink: 0;
 }
-.logout-btn a {
+.logout-btn a,
+.logout-btn .link {
   padding: 12px 20px;
   align-items: center;
   display: flex;
@@ -1308,7 +1337,8 @@ textarea.form-control {
   color: #2e37a4;
   font-weight: 500;
 }
-.logout-btn a span {
+.logout-btn a span,
+.logout-btn .link span {
   margin-left: 10px;
 }
 
