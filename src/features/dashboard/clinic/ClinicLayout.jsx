@@ -21,7 +21,7 @@ function DashboardLayout() {
           {" "}
           <Header setShowbar={setShowbar} setMinbar={setMinbar} />
           <Sidebar minbar={minbar} showbar={showbar}>
-            <ClinicSidebar />
+            <ClinicSidebar minbar={minbar} />
           </Sidebar>
           <main>
             <Outlet />
