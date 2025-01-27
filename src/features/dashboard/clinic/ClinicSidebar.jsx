@@ -9,7 +9,7 @@ import { IoReceipt } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
-function ClinicSidebar() {
+function ClinicSidebar({ minbar }) {
   const [toggle, setToggle] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   function hanbleClick(index) {
@@ -42,7 +42,11 @@ function ClinicSidebar() {
             <IoIosArrowForward />
           </span>
         </a>
-        <ul style={{ display: `${toggle === 1 && isOpen ? "block" : "none"}` }}>
+        <ul
+          style={{
+            display: `${toggle === 1 && isOpen && !minbar ? "block" : "none"}`,
+          }}
+        >
           <li>
             <NavLink to={"/clinic/doctor-list"} className="link">
               Doctor List
@@ -67,7 +71,11 @@ function ClinicSidebar() {
             <IoIosArrowForward />
           </span>
         </a>
-        <ul style={{ display: `${toggle === 2 && isOpen ? "block" : "none"}` }}>
+        <ul
+          style={{
+            display: `${toggle === 2 && isOpen && !minbar ? "block" : "none"}`,
+          }}
+        >
           <li>
             <NavLink to={"/clinic/patients-list"} className="link">
               Patients List
@@ -97,7 +105,11 @@ function ClinicSidebar() {
             <IoIosArrowForward />
           </span>
         </a>
-        <ul style={{ display: `${toggle === 3 && isOpen ? "block" : "none"}` }}>
+        <ul
+          style={{
+            display: `${toggle === 3 && isOpen && !minbar ? "block" : "none"}`,
+          }}
+        >
           <li>
             <NavLink to={"/clinic/employee-salary"} className="link">
               Employee salary
@@ -127,7 +139,11 @@ function ClinicSidebar() {
             <IoIosArrowForward />
           </span>
         </a>
-        <ul style={{ display: `${toggle === 4 && isOpen ? "block" : "none"}` }}>
+        <ul
+          style={{
+            display: `${toggle === 4 && isOpen && !minbar ? "block" : "none"}`,
+          }}
+        >
           <li>
             <NavLink to={"/clinic/appointment-list"} className="link">
               Appointment List
@@ -157,7 +173,11 @@ function ClinicSidebar() {
             <IoIosArrowForward />
           </span>
         </a>
-        <ul style={{ display: `${toggle === 5 && isOpen ? "block" : "none"}` }}>
+        <ul
+          style={{
+            display: `${toggle === 5 && isOpen && !minbar ? "block" : "none"}`,
+          }}
+        >
           <li>
             <NavLink to={"/clinic/schedule-list"} className="link">
               Schedule List
