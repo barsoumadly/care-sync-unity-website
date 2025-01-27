@@ -12,7 +12,7 @@ function Header({ setShowbar, setMinbar }) {
               width="190"
               height="50"
               alt=""
-            />{" "}
+            />
           </NavLink>
         </div>
       </div>
@@ -174,7 +174,7 @@ function Header({ setShowbar, setMinbar }) {
             className="hasnotifications nav-link"
           >
             <img src="/images/dashborad/icons/note-icon-01.svg" alt="" />
-            <span className="pulse"></span>{" "}
+            <span className="pulse"></span>
           </a>
         </li>
         <li className="nav-item dropdown has-arrow user-profile-list">
