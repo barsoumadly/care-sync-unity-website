@@ -5,7 +5,6 @@ function UserAvatar() {
 
   return (
     <>
-      {" "}
       <div className="user-names">
         <h5>{user} </h5>
         <span>{type}</span>
