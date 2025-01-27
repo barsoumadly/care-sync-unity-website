@@ -1,11 +1,6 @@
-import { MdDashboard } from "react-icons/md";
-import { FaUserDoctor, FaPeopleRoof } from "react-icons/fa6";
-import { ImUserTie } from "react-icons/im";
-import { AiFillSchedule } from "react-icons/ai";
-import { GrSchedules } from "react-icons/gr";
-import { BsChatText } from "react-icons/bs";
-import { IoIosArrowForward } from "react-icons/io";
-function Sidebar({ minbar, showbar }) {
+import { NavLink } from "react-router-dom";
+
+function Sidebar({ minbar, showbar, children }) {
   return (
     <div className={minbar ? "mini-sidebar" : ""}>
       <div
@@ -17,7 +12,27 @@ function Sidebar({ minbar, showbar }) {
           <div id="sidebar-menu" className="sidebar-menu">
             <ul>
               <li className="menu-title">Main</li>
-              <li className="submenu">
+              {children}
+            </ul>
+            <div className="logout-btn">
+              <NavLink to={"/login"} className="link">
+                <span className="menu-side">
+                  <img src="/images/dashborad/icons/logout.svg" alt="" />
+                </span>{" "}
+                <span>Logout</span>
+              </NavLink>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Sidebar;
+
+{
+  /* <li className="submenu">
                 <a href="#">
                   <span className="menu-side">
                     <MdDashboard />
@@ -122,6 +137,7 @@ function Sidebar({ minbar, showbar }) {
                   </li>
                 </ul>
               </li>
+
               <li className="submenu">
                 <a href="#">
                   <span className="menu-side">
@@ -766,21 +782,5 @@ function Sidebar({ minbar, showbar }) {
                     </a>
                   </li>
                 </ul>
-              </li>
-            </ul>
-            <div className="logout-btn">
-              <a href="login.html">
-                <span className="menu-side">
-                  <img src="/images/dashborad/icons/logout.svg" alt="" />
-                </span>{" "}
-                <span>Logout</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+              </li>*/
 }
-
-export default Sidebar;
