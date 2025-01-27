@@ -970,12 +970,12 @@ textarea.form-control {
   border-top-right-radius: 40px;
   box-shadow: 5px 20px 14px rgba(46, 55, 164, 0.05);
   overflow: hidden;
-  height: 100vh;
+  height: 95vh;
 }
 
 /* width */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
   margin: 20px;
 }
 .scroll {
