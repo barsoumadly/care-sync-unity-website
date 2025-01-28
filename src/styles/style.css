@@ -1924,7 +1924,7 @@ ul.chat-user-total li i.old-users {
 .good-morning-blk:before {
   content: "";
   position: absolute;
-  background-image: url(../img/bg-img-01.png);
+  background-image: url(../imag/bg-img-01.png);
   background-repeat: no-repeat;
   background-position: top right;
   width: 100%;
@@ -2213,12 +2213,8 @@ table.dataTable thead .sorting_desc_disabled:after {
   text-align: center;
 }
 .wallet-widget .circle-bar > div b {
-  left: 0;
-  position: absolute;
-  top: 50%;
-  right: 0;
   text-align: center;
-  margin: 0 auto;
+  margin: 30px 0 auto;
   transform: translateY(-50%);
   width: 60px;
   height: 60px;
@@ -11756,6 +11752,11 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
   }
   .join-video.single-user {
     height: auto;
+  }
+}
+@media only screen and (min-width: 991.98px) {
+  .sidebar,.sidebar-inner{
+    margin-left: 0px !important;
   }
 }
 @media only screen and (max-width: 991.98px) {
