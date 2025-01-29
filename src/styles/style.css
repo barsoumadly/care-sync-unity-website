@@ -310,7 +310,7 @@ table.table td h2 span {
   margin-bottom: 20px;
 }
 .cal-icon:after {
-  background: transparent url("../img/icons/calendar-icon.svg") no-repeat scroll
+  background: transparent url("../images/dashborad/icons/calendar-icon.svg") no-repeat scroll
     0 0;
   bottom: 0;
   content: "";
@@ -328,7 +328,7 @@ table.table td h2 span {
   width: 100%;
 }
 .time-icon:after {
-  background: transparent url("../img/clock.png") no-repeat scroll 0 0;
+  background: transparent url("../images/dashborad/clock.png") no-repeat scroll 0 0;
   bottom: 0;
   content: "";
   display: block;
@@ -1083,7 +1083,7 @@ textarea.form-control {
   position: relative;
 }
 .sidebar-menu ul .submenu ul .active:before {
-  background-image: url(../img/icons/right-icon.svg);
+  background-image: url(../images/dashborad/icons/right-icon.svg);
   content: "";
   position: absolute;
   width: 10px;
@@ -1924,7 +1924,7 @@ ul.chat-user-total li i.old-users {
 .good-morning-blk:before {
   content: "";
   position: absolute;
-  background-image: url(../imag/bg-img-01.png);
+  background-image: url(../images/dashborad/bg-img-01.png);
   background-repeat: no-repeat;
   background-position: top right;
   width: 100%;
@@ -2606,7 +2606,7 @@ table.dataTable thead .sorting_desc_disabled:after {
   height: 40px;
 }
 .weight-blk:before {
-  background-image: url(../img/icons/mass-icon.svg);
+  background-image: url(../images/dashborad/icons/mass-icon.svg);
   content: "";
   position: absolute;
   width: 20px;
@@ -11078,7 +11078,7 @@ textarea.form-control {
   -ms-transform: translateX(-50%) translateY(-50%);
   -o-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
-  background: url(../img/arrow.svg) no-repeat 0 0;
+  background: url(../images/dashborad/arrow.svg) no-repeat 0 0;
 }
 .cd-timeline-navigation a.prev {
   left: 0;
@@ -11755,7 +11755,8 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
   }
 }
 @media only screen and (min-width: 991.98px) {
-  .sidebar,.sidebar-inner{
+  .sidebar,
+  .sidebar-inner {
     margin-left: 0px !important;
   }
 }
