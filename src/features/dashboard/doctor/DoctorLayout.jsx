@@ -18,8 +18,11 @@ function DashboardLayout() {
         <Loader />
       ) : (
         <>
-          {" "}
-          <Header setShowbar={setShowbar} setMinbar={setMinbar} />
+          <Header
+            setShowbar={setShowbar}
+            setMinbar={setMinbar}
+            url={"/doctor/dashboard"}
+          />
           <Sidebar minbar={minbar} showbar={showbar}>
             <DoctorSidebar />
           </Sidebar>
@@ -27,7 +30,7 @@ function DashboardLayout() {
             <Outlet />
           </main>
         </>
-      )}{" "}
+      )}
     </>
   );
 }
