@@ -4,6 +4,7 @@ import PasswordEye from "../features/authentication/PasswordEye";
 import ErrorMessage from "../features/authentication/ErrorMessage";
 import userRoleArr from "../data/constants";
 import UserRole from "../features/authentication/UserRole";
+import { register } from "../services/auth";
 
 function Register() {
   const [fullname, setFullname] = useState("");
@@ -20,14 +21,15 @@ function Register() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = function (event) {
+  const handleSubmit = async function (event) {
     event.preventDefault();
     if (password !== confirmPassword) {
       setErrorMessage("Passwords are not same");
       return setIsVisible(true);
     }
 
-    const userData = { fullname, email, password, userRole };
+    const userData = { name: fullname, email, password, role: userRole };
+    await register(userData);
     navigate("/login");
   };
 
