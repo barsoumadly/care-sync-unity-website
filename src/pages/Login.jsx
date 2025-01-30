@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordEye from "../features/authentication/PasswordEye";
-import UserRole from "../features/authentication/UserRole";
-import userRoleArr from "../data/constants";
 import { login } from "../services/auth";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userRole, setUserRole] = useState("PATIENT");
   const [isEyeOpen, setIsEyeOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -36,10 +33,6 @@ function Login() {
 
   const handlePasswordEye = function (result) {
     setIsEyeOpen(result);
-  };
-
-  const handleUserRole = function (userRole) {
-    setUserRole(userRole);
   };
 
   return (
@@ -73,12 +66,6 @@ function Login() {
           />
           <PasswordEye isEyeOpen={isEyeOpen} setIsEyeOpen={handlePasswordEye} />
         </div>
-
-        <UserRole
-          userRoleArr={userRoleArr}
-          userRole={userRole}
-          setUserRole={handleUserRole}
-        />
 
         <div className="forgotpass">
           <Link to="/forgot-password">Forgot Password?</Link>
