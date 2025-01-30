@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
 import UserAvatar from "../features/authentication/UserAvatar";
 
-function Header({ setShowbar, setMinbar }) {
+function Header({ setShowbar, setMinbar, url }) {
   return (
     <div className="header">
       <div className="header-left">
         <div className="logo">
-          <NavLink to="/">
+          <NavLink to={url}>
             <img
               src="/images/logo/care-sync-unity-logo.png"
               width="190"
@@ -49,7 +49,7 @@ function Header({ setShowbar, setMinbar }) {
             data-bs-toggle="dropdown"
           >
             <img src="/images/dashborad/icons/note-icon-02.svg" alt="" />
-            <span className="pulse"></span>{" "}
+            <span className="pulse"></span>
           </a>
           <div className="dropdown-menu notifications">
             <div className="topnav-dropdown-header">
@@ -70,7 +70,7 @@ function Header({ setShowbar, setMinbar }) {
                       <div className="media-body">
                         <p className="noti-details">
                           <span className="noti-title">John Doe</span> added new
-                          task{" "}
+                          task
                           <span className="noti-title">
                             Patient appointment booking
                           </span>
@@ -88,8 +88,8 @@ function Header({ setShowbar, setMinbar }) {
                       <span className="avatar">V</span>
                       <div className="media-body">
                         <p className="noti-details">
-                          <span className="noti-title">Tarah Shropshire</span>{" "}
-                          changed the task name{" "}
+                          <span className="noti-title">Tarah Shropshire</span>
+                          changed the task name
                           <span className="noti-title">
                             Appointment booking with payment gateway
                           </span>
@@ -107,10 +107,10 @@ function Header({ setShowbar, setMinbar }) {
                       <span className="avatar">L</span>
                       <div className="media-body">
                         <p className="noti-details">
-                          <span className="noti-title">Misty Tison</span> added{" "}
-                          <span className="noti-title">Domenic Houston</span>{" "}
-                          and <span className="noti-title">Claire Mapes</span>{" "}
-                          to project{" "}
+                          <span className="noti-title">Misty Tison</span> added
+                          <span className="noti-title">Domenic Houston</span>
+                          and <span className="noti-title">Claire Mapes</span>
+                          to project
                           <span className="noti-title">
                             Doctor available module
                           </span>
@@ -128,8 +128,8 @@ function Header({ setShowbar, setMinbar }) {
                       <span className="avatar">G</span>
                       <div className="media-body">
                         <p className="noti-details">
-                          <span className="noti-title">Rolland Webber</span>{" "}
-                          completed task{" "}
+                          <span className="noti-title">Rolland Webber</span>
+                          completed task
                           <span className="noti-title">
                             Patient and Doctor video conferencing
                           </span>
@@ -147,8 +147,8 @@ function Header({ setShowbar, setMinbar }) {
                       <span className="avatar">V</span>
                       <div className="media-body">
                         <p className="noti-details">
-                          <span className="noti-title">Bernardo Galaviz</span>{" "}
-                          added new task{" "}
+                          <span className="noti-title">Bernardo Galaviz</span>
+                          added new task
                           <span className="noti-title">
                             Private chat module
                           </span>
@@ -168,11 +168,7 @@ function Header({ setShowbar, setMinbar }) {
           </div>
         </li>
         <li className="nav-item dropdown d-none d-md-block">
-          <a
-            href="javascript:void(0);"
-            id="open_msg_box"
-            className="hasnotifications nav-link"
-          >
+          <a id="open_msg_box" className="hasnotifications nav-link">
             <img src="/images/dashborad/icons/note-icon-01.svg" alt="" />
             <span className="pulse"></span>
           </a>
@@ -202,7 +198,7 @@ function Header({ setShowbar, setMinbar }) {
         </li>
         <li className="nav-item ">
           <a href="settings.html" className="hasnotifications nav-link">
-            <img src="/images/dashborad/icons/setting-icon-01.svg" alt="" />{" "}
+            <img src="/images/dashborad/icons/setting-icon-01.svg" alt="" />
           </a>
         </li>
       </ul>
