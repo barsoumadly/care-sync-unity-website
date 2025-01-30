@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import PasswordEye from "../features/authentication/PasswordEye";
 import UserRole from "../features/authentication/UserRole";
 import userRoleArr from "../data/constants";
+import { login } from "../services/auth";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -12,10 +13,25 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = function (event) {
+  const navigateUser = function (userRole) {
+    if (userRole === "CLINIC_ADMIN") {
+      navigate("/clinic/dashboard");
+    } else if (userRole === "PHARMACY_ADMIN") {
+      navigate("/pharmacy/dashboard");
+    } else if (userRole === "LABORATORY_ADMIN") {
+      navigate("/laboratory/dashboard");
+    } else if (userRole === "PATIENT") {
+      navigate("/patient/dashboard");
+    } else {
+      navigate("/doctor/dashboard");
+    }
+  };
+
+  const handleSubmit = async function (event) {
     event.preventDefault();
-    const userCredentials = { email, password, userRole };
-    navigate("/");
+    const userCredentials = { email, password };
+    const response = await login(userCredentials);
+    navigateUser(response.data.user.role);
   };
 
   const handlePasswordEye = function (result) {
