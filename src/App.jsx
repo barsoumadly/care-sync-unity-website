@@ -10,7 +10,7 @@ import Error from "./ui/Error";
 import Home from "./ui/Home";
 
 import Register from "./pages/Register";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 /* Clinic */
 import ClinicLayout from "./features/dashboard/clinic/ClinicLayout";
 import ClinicDashboard from "./features/dashboard/clinic/ClinicDashboard";
