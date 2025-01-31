@@ -46,6 +46,7 @@ import PatientAppointments from "./features/dashboard/patient/Appointments";
 import PatientChat from "./features/dashboard/patient/Chat";
 import EditProfilePatient from "./features/dashboard/patient/EditProfile";
 import { UserContextProvider } from "./context/UserContextProvider";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home />, errorElement: <Error /> },
@@ -60,7 +61,11 @@ const router = createBrowserRouter([
     ],
   },
   {
-    element: <ClinicLayout />,
+    element: (
+      <ProtectedRoute>
+        <ClinicLayout />
+      </ProtectedRoute>
+    ),
     errorElement: <Error />,
     children: [
       { path: "/clinic/dashboard", element: <ClinicDashboard /> },
@@ -90,7 +95,11 @@ const router = createBrowserRouter([
     ],
   },
   {
-    element: <DoctorLayout />,
+    element: (
+      <ProtectedRoute>
+        <DoctorLayout />
+      </ProtectedRoute>
+    ),
     errorElement: <Error />,
     children: [
       { path: "/doctor/dashboard", element: <DoctorDashboard /> },
@@ -102,7 +111,11 @@ const router = createBrowserRouter([
   },
 
   {
-    element: <PatientLayout />,
+    element: (
+      <ProtectedRoute>
+        <PatientLayout />
+      </ProtectedRoute>
+    ),
     errorElement: <Error />,
     children: [
       { path: "/patient/dashboard", element: <PatientDashboard /> },
