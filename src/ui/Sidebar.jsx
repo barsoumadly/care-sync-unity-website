@@ -15,7 +15,7 @@ function Sidebar({ minbar, showbar, children }) {
               {children}
             </ul>
             <div className="logout-btn">
-              <NavLink to={"/login"} className="link">
+              <NavLink to={"/login"} replace={true} className="link">
                 <span className="menu-side">
                   <img src="/images/dashborad/icons/logout.svg" alt="" />
                 </span>
