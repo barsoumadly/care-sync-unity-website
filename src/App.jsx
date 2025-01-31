@@ -45,6 +45,7 @@ import ClinicsList from "./features/dashboard/patient/ClinicsList";
 import PatientAppointments from "./features/dashboard/patient/Appointments";
 import PatientChat from "./features/dashboard/patient/Chat";
 import EditProfilePatient from "./features/dashboard/patient/EditProfile";
+import { UserContextProvider } from "./context/UserContextProvider";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home />, errorElement: <Error /> },
@@ -116,7 +117,13 @@ const router = createBrowserRouter([
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   setTimeout(() => setIsLoading(false), 2000);
-  return <>{isLoading ? <Loader /> : <RouterProvider router={router} />}</>;
+  return (
+    <div>
+      <UserContextProvider>
+        {isLoading ? <Loader /> : <RouterProvider router={router} />}
+      </UserContextProvider>
+    </div>
+  );
 }
 
 export default App;
