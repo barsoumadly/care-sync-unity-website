@@ -22,7 +22,7 @@ function ProtectedRoute({ children }) {
   );
 
   if (isLoading) return <Loader />;
-  if (!isLogin) return { children };
+  if (!isLogin) return children;
 }
 
 export default ProtectedRoute;
