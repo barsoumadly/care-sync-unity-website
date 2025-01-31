@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import PasswordEye from "../features/authentication/PasswordEye";
 import ErrorMessage from "../features/authentication/ErrorMessage";
 import userRoleArr from "../data/constants";
-// import UserRole from "../features/authentication/UserRole";
+import UserRole from "../features/authentication/UserRole";
 import { register } from "../services/auth";
 
 function Register() {
