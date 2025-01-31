@@ -28,6 +28,9 @@ function Login() {
 
   const handleSubmit = async function (event) {
     event.preventDefault();
+    setEmail("");
+    setPassword("");
+
     const userCredentials = { email, password };
     const response = await login(userCredentials);
     setUser(response.data.user);
