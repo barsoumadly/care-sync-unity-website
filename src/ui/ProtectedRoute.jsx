@@ -22,7 +22,15 @@ function ProtectedRoute({ children }) {
   );
 
   if (isLoading) return <Loader />;
+<<<<<<< HEAD
   if (!isLogin) return { children };
+=======
+<<<<<<< Updated upstream
+  if (!isLogin) return children;
+=======
+  return { children };
+>>>>>>> Stashed changes
+>>>>>>> origin/main
 }
 
 export default ProtectedRoute;
