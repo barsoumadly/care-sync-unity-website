@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import AuthenticationLayout from "./ui/AuthenticationLayout";
@@ -127,15 +129,24 @@ const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 0,
+    },
+  },
+});
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   setTimeout(() => setIsLoading(false), 2000);
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <UserContextProvider>
         {isLoading ? <Loader /> : <RouterProvider router={router} />}
       </UserContextProvider>
-    </div>
+    </QueryClientProvider>
   );
 }
 
