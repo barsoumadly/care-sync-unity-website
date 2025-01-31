@@ -2,11 +2,13 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordEye from "../features/authentication/PasswordEye";
 import { login } from "../services/auth";
+import { useUserContext } from "../context/UserContextProvider";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isEyeOpen, setIsEyeOpen] = useState(false);
+  const { setUser } = useUserContext();
 
   const navigate = useNavigate();
 
@@ -28,6 +30,7 @@ function Login() {
     event.preventDefault();
     const userCredentials = { email, password };
     const response = await login(userCredentials);
+    setUser(response.data.user);
     navigateUser(response.data.user.role);
   };
 
