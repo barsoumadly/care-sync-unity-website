@@ -7,9 +7,10 @@ function ProtectedRoute({ children }) {
   const { user } = useUserContext();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
+
   const isLogin = user === null;
 
-  setTimeout(() => setIsLoading(false), 2000);
+  setTimeout(() => setIsLoading(false), 1000);
 
   useEffect(
     function () {
