@@ -18,4 +18,20 @@ const login = async function (userData) {
   }
 };
 
-export { register, login };
+const forgotPassword = async function (userData) {
+  try {
+    return await axios.post(`${API_URL}/auth/request-password-reset`, userData);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const resetPassword = async function (userData) {
+  try {
+    return await axios.post(`${API_URL}/auth/reset-password`, userData);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export { register, login, forgotPassword, resetPassword };
