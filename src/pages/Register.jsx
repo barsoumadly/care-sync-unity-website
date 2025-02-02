@@ -5,6 +5,7 @@ import ErrorMessage from "../features/authentication/ErrorMessage";
 import userRoleArr from "../data/constants";
 import UserRole from "../features/authentication/UserRole";
 import { register } from "../services/auth";
+import AuthButton from "../ui/AuthButton";
 
 function Register() {
   const [fullname, setFullname] = useState("");
@@ -15,6 +16,7 @@ function Register() {
 
   const [isEyeOpen1, setIsEyeOpen1] = useState(false);
   const [isEyeOpen2, setIsEyeOpen2] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [isVisible, setIsVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -31,6 +33,8 @@ function Register() {
     const userData = { name: fullname, email, password, role: userRole };
     await register(userData);
     navigate("/login");
+
+    setIsLoading(false);
   };
 
   const handlePasswordEye1 = function (result) {
@@ -119,11 +123,7 @@ function Register() {
         />
 
         {isVisible && <ErrorMessage errorMessage={errorMessage} />}
-        <div className="input-block login-btn">
-          <button className="btn btn-primary btn-block" type="submit">
-            Sign up
-          </button>
-        </div>
+        <AuthButton text="Sign up" isLoading={isLoading} />
       </form>
       {/* <!-- /Form --> */}
 
