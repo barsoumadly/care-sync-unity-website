@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function Timer({ setStartCounter }) {
-  const [time, setTime] = useState(5);
+  const [time, setTime] = useState(59);
   useEffect(
     function () {
       const OTPTimer = setInterval(() => {
