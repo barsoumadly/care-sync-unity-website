@@ -6,7 +6,7 @@ const register = async function (userData) {
   try {
     await axios.post(`${API_URL}/auth/register`, userData);
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
@@ -14,15 +14,15 @@ const login = async function (userData) {
   try {
     return await axios.post(`${API_URL}/auth/login`, userData);
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
 const forgotPassword = async function (userData) {
   try {
-    return await axios.post(`${API_URL}/auth/request-password-reset`, userData);
+    await axios.post(`${API_URL}/auth/request-password-reset`, userData);
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
@@ -30,7 +30,7 @@ const resetPassword = async function (userData) {
   try {
     return await axios.post(`${API_URL}/auth/reset-password`, userData);
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
