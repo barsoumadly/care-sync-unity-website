@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { forgotPassword } from "../services/auth";
 import { useUserContext } from "../context/UserContextProvider";
+import AuthButton from "../ui/AuthButton";
 
 function ForgotPassword() {
-  const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const { setUserEmail } = useUserContext();
 
   const handleSubmit = async function (event) {
@@ -13,6 +15,7 @@ function ForgotPassword() {
     await forgotPassword({ email });
     navigate("/reset-password");
     setUserEmail(email);
+    setIsLoading(false);
   };
 
   return (
@@ -33,11 +36,7 @@ function ForgotPassword() {
             required
           />
         </div>
-        <div className="input-block login-btn">
-          <button className="btn btn-primary btn-block" type="submit">
-            Reset Password
-          </button>
-        </div>
+        <AuthButton text="Reset Password" isLoading={isLoading} />
       </form>
       {/* <!-- /Form --> */}
 
