@@ -122,7 +122,7 @@ function ResetPassword() {
           >
             {startCounter ? (
               <span>
-                0 : <Timer setStartCounter={setStartCounter} />
+                <Timer setStartCounter={setStartCounter} />s
               </span>
             ) : (
               "Resend OTP"
