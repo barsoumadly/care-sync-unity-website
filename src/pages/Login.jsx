@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordEye from "../features/authentication/PasswordEye";
-import { login } from "../services/auth";
 import { useUserContext } from "../context/UserContextProvider";
-// import toast from "react-hot-toast";
+import { login } from "../services/auth";
+import AuthButton from "../ui/AuthButton";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isEyeOpen, setIsEyeOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { setUser } = useUserContext();
 
   const navigate = useNavigate();
@@ -25,12 +26,14 @@ function Login() {
     } else if (userRole === "DOCTOR") {
       navigate("/doctor/dashboard", { replace: true });
     }
+    setIsLoading(false);
   };
 
   const handleSubmit = async function (event) {
     event.preventDefault();
     setEmail("");
     setPassword("");
+    setIsLoading(true);
 
     const userCredentials = { email, password };
     const response = await login(userCredentials);
@@ -77,11 +80,7 @@ function Login() {
         <div className="forgotpass">
           <Link to="/forgot-password">Forgot Password?</Link>
         </div>
-        <div className="input-block login-btn">
-          <button className="btn btn-primary btn-block" type="submit">
-            Login
-          </button>
-        </div>
+        <AuthButton text="Login" isLoading={isLoading} />
       </form>
       {/* <!-- Form --> */}
 
