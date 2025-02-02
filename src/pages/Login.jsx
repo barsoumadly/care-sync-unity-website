@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import PasswordEye from "../features/authentication/PasswordEye";
 import { login } from "../services/auth";
 import { useUserContext } from "../context/UserContextProvider";
+// import toast from "react-hot-toast";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -21,7 +22,7 @@ function Login() {
       navigate("/laboratory/dashboard", { replace: true });
     } else if (userRole === "PATIENT") {
       navigate("/patient/dashboard", { replace: true });
-    } else {
+    } else if (userRole === "DOCTOR") {
       navigate("/doctor/dashboard", { replace: true });
     }
   };
@@ -33,8 +34,8 @@ function Login() {
 
     const userCredentials = { email, password };
     const response = await login(userCredentials);
-    setUser(response.data.user);
-    navigateUser(response.data.user.role);
+    setUser(response?.data.user);
+    navigateUser(response?.data.user.role);
   };
 
   const handlePasswordEye = function (result) {
