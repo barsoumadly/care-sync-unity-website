@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordEye from "../features/authentication/PasswordEye";
-import ErrorMessage from "../features/authentication/ErrorMessage";
 import userRoleArr from "../data/constants";
 import UserRole from "../features/authentication/UserRole";
 import { register } from "../services/auth";
 import AuthButton from "../ui/AuthButton";
+import toast from "react-hot-toast";
 
 function Register() {
   const [fullname, setFullname] = useState("");
@@ -18,23 +18,34 @@ function Register() {
   const [isEyeOpen2, setIsEyeOpen2] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const [isVisible, setIsVisible] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
   const navigate = useNavigate();
 
   const handleSubmit = async function (event) {
     event.preventDefault();
+    setIsLoading(true);
+
     if (password !== confirmPassword) {
-      setErrorMessage("Passwords are not same");
-      return setIsVisible(true);
+      return toast.error("Passwords are not same");
     }
 
     const userData = { name: fullname, email, password, role: userRole };
-    await register(userData);
-    navigate("/login");
-
-    setIsLoading(false);
+    try {
+      await register(userData);
+      toast.success("Successfull");
+      navigate("/login");
+      setFullname("");
+      setEmail("");
+      setPassword("");
+      setconfirmPassword("");
+      setUserRole("PATIENT");
+    } catch (error) {
+      if (error.status === 500) {
+        return toast.error("Password must be at least 8 characters");
+      }
+      toast.error(error.response.data.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handlePasswordEye1 = function (result) {
@@ -74,7 +85,7 @@ function Register() {
           </label>
           <input
             className="form-control"
-            type="text"
+            type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
@@ -122,7 +133,7 @@ function Register() {
           setUserRole={handleUserRole}
         />
 
-        {isVisible && <ErrorMessage errorMessage={errorMessage} />}
+        {/* {isVisible && <ErrorMessage errorMessage={errorMessage} />} */}
         <AuthButton text="Sign up" isLoading={isLoading} />
       </form>
       {/* <!-- /Form --> */}
