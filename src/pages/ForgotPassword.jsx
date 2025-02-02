@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { forgotPassword } from "../services/auth";
 import { useUserContext } from "../context/UserContextProvider";
 import AuthButton from "../ui/AuthButton";
+import toast from "react-hot-toast";
 
 function ForgotPassword() {
   const navigate = useNavigate();
@@ -12,10 +13,18 @@ function ForgotPassword() {
 
   const handleSubmit = async function (event) {
     event.preventDefault();
-    await forgotPassword({ email });
-    navigate("/reset-password");
-    setUserEmail(email);
-    setIsLoading(false);
+    setIsLoading(true);
+
+    try {
+      await forgotPassword({ email });
+      toast.success("OTP Code is sent");
+      navigate("/reset-password");
+      setUserEmail(email);
+    } catch (error) {
+      toast.error(error.response.data.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -30,7 +39,7 @@ function ForgotPassword() {
           </label>
           <input
             className="form-control"
-            type="text"
+            type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
