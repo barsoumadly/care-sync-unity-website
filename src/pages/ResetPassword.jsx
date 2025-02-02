@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PasswordEye from "../features/authentication/PasswordEye";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContextProvider";
@@ -14,6 +14,7 @@ function ResetPassword() {
   const [isEyeOpen1, setIsEyeOpen1] = useState(false);
   const [isEyeOpen2, setIsEyeOpen2] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [time, setTime] = useState(59);
 
   const { userEmail } = useUserContext();
 
@@ -100,7 +101,15 @@ function ResetPassword() {
           />
         </div>
         <div className="forgotpass">
-          <Link to="/forgot-password">Forgot Password?</Link>
+          <Link to="/forgot-password">Resend OTP again? 0:{time}</Link>
+
+          {useEffect(function () {
+            setInterval(() => {
+              if (time > 0) {
+                setTime((time) => time - 1);
+              }
+            }, 1000);
+          }, [])}
         </div>
         <AuthButton text="Reset" isLoading={isLoading} />
         <div className="next-sign">
