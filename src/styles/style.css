@@ -1528,8 +1528,38 @@ textarea.form-control {
   padding: 10px 15px;
   position: relative;
   height: 46px;
+  margin-top: 40px;
 }
-.login-right .btn-primary:hover {
+
+.login-right .otpBtn {
+  color: #fff;
+  border-color: #4e57cd;
+  background: linear-gradient(92.39deg, #4e57cd 1.86%, #2e37a4 100%);
+  border-radius: 12px;
+  font-size: 16px;
+  padding: 10px 15px;
+  height: 46px;
+  width: 25%;
+  position: absolute;
+  right: 2%;
+}
+.login-right .otpBtn:disabled {
+  color: #605959;
+  cursor: not-allowed;
+  border-color: #f4f4f6;
+  background: #f4f4f6;
+  border-radius: 12px;
+  font-size: 16px;
+  padding: 10px 15px;
+  height: 46px;
+  width: 25%;
+  position: absolute;
+  right: 2%;
+  border: 1px solid #f4f4f6;
+}
+
+.login-right .btn-primary:hover,
+.otpBtn:hover {
   background: linear-gradient(92.39deg, #2e37a4 1.86%, #00318b 100%);
   border: 1px solid #00318b;
 }
@@ -1652,6 +1682,7 @@ textarea.form-control {
 .login-wrapper .loginbox .login-right {
   padding: 50px;
   width: 100%;
+  position: relative;
 }
 
 /*-----------------
@@ -12205,6 +12236,12 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
   .login-right .btn-primary {
     font-size: 14px;
     padding: 7px 15px;
+    margin-top: 50px;
+  }
+  .login-right .otpBtn {
+    font-size: 14px;
+    padding: 7px 15px;
+    width: 35%;
   }
   .account-subtitle {
     margin-bottom: 15px;
