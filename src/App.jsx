@@ -1,16 +1,16 @@
 import { useState } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import AuthenticationLayout from "./ui/AuthenticationLayout";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
-
 import Loader from "./ui/Loader";
 import Error from "./ui/Error";
 import Home from "./ui/Home";
 
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 /* Clinic */
@@ -49,7 +49,6 @@ import PatientChat from "./features/dashboard/patient/Chat";
 import EditProfilePatient from "./features/dashboard/patient/EditProfile";
 import { UserContextProvider } from "./context/UserContextProvider";
 import ProtectedRoute from "./ui/ProtectedRoute";
-import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home />, errorElement: <Error /> },
