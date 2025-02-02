@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PasswordEye from "../features/authentication/PasswordEye";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContextProvider";
-import { resetPassword } from "../services/auth";
+import { forgotPassword, resetPassword } from "../services/auth";
 import AuthButton from "../ui/AuthButton";
 import toast from "react-hot-toast";
+import Timer from "../ui/Timer";
 
 function ResetPassword() {
   const [newPassword, setPassword] = useState("");
@@ -14,7 +15,8 @@ function ResetPassword() {
   const [isEyeOpen1, setIsEyeOpen1] = useState(false);
   const [isEyeOpen2, setIsEyeOpen2] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [time, setTime] = useState(59);
+
+  const [startCounter, setStartCounter] = useState(true);
 
   const { userEmail } = useUserContext();
 
@@ -25,6 +27,17 @@ function ResetPassword() {
   };
   const handlePasswordEye2 = function (result) {
     setIsEyeOpen2(result);
+  };
+
+  const handleOTP = async function () {
+    console.log(userEmail);
+    setStartCounter(true);
+    try {
+      await forgotPassword({ userEmail });
+      toast.success("OTP Code is sent");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
   };
 
   const handleSubmit = async function (event) {
@@ -101,15 +114,20 @@ function ResetPassword() {
           />
         </div>
         <div className="forgotpass">
-          <Link to="/forgot-password">Resend OTP again? 0:{time}</Link>
-
-          {useEffect(function () {
-            setInterval(() => {
-              if (time > 0) {
-                setTime((time) => time - 1);
-              }
-            }, 1000);
-          }, [])}
+          <button
+            to="/forgot-password"
+            onClick={handleOTP}
+            className="otpBtn"
+            disabled={startCounter}
+          >
+            {startCounter ? (
+              <span>
+                0 : <Timer setStartCounter={setStartCounter} />
+              </span>
+            ) : (
+              "Resend OTP"
+            )}
+          </button>
         </div>
         <AuthButton text="Reset" isLoading={isLoading} />
         <div className="next-sign">
@@ -121,5 +139,22 @@ function ResetPassword() {
     </>
   );
 }
-
+// function Timer({ time, setTime, setStartCounter }) {
+//   {
+//     useEffect(
+//       function () {
+//         const OTPTimer = setInterval(() => {
+//           if (time > 0) {
+//             setTime((time) => time - 1);
+//           } else {
+//             setStartCounter(false);
+//             return;
+//           }
+//         }, 1000);
+//         return () => clearInterval(OTPTimer);
+//       },
+//       [time, setTime, setStartCounter]
+//     );
+//   }
+// }
 export default ResetPassword;
