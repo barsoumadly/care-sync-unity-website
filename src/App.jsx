@@ -4,8 +4,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import AuthenticationLayout from "./ui/AuthenticationLayout";
-import ForgotPassword from "./features/authentication/ForgotPassword";
-import ResetPassword from "./features/authentication/ResetPassword";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 import Loader from "./ui/Loader";
 import Error from "./ui/Error";
