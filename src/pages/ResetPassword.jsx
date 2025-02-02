@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ErrorMessage from "../features/authentication/ErrorMessage";
 import { useUserContext } from "../context/UserContextProvider";
 import { resetPassword } from "../services/auth";
+import AuthButton from "../ui/AuthButton";
 
 function ResetPassword() {
   const [newPassword, setPassword] = useState("");
@@ -11,8 +12,11 @@ function ResetPassword() {
   const [verificationCode, setVerificationCode] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
   const [isEyeOpen1, setIsEyeOpen1] = useState(false);
   const [isEyeOpen2, setIsEyeOpen2] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const { userEmail } = useUserContext();
 
   const navigate = useNavigate();
@@ -34,6 +38,8 @@ function ResetPassword() {
     const userData = { newPassword, email: userEmail, otp: verificationCode };
     await resetPassword(userData);
     navigate("/login");
+
+    setIsLoading(false);
   };
 
   return (
@@ -86,11 +92,7 @@ function ResetPassword() {
           />
         </div>
         {isVisible && <ErrorMessage errorMessage={errorMessage} />}
-        <div className="input-block login-btn">
-          <button className="btn btn-primary btn-block" type="submit">
-            Reset
-          </button>
-        </div>
+        <AuthButton text="Reset" isLoading={isLoading} />
         <div className="next-sign">
           <p className="account-subtitle">
             Need to return? <Link to="/login">Login</Link>
