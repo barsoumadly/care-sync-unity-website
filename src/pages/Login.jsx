@@ -4,6 +4,7 @@ import PasswordEye from "../features/authentication/PasswordEye";
 import { useUserContext } from "../context/UserContextProvider";
 import { login } from "../services/auth";
 import AuthButton from "../ui/AuthButton";
+import toast from "react-hot-toast";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -26,7 +27,6 @@ function Login() {
     } else if (userRole === "DOCTOR") {
       navigate("/doctor/dashboard", { replace: true });
     }
-    setIsLoading(false);
   };
 
   const handleSubmit = async function (event) {
@@ -36,9 +36,18 @@ function Login() {
     setIsLoading(true);
 
     const userCredentials = { email, password };
-    const response = await login(userCredentials);
-    setUser(response?.data.user);
-    navigateUser(response?.data.user.role);
+    try {
+      const response = await login(userCredentials);
+      setUser(response?.data.user);
+      navigateUser(response?.data.user.role);
+      toast(`Welcome ${response.data.user.name}`, {
+        icon: "👋",
+      });
+    } catch (error) {
+      toast.error(error.response.data.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handlePasswordEye = function (result) {
@@ -57,7 +66,7 @@ function Login() {
           </label>
           <input
             className="form-control"
-            type="text"
+            type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
