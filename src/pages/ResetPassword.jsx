@@ -1,17 +1,15 @@
 import { useState } from "react";
 import PasswordEye from "../features/authentication/PasswordEye";
 import { Link, useNavigate } from "react-router-dom";
-import ErrorMessage from "../features/authentication/ErrorMessage";
 import { useUserContext } from "../context/UserContextProvider";
 import { resetPassword } from "../services/auth";
 import AuthButton from "../ui/AuthButton";
+import toast from "react-hot-toast";
 
 function ResetPassword() {
   const [newPassword, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
-  const [isVisible, setIsVisible] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
   const [isEyeOpen1, setIsEyeOpen1] = useState(false);
   const [isEyeOpen2, setIsEyeOpen2] = useState(false);
@@ -20,7 +18,6 @@ function ResetPassword() {
   const { userEmail } = useUserContext();
 
   const navigate = useNavigate();
-  console.log(userEmail);
 
   const handlePasswordEye1 = function (result) {
     setIsEyeOpen1(result);
@@ -31,15 +28,26 @@ function ResetPassword() {
 
   const handleSubmit = async function (event) {
     event.preventDefault();
-    if (newPassword !== confirmPassword) {
-      setErrorMessage("Passwords are not same");
-      return setIsVisible(true);
-    }
-    const userData = { newPassword, email: userEmail, otp: verificationCode };
-    await resetPassword(userData);
-    navigate("/login");
+    setIsLoading(true);
 
-    setIsLoading(false);
+    const userData = { newPassword, email: userEmail, otp: verificationCode };
+    try {
+      await resetPassword(userData);
+      if (newPassword !== confirmPassword) {
+        toast.error("Passwords are not same");
+      } else {
+        toast.success("Password is reseted");
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.status === 500) {
+        return toast.error("Password must be at least 8 characters");
+      }
+      toast.error(error.response.data.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -48,7 +56,7 @@ function ResetPassword() {
       <form action="login.html" onSubmit={handleSubmit}>
         <div className="input-block">
           <label>
-            Verification Code <span className="login-danger">*</span>
+            OTP Code <span className="login-danger">*</span>
           </label>
           <input
             className="form-control pass-input"
@@ -91,7 +99,9 @@ function ResetPassword() {
             setIsEyeOpen={handlePasswordEye2}
           />
         </div>
-        {isVisible && <ErrorMessage errorMessage={errorMessage} />}
+        <div className="forgotpass">
+          <Link to="/forgot-password">Forgot Password?</Link>
+        </div>
         <AuthButton text="Reset" isLoading={isLoading} />
         <div className="next-sign">
           <p className="account-subtitle">
