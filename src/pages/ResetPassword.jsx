@@ -33,7 +33,7 @@ function ResetPassword() {
     console.log(userEmail);
     setStartCounter(true);
     try {
-      await forgotPassword({ userEmail });
+      await forgotPassword({ email: userEmail });
       toast.success("OTP Code is sent");
     } catch (error) {
       toast.error(error.response.data.message);
@@ -115,7 +115,6 @@ function ResetPassword() {
         </div>
         <div className="forgotpass">
           <button
-            to="/forgot-password"
             onClick={handleOTP}
             className="otpBtn"
             disabled={startCounter}
