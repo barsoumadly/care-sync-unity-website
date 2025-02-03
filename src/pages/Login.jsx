@@ -15,7 +15,17 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const navigateUser = function (userRole) {
+  const showCompleteProfile = function (userRole, isProfileCompleted) {
+    if (userRole === "CLINIC_ADMIN" && !isProfileCompleted) {
+      navigate("/clinic/complete-profile");
+    } else if (userRole === "PHARMACY_ADMIN" && !isProfileCompleted) {
+    }
+  };
+
+  const navigateUser = function (userRole, isProfileCompleted = false) {
+    if (!isProfileCompleted)
+      return showCompleteProfile(userRole, isProfileCompleted);
+
     if (userRole === "CLINIC_ADMIN") {
       navigate("/clinic/dashboard", { replace: true });
     } else if (userRole === "PHARMACY_ADMIN") {
