@@ -1,10 +1,8 @@
 import { useUserContext } from "../../context/UserContextProvider";
 
 function UserAvatar() {
-  const avatar = "/images/dashborad/user-06.jpg";
-
   const { user } = useUserContext();
-  var { name, role } = user;
+  let { name, role, profilePhoto: avatar } = user;
   name = name.split(" ").slice(0, 2).join(" ");
   role = role.split("_").join(" ");
 
