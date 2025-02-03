@@ -49,7 +49,7 @@ import PatientChat from "./features/dashboard/patient/Chat";
 import EditProfilePatient from "./features/dashboard/patient/EditProfile";
 import { UserContextProvider } from "./context/UserContextProvider";
 import ProtectedRoute from "./ui/ProtectedRoute";
-import CompleteProfile from "./features/dashboard/doctor/completeProfile";
+import CompleteDoctorProfile from "./features/dashboard/doctor/CompleteDoctorProfile";
 import CompleteClinicProfile from "./features/dashboard/clinic/CompleteClinicProfile";
 
 const router = createBrowserRouter([
@@ -109,7 +109,6 @@ const router = createBrowserRouter([
     ),
     errorElement: <Error />,
     children: [
-      { path: "/doctor/complete-profile", element: <CompleteProfile /> },
       { path: "/doctor/dashboard", element: <DoctorDashboard /> },
       { path: "/doctor/patients", element: <DoctorPatientsList /> },
       { path: "/doctor/chat", element: <DoctorChat /> },
@@ -117,7 +116,7 @@ const router = createBrowserRouter([
       { path: "/doctor/edit-profile", element: <EditProfile /> },
     ],
   },
-
+  { path: "/doctor/complete-profile", element: <CompleteDoctorProfile /> },
   {
     element: (
       <ProtectedRoute>
