@@ -128,7 +128,7 @@ function ResetPassword() {
             )}
           </button>
         </div>
-        <AuthButton text="Reset" isLoading={isLoading} />
+        <AuthButton resetStyle="reset-btn" text="Reset" isLoading={isLoading} />
         <div className="next-sign">
           <p className="account-subtitle">
             Need to return? <Link to="/login">Login</Link>
