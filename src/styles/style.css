@@ -1528,6 +1528,9 @@ textarea.form-control {
   padding: 10px 15px;
   position: relative;
   height: 46px;
+}
+
+.reset-btn{
   margin-top: 40px;
 }
 
