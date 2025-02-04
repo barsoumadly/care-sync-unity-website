@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import PasswordEye from "../features/authentication/PasswordEye";
 import { useUserContext } from "../context/UserContextProvider";
 import { login } from "../services/auth";
@@ -23,8 +23,8 @@ function Login() {
   };
 
   const navigateUser = function (userRole, isProfileCompleted = false) {
-    if (!isProfileCompleted)
-      return showCompleteProfile(userRole, isProfileCompleted);
+    // if (!isProfileCompleted)
+    //   return showCompleteProfile(userRole, isProfileCompleted);
 
     if (userRole === "CLINIC_ADMIN") {
       navigate("/clinic/dashboard", { replace: true });
