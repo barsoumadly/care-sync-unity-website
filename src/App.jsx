@@ -1,12 +1,16 @@
-import { useState } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 
+import { UserContextProvider } from "./context/UserContextProvider";
+import ProtectedRoute from "./ui/ProtectedRoute";
+import ProtectedAuth from "./ui/ProtectedAuth";
+
 import AuthenticationLayout from "./ui/AuthenticationLayout";
-import Loader from "./ui/Loader";
-import Error from "./ui/Error";
+// import Loader from "./ui/Loader";
+import PageNotFound from "./ui/PageNotFound";
 import Home from "./ui/Home";
 
 import ForgotPassword from "./pages/ForgotPassword";
@@ -47,92 +51,9 @@ import ClinicsList from "./features/dashboard/patient/ClinicsList";
 import PatientAppointments from "./features/dashboard/patient/Appointments";
 import PatientChat from "./features/dashboard/patient/Chat";
 import EditProfilePatient from "./features/dashboard/patient/EditProfile";
-import { UserContextProvider } from "./context/UserContextProvider";
-import ProtectedRoute from "./ui/ProtectedRoute";
+
 import CompleteDoctorProfile from "./features/dashboard/doctor/CompleteDoctorProfile";
 import CompleteClinicProfile from "./features/dashboard/clinic/CompleteClinicProfile";
-
-const router = createBrowserRouter([
-  { path: "/", element: <Home />, errorElement: <Error /> },
-  {
-    element: <AuthenticationLayout />,
-    errorElement: <Error />,
-    children: [
-      { path: "/register", element: <Register /> },
-      { path: "/login", element: <Login /> },
-      { path: "/forgot-password", element: <ForgotPassword /> },
-      { path: "/reset-password", element: <ResetPassword /> },
-    ],
-  },
-  {
-    element: (
-      <ProtectedRoute>
-        <ClinicLayout />
-      </ProtectedRoute>
-    ),
-    errorElement: <Error />,
-    children: [
-      { path: "/clinic/dashboard", element: <ClinicDashboard /> },
-      /* Doctors */
-      { path: "/clinic/doctor-list", element: <DoctorList /> },
-      { path: "/clinic/add-doctor", element: <AddDoctor /> },
-      /* Patients */
-      { path: "/clinic/patients-list", element: <PatientsList /> },
-      { path: "/clinic/add-patients", element: <AddPatients /> },
-      { path: "/clinic/payments", element: <Payments /> },
-      /* Staff */
-      { path: "/clinic/employee-salary", element: <EmployeeSalary /> },
-      { path: "/clinic/add-staff", element: <AddStaff /> },
-      { path: "/clinic/attendance", element: <Attendance /> },
-      /* Appointments */
-      { path: "/clinic/appointment-list", element: <AppointmentList /> },
-      { path: "/clinic/book-appointment", element: <BookAppointment /> },
-      { path: "/clinic/edit-appointment", element: <EditAppointments /> },
-      /* Doctor Schedule */
-      { path: "/clinic/schedule-list", element: <ScheduleList /> },
-      { path: "/clinic/add-schedule", element: <AddSchedule /> },
-      { path: "/clinic/edit-schedule", element: <EditSchedule /> },
-
-      { path: "/clinic/chat", element: <Chat /> },
-      { path: "/clinic/reports", element: <Reports /> },
-      { path: "/clinic/invoice", element: <Invoice /> },
-      { path: "/clinic/edit-profile", element: "" },
-      { path: "/clinic/my-profile", element: "" },
-    ],
-  },
-  { path: "/clinic/complete-profile", element: <CompleteClinicProfile /> },
-  {
-    element: (
-      <ProtectedRoute>
-        <DoctorLayout />
-      </ProtectedRoute>
-    ),
-    errorElement: <Error />,
-    children: [
-      { path: "/doctor/dashboard", element: <DoctorDashboard /> },
-      { path: "/doctor/patients", element: <DoctorPatientsList /> },
-      { path: "/doctor/chat", element: <DoctorChat /> },
-      { path: "/doctor/my-profile", element: <MyProfile /> },
-      { path: "/doctor/edit-profile", element: <EditProfile /> },
-    ],
-  },
-  { path: "/doctor/complete-profile", element: <CompleteDoctorProfile /> },
-  {
-    element: (
-      <ProtectedRoute>
-        <PatientLayout />
-      </ProtectedRoute>
-    ),
-    errorElement: <Error />,
-    children: [
-      { path: "/patient/dashboard", element: <PatientDashboard /> },
-      { path: "/patient/clinics", element: <ClinicsList /> },
-      { path: "/patient/chat", element: <PatientChat /> },
-      { path: "/patient/appointments", element: <PatientAppointments /> },
-      { path: "/patient/edit-profile", element: <EditProfilePatient /> },
-    ],
-  },
-]);
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -143,13 +64,115 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  setTimeout(() => setIsLoading(false), 2000);
+  // const [isLoading, setIsLoading] = useState(true);
+  // setTimeout(() => setIsLoading(false), 2000);
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <UserContextProvider>
-        {isLoading ? <Loader /> : <RouterProvider router={router} />}
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {/* Authentication */}
+            <Route element={<AuthenticationLayout />}>
+              <Route path="register" element={<Register />} />
+              <Route path="login" element={<Login />} />
+              <Route path="forgot-password" element={<ForgotPassword />} />
+              <Route
+                path="reset-password"
+                element={
+                  <ProtectedAuth>
+                    <ResetPassword />
+                  </ProtectedAuth>
+                }
+              />
+            </Route>
+
+            {/* Clinic */}
+            <Route
+              path="clinic/complete-profile"
+              element={
+                <ProtectedRoute>
+                  <CompleteClinicProfile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="clinic"
+              element={
+                <ProtectedRoute>
+                  <ClinicLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="dashboard" element={<ClinicDashboard />} />
+              {/* Doctors */}
+              <Route path="doctor-list" element={<DoctorList />} />
+              <Route path="add-doctor" element={<AddDoctor />} />
+              {/* Patients */}
+              <Route path="patients-list" element={<PatientsList />} />
+              <Route path="add-patients" element={<AddPatients />} />
+              <Route path="payments" element={<Payments />} />
+              {/* Staff */}
+              <Route path="employee-salary" element={<EmployeeSalary />} />
+              <Route path="add-staff" element={<AddStaff />} />
+              <Route path="attendance" element={<Attendance />} />
+              {/* Appointments */}
+              <Route path="appointment-list" element={<AppointmentList />} />
+              <Route path="book-appointment" element={<BookAppointment />} />
+              <Route path="edit-appointment" element={<EditAppointments />} />
+              {/* Doctor Schedule */}
+              <Route path="schedule-list" element={<ScheduleList />} />
+              <Route path="add-schedule" element={<AddSchedule />} />
+              <Route path="edit-schedule" element={<EditSchedule />} />
+
+              <Route path="chat" element={<Chat />} />
+              <Route path="reports" element={<Reports />} />
+              <Route path="invoice" element={<Invoice />} />
+              <Route path="edit-profile" />
+              <Route path="my-profile" />
+            </Route>
+
+            {/* Doctor */}
+            <Route
+              path="doctor/complete-profile"
+              element={<CompleteDoctorProfile />}
+            />
+            <Route
+              path="doctor"
+              element={
+                <ProtectedRoute>
+                  <DoctorLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="dashboard" element={<DoctorDashboard />} />
+              <Route path="patients" element={<DoctorPatientsList />} />
+              <Route path="chat" element={<DoctorChat />} />
+              <Route path="my-profile" element={<MyProfile />} />
+              <Route path="edit-profile" element={<EditProfile />} />
+            </Route>
+
+            {/* Patient */}
+            <Route
+              path="patient"
+              element={
+                <ProtectedRoute>
+                  <PatientLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="dashboard" element={<PatientDashboard />} />
+              <Route path="clinics" element={<ClinicsList />} />
+              <Route path="chat" element={<PatientChat />} />
+              <Route path="appointments" element={<PatientAppointments />} />
+              <Route path="edit-profile" element={<EditProfilePatient />} />
+            </Route>
+
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </BrowserRouter>
+
         <Toaster
           position="top-center"
           gutter={12}
