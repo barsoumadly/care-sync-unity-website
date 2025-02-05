@@ -1,8 +1,7 @@
-import { Link, useRouteError } from "react-router-dom";
-
+import { useMoveBack } from "../hooks/useMoveBack";
 function PageNotFound() {
   const error = "error";
-
+  const moveBack = useMoveBack();
   return (
     <div className="error-pages">
       <div className="main-wrapper error-wrapper">
@@ -21,9 +20,9 @@ function PageNotFound() {
             {error.statusText}
           </h3>
           <p>You may have mistyped the address or the page may have moved.</p>
-          <Link to="/" className="btn btn-primary go-home">
+          <button onClick={moveBack} className="btn btn-primary go-home">
             Back to Home
-          </Link>
+          </button>
         </div>
       </div>
     </div>
