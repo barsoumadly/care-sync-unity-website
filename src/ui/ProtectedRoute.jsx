@@ -1,28 +1,27 @@
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../context/UserContextProvider";
+import { useAuth } from "../context/AuthContext";
 import { useEffect, useState } from "react";
 import Loader from "./Loader";
 
 function ProtectedRoute({ children }) {
-  const { user } = useUserContext();
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-
-  const isLogin = user === null;
 
   setTimeout(() => setIsLoading(false), 1000);
 
   useEffect(
     function () {
-      if (isLoading && isLogin) {
+      if (isLoading && !isAuthenticated) {
         navigate("/login");
       }
     },
-    [isLoading, isLogin, navigate]
+    [isLoading, isAuthenticated, navigate]
   );
 
   if (isLoading) return <Loader />;
-  if (!isLogin) return children;
+  if (isAuthenticated) return children;
+  return true;
 }
 
 export default ProtectedRoute;
