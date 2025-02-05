@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PasswordEye from "../features/authentication/PasswordEye";
-import { useUserContext } from "../context/UserContextProvider";
 import { login } from "../services/auth";
+import { useAuth } from "../context/AuthContext";
 import AuthButton from "../ui/AuthButton";
 import toast from "react-hot-toast";
 
@@ -11,7 +11,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [isEyeOpen, setIsEyeOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { setUser } = useUserContext();
+  const { userLogin } = useAuth();
 
   const navigate = useNavigate();
 
@@ -41,15 +41,16 @@ function Login() {
 
   const handleSubmit = async function (event) {
     event.preventDefault();
-    setEmail("");
-    setPassword("");
+    // setEmail("");
+    // setPassword("");
     setIsLoading(true);
 
     const userCredentials = { email, password };
     try {
       const response = await login(userCredentials);
-      setUser(response?.data.user);
+      userLogin(response?.data.user);
       navigateUser(response?.data.user.role);
+
       toast(`Welcome ${response.data.user.name}`, {
         icon: "👋",
       });
