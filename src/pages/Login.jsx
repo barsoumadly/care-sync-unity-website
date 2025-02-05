@@ -41,8 +41,8 @@ function Login() {
 
   const handleSubmit = async function (event) {
     event.preventDefault();
-    // setEmail("");
-    // setPassword("");
+    setEmail("");
+    setPassword("");
     setIsLoading(true);
 
     const userCredentials = { email, password };
@@ -72,7 +72,7 @@ function Login() {
       {/* <!-- Form --> */}
       <form onSubmit={handleSubmit}>
         <div className="input-block">
-          <label>
+          <label style={{ background: `${isLoading ? "none" : "#ffffff"}` }}>
             Email <span className="login-danger">*</span>
           </label>
           <input
@@ -81,10 +81,11 @@ function Login() {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
+            disabled={isLoading}
           />
         </div>
         <div className="input-block">
-          <label>
+          <label style={{ background: `${isLoading ? "none" : "#ffffff"}` }}>
             Password <span className="login-danger">*</span>
           </label>
           <input
@@ -93,6 +94,7 @@ function Login() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             required
+            disabled={isLoading}
           />
           <PasswordEye isEyeOpen={isEyeOpen} setIsEyeOpen={handlePasswordEye} />
         </div>
