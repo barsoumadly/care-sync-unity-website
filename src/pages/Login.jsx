@@ -105,7 +105,7 @@ function Login() {
 
       <div className="next-sign">
         <p className="account-subtitle">
-          Need an account? <Link to="/register">Sign Up</Link>
+          Need an account test? <Link to="/register">Sign Up</Link>
         </p>
       </div>
     </>
