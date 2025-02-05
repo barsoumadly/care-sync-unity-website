@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 const userContext = createContext();
 
@@ -24,14 +24,14 @@ function UserContextProvider({ children }) {
     reducer,
     initialState
   );
-  // const [user, setUser] = useState(null);
-  // const [userEmail, setUserEmail] = useState(null);
   function userLogin(user) {
     dispatch({ type: "login", payload: user });
+    localStorage.setItem("key", JSON.stringify(user));
   }
 
   function userLogout() {
     dispatch({ type: "logout" });
+    localStorage.removeItem("key");
   }
 
   function resetPassword(email) {
