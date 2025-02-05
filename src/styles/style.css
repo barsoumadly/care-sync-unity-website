@@ -1390,10 +1390,13 @@ textarea.form-control {
   position: absolute;
   top: -10px;
   left: 10px;
-  background: #fff;
+  background: #ffffff;
   margin-bottom: 0;
   padding: 0px 5px;
 }
+/* label input:disabled {
+  background: #808080;
+} */
 .login-danger,
 .star-red {
   color: #ff0000;
@@ -1530,7 +1533,7 @@ textarea.form-control {
   height: 46px;
 }
 
-.reset-btn{
+.reset-btn {
   margin-top: 40px;
 }
 
