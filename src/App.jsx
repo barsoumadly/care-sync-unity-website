@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 
-import { UserContextProvider } from "./context/UserContextProvider";
+import { UserContextProvider } from "./context/AuthContext";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import ProtectedAuth from "./ui/ProtectedAuth";
 
