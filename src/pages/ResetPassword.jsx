@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PasswordEye from "../features/authentication/PasswordEye";
 import { Link, useNavigate } from "react-router-dom";
-import { useUserContext } from "../context/UserContextProvider";
+import { useAuth } from "../context/AuthContext";
 import { forgotPassword, resetPassword } from "../services/auth";
 import AuthButton from "../ui/AuthButton";
 import toast from "react-hot-toast";
@@ -18,7 +18,7 @@ function ResetPassword() {
 
   const [startCounter, setStartCounter] = useState(true);
 
-  const { userEmail } = useUserContext();
+  const { userEmail } = useAuth();
 
   const navigate = useNavigate();
 
