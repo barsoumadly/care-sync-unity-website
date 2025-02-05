@@ -1,7 +1,7 @@
-import { useUserContext } from "../../context/UserContextProvider";
+import { useAuth } from "../../context/AuthContext";
 
 function UserAvatar() {
-  const { user } = useUserContext();
+  const { user } = useAuth();
   let { name, role, profilePhoto: avatar } = user;
   name = name.split(" ").slice(0, 2).join(" ");
   role = role.split("_").join(" ");
