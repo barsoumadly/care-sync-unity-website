@@ -1,23 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../context/UserContextProvider";
+import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 
 function ProtectedAuth({ children }) {
-  const { userEmail } = useUserContext();
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
-
-  const isLogin = userEmail === null;
 
   useEffect(
     function () {
-      if (isLogin) {
-        navigate("/forgot-password");
+      if (!isAuthenticated) {
+        navigate("/login");
       }
     },
-    [isLogin, navigate]
+    [isAuthenticated, navigate]
   );
 
-  if (!isLogin) return children;
+  if (isAuthenticated) return children;
   return true;
 }
 
