@@ -1,11 +1,8 @@
 import { NavLink } from "react-router-dom";
-import { useUserContext } from "../context/UserContextProvider";
+import { useAuth } from "../context/AuthContext";
 
 function Sidebar({ minbar, showbar, children }) {
-  const { setUser } = useUserContext();
-  function hanbleLogout() {
-    setUser(null);
-  }
+  const { userLogout } = useAuth();
   return (
     <div className={minbar ? "mini-sidebar" : ""}>
       <div
@@ -24,7 +21,7 @@ function Sidebar({ minbar, showbar, children }) {
                 to={"/login"}
                 replace={true}
                 className="link"
-                onClick={hanbleLogout}
+                onClick={userLogout}
               >
                 <span className="menu-side">
                   <img src="/images/dashborad/icons/logout.svg" alt="" />
