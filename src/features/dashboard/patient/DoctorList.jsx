@@ -168,6 +168,7 @@ function AppointmentModal({ onOpenModal }) {
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              onClick={() => onOpenModal((isOpen) => !isOpen)}
             />
           </div>
           <div className="modal-body p-4">
