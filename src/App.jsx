@@ -51,6 +51,7 @@ import ClinicsList from "./features/dashboard/patient/ClinicsList";
 import PatientAppointments from "./features/dashboard/patient/Appointments";
 import PatientChat from "./features/dashboard/patient/Chat";
 import EditProfilePatient from "./features/dashboard/patient/EditProfile";
+import DoctorsList from "./features/dashboard/patient/DoctorList";
 
 import CompleteDoctorProfile from "./features/dashboard/doctor/CompleteDoctorProfile";
 import CompleteClinicProfile from "./features/dashboard/clinic/CompleteClinicProfile";
@@ -167,6 +168,7 @@ function App() {
               <Route path="chat" element={<PatientChat />} />
               <Route path="appointments" element={<PatientAppointments />} />
               <Route path="edit-profile" element={<EditProfilePatient />} />
+              <Route path="doctors-list" element={<DoctorsList />} />
             </Route>
 
             <Route path="*" element={<PageNotFound />} />
