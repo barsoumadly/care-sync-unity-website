@@ -8,144 +8,149 @@ function DoctorsList() {
   };
 
   return (
-    <div className="main-wrapper">
-      <div className="page-wrapper">
-        <div className="content">
-          {/* Page Header */}
-          <div className="page-header">
-            <div className="row">
-              <div className="col-sm-12">
-                <ul className="breadcrumb">
-                  <li className="breadcrumb-item">
-                    <a>Doctor</a>
-                  </li>
-                  <li className="breadcrumb-item">
-                    <i className="feather-chevron-right" />
-                  </li>
-                  <li className="breadcrumb-item active">Doctor List</li>
-                </ul>
+    <>
+      <div
+        className="main-wrapper"
+        style={isOpen ? { filter: "blur(3px)" } : {}}
+      >
+        <div className="page-wrapper">
+          <div className="content">
+            {/* Page Header */}
+            <div className="page-header">
+              <div className="row">
+                <div className="col-sm-12">
+                  <ul className="breadcrumb">
+                    <li className="breadcrumb-item">
+                      <a>Doctor</a>
+                    </li>
+                    <li className="breadcrumb-item">
+                      <i className="feather-chevron-right" />
+                    </li>
+                    <li className="breadcrumb-item active">Doctor List</li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-          {/* /Page Header */}
-          <div className="row">
-            <div className="col-sm-12">
-              <div className="card card-table show-entire">
-                <div className="card-body">
-                  {/* /Table Header */}
-                  <div className="staff-search-table">
-                    <form>
-                      <div className="row">
-                        <div className="col-12 col-md-6 col-xl-4">
-                          <div className="input-block local-forms">
-                            <label>Doctor Name </label>
-                            <input
-                              className="form-control"
-                              type="text"
-                              placeholder="ex: Smith Bruklin"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-xl-4">
-                          <div className="input-block local-forms">
-                            <label>Specialization </label>
-                            <input
-                              className="form-control"
-                              type="text"
-                              placeholder="ex: Dentist"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-xl-4">
-                          <div className="doctor-submit">
-                            <button
-                              type="submit"
-                              className="btn btn-primary submit-list-form me-2"
-                            >
-                              Search
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  <div className="table-responsive">
-                    <table className="table border-0 custom-table comman-table datatable mb-0">
-                      <thead>
-                        <tr>
-                          <th>Doctor Name</th>
-                          <th>Specialization</th>
-                          <th>Days</th>
-                          <th>Time</th>
-                          <th>cost</th>
-                          <th />
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td className="profile-image">
-                            <a href="profile.html">
-                              <img
-                                width={28}
-                                height={28}
-                                src="assets/img/profiles/avatar-02.jpg"
-                                className="rounded-circle m-r-5"
-                                alt=""
+            {/* /Page Header */}
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="card card-table show-entire">
+                  <div className="card-body">
+                    {/* /Table Header */}
+                    <div className="staff-search-table">
+                      <form>
+                        <div className="row">
+                          <div className="col-12 col-md-6 col-xl-4">
+                            <div className="input-block local-forms">
+                              <label>Doctor Name </label>
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="ex: Smith Bruklin"
                               />
-                              Smith Bruklin
-                            </a>
-                          </td>
-                          <td>Urology</td>
-                          <td>Mon - Wed</td>
-                          <td>2 PM - 5 PM</td>
-                          <td>220 EGP</td>
-                          <td>
-                            <div className="dropdown action-label">
+                            </div>
+                          </div>
+                          <div className="col-12 col-md-6 col-xl-4">
+                            <div className="input-block local-forms">
+                              <label>Specialization </label>
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="ex: Dentist"
+                              />
+                            </div>
+                          </div>
+                          <div className="col-12 col-md-6 col-xl-4">
+                            <div className="doctor-submit">
                               <button
-                                className="custom-badge book-btn"
-                                onClick={handleOpenModal}
+                                type="submit"
+                                className="btn btn-primary submit-list-form me-2"
                               >
-                                Book appointment
+                                Search
                               </button>
                             </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="profile-image">
-                            <a href="profile.html">
-                              <img
-                                width={28}
-                                height={28}
-                                src="assets/img/profiles/avatar-02.jpg"
-                                className="rounded-circle m-r-5"
-                                alt=""
-                              />
-                              William Stephin
-                            </a>
-                          </td>
-                          <td>Radiology</td>
-                          <td>Tue - Sat</td>
-                          <td>10 AM - 5 PM</td>
-                          <td>350 EGP</td>
-                          <td>
-                            <div className="dropdown action-label">
-                              <button className="custom-badge book-btn">
-                                Book appointment
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div className="table-responsive">
+                      <table className="table border-0 custom-table comman-table datatable mb-0">
+                        <thead>
+                          <tr>
+                            <th>Doctor Name</th>
+                            <th>Specialization</th>
+                            <th>Days</th>
+                            <th>Time</th>
+                            <th>cost</th>
+                            <th />
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td className="profile-image">
+                              <a href="profile.html">
+                                <img
+                                  width={28}
+                                  height={28}
+                                  src="assets/img/profiles/avatar-02.jpg"
+                                  className="rounded-circle m-r-5"
+                                  alt=""
+                                />
+                                Smith Bruklin
+                              </a>
+                            </td>
+                            <td>Urology</td>
+                            <td>Mon - Wed</td>
+                            <td>2 PM - 5 PM</td>
+                            <td>220 EGP</td>
+                            <td>
+                              <div className="dropdown action-label">
+                                <button
+                                  className="custom-badge book-btn"
+                                  onClick={handleOpenModal}
+                                >
+                                  Book appointment
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="profile-image">
+                              <a href="profile.html">
+                                <img
+                                  width={28}
+                                  height={28}
+                                  src="assets/img/profiles/avatar-02.jpg"
+                                  className="rounded-circle m-r-5"
+                                  alt=""
+                                />
+                                William Stephin
+                              </a>
+                            </td>
+                            <td>Radiology</td>
+                            <td>Tue - Sat</td>
+                            <td>10 AM - 5 PM</td>
+                            <td>350 EGP</td>
+                            <td>
+                              <div className="dropdown action-label">
+                                <button className="custom-badge book-btn">
+                                  Book appointment
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {isOpen && <AppointmentModal onOpenModal={handleOpenModal} />}
       </div>
-    </div>
+      <div>{isOpen && <AppointmentModal onOpenModal={handleOpenModal} />}</div>
+    </>
   );
 }
 
@@ -206,7 +211,7 @@ function AppointmentModal({ onOpenModal }) {
               <div className="col-md-12">
                 <div className="mb-3">
                   <label htmlFor="field-3" className="form-label">
-                    Clinic Name
+                    Address
                   </label>
                   <input
                     type="text"
@@ -219,21 +224,7 @@ function AppointmentModal({ onOpenModal }) {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-4">
-                <div className="mb-3">
-                  <label htmlFor="field-4" className="form-label">
-                    Cost
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="field-4"
-                    placeholder="Boston"
-                    disabled
-                  />
-                </div>
-              </div>
-              <div className="col-md-4">
+              <div className="col-md-6">
                 <div className="mb-3">
                   <label htmlFor="field-5" className="form-label">
                     Day
@@ -248,7 +239,7 @@ function AppointmentModal({ onOpenModal }) {
                   </select>
                 </div>
               </div>
-              <div className="col-md-4">
+              <div className="col-md-6">
                 <div className="mb-3">
                   <label htmlFor="field-6" className="form-label">
                     Time
@@ -257,8 +248,34 @@ function AppointmentModal({ onOpenModal }) {
                     type="text"
                     className="form-control"
                     id="field-6"
-                    placeholder={123456}
+                    placeholder="2 PM - 5 PM"
+                    disabled
                   />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="mb-3">
+                  <label htmlFor="field-4" className="form-label">
+                    Cost
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="field-4"
+                    placeholder="Boston"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="mb-3">
+                  <label htmlFor="field-4" className="form-label">
+                    Payment Type
+                  </label>
+                  <select className="form-control">
+                    <option value="credit">Credit</option>
+                    <option value="cash">Cash</option>
+                  </select>
                 </div>
               </div>
             </div>
