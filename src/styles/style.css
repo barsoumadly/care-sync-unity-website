@@ -529,16 +529,16 @@ table.table td h2 span {
   border: 1px solid #4ab657;
 }
 .btn-info {
-  background-color: #009efb;
-  border: 1px solid #009efb;
+  background-color: #2e37a4;
+  border: 1px solid #2e37a4;
 }
 .btn-info:hover,
 .btn-info:focus,
 .btn-info.active,
 .btn-info:active,
 .open > .dropdown-toggle.btn-info {
-  background-color: #028ee1;
-  border: 1px solid #028ee1;
+  background-color: #2e37a4;
+  border: 1px solid #2e37a4;
 }
 .btn-info.active.focus,
 .btn-info.active:focus,
@@ -549,8 +549,8 @@ table.table td h2 span {
 .open > .dropdown-toggle.btn-info.focus,
 .open > .dropdown-toggle.btn-info:focus,
 .open > .dropdown-toggle.btn-info:hover {
-  background-color: #028ee1;
-  border: 1px solid #028ee1;
+  background-color: #00d3c7;
+  border: 1px solid #00d3c7;
 }
 .btn-warning {
   background: #ffbc34;
@@ -12804,4 +12804,17 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
 .password-eye {
   color: #950606;
   text-align: center;
+}
+
+.book-btn {
+  background-color: #2e37a4;
+  color: #fff;
+}
+
+.book-btn:hover {
+  background-color: #00d3c7;
+}
+
+.modal-dialog {
+  margin-top: 100px;
 }
