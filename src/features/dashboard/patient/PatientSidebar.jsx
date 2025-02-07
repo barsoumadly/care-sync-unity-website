@@ -28,7 +28,7 @@ function PatientSidebar() {
       </li>
 
       {/* Chat */}
-      <li>
+      <li className="submenu">
         <NavLink to={"/patient/chat"} className="link">
           <span className="menu-side">
             <BsChatText />
