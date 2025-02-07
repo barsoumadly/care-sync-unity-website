@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import ClinicHeader from "./ClinicHeader";
+
 function DoctorsList() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,22 +17,9 @@ function DoctorsList() {
       >
         <div className="page-wrapper">
           <div className="content">
+            <ClinicHeader activeTab="doctor-list" headerText="Doctors List" />
             {/* Page Header */}
-            <div className="page-header">
-              <div className="row">
-                <div className="col-sm-12">
-                  <ul className="breadcrumb">
-                    <li className="breadcrumb-item">
-                      <a>Doctor</a>
-                    </li>
-                    <li className="breadcrumb-item">
-                      <i className="feather-chevron-right" />
-                    </li>
-                    <li className="breadcrumb-item active">Doctor List</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <div className="page-header"></div>
             {/* /Page Header */}
             <div className="row">
               <div className="col-sm-12">
