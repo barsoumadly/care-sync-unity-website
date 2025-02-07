@@ -55,6 +55,8 @@ import DoctorsList from "./features/dashboard/patient/DoctorList";
 
 import CompleteDoctorProfile from "./features/dashboard/doctor/CompleteDoctorProfile";
 import CompleteClinicProfile from "./features/dashboard/clinic/CompleteClinicProfile";
+import ClinicProfile from "./features/dashboard/patient/ClinicProfile";
+import ClinicImages from "./features/dashboard/patient/ClinicImages";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -168,7 +170,12 @@ function App() {
               <Route path="chat" element={<PatientChat />} />
               <Route path="appointments" element={<PatientAppointments />} />
               <Route path="edit-profile" element={<EditProfilePatient />} />
-              <Route path="doctors-list" element={<DoctorsList />} />
+              <Route
+                path="clinics/clinic-profile"
+                element={<ClinicProfile />}
+              />
+              <Route path="clinics/doctors-list" element={<DoctorsList />} />
+              <Route path="clinics/messages" element={<ClinicImages />} />
             </Route>
 
             <Route path="*" element={<PageNotFound />} />
