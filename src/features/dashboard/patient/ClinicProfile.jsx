@@ -1,5 +1,4 @@
 import { IoArrowBackOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
 import ClinicHeader from "./ClinicHeader";
 
 function ClinicProfile() {
@@ -55,12 +54,6 @@ function ClinicProfile() {
                     <div className="card-box "></div>
                   </div>
                 </div>
-              </div>
-              <div className="tab-pane" id="bottom-tab2">
-                Tab content 2
-              </div>
-              <div className="tab-pane" id="bottom-tab3">
-                Tab content 3
               </div>
             </div>
           </div>
