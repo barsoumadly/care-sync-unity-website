@@ -11,6 +11,14 @@ const register = async function (userData) {
   }
 };
 
+const verifyEmail = async function (userData) {
+  try {
+    await axios.post(`${API_URL}/auth/verify-email`, userData);
+  } catch (error) {
+    throw error;
+  }
+};
+
 const login = async function (userData) {
   try {
     return await axios.post(`${API_URL}/auth/login`, userData);
@@ -35,4 +43,4 @@ const resetPassword = async function (userData) {
   }
 };
 
-export { register, login, forgotPassword, resetPassword };
+export { register, verifyEmail, login, forgotPassword, resetPassword };
