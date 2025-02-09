@@ -44,8 +44,48 @@ function ClinicHeader({ activeTab, headerText }) {
                       <h3 className="user-name m-t-0 mb-0">
                         Heliopolis Hospital
                       </h3>
-                      <small className="text-muted">Gynecologist</small>
-                      <div className="staff-id">Employee ID : DR-0001</div>
+                      <small className="text-muted">Cairo</small>
+                      <div className="staff-id">
+                        <span
+                          className="rating rating-score"
+                          // style={{ cursor: "pointer" }}
+                        >
+                          <img
+                            alt={1}
+                            src="https://preclinic.dreamstechnologies.com/html/template/assets/plugins/raty/images/star-on.png"
+                            title="bad"
+                          />
+                          &nbsp;
+                          <img
+                            alt={2}
+                            src="https://preclinic.dreamstechnologies.com/html/template/assets/plugins/raty/images/star-on.png"
+                            title="poor"
+                          />
+                          &nbsp;
+                          <img
+                            alt={3}
+                            src="https://preclinic.dreamstechnologies.com/html/template/assets/plugins/raty/images/star-on.png"
+                            title="regular"
+                          />
+                          &nbsp;
+                          <img
+                            alt={4}
+                            src="https://preclinic.dreamstechnologies.com/html/template/assets/plugins/raty/images/star-off.png"
+                            title="good"
+                          />
+                          &nbsp;
+                          <img
+                            alt={5}
+                            src="https://preclinic.dreamstechnologies.com/html/template/assets/plugins/raty/images/star-off.png"
+                            title="gorgeous"
+                          />
+                          <input
+                            name="entity[1,2,3,4,5]"
+                            type="hidden"
+                            defaultValue={3}
+                          />
+                        </span>
+                      </div>
                       <div className="staff-msg">
                         <Link to="/patient/chat" className="btn btn-primary">
                           Send Message
@@ -82,7 +122,7 @@ function ClinicHeader({ activeTab, headerText }) {
                       </li>
                       <li>
                         <span className="title">Founded:</span>
-                        <span className="text">1905</span>
+                        <span className="text">1937</span>
                       </li>
                     </ul>
                   </div>
@@ -117,7 +157,7 @@ function ClinicHeader({ activeTab, headerText }) {
           <li className="nav-item">
             <Link
               className={`nav-link${activeTab === "images" ? " active" : ""}`}
-              to="/patient/clinics/messages"
+              to="/patient/clinics/images"
               data-bs-toggle="tab"
             >
               Images
