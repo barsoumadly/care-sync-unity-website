@@ -20,7 +20,10 @@ function ClinicImages() {
               </a>
             </div>
             <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 m-b-20">
-              <a href="assets/img/blog/blog-02.jpg">
+              <a
+                href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8MOvvaxkrLPSehZzvLBfMJM2Xk6UL1AVL8w&s"
+                target="blank"
+              >
                 <img
                   className="img-thumbnail"
                   src="/images/clinic/image2.jpg"
