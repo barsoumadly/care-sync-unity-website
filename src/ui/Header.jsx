@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import UserAvatar from "../features/authentication/UserAvatar";
 
-function Header({ setShowbar, setMinbar, url, role }) {
+function Header({ setShowbar, setMinbar, url }) {
   return (
     <div className="header">
       <div className="header-left">
@@ -197,7 +197,7 @@ function Header({ setShowbar, setMinbar, url, role }) {
           </div>
         </li>
         <li className="nav-item ">
-          <Link to={`edit-profile`} className="hasnotifications nav-link">
+          <Link to="edit-profile" className="hasnotifications nav-link">
             <img src="/images/dashborad/icons/setting-icon-01.svg" alt="" />
           </Link>
         </li>
