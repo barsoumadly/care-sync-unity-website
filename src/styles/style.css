@@ -12818,3 +12818,15 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
 .modal-dialog {
   margin-top: 100px;
 }
+
+.verify-style {
+  margin-top: 40px;
+}
+
+.input-number {
+  width: 50px;
+  font-weight: 600;
+  color: #4e57cd;
+  font-size: x-large;
+  border: 3px red solid;
+}
