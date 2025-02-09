@@ -9,7 +9,7 @@ function ForgotPassword() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { saveEmail: resetPassword } = useAuth();
+  const { saveEmail } = useAuth();
 
   const handleSubmit = async function (event) {
     event.preventDefault();
@@ -18,8 +18,8 @@ function ForgotPassword() {
     try {
       await forgotPassword({ email });
       toast.success("OTP Code is sent");
+      saveEmail(email);
       navigate("/reset-password");
-      resetPassword(email);
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
