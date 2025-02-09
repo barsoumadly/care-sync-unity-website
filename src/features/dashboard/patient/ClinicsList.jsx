@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import ClinicCard from "./ClinicCard";
 
 function ClinicsList() {
   return (
@@ -21,31 +21,71 @@ function ClinicsList() {
           </div>
         </div>
         {/* /Page Header */}
-        {/* Cards */}
         <div className="row">
-          <div className="col-12 col-md-6 col-lg-4 d-flex">
-            <div className="card flex-fill bg-white">
-              <img
-                alt="Card Image"
-                src="/images/clinic/clinic.jpg"
-                className="card-img-top"
-              />
-              <div className="card-header">
-                <h5 className="card-title mb-0">Heliopolis Hospital</h5>
-              </div>
-              <div className="card-body card-buttons">
-                <p className="card-text">
-                  Our Specialization: cardiology, neurology, oncology,
-                  orthopedics, etc.
-                </p>
-                <Link to="clinic-profile" className="btn btn-primary">
-                  View Profile
-                </Link>
+          <div className="col-sm-12">
+            <div className="card card-table show-entire">
+              <div className="card-body">
+                {/* /Table Header */}
+                <div className="staff-search-table">
+                  <form>
+                    <div className="row">
+                      <div className="col-12 col-md-6 col-xl-3">
+                        <div className="input-block local-forms">
+                          <label>Clinic Name </label>
+                          <input
+                            className="form-control"
+                            type="text"
+                            placeholder="ex. Heliopolis"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-12 col-md-6 col-xl-3">
+                        <div className="input-block local-forms">
+                          <label>Specialization </label>
+                          <select className="form-control pass-input">
+                            <option value="" disabled selected>
+                              Select Specialization
+                            </option>
+                            <option value="cairo">cardiology</option>
+                            <option value="giza">neurology</option>
+                            <option value="alex">oncology</option>
+                            <option value="alex">orthopedics</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="col-12 col-md-6 col-xl-3">
+                        <div className="input-block local-forms">
+                          <label>City </label>
+                          <select className="form-control pass-input">
+                            <option value="" disabled selected>
+                              Select your city
+                            </option>
+                            <option value="cairo">Cairo</option>
+                            <option value="giza">Giza</option>
+                            <option value="alex">Alexandria</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="col-12 col-md-6 col-xl-3">
+                        <div className="doctor-submit">
+                          <button
+                            type="submit"
+                            className="btn btn-primary submit-list-form me-2"
+                          >
+                            Search
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                {/* Cards */}
+                <ClinicCard />
+                {/* /Cards */}
               </div>
             </div>
           </div>
         </div>
-        {/* /Cards */}
       </div>
     </div>
   );
