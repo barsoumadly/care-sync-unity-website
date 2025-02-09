@@ -1,6 +1,7 @@
 import axios from "axios";
 
 // API URL
+// const API_URL = "http://caresyncunity.live:8000/api/v1";
 const API_URL = "http://localhost:8000/api/v1";
 
 const register = async function (userData) {
