@@ -9,7 +9,7 @@ function ForgotPassword() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { resetPassword } = useAuth();
+  const { saveEmail: resetPassword } = useAuth();
 
   const handleSubmit = async function (event) {
     event.preventDefault();
