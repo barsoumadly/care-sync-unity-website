@@ -17,8 +17,17 @@ function ClinicProfile() {
                 <div className="row">
                   <div className="col-md-12">
                     <div className="card-box">
-                      <h3 className="card-title">Education Informations</h3>
+                      <h3 className="card-title"> Informations</h3>
                       <div className="experience-box">
+                        <div class="hello-park">
+                          <p>
+                            At Heliopolis Hospital, our experienced doctors and
+                            staff are dedicated to providing compassionate,
+                            cutting-edge care.
+                            <br /> We prioritize your well-being and strive for
+                            the best possible outcomes.
+                          </p>
+                        </div>
                         <ul className="experience-list">
                           <li>
                             <div className="experience-user">
@@ -27,10 +36,10 @@ function ClinicProfile() {
                             <div className="experience-content">
                               <div className="timeline-content">
                                 <a href="#/" className="name">
-                                  International College of Medical Science (UG)
+                                  Clinic Foundation
                                 </a>
-                                <div>MBBS</div>
-                                <span className="time">2001 - 2003</span>
+                                <div>team of healthcare professionals</div>
+                                <span className="time">1937 - 1939</span>
                               </div>
                             </div>
                           </li>
@@ -41,10 +50,13 @@ function ClinicProfile() {
                             <div className="experience-content">
                               <div className="timeline-content">
                                 <a href="#/" className="name">
-                                  International College of Medical Science (PG)
+                                  Recent Developments
                                 </a>
-                                <div>MD - Obstetrics &amp; Gynaecology</div>
-                                <span className="time">1997 - 2001</span>
+                                <div>
+                                  It began to attract medical tourists from
+                                  other countries.
+                                </div>
+                                <span className="time">1990 - 2000</span>
                               </div>
                             </div>
                           </li>
