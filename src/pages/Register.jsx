@@ -6,6 +6,7 @@ import UserRole from "../features/authentication/UserRole";
 import { register } from "../services/auth";
 import AuthButton from "../ui/AuthButton";
 import toast from "react-hot-toast";
+import { useAuth } from "../context/AuthContext";
 
 function Register() {
   const [fullname, setFullname] = useState("");
@@ -20,6 +21,8 @@ function Register() {
 
   const navigate = useNavigate();
 
+  const { saveEmail, userLogin } = useAuth();
+
   const handleSubmit = async function (event) {
     event.preventDefault();
     setIsLoading(true);
@@ -32,12 +35,14 @@ function Register() {
     try {
       await register(userData);
       toast.success("Successfull");
-      navigate("/login");
+      navigate("/verify-email");
       setFullname("");
       setEmail("");
       setPassword("");
       setconfirmPassword("");
       setUserRole("PATIENT");
+      saveEmail(email);
+      userLogin(userData);
     } catch (error) {
       if (error.status === 500) {
         return toast.error("Password must be at least 8 characters");
