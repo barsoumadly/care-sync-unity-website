@@ -30,7 +30,6 @@ function ResetPassword() {
   };
 
   const handleOTP = async function () {
-    console.log(userEmail);
     setStartCounter(true);
     try {
       await forgotPassword({ email: userEmail });
@@ -138,22 +137,4 @@ function ResetPassword() {
     </>
   );
 }
-// function Timer({ time, setTime, setStartCounter }) {
-//   {
-//     useEffect(
-//       function () {
-//         const OTPTimer = setInterval(() => {
-//           if (time > 0) {
-//             setTime((time) => time - 1);
-//           } else {
-//             setStartCounter(false);
-//             return;
-//           }
-//         }, 1000);
-//         return () => clearInterval(OTPTimer);
-//       },
-//       [time, setTime, setStartCounter]
-//     );
-//   }
-// }
 export default ResetPassword;
