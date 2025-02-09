@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordEye from "../features/authentication/PasswordEye";
 import { login } from "../services/auth";
