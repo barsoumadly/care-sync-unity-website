@@ -12,7 +12,7 @@ function reducer(state, action) {
   switch (action.type) {
     case "login":
       return { ...state, user: action.payload, isAuthenticated: true };
-    case "resetPass":
+    case "saveEmail":
       return { ...state, userEmail: action.type, isAuthenticated: true };
     case "logout":
       return { ...state, user: null, isAuthenticated: false };
@@ -34,8 +34,8 @@ function UserContextProvider({ children }) {
     localStorage.removeItem("key");
   }
 
-  function resetPassword(email) {
-    dispatch({ type: "resetPass", payload: email });
+  function saveEmail(email) {
+    dispatch({ type: "setEmail", payload: email });
   }
 
   return (
@@ -44,7 +44,7 @@ function UserContextProvider({ children }) {
         user,
         userLogin,
         userEmail,
-        resetPassword,
+        saveEmail,
         userLogout,
         isAuthenticated,
       }}
