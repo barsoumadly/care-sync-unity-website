@@ -13,7 +13,7 @@ function reducer(state, action) {
     case "login":
       return { ...state, user: action.payload, isAuthenticated: true };
     case "resetPass":
-      return { ...state, userEmail: action.type };
+      return { ...state, userEmail: action.type, isAuthenticated: true };
     case "logout":
       return { ...state, user: null, isAuthenticated: false };
   }
