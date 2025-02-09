@@ -57,6 +57,7 @@ import CompleteDoctorProfile from "./features/dashboard/doctor/CompleteDoctorPro
 import CompleteClinicProfile from "./features/dashboard/clinic/CompleteClinicProfile";
 import ClinicProfile from "./features/dashboard/patient/ClinicProfile";
 import ClinicImages from "./features/dashboard/patient/ClinicImages";
+import VerifyEmail from "./pages/VerifyEmail";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -79,6 +80,14 @@ function App() {
             {/* Authentication */}
             <Route element={<AuthenticationLayout />}>
               <Route path="register" element={<Register />} />
+              <Route
+                path="verify-email"
+                element={
+                  <ProtectedAuth>
+                    <VerifyEmail />
+                  </ProtectedAuth>
+                }
+              />
               <Route path="login" element={<Login />} />
               <Route path="forgot-password" element={<ForgotPassword />} />
               <Route
