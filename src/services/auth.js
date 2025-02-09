@@ -1,46 +1,26 @@
 import axios from "axios";
 
 // API URL
-const API_URL = "http://caresyncunity.live:8000/api/v1";
+const API_URL = "http://localhost:8000/api/v1";
 
 const register = async function (userData) {
-  try {
-    await axios.post(`${API_URL}/auth/register`, userData);
-  } catch (error) {
-    throw error;
-  }
+  await axios.post(`${API_URL}/auth/register`, userData);
 };
 
 const verifyEmail = async function (userData) {
-  try {
-    await axios.post(`${API_URL}/auth/verify-email`, userData);
-  } catch (error) {
-    throw error;
-  }
+  await axios.post(`${API_URL}/auth/verify-email`, userData);
 };
 
 const login = async function (userData) {
-  try {
-    return await axios.post(`${API_URL}/auth/login`, userData);
-  } catch (error) {
-    throw error;
-  }
+  return await axios.post(`${API_URL}/auth/login`, userData);
 };
 
 const forgotPassword = async function (userData) {
-  try {
-    await axios.post(`${API_URL}/auth/request-password-reset`, userData);
-  } catch (error) {
-    throw error;
-  }
+  await axios.post(`${API_URL}/auth/request-password-reset`, userData);
 };
 
 const resetPassword = async function (userData) {
-  try {
-    return await axios.post(`${API_URL}/auth/reset-password`, userData);
-  } catch (error) {
-    throw error;
-  }
+  return await axios.post(`${API_URL}/auth/reset-password`, userData);
 };
 
 export { register, verifyEmail, login, forgotPassword, resetPassword };
