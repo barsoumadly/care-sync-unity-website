@@ -1,7 +1,7 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import UserAvatar from "../features/authentication/UserAvatar";
 
-function Header({ setShowbar, setMinbar, url }) {
+function Header({ setShowbar, setMinbar, url, role }) {
   return (
     <div className="header">
       <div className="header-left">
@@ -197,35 +197,11 @@ function Header({ setShowbar, setMinbar, url }) {
           </div>
         </li>
         <li className="nav-item ">
-          <a href="settings.html" className="hasnotifications nav-link">
+          <Link to={`edit-profile`} className="hasnotifications nav-link">
             <img src="/images/dashborad/icons/setting-icon-01.svg" alt="" />
-          </a>
+          </Link>
         </li>
       </ul>
-      <div className="dropdown mobile-user-menu float-end">
-        <a
-          href="#"
-          className="dropdown-toggle"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <i className="fa-solid fa-ellipsis-vertical"></i>
-        </a>
-        <div className="dropdown-menu dropdown-menu-end">
-          <a className="dropdown-item" href="profile.html">
-            My Profile
-          </a>
-          <a className="dropdown-item" href="edit-profile.html">
-            Edit Profile
-          </a>
-          <a className="dropdown-item" href="settings.html">
-            Settings
-          </a>
-          <a className="dropdown-item" href="login.html">
-            Logout
-          </a>
-        </div>
-      </div>
     </div>
   );
 }
