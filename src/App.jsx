@@ -184,7 +184,7 @@ function App() {
                 element={<ClinicProfile />}
               />
               <Route path="clinics/doctors-list" element={<DoctorsList />} />
-              <Route path="clinics/messages" element={<ClinicImages />} />
+              <Route path="clinics/images" element={<ClinicImages />} />
             </Route>
 
             <Route path="*" element={<PageNotFound />} />
