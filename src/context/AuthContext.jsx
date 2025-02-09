@@ -13,7 +13,7 @@ function reducer(state, action) {
     case "login":
       return { ...state, user: action.payload, isAuthenticated: true };
     case "saveEmail":
-      return { ...state, userEmail: action.type, isAuthenticated: true };
+      return { ...state, userEmail: action.payload, isAuthenticated: true };
     case "logout":
       return { ...state, user: null, isAuthenticated: false };
   }
@@ -28,14 +28,13 @@ function UserContextProvider({ children }) {
     dispatch({ type: "login", payload: user });
     localStorage.setItem("key", JSON.stringify(user));
   }
+  function saveEmail(userEmail) {
+    dispatch({ type: "saveEmail", payload: userEmail });
+  }
 
   function userLogout() {
     dispatch({ type: "logout" });
     localStorage.removeItem("key");
-  }
-
-  function saveEmail(email) {
-    dispatch({ type: "setEmail", payload: email });
   }
 
   return (
