@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordEye from "../features/authentication/PasswordEye";
-import { login } from "../services/auth";
+import { login, requestEmailVerification } from "../services/auth";
 import { useAuth } from "../context/AuthContext";
 import AuthButton from "../ui/AuthButton";
 import toast from "react-hot-toast";
@@ -11,7 +11,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [isEyeOpen, setIsEyeOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { userLogin } = useAuth();
+  const { saveEmail, userLogin } = useAuth();
+  const [isLogin, setIsLogin] = useState(true);
 
   const navigate = useNavigate();
 
@@ -39,6 +40,10 @@ function Login() {
     }
   };
 
+  const changeButton = function () {
+    setIsLogin(false);
+  };
+
   const handleSubmit = async function (event) {
     event.preventDefault();
     setEmail("");
@@ -47,14 +52,23 @@ function Login() {
 
     const userCredentials = { email, password };
     try {
-      const response = await login(userCredentials);
-      userLogin(response?.data.user);
-      navigateUser(response?.data.user.role);
-
-      toast(`Welcome ${response.data.user.name}`, {
-        icon: "👋",
-      });
+      if (isLogin) {
+        const response = await login(userCredentials);
+        userLogin(response?.data.user);
+        navigateUser(response?.data.user.role);
+        toast(`Welcome ${response.data.user.name}`, {
+          icon: "👋",
+        });
+      } else {
+        const user = { email };
+        userLogin(user);
+        await requestEmailVerification({ email });
+        navigate("/verify-email");
+        toast.success("OTP Code is sent");
+      }
     } catch (error) {
+      if (error.response.data.message === "Please verify your email to login")
+        changeButton();
       toast.error(error.response.data.message);
     } finally {
       setIsLoading(false);
@@ -67,7 +81,7 @@ function Login() {
 
   return (
     <>
-      <h2>Login</h2>
+      <h2>{isLogin ? "Login" : "Verify Email"}</h2>
 
       {/* <!-- Form --> */}
       <form onSubmit={handleSubmit}>
@@ -84,25 +98,37 @@ function Login() {
             disabled={isLoading}
           />
         </div>
-        <div className="input-block">
-          <label style={{ background: `${isLoading ? "none" : "#ffffff"}` }}>
-            Password <span className="login-danger">*</span>
-          </label>
-          <input
-            className="form-control pass-input"
-            type={`${isEyeOpen ? "text" : "password"}`}
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            required
-            disabled={isLoading}
-          />
-          <PasswordEye isEyeOpen={isEyeOpen} setIsEyeOpen={handlePasswordEye} />
-        </div>
+        {isLogin && (
+          <>
+            <div className="input-block">
+              <label
+                style={{ background: `${isLoading ? "none" : "#ffffff"}` }}
+              >
+                Password <span className="login-danger">*</span>
+              </label>
+              <input
+                className="form-control pass-input"
+                type={`${isEyeOpen ? "text" : "password"}`}
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required
+                disabled={isLoading}
+              />
+              <PasswordEye
+                isEyeOpen={isEyeOpen}
+                setIsEyeOpen={handlePasswordEye}
+              />
+            </div>
 
-        <div className="forgotpass">
-          <Link to="/forgot-password">Forgot Password?</Link>
-        </div>
-        <AuthButton text="Login" isLoading={isLoading} />
+            <div className="forgotpass">
+              <Link to="/forgot-password">Forgot Password?</Link>
+            </div>
+          </>
+        )}
+        <AuthButton
+          text={isLogin ? "Login" : "Send Verification Code"}
+          isLoading={isLoading}
+        />
       </form>
       {/* <!-- Form --> */}
 
