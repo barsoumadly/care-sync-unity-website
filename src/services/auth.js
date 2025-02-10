@@ -24,6 +24,10 @@ const forgotPassword = async function (userData) {
   await axios.post(`${API_URL}/auth/request-password-reset`, userData);
 };
 
+const verifyResetPasswordOtp = async function (userData) {
+  await axios.post(`${API_URL}/auth/verify-reset-otp`, userData);
+};
+
 const resetPassword = async function (userData) {
   return await axios.post(`${API_URL}/auth/reset-password`, userData);
 };
@@ -34,5 +38,6 @@ export {
   requestEmailVerification,
   login,
   forgotPassword,
+  verifyResetPasswordOtp,
   resetPassword,
 };
