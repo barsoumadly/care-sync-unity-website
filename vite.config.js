@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => ({
   define: {
     'import.meta.env.VITE_API_URL': JSON.stringify(
       mode === 'production'
-        ? 'http://caresyncunity.live:8000/api/v1'
+        ? 'https://caresyncunity.live:8000/api/v1'
         : 'http://localhost:8000/api/v1'
     )
   }
