@@ -1,6 +1,5 @@
 import { useMoveBack } from "../hooks/useMoveBack";
 function PageNotFound() {
-  const error = "error";
   const moveBack = useMoveBack();
   return (
     <div className="error-pages">
@@ -16,8 +15,8 @@ function PageNotFound() {
               className="img-fluid mb-0"
               src="/images/error/icons/danger.svg"
               alt="Logo"
-            />
-            {error.statusText}
+            />{" "}
+            Service Unavailable
           </h3>
           <p>You may have mistyped the address or the page may have moved.</p>
           <button onClick={moveBack} className="btn btn-primary go-home">
