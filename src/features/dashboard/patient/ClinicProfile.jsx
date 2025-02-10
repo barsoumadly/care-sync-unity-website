@@ -1,4 +1,3 @@
-import Map from "../../../ui/Map";
 import ClinicHeader from "./ClinicHeader";
 
 function ClinicProfile() {
