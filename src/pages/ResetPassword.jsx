@@ -86,8 +86,6 @@ function ResetPassword() {
   const handleSubmit = async function (event) {
     event.preventDefault();
     setIsLoading(true);
-    setCode(["", "", "", "", "", ""]);
-    inputRefs.current[0].focus();
 
     const userData = {
       newPassword: newPassword !== "" ? newPassword : "newpass1234",
