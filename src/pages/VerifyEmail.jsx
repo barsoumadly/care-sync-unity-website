@@ -56,6 +56,9 @@ function VerifyEmail() {
       navigate("/login");
       toast.success("Email verified successfully");
     } catch (error) {
+      if (error.message === "Network Error") {
+        return navigate("/internal-server-error");
+      }
       setCode(["", "", "", "", "", ""]);
       inputRefs.current[0].focus();
       return toast.error(error.response.data.message);
