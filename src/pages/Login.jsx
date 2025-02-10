@@ -67,6 +67,9 @@ function Login() {
         toast.success("OTP Code is sent");
       }
     } catch (error) {
+      if (error.message === "Network Error") {
+        return navigate("/internal-server-error");
+      }
       if (error.response.data.message === "Please verify your email to login")
         changeButton();
       toast.error(error.response.data.message);
