@@ -12830,3 +12830,8 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
   font-size: x-large;
   border: 3px red solid;
 }
+
+.leaflet-container {
+  width: 100%;
+  height: 50vh;
+}
