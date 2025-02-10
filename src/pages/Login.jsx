@@ -11,7 +11,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [isEyeOpen, setIsEyeOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { saveEmail, userLogin } = useAuth();
+  const { userLogin } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
 
   const navigate = useNavigate();
