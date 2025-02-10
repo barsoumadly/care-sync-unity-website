@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import fs from "fs";
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   preview: {
     port: 443,
     host: true, // Listen on all addresses
@@ -16,4 +16,11 @@ export default defineConfig({
         : false,
   },
   plugins: [react()],
-});
+  define: {
+    'import.meta.env.VITE_API_URL': JSON.stringify(
+      mode === 'production'
+        ? 'http://caresyncunity.live:8000/api/v1'
+        : 'http://localhost:8000/api/v1'
+    )
+  }
+}));

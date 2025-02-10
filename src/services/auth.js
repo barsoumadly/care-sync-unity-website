@@ -1,8 +1,7 @@
 import axios from "axios";
 
-// API URL
-// const API_URL = "http://caresyncunity.live:8000/api/v1";
-const API_URL = "http://localhost:8000/api/v1";
+// API URL is defined in vite.config.js
+const API_URL = import.meta.env.VITE_API_URL;
 
 const register = async function (userData) {
   await axios.post(`${API_URL}/auth/register`, userData);
