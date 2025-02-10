@@ -1,4 +1,4 @@
-import { IoArrowBackOutline } from "react-icons/io5";
+import Map from "../../../ui/Map";
 import ClinicHeader from "./ClinicHeader";
 
 function ClinicProfile() {
@@ -19,7 +19,7 @@ function ClinicProfile() {
                     <div className="card-box">
                       <h3 className="card-title"> Informations</h3>
                       <div className="experience-box">
-                        <div class="hello-park">
+                        <div className="hello-park">
                           <p>
                             At Heliopolis Hospital, our experienced doctors and
                             staff are dedicated to providing compassionate,
@@ -63,7 +63,14 @@ function ClinicProfile() {
                         </ul>
                       </div>
                     </div>
-                    <div className="card-box "></div>
+                    <div className="card-box">
+                      <Map
+                        name="Heliopolis Hospital"
+                        markerPosition={[
+                          30.107092408551956, 31.336682100012936,
+                        ]}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
