@@ -17,8 +17,24 @@ export default defineConfig(({ mode }) => ({
     middleware: [
       (req, res, next) => {
         // Only redirect in production
-        if (mode === 'production' && !req.secure && req.protocol === 'http') {
-          const httpsUrl = `https://${req.headers.host}${req.url}`;
+        if (mode === 'production' && !req.secure) {
+          const host = req.headers.host?.split(':')[0] || req.headers.host; // Remove port if present
+          const httpsUrl = `https://${host}${req.url}`;
+          res.writeHead(301, { Location: httpsUrl });
+          res.end();
+        } else {
+          next();
+        }
+      }
+    ]
+  },
+  server: {
+    // Add the same middleware for development server
+    middleware: [
+      (req, res, next) => {
+        if (mode === 'production' && !req.secure) {
+          const host = req.headers.host?.split(':')[0] || req.headers.host;
+          const httpsUrl = `https://${host}${req.url}`;
           res.writeHead(301, { Location: httpsUrl });
           res.end();
         } else {
