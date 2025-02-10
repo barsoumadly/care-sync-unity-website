@@ -14,6 +14,18 @@ export default defineConfig(({ mode }) => ({
             cert: "./cert.crt",
           }
         : false,
+    middleware: [
+      (req, res, next) => {
+        // Only redirect in production
+        if (mode === 'production' && !req.secure && req.protocol === 'http') {
+          const httpsUrl = `https://${req.headers.host}${req.url}`;
+          res.writeHead(301, { Location: httpsUrl });
+          res.end();
+        } else {
+          next();
+        }
+      }
+    ]
   },
   plugins: [react()],
   define: {
