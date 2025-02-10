@@ -72,6 +72,9 @@ function ResetPassword() {
 
   const handleOTP = async function () {
     setStartCounter(true);
+    setCode(["", "", "", "", "", ""]);
+    inputRefs.current[0].focus();
+
     try {
       await forgotPassword({ email: userEmail });
       toast.success("OTP Code is sent");
@@ -83,6 +86,8 @@ function ResetPassword() {
   const handleSubmit = async function (event) {
     event.preventDefault();
     setIsLoading(true);
+    setCode(["", "", "", "", "", ""]);
+    inputRefs.current[0].focus();
 
     const userData = {
       newPassword: newPassword !== "" ? newPassword : "newpass1234",
@@ -129,7 +134,7 @@ function ResetPassword() {
       <form onSubmit={handleSubmit} className="space-y-6">
         {!showField && (
           <>
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-center gap-4">
               {code.map((digit, index) => (
                 <input
                   ref={(el) => (inputRefs.current[index] = el)}
