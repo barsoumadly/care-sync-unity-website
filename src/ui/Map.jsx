@@ -1,3 +1,5 @@
+import "leaflet/dist/leaflet.css";
+
 import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 
 function Map({ name, markerPosition = [30.033333, 31.233334] }) {
