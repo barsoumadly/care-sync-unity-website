@@ -85,7 +85,7 @@ function VerifyEmail() {
             </span>
           </p>
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-center gap-4">
               {code.map((digit, index) => (
                 <input
                   ref={(el) => (inputRefs.current[index] = el)}
