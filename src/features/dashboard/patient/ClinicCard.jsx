@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function ClinicCard() {
   return (
     <div className="row">
-      <div className="col-12 col-md-6 col-lg-4 d-flex">
+      <div className="col-12 col-md-4 col-lg-3 d-flex">
         <div
           className="card flex-fill bg-white"
           style={{
