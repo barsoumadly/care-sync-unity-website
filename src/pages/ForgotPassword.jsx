@@ -21,6 +21,9 @@ function ForgotPassword() {
       saveEmail(email);
       navigate("/reset-password");
     } catch (error) {
+      if (error.message === "Network Error") {
+        return navigate("/internal-server-error");
+      }
       toast.error(error.response.data.message);
     } finally {
       setIsLoading(false);
