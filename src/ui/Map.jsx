@@ -8,7 +8,7 @@ function Map({ name, markerPosition = [30.033333, 31.233334] }) {
       className="leaflet-container"
       center={markerPosition}
       zoom={15}
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
