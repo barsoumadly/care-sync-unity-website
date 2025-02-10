@@ -44,6 +44,9 @@ function Register() {
       saveEmail(email);
       userLogin(userData);
     } catch (error) {
+      if (error.message === "Network Error") {
+        return navigate("/internal-server-error");
+      }
       if (error.status === 500) {
         return toast.error("Password must be at least 8 characters");
       }
