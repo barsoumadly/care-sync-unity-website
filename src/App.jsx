@@ -58,6 +58,7 @@ import CompleteClinicProfile from "./features/dashboard/clinic/CompleteClinicPro
 import ClinicProfile from "./features/dashboard/patient/ClinicProfile";
 import ClinicImages from "./features/dashboard/patient/ClinicImages";
 import VerifyEmail from "./pages/VerifyEmail";
+import ServerDown from "./ui/ServerDown";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -188,6 +189,7 @@ function App() {
             </Route>
 
             <Route path="*" element={<PageNotFound />} />
+            <Route path="/internal-server-error" element={<ServerDown />} />
           </Routes>
         </BrowserRouter>
 
