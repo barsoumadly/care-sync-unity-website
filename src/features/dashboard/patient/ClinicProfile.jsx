@@ -67,7 +67,7 @@ function ClinicProfile() {
                       <Map
                         name="Heliopolis Hospital"
                         markerPosition={[
-                          30.107092408551956, 31.336682100012936,
+                          30.107187516821337, 31.336684266216714,
                         ]}
                       />
                     </div>
