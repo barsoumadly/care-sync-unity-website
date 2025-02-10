@@ -79,6 +79,9 @@ function ResetPassword() {
       await forgotPassword({ email: userEmail });
       toast.success("OTP Code is sent");
     } catch (error) {
+      if (error.message === "Network Error") {
+        return navigate("/500");
+      }
       toast.error(error.response.data.message);
     }
   };
@@ -109,7 +112,9 @@ function ResetPassword() {
         }
       }
     } catch (error) {
-      console.log(error);
+      if (error.message === "Network Error") {
+        return navigate("/internal-server-error");
+      }
       if (error.status === 500) {
         return toast.error("Password must be at least 8 characters");
       }
