@@ -20,7 +20,7 @@ function PageNotFound() {
           </h3>
           <p>You may have mistyped the address or the page may have moved.</p>
           <button onClick={moveBack} className="btn btn-primary go-home">
-            Back to Home
+            Back
           </button>
         </div>
       </div>
