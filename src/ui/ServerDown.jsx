@@ -21,7 +21,7 @@ function ServerDown() {
         </h3>
         <p>You do not have permission to view this resource</p>
         <button onClick={moveBack} className="btn btn-primary go-home">
-          Back to Home
+          Back
         </button>
       </div>
     </div>
