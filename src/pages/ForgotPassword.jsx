@@ -4,15 +4,18 @@ import { forgotPassword } from "../services/auth";
 import { useAuth } from "../context/AuthContext";
 import AuthButton from "../ui/AuthButton";
 import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
 
 function ForgotPassword() {
+  const { register, handleSubmit, reset } = useForm();
+
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+
   const [isLoading, setIsLoading] = useState(false);
   const { saveEmail } = useAuth();
 
-  const handleSubmit = async function (event) {
-    event.preventDefault();
+  const onSubmit = async function (data) {
+    const { email } = data;
     setIsLoading(true);
 
     try {
@@ -27,6 +30,7 @@ function ForgotPassword() {
       toast.error(error.response.data.message);
     } finally {
       setIsLoading(false);
+      reset();
     }
   };
 
@@ -35,7 +39,7 @@ function ForgotPassword() {
       <h2>Reset Password</h2>
 
       {/* <!-- Form --> */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="input-block">
           <label>
             Email <span className="login-danger">*</span>
@@ -43,9 +47,8 @@ function ForgotPassword() {
           <input
             className="form-control"
             type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
             required
+            {...register("email")}
           />
         </div>
         <AuthButton text="Reset Password" isLoading={isLoading} />
