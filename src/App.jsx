@@ -59,6 +59,7 @@ import ClinicProfile from "./features/dashboard/patient/ClinicProfile";
 import ClinicImages from "./features/dashboard/patient/ClinicImages";
 import VerifyEmail from "./pages/VerifyEmail";
 import ServerDown from "./ui/ServerDown";
+import PaymentGateway from "./features/dashboard/patient/PaymentGateway";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -186,6 +187,7 @@ function App() {
               />
               <Route path="clinics/doctors-list" element={<DoctorsList />} />
               <Route path="clinics/images" element={<ClinicImages />} />
+              <Route path="payment-gateway" element={<PaymentGateway />} />
             </Route>
 
             <Route path="*" element={<PageNotFound />} />
