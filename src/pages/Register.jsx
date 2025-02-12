@@ -3,16 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 import PasswordEye from "../features/authentication/PasswordEye";
 import userRoleArr from "../data/constants";
 import UserRole from "../features/authentication/UserRole";
-import { register } from "../services/auth";
+import { register as registerApi } from "../services/auth";
 import AuthButton from "../ui/AuthButton";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
+import { useForm } from "react-hook-form";
 
 function Register() {
-  const [fullname, setFullname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setconfirmPassword] = useState("");
+  const { register, handleSubmit, reset } = useForm();
+
   const [userRole, setUserRole] = useState("PATIENT");
 
   const [isEyeOpen1, setIsEyeOpen1] = useState(false);
@@ -23,25 +22,21 @@ function Register() {
 
   const { saveEmail, userLogin } = useAuth();
 
-  const handleSubmit = async function (event) {
-    event.preventDefault();
+  const onSubmit = async function (Udata) {
     setIsLoading(true);
 
-    if (password !== confirmPassword) {
+    const { confirmPassword, ...userData } = Udata;
+
+    if (userData.password !== confirmPassword) {
       return toast.error("Passwords are not same");
     }
 
-    const userData = { name: fullname, email, password, role: userRole };
     try {
-      await register(userData);
+      await registerApi(userData);
       toast.success("Successfull");
       navigate("/verify-email");
-      setFullname("");
-      setEmail("");
-      setPassword("");
-      setconfirmPassword("");
       setUserRole("PATIENT");
-      saveEmail(email);
+      saveEmail(userData.email);
       userLogin(userData);
     } catch (error) {
       if (error.message === "Network Error") {
@@ -53,6 +48,7 @@ function Register() {
       toast.error(error.response.data.message);
     } finally {
       setIsLoading(false);
+      reset();
     }
   };
 
@@ -73,7 +69,7 @@ function Register() {
       <h2>Getting Started</h2>
 
       {/* <!-- Form --> */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="input-block">
           <label>
             Full Name <span className="login-danger">*</span>
@@ -81,9 +77,8 @@ function Register() {
           <input
             className="form-control"
             type="text"
-            value={fullname}
-            onChange={(event) => setFullname(event.target.value)}
             required
+            {...register("name")}
           />
         </div>
 
@@ -94,9 +89,8 @@ function Register() {
           <input
             className="form-control"
             type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
             required
+            {...register("email")}
           />
         </div>
 
@@ -107,9 +101,8 @@ function Register() {
           <input
             className="form-control pass-input"
             type={`${isEyeOpen1 ? "text" : "password"}`}
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
             required
+            {...register("password")}
           />
           <PasswordEye
             isEyeOpen={isEyeOpen1}
@@ -125,9 +118,8 @@ function Register() {
           <input
             className="form-control pass-input-confirm"
             type={`${isEyeOpen2 ? "text" : "password"}`}
-            value={confirmPassword}
-            onChange={(event) => setconfirmPassword(event.target.value)}
             required
+            {...register("confirmPassword")}
           />
           <PasswordEye
             isEyeOpen={isEyeOpen2}
