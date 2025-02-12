@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import ClinicHeader from "./ClinicHeader";
+import { Link } from "react-router-dom";
 
 function DoctorsList() {
   const [isOpen, setIsOpen] = useState(false);
@@ -144,6 +145,8 @@ function DoctorsList() {
 }
 
 function AppointmentModal({ onOpenModal }) {
+  const [paymentType, setPaymentType] = useState("cash");
+
   return (
     <div
       id="con-close-modal"
@@ -261,9 +264,13 @@ function AppointmentModal({ onOpenModal }) {
                   <label htmlFor="field-4" className="form-label">
                     Payment Type
                   </label>
-                  <select className="form-control">
-                    <option value="credit">Credit</option>
+                  <select
+                    className="form-control"
+                    value={paymentType}
+                    onChange={(event) => setPaymentType(event.target.value)}
+                  >
                     <option value="cash">Cash</option>
+                    <option value="credit">Credit</option>
                   </select>
                 </div>
               </div>
@@ -278,13 +285,18 @@ function AppointmentModal({ onOpenModal }) {
             >
               Close
             </button>
-            <button
+            <Link
+              to={
+                paymentType === "cash"
+                  ? "/patient/appointments"
+                  : "/patient/payment-gateway"
+              }
               type="button"
               className="btn btn-info"
               style={{ backgroundColor: "#2e37a4", color: "#fff" }}
             >
               Book Appointment
-            </button>
+            </Link>
           </div>
         </div>
       </div>
