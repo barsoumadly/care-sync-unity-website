@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 // API URL is defined in vite.config.js
 // const API_URL = import.meta.env.VITE_API_URL;
@@ -32,6 +33,12 @@ const resetPassword = async function (userData) {
   return await axios.post(`${API_URL}/auth/reset-password`, userData);
 };
 
+const getUserById = async function (token) {
+  return await axios.get(`${API_URL}/auth/profile`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
 export {
   register,
   verifyEmail,
@@ -40,4 +47,5 @@ export {
   forgotPassword,
   verifyResetPasswordOtp,
   resetPassword,
+  getUserById,
 };
