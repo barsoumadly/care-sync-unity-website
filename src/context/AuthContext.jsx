@@ -24,9 +24,9 @@ function UserContextProvider({ children }) {
     reducer,
     initialState
   );
-  function userLogin(user) {
+  function userLogin(user, token) {
     dispatch({ type: "login", payload: user });
-    localStorage.setItem("key", JSON.stringify(user));
+    localStorage.setItem("key", JSON.stringify(token));
   }
   function saveEmail(userEmail) {
     dispatch({ type: "saveEmail", payload: userEmail });
