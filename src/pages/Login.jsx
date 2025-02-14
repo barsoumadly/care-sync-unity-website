@@ -51,7 +51,7 @@ function Login() {
     try {
       if (isLogin) {
         const response = await login(data);
-        userLogin(response?.data.user);
+        userLogin(response?.data.user, response.data.token);
         navigateUser(response?.data.user.role);
         toast(`Welcome ${response.data.user.name}`, {
           icon: "👋",
