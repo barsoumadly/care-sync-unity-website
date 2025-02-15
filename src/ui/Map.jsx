@@ -1,43 +1,28 @@
-import "leaflet/dist/leaflet.css";
-import { GiPositionMarker } from "react-icons/gi";
-
-import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
-
-function Map({ name, markerPosition = [30.033333, 31.233334] }) {
+function Map({ name, markerPosition = "Heliopolis Hospital" }) {
   return (
-    <>
-      <MapContainer
-        className="leaflet-container"
-        center={markerPosition}
-        zoom={20}
-        scrollWheelZoom={true}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
-        />
-
-        <div className="google-maps-link">
-          <a
-            aria-label="View larger map"
-            target="_blank"
-            href={`http://www.google.com/maps/place/${markerPosition.join(
-              ","
-            )}`}
-          >
-            View larger map
-          </a>{" "}
-          <span>
-            <GiPositionMarker />
-          </span>
+    <div className="google-map">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12">
+            <iframe
+              className="gmap_iframe"
+              src={`https://maps.google.com/maps?width=600&height=400&hl=en&q=  ${markerPosition}&t=k&z=17&ie=UTF8&iwloc=B&output=embed
+              `}
+              width="100%"
+              frameBorder={0}
+              scrolling="no"
+              marginHeight={0}
+              marginWidth={0}
+              height={500}
+              style={{ border: "2px solid #fff", borderRadius: 20 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
-        <Marker position={markerPosition}>
-          <Popup>
-            <span>{name}</span>
-          </Popup>
-        </Marker>
-      </MapContainer>
-    </>
+      </div>
+    </div>
   );
 }
 
