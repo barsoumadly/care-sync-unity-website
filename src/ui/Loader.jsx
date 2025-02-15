@@ -3,7 +3,7 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 function Loader() {
   return (
     <DotLottieReact
-      src="https://lottie.host/33925207-0139-4ca1-9ed2-4c1c198b20f2/jTlKBJvkz2.lottie"
+      src="https://lottie.host/61c7c818-37eb-4a33-a285-d44c4bb76bbf/VnbfXjwo9w.lottie"
       loop
       autoplay
     />
