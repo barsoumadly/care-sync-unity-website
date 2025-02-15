@@ -1,4 +1,4 @@
-function Map({ name, markerPosition = "Heliopolis Hospital" }) {
+function Map({ markerPosition = "Heliopolis Hospital" }) {
   return (
     <div className="google-map">
       <div className="container">
@@ -9,10 +9,6 @@ function Map({ name, markerPosition = "Heliopolis Hospital" }) {
               src={`https://maps.google.com/maps?width=600&height=400&hl=en&q=  ${markerPosition}&t=k&z=17&ie=UTF8&iwloc=B&output=embed
               `}
               width="100%"
-              frameBorder={0}
-              scrolling="no"
-              marginHeight={0}
-              marginWidth={0}
               height={500}
               style={{ border: "2px solid #fff", borderRadius: 20 }}
               allowFullScreen=""
