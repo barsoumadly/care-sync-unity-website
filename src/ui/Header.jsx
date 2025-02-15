@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import UserAvatar from "../features/authentication/UserAvatar";
+import { FaCalendarDays } from "react-icons/fa6";
 
 function Header({ setShowbar, setMinbar, url }) {
   return (
@@ -30,14 +31,22 @@ function Header({ setShowbar, setMinbar, url }) {
 
       <div className="top-nav-search mob-view">
         <form>
-          <input
+          <div
             type="text"
             className="form-control"
             placeholder="Search here"
-          />
-          <a className="btn">
-            <img src="/images/dashborad/icons/search-normal.svg" alt="" />
-          </a>
+            style={{
+              background:
+                "linear-gradient(0deg, rgba(51, 53, 72, 0.05), rgba(51, 53, 72, 0.05)), #ffffff",
+            }}
+          >
+            <div style={{ fontSize: "16px", color: " #2e37a4" }}>
+              <FaCalendarDays />
+              <span style={{ marginLeft: "10%" }}>
+                {new Date().toDateString()}
+              </span>
+            </div>
+          </div>
         </form>
       </div>
 
