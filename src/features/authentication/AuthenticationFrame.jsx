@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function AuthenticationFrame({ children }) {
   const [isLoading, setIsLoading] = useState(true);
-  setTimeout(() => setIsLoading(false), 500);
+  setTimeout(() => setIsLoading(false), 3000);
   return (
     <div>
       {isLoading ? (
