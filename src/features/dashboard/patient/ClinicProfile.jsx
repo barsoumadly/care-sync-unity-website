@@ -66,9 +66,7 @@ function ClinicProfile() {
                     <div className="card-box">
                       <Map
                         name="Heliopolis Hospital"
-                        markerPosition={[
-                          30.107187516821337, 31.336684266216714,
-                        ]}
+                        markerPosition="Heliopolis Hospital"
                       />
                     </div>
                   </div>
