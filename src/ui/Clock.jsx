@@ -28,11 +28,11 @@ function Clock() {
 
   return (
     <div
-      className="form-control "
+      className="form-control"
       style={{
         background:
           "linear-gradient(0deg, rgba(51, 53, 72, 0.05), rgba(51, 53, 72, 0.05)), #ffffff",
-        margin: "10px 20%",
+        margin: "13px ",
         position: "relative",
         width: "150px",
         float: "left",
@@ -41,8 +41,9 @@ function Clock() {
         borderColor: "#fff",
         textAlign: "center",
         bordeRadius: "50px",
-        fontWeight: "bold",
+        fontWeight: "600",
         borderRadius: "50px",
+        padding: "10px 15px 10px 15px",
       }}
     >
       <span style={{ padding: "0px 12px 0px 0px" }}>

@@ -40,20 +40,22 @@ function Header({ setShowbar, setMinbar, url }) {
             position: "relative",
             width: "200px",
             padding: "10px 15px 10px 15px",
+            borderRadius: "50px",
           }}
         >
           <div style={{ fontSize: "16px", color: " #2e37a4" }}>
             <FaCalendarDays />
-            <span style={{ marginLeft: "10%" }}>
+            <span style={{ marginLeft: "10%", fontWeight: "600" }}>
               {new Date().toDateString()}
             </span>
           </div>
         </div>
       </div>
 
-      <Clock />
-
       <ul className="nav user-menu float-end">
+        <div className="top-nav-search mob-view">
+          <Clock />
+        </div>
         <li className="nav-item dropdown d-none d-md-block">
           <a
             href="#"
