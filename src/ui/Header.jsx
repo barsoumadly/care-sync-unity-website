@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import UserAvatar from "../features/authentication/UserAvatar";
 import { FaCalendarDays } from "react-icons/fa6";
+import Clock from "./Clock";
 
 function Header({ setShowbar, setMinbar, url }) {
   return (
@@ -30,25 +31,27 @@ function Header({ setShowbar, setMinbar, url }) {
       </div>
 
       <div className="top-nav-search mob-view">
-        <form>
-          <div
-            type="text"
-            className="form-control"
-            placeholder="Search here"
-            style={{
-              background:
-                "linear-gradient(0deg, rgba(51, 53, 72, 0.05), rgba(51, 53, 72, 0.05)), #ffffff",
-            }}
-          >
-            <div style={{ fontSize: "16px", color: " #2e37a4" }}>
-              <FaCalendarDays />
-              <span style={{ marginLeft: "10%" }}>
-                {new Date().toDateString()}
-              </span>
-            </div>
+        <div
+          className="form-control"
+          style={{
+            background:
+              "linear-gradient(0deg, rgba(51, 53, 72, 0.05), rgba(51, 53, 72, 0.05)), #ffffff",
+            marginTop: "13px",
+            position: "relative",
+            width: "200px",
+            padding: "10px 15px 10px 15px",
+          }}
+        >
+          <div style={{ fontSize: "16px", color: " #2e37a4" }}>
+            <FaCalendarDays />
+            <span style={{ marginLeft: "10%" }}>
+              {new Date().toDateString()}
+            </span>
           </div>
-        </form>
+        </div>
       </div>
+
+      <Clock />
 
       <ul className="nav user-menu float-end">
         <li className="nav-item dropdown d-none d-md-block">
