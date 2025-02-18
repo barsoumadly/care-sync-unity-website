@@ -38,7 +38,7 @@ function Reports() {
                                 placeholder="Search here"
                               />
                               <a className="btn">
-                                <img src="../images/report/search-normal.svg" alt="" />
+                                <img src="../images/dashborad/icons/search-normal.svg" alt="" />
                               </a>
                             </form>
                           </div>
@@ -46,12 +46,12 @@ function Reports() {
                             <a
                               href="add-expense.html"
                               className="btn btn-primary add-pluss ms-2">
-                              <img src="../images/report/plus.svg" alt="" />
+                              <img src="../images/dashborad/icons/plus.svg" alt="" />
                             </a>
                             <a
                               href="javascript:;"
                               className="btn btn-primary doctor-refresh ms-2">
-                              <img src="../images/report/re-fresh.svg" alt="" />
+                              <img src="../images/dashborad/icons/re-fresh.svg" alt="" />
                             </a>
                           </div>
                         </div>
@@ -59,16 +59,16 @@ function Reports() {
                     </div>
                     <div className="col-auto text-end float-end ms-auto download-grp">
                       <a href="javascript:;" className=" me-2">
-                        <img src="../images/report/pdf-icon-01.svg" alt="" />
+                        <img src="../images/dashborad/icons/pdf-icon-01.svg" alt="" />
                       </a>
                       <a href="javascript:;" className=" me-2">
-                        <img src="../images/report/pdf-icon-02.svg" alt="" />
+                        <img src="../images/dashborad/icons/pdf-icon-02.svg" alt="" />
                       </a>
                       <a href="javascript:;" className=" me-2">
-                        <img src="../images/report/pdf-icon-03.svg" alt="" />
+                        <img src="../images/dashborad/icons/pdf-icon-03.svg" alt="" />
                       </a>
                       <a href="javascript:;">
-                        <img src="../images/report/pdf-icon-04.svg" alt="" />
+                        <img src="../images/dashborad/icons/pdf-icon-04.svg" alt="" />
                       </a>
                     </div>
                   </div>
@@ -159,7 +159,7 @@ function Reports() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/report/avatar-01.jpg"
+                              src="../images/dashborad/profiles/avatar-01.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />{" "}
@@ -238,7 +238,7 @@ function Reports() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/report/avatar-03.jpg"
+                              src="../images/dashborad/profiles/avatar-03.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />
@@ -317,7 +317,7 @@ function Reports() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/report/avatar-02.jpg"
+                              src="../images/dashborad/profiles/avatar-02.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />
@@ -396,7 +396,7 @@ function Reports() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/report/avatar-04.jpg"
+                              src="../images/dashborad/profiles/avatar-04.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />{" "}
@@ -475,7 +475,7 @@ function Reports() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/report/avatar-06.jpg"
+                              src="../images/dashborad/profiles/avatar-06.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />
@@ -554,7 +554,7 @@ function Reports() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/report/avatar-05.jpg"
+                              src="../images/dashborad/profiles/avatar-05.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />{" "}
@@ -633,7 +633,7 @@ function Reports() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/report/avatar-01.jpg"
+                              src="../images/dashborad/profiles/avatar-01.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />{" "}
@@ -712,7 +712,7 @@ function Reports() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/report/avatar-02.jpg"
+                              src="../images/dashborad/profiles/avatar-02.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />{" "}

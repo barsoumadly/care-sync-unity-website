@@ -188,7 +188,7 @@ function BookAppointment() {
                             accept="image/*"
                             name="image"
                             id="file"
-                            onchange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
+                            onChange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
                             className="hide-input"
                             data-cf-modified-9a0768263c3e2639b8a42f5f-=""
                           />

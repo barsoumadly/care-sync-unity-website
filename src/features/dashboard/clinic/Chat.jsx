@@ -25,7 +25,7 @@ function Chat() {
             <div className="chat-user-group-head d-flex align-items-center">
               <div className="img-users call-user">
                 <a href="profile.html">
-                  <img src="../images/chat/profiles/avatar-01.jpg" alt="img" />
+                  <img src="../images/dashborad/profiles/avatar-01.jpg" alt="img" />
                 </a>
                 <span className="active-users" />
               </div>
@@ -73,7 +73,7 @@ function Chat() {
                       placeholder="Search here"
                     />
                     <a className="btn">
-                      <img src="../images/chat/icons/search-normal.svg" alt="" />
+                      <img src="../images/dashborad/icons/search-normal.svg" alt="" />
                     </a>
                   </div>
                   <div className="add-search">
@@ -87,7 +87,7 @@ function Chat() {
             <div className="chat-user-group d-flex align-items-center">
               <div className="img-users call-user">
                 <a href="profile.html">
-                  <img src="../images/chat/profiles/avatar-05.jpg" alt="img" />
+                  <img src="../images/dashborad/profiles/avatar-05.jpg" alt="img" />
                 </a>
                 <span className="active-users bg-info" />
               </div>
@@ -109,7 +109,7 @@ function Chat() {
             <div className="chat-user-group d-flex align-items-center">
               <div className="img-users call-user">
                 <a href="profile.html">
-                  <img src="../images/chat/profiles/avatar-02.jpg" alt="img" />
+                  <img src="../images/dashborad/profiles/avatar-02.jpg" alt="img" />
                 </a>
                 <span className="active-users" />
               </div>
@@ -128,7 +128,7 @@ function Chat() {
             <div className="chat-user-group d-flex align-items-center">
               <div className="img-users call-user">
                 <a href="profile.html">
-                  <img src="../images/chat/profiles/avatar-03.jpg" alt="img" />
+                  <img src="../images/dashborad/profiles/avatar-03.jpg" alt="img" />
                 </a>
                 <span className="active-users" />
               </div>
@@ -150,7 +150,7 @@ function Chat() {
             <div className="chat-user-group d-flex align-items-center">
               <div className="img-users call-user">
                 <a href="profile.html">
-                  <img src="../images/chat/profiles/avatar-04.jpg" alt="img" />
+                  <img src="../images/dashborad/profiles/avatar-04.jpg" alt="img" />
                 </a>
                 <span className="active-users bg-info" />
               </div>
@@ -169,7 +169,7 @@ function Chat() {
             <div className="chat-user-group d-flex align-items-center">
               <div className="img-users call-user">
                 <a href="profile.html">
-                  <img src="../images/chat/profiles/avatar-05.jpg" alt="img" />
+                  <img src="../images/dashborad/profiles/avatar-05.jpg" alt="img" />
                 </a>
                 <span className="active-users" />
               </div>
@@ -191,7 +191,7 @@ function Chat() {
             <div className="chat-user-group d-flex align-items-center">
               <div className="img-users call-user">
                 <a href="profile.html">
-                  <img src="../images/chat/profiles/avatar-06.jpg" alt="img" />
+                  <img src="../images/dashborad/profiles/avatar-03.jpg" alt="img" />
                 </a>
                 <span className="active-users bg-info" />
               </div>
@@ -213,7 +213,7 @@ function Chat() {
             <div className="chat-user-group d-flex align-items-center">
               <div className="img-users call-user">
                 <a href="profile.html">
-                  <img src="../images/chat/profiles/avatar-07.jpg" alt="img" />
+                  <img src="../images/dashborad/profiles/avatar-01.jpg" alt="img" />
                 </a>
                 <span className="active-users" />
               </div>
@@ -232,7 +232,7 @@ function Chat() {
             <div className="chat-user-group mb-0 d-flex align-items-center">
               <div className="img-users call-user">
                 <a href="profile.html">
-                  <img src="../images/chat/profiles/avatar-08.jpg" alt="img" />
+                  <img src="../images/dashborad/profiles/avatar-02.jpg" alt="img" />
                 </a>
                 <span className="active-users bg-info" />
               </div>
@@ -260,7 +260,7 @@ function Chat() {
             <div className="chat-user-group mb-0 d-flex align-items-center">
               <div className="img-users call-user">
                 <a href="profile.html">
-                  <img src="../images/chat/profiles/avatar-05.jpg" alt="img" />
+                  <img src="../images/dashborad/profiles/avatar-05.jpg" alt="img" />
                 </a>
                 <span className="active-users bg-info" />
               </div>
@@ -277,17 +277,17 @@ function Chat() {
               <ul>
                 <li>
                   <a href="video-call.html">
-                    <img src="../images/chat/icons/chat-icon-01.svg" alt="img" />
+                    <img src="../images/dashborad/icons/chat-icon-01.svg" alt="img" />
                   </a>
                 </li>
                 <li>
                   <a href="voice-call.html">
-                    <img src="../images/chat/icons/chat-icon-02.svg" alt="img" />
+                    <img src="../images/dashborad/icons/chat-icon-02.svg" alt="img" />
                   </a>
                 </li>
                 <li>
                   <a href="javascript:;">
-                    <img src="../images/chat/icons/chat-icon-03.svg" alt="img" />
+                    <img src="../images/dashborad/icons/chat-icon-03.svg" alt="img" />
                   </a>
                 </li>
               </ul>
@@ -302,7 +302,7 @@ function Chat() {
                 <li className="media d-flex received">
                   <div className="avatar flex-shrink-0">
                     <img
-                      src="../images/chat/profiles/avatar-01.jpg"
+                      src="../images/dashborad/profiles/avatar-01.jpg"
                       alt="User Image"
                       className="avatar-img rounded-circle"
                     />
@@ -336,7 +336,7 @@ function Chat() {
                 <li className="media d-flex received">
                   <div className="avatar flex-shrink-0">
                     <img
-                      src="../images/chat/profiles/avatar-03.jpg"
+                      src="../images/dashborad/profiles/avatar-03.jpg"
                       alt="User Image"
                       className="avatar-img rounded-circle"
                     />
@@ -349,35 +349,35 @@ function Chat() {
                         <ul className="msg-sub-list">
                           <li>
                             <img
-                              src="../images/chat/icons/chat-icon-04.svg"
+                              src="../images/dashborad/icons/chat-icon-04.svg"
                               alt=""
                               className="me-1"
                             />
                             Explainer Video.avi
                             <span className="ms-1">30.0 MB</span>
                             <img
-                              src="../images/chat/icons/chat-icon-07.svg"
+                              src="../images/dashborad/icons/chat-icon-07.svg"
                               alt=""
                               className="ms-1 ms-auto"
                             />
                           </li>
                           <li>
                             <img
-                              src="../images/chat/icons/chat-icon-05.svg"
+                              src="../images/dashborad/icons/chat-icon-05.svg"
                               alt=""
                               className="me-1"
                             />
                             Ayush Therapy.mp3
                             <span className="ms-1">4.0 MB</span>
                             <img
-                              src="../images/chat/icons/chat-icon-08.svg"
+                              src="../images/dashborad/icons/chat-icon-08.svg"
                               alt=""
                               className="ms-1 ms-auto"
                             />
                           </li>
                           <li>
                             <img
-                              src="../images/chat/icons/chat-icon-06.svg"
+                              src="../images/dashborad/icons/chat-icon-06.svg"
                               alt=""
                               className="me-1"
                             />
@@ -405,7 +405,7 @@ function Chat() {
                 <li className="media d-flex received">
                   <div className="avatar flex-shrink-0">
                     <img
-                      src="../images/chat/profiles/avatar-01.jpg"
+                      src="../images/dashborad/profiles/avatar-01.jpg"
                       alt="User Image"
                       className="avatar-img rounded-circle"
                     />
@@ -434,14 +434,14 @@ function Chat() {
                         />
                         <div className="micro-text position-icon">
                           <img
-                            src="../images/chat/icons/chat-foot-icon-04.svg"
+                            src="../images/dashborad/icons/chat-foot-icon-04.svg"
                             alt=""
                           />
                         </div>
                         <div className="send-chat position-icon comman-flex">
                           <a href="javascript:;">
                             <img
-                              src="../images/chat/icons/chat-foot-icon-03.svg"
+                              src="../images/dashborad/icons/chat-foot-icon-03.svg"
                               alt=""
                             />
                           </a>
@@ -451,7 +451,7 @@ function Chat() {
                             <li>
                               <a href="javascript:;">
                                 <img
-                                  src="../images/chat/icons/chat-foot-icon-01.svg"
+                                  src="../images/dashborad/icons/chat-foot-icon-01.svg"
                                   className="me-2"
                                   alt=""
                                 />
@@ -460,7 +460,7 @@ function Chat() {
                             <li>
                               <a href="javascript:;">
                                 <img
-                                  src="../images/chat/icons/chat-foot-icon-02.svg"
+                                  src="../images/dashborad/icons/chat-foot-icon-02.svg"
                                   alt=""
                                 />
                               </a>

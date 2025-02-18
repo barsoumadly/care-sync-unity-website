@@ -278,7 +278,7 @@ function AddDoctor() {
                             accept="image/*"
                             name="image"
                             id="file"
-                            onchange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
+                            onChange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
                             className="hide-input"
                             data-cf-modified-fba49bb595ba7c266923593f-=""
                           />

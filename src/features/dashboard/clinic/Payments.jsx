@@ -38,7 +38,7 @@ function Payments() {
                                 placeholder="Search here"
                               />
                               <a className="btn">
-                                <img src="../images/payment/search-normal.svg" alt="" />
+                                <img src="../images/dashborad/icons/search-normal.svg" alt="" />
                               </a>
                             </form>
                           </div>
@@ -46,12 +46,12 @@ function Payments() {
                             <a
                               href="add-payment.html"
                               className="btn btn-primary add-pluss ms-2">
-                              <img src="../images/payment/plus.svg" alt="" />
+                              <img src="../images/dashborad/icons/plus.svg" alt="" />
                             </a>
                             <a
                               href="javascript:;"
                               className="btn btn-primary doctor-refresh ms-2">
-                              <img src="../images/payment/re-fresh.svg" alt="" />
+                              <img src="../images/dashborad/icons/re-fresh.svg" alt="" />
                             </a>
                           </div>
                         </div>
@@ -59,16 +59,16 @@ function Payments() {
                     </div>
                     <div className="col-auto text-end float-end ms-auto download-grp">
                       <a href="javascript:;" className=" me-2">
-                        <img src="../images/payment/pdf-icon-01.svg" alt="" />
+                        <img src="../images/dashborad/icons/pdf-icon-01.svg" alt="" />
                       </a>
                       <a href="javascript:;" className=" me-2">
-                        <img src="../images/payment/payment/pdf-icon-02.svg" alt="" />
+                        <img src="../images/dashborad/icons/payment/pdf-icon-02.svg" alt="" />
                       </a>
                       <a href="javascript:;" className=" me-2">
-                        <img src="../images/payment/pdf-icon-03.svg" alt="" />
+                        <img src="../images/dashborad/icons/pdf-icon-03.svg" alt="" />
                       </a>
                       <a href="javascript:;">
-                        <img src="../images/payment/pdf-icon-04.svg" alt="" />
+                        <img src="../images/dashborad/icons/pdf-icon-04.svg" alt="" />
                       </a>
                     </div>
                   </div>
@@ -159,7 +159,7 @@ function Payments() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/payment/avatar-01.jpg"
+                              src="../images/dashborad/profiles/avatar-01.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />{" "}
@@ -219,7 +219,7 @@ function Payments() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/payment/avatar-02.jpg"
+                              src="../images/dashborad/profiles/avatar-02.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />{" "}
@@ -279,7 +279,7 @@ function Payments() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/payment/avatar-03.jpg"
+                              src="../images/dashborad/profiles/avatar-03.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />{" "}
@@ -339,7 +339,7 @@ function Payments() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/payment/avatar-04.jpg"
+                              src="../images/dashborad/profiles/avatar-04.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />{" "}
@@ -399,7 +399,7 @@ function Payments() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/payment/avatar-05.jpg"
+                              src="../images/dashborad/profiles/avatar-05.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />{" "}
@@ -459,7 +459,7 @@ function Payments() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/payment/avatar-06.jpg"
+                              src="../images/dashborad/profiles/avatar-06.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />{" "}
@@ -519,7 +519,7 @@ function Payments() {
                             <img
                               width={28}
                               height={28}
-                              src="../images/payment/avatar-07.jpg"
+                              src="../images/dashborad/profiles/avatar-07.jpg"
                               className="rounded-circle m-r-5"
                               alt=""
                             />{" "}
