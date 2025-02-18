@@ -19,7 +19,7 @@ function DashboardLayout() {
       <Sidebar minbar={minbar} showbar={showbar}>
         <DoctorSidebar />
       </Sidebar>
-      <main>
+      <main className={minbar ? "mini-sidebar" : ""}>
         <Outlet />
       </main>
     </>

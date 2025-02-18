@@ -16,10 +16,12 @@ function DashboardLayout() {
         setMinbar={setMinbar}
         url={"/clinic/dashboard"}
       />
+
       <Sidebar minbar={minbar} showbar={showbar}>
         <ClinicSidebar minbar={minbar} />
       </Sidebar>
-      <main>
+
+      <main className={minbar ? "mini-sidebar" : ""}>
         <Outlet />
       </main>
     </>
