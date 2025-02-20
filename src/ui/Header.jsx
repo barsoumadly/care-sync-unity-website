@@ -1,7 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import UserAvatar from "../features/authentication/UserAvatar";
 import { FaCalendarDays } from "react-icons/fa6";
-import Clock from "./Clock";
 
 function Header({ setShowbar, setMinbar, url }) {
   return (
@@ -53,9 +52,7 @@ function Header({ setShowbar, setMinbar, url }) {
       </div>
 
       <ul className="nav user-menu float-end">
-        <div className="top-nav-search mob-view">
-          <Clock />
-        </div>
+        <div className="top-nav-search mob-view"></div>
         <li className="nav-item dropdown d-none d-md-block">
           <a
             href="#"
