@@ -1,6 +1,6 @@
 import { BsChatText } from "react-icons/bs";
 import { FaUserEdit } from "react-icons/fa";
-import { FaPeopleRoof, FaUserDoctor } from "react-icons/fa6";
+import { FaCalendarCheck, FaPeopleRoof, FaUserDoctor } from "react-icons/fa6";
 import { MdDashboard } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
@@ -14,6 +14,16 @@ function DoctorSidebar() {
             <MdDashboard />
           </span>
           <span> Dashboard </span>
+        </NavLink>
+      </li>
+
+      {/* Doctor Shedule */}
+      <li className="submenu">
+        <NavLink to={"/doctor/doctor-shedule"} className="link">
+          <span className="menu-side">
+            <FaCalendarCheck />
+          </span>
+          <span>Doctor Shedule</span>
         </NavLink>
       </li>
 
