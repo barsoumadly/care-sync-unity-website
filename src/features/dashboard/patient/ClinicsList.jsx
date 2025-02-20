@@ -79,8 +79,14 @@ function ClinicsList() {
                     </div>
                   </form>
                 </div>
-                {/* Cards */}
-                <ClinicCard />
+                <div className="row">
+                  {/* Cards */}
+                  <ClinicCard
+                    clicinName="Heliopolis Hospital"
+                    bio=" Our Specialization: cardiology, neurology, oncology, orthopedics,etc."
+                    to="clinic-profile"
+                  />
+                </div>
                 {/* /Cards */}
               </div>
             </div>
