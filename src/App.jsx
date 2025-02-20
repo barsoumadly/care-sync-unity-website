@@ -40,10 +40,13 @@ import Invoice from "./features/dashboard/clinic/Invoice";
 /* Doctor */
 import DoctorLayout from "./features/dashboard/doctor/DoctorLayout";
 import DoctorDashboard from "./features/dashboard/doctor/DoctorDashboard";
+import DoctorShedule from "./features/dashboard/doctor/DoctorShedule";
 import DoctorPatientsList from "./features/dashboard/doctor/Patients";
 import DoctorChat from "./features/dashboard/doctor/Chat";
 import MyProfile from "./features/dashboard/doctor/MyProfile";
 import EditProfile from "./features/dashboard/doctor/EditProfile";
+import PatientProfile from "./features/dashboard/doctor/PatientProfile";
+import ClinicsListOfDoctor from "./features/dashboard/doctor/ClinicsListOfDoctor";
 /* Patient */
 import PatientLayout from "./features/dashboard/patient/PatientLayout";
 import PatientDashboard from "./features/dashboard/patient/PatientDashboard";
@@ -51,6 +54,7 @@ import ClinicsList from "./features/dashboard/patient/ClinicsList";
 import PatientAppointments from "./features/dashboard/patient/Appointments";
 import PatientChat from "./features/dashboard/patient/Chat";
 import EditProfilePatient from "./features/dashboard/patient/EditProfile";
+import PaymentGateway from "./features/dashboard/patient/PaymentGateway";
 import DoctorsList from "./features/dashboard/patient/DoctorList";
 
 import CompleteDoctorProfile from "./features/dashboard/doctor/CompleteDoctorProfile";
@@ -59,7 +63,6 @@ import ClinicProfile from "./features/dashboard/patient/ClinicProfile";
 import ClinicImages from "./features/dashboard/patient/ClinicImages";
 import VerifyEmail from "./pages/VerifyEmail";
 import ServerDown from "./ui/ServerDown";
-import PaymentGateway from "./features/dashboard/patient/PaymentGateway";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -163,7 +166,10 @@ function App() {
               }
             >
               <Route path="dashboard" element={<DoctorDashboard />} />
-              <Route path="patients" element={<DoctorPatientsList />} />
+              <Route path="doctor-shedule" element={<DoctorShedule />} />
+              <Route path="patients" element={<ClinicsListOfDoctor />} />
+              <Route path="patient-list" element={<DoctorPatientsList />} />
+              <Route path="patient-profile" element={<PatientProfile />} />
               <Route path="chat" element={<DoctorChat />} />
               <Route path="my-profile" element={<MyProfile />} />
               <Route path="edit-profile" element={<EditProfile />} />
