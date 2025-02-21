@@ -16,12 +16,12 @@ function ClinicHeader({ activeTab }) {
               <i className="feather-chevron-right" />
             </li>
             <li className="breadcrumb-item active">
-              {clinic.name}{" "}
+              {clinic.name}
               {activeTab === "doctor-list"
-                ? "Doctors"
+                ? " Doctors"
                 : activeTab === "images"
-                ? "Images"
-                : "Profile"}
+                ? " Images"
+                : " Profile"}
             </li>
           </ul>
         </div>
@@ -38,7 +38,11 @@ function ClinicHeader({ activeTab }) {
               <div className="profile-img-wrap">
                 <div className="profile-img">
                   <a href="#">
-                    <img className="avatar" src={clinic.profilePhoto} alt="" />
+                    <img
+                      className="avatar"
+                      src={clinic.profilePhoto}
+                      alt={clinic.name}
+                    />
                   </a>
                 </div>
               </div>
@@ -133,7 +137,7 @@ function ClinicHeader({ activeTab }) {
           <li className="nav-item">
             <Link
               className={`nav-link${activeTab === "about" ? " active" : ""}`}
-              to={`/patient/clinics/${clinic.name}`}
+              to={`/patient/clinics/${clinic.slug}`}
               data-bs-toggle="tab"
             >
               About
