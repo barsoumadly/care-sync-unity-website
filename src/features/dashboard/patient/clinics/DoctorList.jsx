@@ -3,6 +3,31 @@ import { useState } from "react";
 import ClinicHeader from "./ClinicHeader";
 import { Link } from "react-router-dom";
 
+const doctorsList = [
+  {
+    clinicId: 1,
+    id: 1,
+    name: "Smith Bruklin",
+    profilePhoto:
+      "https://preclinic.dreamstechnologies.com/html/template/assets/img/profiles/avatar-02.jpg",
+    specialization: "Urology",
+    days: "Mon - Wed",
+    time: "2 PM - 5 PM",
+    cost: 220,
+  },
+  {
+    clinicId: 1,
+    id: 2,
+    name: "William Stephin",
+    profilePhoto:
+      "https://static.vecteezy.com/system/resources/previews/030/666/513/large_2x/doctor-high-quality-4k-ultra-hd-hdr-free-photo.jpg",
+    specialization: "Radiology",
+    days: "Sat - Tue",
+    time: "10 AM - 5 PM",
+    cost: 350,
+  },
+];
+
 function DoctorsList() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -18,7 +43,7 @@ function DoctorsList() {
       >
         <div className="page-wrapper">
           <div className="content">
-            <ClinicHeader activeTab="doctor-list" headerText="Doctors List" />
+            <ClinicHeader activeTab="doctor-list" />
             {/* Page Header */}
             <div className="page-header"></div>
             {/* /Page Header */}
@@ -76,59 +101,13 @@ function DoctorsList() {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td className="profile-image">
-                              <a href="profile.html">
-                                <img
-                                  width={28}
-                                  height={28}
-                                  src="assets/img/profiles/avatar-02.jpg"
-                                  className="rounded-circle m-r-5"
-                                  alt=""
-                                />
-                                Smith Bruklin
-                              </a>
-                            </td>
-                            <td>Urology</td>
-                            <td>Mon - Wed</td>
-                            <td>2 PM - 5 PM</td>
-                            <td>220 EGP</td>
-                            <td>
-                              <div className="dropdown action-label">
-                                <button
-                                  className="custom-badge book-btn"
-                                  onClick={handleOpenModal}
-                                >
-                                  Book appointment
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="profile-image">
-                              <a href="profile.html">
-                                <img
-                                  width={28}
-                                  height={28}
-                                  src="assets/img/profiles/avatar-02.jpg"
-                                  className="rounded-circle m-r-5"
-                                  alt=""
-                                />
-                                William Stephin
-                              </a>
-                            </td>
-                            <td>Radiology</td>
-                            <td>Tue - Sat</td>
-                            <td>10 AM - 5 PM</td>
-                            <td>350 EGP</td>
-                            <td>
-                              <div className="dropdown action-label">
-                                <button className="custom-badge book-btn">
-                                  Book appointment
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
+                          {doctorsList.map((doctor) => (
+                            <DoctorField
+                              doctor={doctor}
+                              onOpenModal={handleOpenModal}
+                              key={doctor.id}
+                            />
+                          ))}
                         </tbody>
                       </table>
                     </div>
@@ -141,6 +120,36 @@ function DoctorsList() {
       </div>
       <div>{isOpen && <AppointmentModal onOpenModal={handleOpenModal} />}</div>
     </>
+  );
+}
+
+function DoctorField({ doctor, onOpenModal }) {
+  return (
+    <tr>
+      <td className="profile-image">
+        <a href="profile.html">
+          <img
+            width={28}
+            height={28}
+            src={doctor.profilePhoto}
+            className="rounded-circle m-r-5"
+            alt=""
+          />
+          {doctor.name}
+        </a>
+      </td>
+      <td> {doctor.specialization}</td>
+      <td> {doctor.days}</td>
+      <td> {doctor.time}</td>
+      <td> {doctor.cost} EGP</td>
+      <td>
+        <div className="dropdown action-label">
+          <button className="custom-badge book-btn" onClick={onOpenModal}>
+            Book appointment
+          </button>
+        </div>
+      </td>
+    </tr>
   );
 }
 

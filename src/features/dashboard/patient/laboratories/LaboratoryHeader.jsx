@@ -1,7 +1,9 @@
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
-function ClinicHeader({ activeTab, headerText }) {
+function LaboratoryHeader({ activeTab }) {
+  const laboratory = JSON.parse(localStorage.getItem("laboratory"));
+
   return (
     <>
       <div className="row">
@@ -13,12 +15,15 @@ function ClinicHeader({ activeTab, headerText }) {
             <li className="breadcrumb-item">
               <i className="feather-chevron-right" />
             </li>
-            <li className="breadcrumb-item active">{headerText}</li>
+            <li className="breadcrumb-item active">
+              {laboratory.name}
+              {activeTab === "analysis" ? " Analysis List" : " Profile"}
+            </li>
           </ul>
         </div>
         <div class="col-sm-5 col-6 text-end m-b-30">
-          <Link to="/patient/clinics" class="btn btn-primary btn-rounded">
-            <IoArrowBackOutline /> Back to Clinics
+          <Link to="/patient/laboratories" class="btn btn-primary btn-rounded">
+            <IoArrowBackOutline /> Back to Laboratories
           </Link>
         </div>
       </div>
@@ -31,7 +36,7 @@ function ClinicHeader({ activeTab, headerText }) {
                   <a href="#">
                     <img
                       className="avatar"
-                      src="/images/clinic/clinic.jpg"
+                      src={laboratory.profilePhoto}
                       alt=""
                     />
                   </a>
@@ -42,9 +47,9 @@ function ClinicHeader({ activeTab, headerText }) {
                   <div className="col-md-5">
                     <div className="profile-info-left">
                       <h3 className="user-name m-t-0 mb-0">
-                        Heliopolis Hospital
+                        {laboratory.name}
                       </h3>
-                      <small className="text-muted">Cairo</small>
+                      <small className="text-muted">{laboratory.city}</small>
                       <div className="staff-id">
                         <span
                           className="rating rating-score"
@@ -69,9 +74,9 @@ function ClinicHeader({ activeTab, headerText }) {
                           />
                           &nbsp;
                           <img
-                            alt={4}
-                            src="https://preclinic.dreamstechnologies.com/html/template/assets/plugins/raty/images/star-off.png"
-                            title="good"
+                            alt={3}
+                            src="https://preclinic.dreamstechnologies.com/html/template/assets/plugins/raty/images/star-on.png"
+                            title="regular"
                           />
                           &nbsp;
                           <img
@@ -98,7 +103,7 @@ function ClinicHeader({ activeTab, headerText }) {
                       <li>
                         <span className="title">Phone:</span>
                         <span className="text">
-                          <a>02 26339870</a>
+                          <a>{laboratory.phone}</a>
                         </span>
                       </li>
                       <li>
@@ -109,20 +114,18 @@ function ClinicHeader({ activeTab, headerText }) {
                               className="__cf_email__"
                               data-cfemail="c2a1b0abb1b6abaca3a5b0adb4a7b182a7baa3afb2aea7eca1adaf"
                             >
-                              heliopolis-hospital@gmail.com
+                              {laboratory.email}
                             </span>
                           </a>
                         </span>
                       </li>
                       <li>
                         <span className="title">Address:</span>
-                        <span className="text">
-                          El Hegaz St, Al Matar, El Nozha, Cairo Governorate
-                        </span>
+                        <span className="text">{laboratory.address}</span>
                       </li>
                       <li>
                         <span className="title">Founded:</span>
-                        <span className="text">1937</span>
+                        <span className="text">{laboratory.foundedDate}</span>
                       </li>
                     </ul>
                   </div>
@@ -137,7 +140,7 @@ function ClinicHeader({ activeTab, headerText }) {
           <li className="nav-item">
             <Link
               className={`nav-link${activeTab === "about" ? " active" : ""}`}
-              to="/patient/clinics/clinic-profile"
+              to={`/patient/laboratories/${laboratory.slug}`}
               data-bs-toggle="tab"
             >
               About
@@ -145,22 +148,11 @@ function ClinicHeader({ activeTab, headerText }) {
           </li>
           <li className="nav-item">
             <Link
-              to="/patient/clinics/doctors-list"
-              className={`nav-link${
-                activeTab === "doctor-list" ? " active" : ""
-              }`}
+              className={`nav-link${activeTab === "analysis" ? " active" : ""}`}
+              to={`/patient/laboratories/${laboratory.slug}/analysis-list`}
               data-bs-toggle="tab"
             >
-              Doctors List
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              className={`nav-link${activeTab === "images" ? " active" : ""}`}
-              to="/patient/clinics/images"
-              data-bs-toggle="tab"
-            >
-              Images
+              Analysis List
             </Link>
           </li>
         </ul>
@@ -169,4 +161,4 @@ function ClinicHeader({ activeTab, headerText }) {
   );
 }
 
-export default ClinicHeader;
+export default LaboratoryHeader;

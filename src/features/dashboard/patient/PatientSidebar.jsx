@@ -1,6 +1,11 @@
 import { AiFillSchedule } from "react-icons/ai";
 import { BsChatText } from "react-icons/bs";
-import { FaClinicMedical, FaUserEdit } from "react-icons/fa";
+import {
+  FaBriefcaseMedical,
+  FaClinicMedical,
+  FaUserEdit,
+} from "react-icons/fa";
+import { GiChemicalDrop } from "react-icons/gi";
 import { MdDashboard } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
@@ -24,6 +29,26 @@ function PatientSidebar() {
             <FaClinicMedical />
           </span>
           <span> Clinics </span>
+        </NavLink>
+      </li>
+
+      {/* Pharmacies */}
+      <li className="submenu">
+        <NavLink to={"/patient/pharmacies"} className="link">
+          <span className="menu-side">
+            <FaBriefcaseMedical />
+          </span>
+          <span> Pharmacies </span>
+        </NavLink>
+      </li>
+
+      {/* laboratories */}
+      <li className="submenu">
+        <NavLink to={"/patient/laboratories"} className="link">
+          <span className="menu-side">
+            <GiChemicalDrop />
+          </span>
+          <span> Laboratories </span>
         </NavLink>
       </li>
 

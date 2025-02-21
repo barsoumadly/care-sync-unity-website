@@ -50,19 +50,25 @@ import ClinicsListOfDoctor from "./features/dashboard/doctor/ClinicsListOfDoctor
 /* Patient */
 import PatientLayout from "./features/dashboard/patient/PatientLayout";
 import PatientDashboard from "./features/dashboard/patient/PatientDashboard";
-import ClinicsList from "./features/dashboard/patient/ClinicsList";
+import ClinicsList from "./features/dashboard/patient/clinics/ClinicsList";
 import PatientAppointments from "./features/dashboard/patient/Appointments";
 import PatientChat from "./features/dashboard/patient/Chat";
 import EditProfilePatient from "./features/dashboard/patient/EditProfile";
 import PaymentGateway from "./features/dashboard/patient/PaymentGateway";
-import DoctorsList from "./features/dashboard/patient/DoctorList";
+import DoctorsList from "./features/dashboard/patient/clinics/DoctorList";
 
 import CompleteDoctorProfile from "./features/dashboard/doctor/CompleteDoctorProfile";
 import CompleteClinicProfile from "./features/dashboard/clinic/CompleteClinicProfile";
-import ClinicProfile from "./features/dashboard/patient/ClinicProfile";
-import ClinicImages from "./features/dashboard/patient/ClinicImages";
+import ClinicProfile from "./features/dashboard/patient/clinics/ClinicProfile";
+import ClinicImages from "./features/dashboard/patient/clinics/ClinicImages";
 import VerifyEmail from "./pages/VerifyEmail";
 import ServerDown from "./ui/ServerDown";
+import LaboratoryList from "./features/dashboard/patient/laboratories/LaboratoryList";
+import PharmacyList from "./features/dashboard/patient/pharmacies/PharmacyList";
+import PharmacyProfile from "./features/dashboard/patient/pharmacies/PharmacyProfile";
+import PharmacyMedicines from "./features/dashboard/patient/pharmacies/PharmacyMedicines";
+import LaboratoryProfile from "./features/dashboard/patient/laboratories/LaboratoryProfile";
+import LaboratoryAnalysisList from "./features/dashboard/patient/laboratories/LaboratoryAnalyisList";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -73,7 +79,7 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  window.addEventListener(`contextmenu`, (e) => e.preventDefault());
+  // window.addEventListener(`contextmenu`, (e) => e.preventDefault());
 
   // const [isLoading, setIsLoading] = useState(true);
   // setTimeout(() => setIsLoading(false), 2000);
@@ -189,13 +195,34 @@ function App() {
               <Route path="chat" element={<PatientChat />} />
               <Route path="appointments" element={<PatientAppointments />} />
               <Route path="edit-profile" element={<EditProfilePatient />} />
+              <Route path="clinics/:clinicName" element={<ClinicProfile />} />
               <Route
-                path="clinics/clinic-profile"
-                element={<ClinicProfile />}
+                path="clinics/:clinicName/doctors"
+                element={<DoctorsList />}
               />
-              <Route path="clinics/doctors-list" element={<DoctorsList />} />
-              <Route path="clinics/images" element={<ClinicImages />} />
+              <Route
+                path="clinics/:clinicName/images"
+                element={<ClinicImages />}
+              />
               <Route path="payment-gateway" element={<PaymentGateway />} />
+              <Route path="pharmacies" element={<PharmacyList />} />
+              <Route
+                path="pharmacies/:pharmacyName"
+                element={<PharmacyProfile />}
+              />
+              <Route
+                path="pharmacies/:pharmacyName/medicines"
+                element={<PharmacyMedicines />}
+              />
+              <Route path="laboratories" element={<LaboratoryList />} />
+              <Route
+                path="laboratories/:laboratoryName"
+                element={<LaboratoryProfile />}
+              />
+              <Route
+                path="laboratories/:laboratoryName/analysis-list"
+                element={<LaboratoryAnalysisList />}
+              />
             </Route>
 
             <Route path="*" element={<PageNotFound />} />

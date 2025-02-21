@@ -1,11 +1,11 @@
-import ClinicHeader from "./ClinicHeader";
+import PharmacyHeader from "./pharmacyHeader";
 
-function ClinicImages() {
+function PharmacyMedicines() {
   return (
     <div className="main-wrapper">
       <div className="page-wrapper" style={{ minHeight: 270 }}>
         <div className="content">
-          <ClinicHeader activeTab="images" headerText="Images" />
+          <PharmacyHeader activeTab="medicines" />
           {/* Page Header */}
           <div className="page-header"></div>
           {/* /Page Header */}
@@ -56,4 +56,4 @@ function ClinicImages() {
   );
 }
 
-export default ClinicImages;
+export default PharmacyMedicines;

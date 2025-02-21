@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ClinicCard from "../patient/ClinicCard";
+import ClinicCard from "../patient/clinics/ClinicCard";
 function ClinicsListOfDoctor() {
   return (
     <div className="page-wrapper" style={{ minHeight: 270 }}>

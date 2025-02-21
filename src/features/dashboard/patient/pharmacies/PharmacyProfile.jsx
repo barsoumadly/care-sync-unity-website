@@ -1,16 +1,14 @@
-import Map from "../../../ui/Map";
-import ClinicHeader from "./ClinicHeader";
+import Map from "../../../../ui/Map";
+import PharmacyHeader from "./pharmacyHeader";
 
-function ClinicProfile() {
+function PharmacyProfile() {
+  const pharmacy = JSON.parse(localStorage.getItem("pharmacy"));
+
   return (
     <div className="main-wrapper">
       <div className="page-wrapper">
         <div className="content">
-          <ClinicHeader
-            ClinicHeader
-            activeTab="about"
-            headerText="Clinic Profile"
-          />
+          <PharmacyHeader activeTab="about" />
           <div className="profile-tabs">
             <div className="tab-content">
               <div className="tab-pane show active" id="about-cont">
@@ -21,7 +19,7 @@ function ClinicProfile() {
                       <div className="experience-box">
                         <div className="hello-park">
                           <p>
-                            At Heliopolis Hospital, our experienced doctors and
+                            At {pharmacy.name}, our experienced doctors and
                             staff are dedicated to providing compassionate,
                             cutting-edge care.
                             <br /> We prioritize your well-being and strive for
@@ -36,10 +34,10 @@ function ClinicProfile() {
                             <div className="experience-content">
                               <div className="timeline-content">
                                 <a href="#/" className="name">
-                                  Clinic Foundation
+                                  Pharmacy Foundation
                                 </a>
                                 <div>team of healthcare professionals</div>
-                                <span className="time">1937 - 1939</span>
+                                <span className="time">1974 - 1975</span>
                               </div>
                             </div>
                           </li>
@@ -65,8 +63,8 @@ function ClinicProfile() {
                     </div>
                     <div className="card-box">
                       <Map
-                        name="Heliopolis Hospital"
-                        markerPosition="Heliopolis Hospital"
+                        name={pharmacy.name}
+                        markerPosition={pharmacy.location}
                       />
                     </div>
                   </div>
@@ -80,4 +78,4 @@ function ClinicProfile() {
   );
 }
 
-export default ClinicProfile;
+export default PharmacyProfile;
