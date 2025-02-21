@@ -1,16 +1,14 @@
-import Map from "../../../ui/Map";
+import Map from "../../../../ui/Map";
 import ClinicHeader from "./ClinicHeader";
 
 function ClinicProfile() {
+  const clinic = JSON.parse(localStorage.getItem("clinic"));
+
   return (
     <div className="main-wrapper">
       <div className="page-wrapper">
         <div className="content">
-          <ClinicHeader
-            ClinicHeader
-            activeTab="about"
-            headerText="Clinic Profile"
-          />
+          <ClinicHeader activeTab="about" />
           <div className="profile-tabs">
             <div className="tab-content">
               <div className="tab-pane show active" id="about-cont">
@@ -21,8 +19,8 @@ function ClinicProfile() {
                       <div className="experience-box">
                         <div className="hello-park">
                           <p>
-                            At Heliopolis Hospital, our experienced doctors and
-                            staff are dedicated to providing compassionate,
+                            At {clinic.name}, our experienced doctors and staff
+                            are dedicated to providing compassionate,
                             cutting-edge care.
                             <br /> We prioritize your well-being and strive for
                             the best possible outcomes.
@@ -65,8 +63,8 @@ function ClinicProfile() {
                     </div>
                     <div className="card-box">
                       <Map
-                        name="Heliopolis Hospital"
-                        markerPosition="Heliopolis Hospital"
+                        name={clinic.name}
+                        markerPosition={clinic.location}
                       />
                     </div>
                   </div>
