@@ -13,7 +13,7 @@ const pharmaciesList = [
     foundedDate: 1975,
     profilePhoto:
       "https://cdna1.yellowpages.com.eg/uploads/contract-services/english/2024/13/el-ezaby-pharmacies-photo_99370_2020_wa_01_21627.jpg?3",
-    rating: "4",
+    rating: 4,
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const pharmaciesList = [
     foundedDate: 2015,
     profilePhoto:
       "https://lh3.googleusercontent.com/p/AF1QipNk9FGqzX96tNeb42nmWB0hfA5iXeOV-IJAii2X=s1360-w1360-h1020",
-    rating: "3.5",
+    rating: 3.5,
   },
 ];
 
