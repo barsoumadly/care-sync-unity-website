@@ -1,11 +1,11 @@
 import PharmacyHeader from "./pharmacyHeader";
 
-function PharmacyImages() {
+function PharmacyMedicines() {
   return (
     <div className="main-wrapper">
       <div className="page-wrapper" style={{ minHeight: 270 }}>
         <div className="content">
-          <PharmacyHeader activeTab="images" headerText="Images" />
+          <PharmacyHeader activeTab="medicines" />
           {/* Page Header */}
           <div className="page-header"></div>
           {/* /Page Header */}
@@ -56,4 +56,4 @@ function PharmacyImages() {
   );
 }
 
-export default PharmacyImages;
+export default PharmacyMedicines;
