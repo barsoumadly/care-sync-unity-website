@@ -1,5 +1,36 @@
 import LaboratoryCard from "./LaboratoryCard";
 
+const laboratories = [
+  {
+    id: 1,
+    name: "Alfa Laboratory",
+    slug: "alfa-laboratory",
+    email: "alfa-laboratory@gmail.com",
+    city: "Cairo",
+    address: "El-Bostan, Heliopolis, Cairo Governorate",
+    phone: "012 81001504",
+    location: "Doss Pharmacy",
+    foundedDate: 1975,
+    profilePhoto:
+      "https://lh3.googleusercontent.com/p/AF1QipNCM2ymcmttFz5-YmrUyMwNQwfN70YkJ0jFsWUZ=s1360-w1360-h1020",
+    rating: "3.5",
+  },
+  {
+    id: 2,
+    name: "Royal Laboratory",
+    slug: "royal-laboratory",
+    email: "royal-laboratory@gmail.com",
+    city: "Cairo",
+    address: "5 El-Tahawy, Manshîyet el Bakri, Cairo Governorate",
+    phone: "011 16774349",
+    location: "Royal Laboratory",
+    foundedDate: 1988,
+    profilePhoto:
+      "https://lh5.googleusercontent.com/p/AF1QipMaoHfXw7wj-okAdDPgFHGvq6QOC3xG1eo_-5GT=w243-h304-n-k-no-nu",
+    rating: "4",
+  },
+];
+
 function LaboratoryList() {
   return (
     <div className="page-wrapper" style={{ minHeight: 270 }}>
@@ -67,10 +98,12 @@ function LaboratoryList() {
                 </div>
                 <div className="row">
                   {/* Cards */}
-                  <LaboratoryCard
-                    laboratoryName="Alfa Laboratory"
-                    to="laboratory-profile"
-                  />
+                  {laboratories.map((laboratory) => (
+                    <LaboratoryCard
+                      laboratory={laboratory}
+                      key={laboratory.id}
+                    />
+                  ))}
                 </div>
                 {/* /Cards */}
               </div>
