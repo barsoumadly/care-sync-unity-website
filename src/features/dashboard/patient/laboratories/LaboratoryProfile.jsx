@@ -2,6 +2,8 @@ import Map from "../../../../ui/Map";
 import LaboratoryHeader from "./LaboratoryHeader";
 
 function LaboratoryProfile() {
+  const laboratory = JSON.parse(localStorage.getItem("laboratory"));
+
   return (
     <div className="main-wrapper">
       <div className="page-wrapper">
@@ -21,7 +23,7 @@ function LaboratoryProfile() {
                       <div className="experience-box">
                         <div className="hello-park">
                           <p>
-                            At El Ezaby Pharmacy, our experienced doctors and
+                            At {laboratory.name}, our experienced doctors and
                             staff are dedicated to providing compassionate,
                             cutting-edge care.
                             <br /> We prioritize your well-being and strive for
@@ -65,8 +67,8 @@ function LaboratoryProfile() {
                     </div>
                     <div className="card-box">
                       <Map
-                        name="El Ezaby Pharmacy"
-                        markerPosition="el ezaby pharmacy heliopolis"
+                        name={laboratory.name}
+                        markerPosition={laboratory.location}
                       />
                     </div>
                   </div>
