@@ -20,7 +20,7 @@ const clinicsList = [
       "https://lh3.googleusercontent.com/p/AF1QipN6wIiLf0SGaXNK4flDJ-NJ4RVlThLGj316lc47=s1360-w1360-h1020",
       "https://lh3.googleusercontent.com/p/AF1QipO9v7ZgcJ_GIwW0eOgzCEqXOJNjHar1v7V_40dS=s1360-w1360-h1020",
     ],
-    rating: "4",
+    rating: 4,
   },
   {
     id: 2,
@@ -41,7 +41,7 @@ const clinicsList = [
       "https://lh3.googleusercontent.com/p/AF1QipOZU5YcObC2X2JXmzRbmmZ7CaaRWKFstojAb9bc=s1360-w1360-h1020",
       "https://lh3.googleusercontent.com/p/AF1QipN58PI00Yg4ncIy9Rju8zZtT-1MFTZmQPWoHzWe=s1360-w1360-h1020",
     ],
-    rating: "4.5",
+    rating: 4.5,
   },
 ];
 
