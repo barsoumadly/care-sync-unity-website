@@ -67,6 +67,8 @@ import LaboratoryList from "./features/dashboard/patient/laboratories/Laboratory
 import PharmacyList from "./features/dashboard/patient/pharmacies/PharmacyList";
 import PharmacyProfile from "./features/dashboard/patient/pharmacies/PharmacyProfile";
 import PharmacyImages from "./features/dashboard/patient/pharmacies/PharmacyImages";
+import LaboratoryProfile from "./features/dashboard/patient/laboratories/LaboratoryProfile";
+import LaboratoryImages from "./features/dashboard/patient/laboratories/LaboratoryImages";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -207,6 +209,14 @@ function App() {
               />
               <Route path="pharmacies/images" element={<PharmacyImages />} />
               <Route path="laboratories" element={<LaboratoryList />} />
+              <Route
+                path="laboratories/laboratory-profile"
+                element={<LaboratoryProfile />}
+              />
+              <Route
+                path="laboratories/images"
+                element={<LaboratoryImages />}
+              />
             </Route>
 
             <Route path="*" element={<PageNotFound />} />
