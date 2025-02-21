@@ -1,4 +1,4 @@
-import PharmacyHeader from "./PharmacyHeader";
+import PharmacyHeader from "./pharmacyHeader";
 
 function PharmacyImages() {
   return (
