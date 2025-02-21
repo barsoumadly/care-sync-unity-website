@@ -1,8 +1,24 @@
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import ActiveStar from "../../../../ui/ActiveStar";
+import InactiveStar from "../../../../ui/InactiveStar";
+import SemiactiveStar from "../../../../ui/SemiactiveStar";
 
 function LaboratoryHeader({ activeTab }) {
   const laboratory = JSON.parse(localStorage.getItem("laboratory"));
+
+  const numOfInactiveStars = 5 - laboratory.rating;
+  const activeStars = Array.from(
+    { length: laboratory.rating },
+    (_, i) => i + 1
+  );
+  let inactiveStars;
+
+  if (Number.isInteger(numOfInactiveStars)) {
+    inactiveStars = Array.from({ length: numOfInactiveStars }, (_, i) => i + 1);
+  } else {
+    inactiveStars = Array.from({ length: numOfInactiveStars }, (_, i) => i + 1);
+  }
 
   return (
     <>
@@ -51,44 +67,22 @@ function LaboratoryHeader({ activeTab }) {
                       </h3>
                       <small className="text-muted">{laboratory.city}</small>
                       <div className="staff-id">
-                        <span
-                          className="rating rating-score"
-                          // style={{ cursor: "pointer" }}
-                        >
-                          <img
-                            alt={1}
-                            src="https://preclinic.dreamstechnologies.com/html/template/assets/plugins/raty/images/star-on.png"
-                            title="bad"
-                          />
-                          &nbsp;
-                          <img
-                            alt={2}
-                            src="https://preclinic.dreamstechnologies.com/html/template/assets/plugins/raty/images/star-on.png"
-                            title="poor"
-                          />
-                          &nbsp;
-                          <img
-                            alt={3}
-                            src="https://preclinic.dreamstechnologies.com/html/template/assets/plugins/raty/images/star-on.png"
-                            title="regular"
-                          />
-                          &nbsp;
-                          <img
-                            alt={3}
-                            src="https://preclinic.dreamstechnologies.com/html/template/assets/plugins/raty/images/star-on.png"
-                            title="regular"
-                          />
-                          &nbsp;
-                          <img
-                            alt={5}
-                            src="https://preclinic.dreamstechnologies.com/html/template/assets/plugins/raty/images/star-off.png"
-                            title="gorgeous"
-                          />
-                          <input
-                            name="entity[1,2,3,4,5]"
-                            type="hidden"
-                            defaultValue={3}
-                          />
+                        <span className="rating rating-score">
+                          {activeStars.map((star) => (
+                            <ActiveStar key={star} />
+                          ))}
+                          {Number.isInteger(numOfInactiveStars) ? (
+                            inactiveStars.map((star) => (
+                              <InactiveStar key={star} />
+                            ))
+                          ) : (
+                            <>
+                              <SemiactiveStar />
+                              {inactiveStars.map((star) => (
+                                <InactiveStar key={star} />
+                              ))}
+                            </>
+                          )}
                         </span>
                       </div>
                       <div className="staff-msg">
