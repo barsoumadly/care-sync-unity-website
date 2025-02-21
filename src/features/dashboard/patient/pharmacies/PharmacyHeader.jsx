@@ -47,7 +47,7 @@ function PharmacyHeader({ activeTab }) {
                   <div className="col-md-5">
                     <div className="profile-info-left">
                       <h3 className="user-name m-t-0 mb-0">{pharmacy.name}</h3>
-                      <small className="text-muted">Cairo</small>
+                      <small className="text-muted">{pharmacy.city}</small>
                       <div className="staff-id">
                         <span
                           className="rating rating-score"
