@@ -43,7 +43,7 @@ function DoctorsList() {
       >
         <div className="page-wrapper">
           <div className="content">
-            <ClinicHeader activeTab="doctor-list" headerText="Doctors List" />
+            <ClinicHeader activeTab="doctor-list" />
             {/* Page Header */}
             <div className="page-header"></div>
             {/* /Page Header */}
