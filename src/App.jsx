@@ -63,6 +63,10 @@ import ClinicProfile from "./features/dashboard/patient/ClinicProfile";
 import ClinicImages from "./features/dashboard/patient/ClinicImages";
 import VerifyEmail from "./pages/VerifyEmail";
 import ServerDown from "./ui/ServerDown";
+import LaboratoryList from "./features/dashboard/patient/laboratories/LaboratoryList";
+import PharmacyList from "./features/dashboard/patient/pharmacies/PharmacyList";
+import PharmacyProfile from "./features/dashboard/patient/pharmacies/PharmacyProfile";
+import PharmacyImages from "./features/dashboard/patient/pharmacies/PharmacyImages";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -73,7 +77,7 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  window.addEventListener(`contextmenu`, (e) => e.preventDefault());
+  // window.addEventListener(`contextmenu`, (e) => e.preventDefault());
 
   // const [isLoading, setIsLoading] = useState(true);
   // setTimeout(() => setIsLoading(false), 2000);
@@ -196,6 +200,13 @@ function App() {
               <Route path="clinics/doctors-list" element={<DoctorsList />} />
               <Route path="clinics/images" element={<ClinicImages />} />
               <Route path="payment-gateway" element={<PaymentGateway />} />
+              <Route path="pharmacies" element={<PharmacyList />} />
+              <Route
+                path="pharmacies/pharmacy-profile"
+                element={<PharmacyProfile />}
+              />
+              <Route path="pharmacies/images" element={<PharmacyImages />} />
+              <Route path="laboratories" element={<LaboratoryList />} />
             </Route>
 
             <Route path="*" element={<PageNotFound />} />
