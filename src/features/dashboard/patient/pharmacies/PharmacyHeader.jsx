@@ -1,7 +1,9 @@
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
-function PharmacyHeader({ headerText = "", activeTab = "" }) {
+function PharmacyHeader({ activeTab }) {
+  const pharmacy = JSON.parse(localStorage.getItem("pharmacy"));
+
   return (
     <>
       <div className="row">
@@ -13,7 +15,10 @@ function PharmacyHeader({ headerText = "", activeTab = "" }) {
             <li className="breadcrumb-item">
               <i className="feather-chevron-right" />
             </li>
-            <li className="breadcrumb-item active">{headerText}</li>
+            <li className="breadcrumb-item active">
+              {pharmacy.name}
+              {activeTab === "medicines" ? " Medicines" : " Profile"}
+            </li>
           </ul>
         </div>
         <div class="col-sm-5 col-6 text-end m-b-30">
@@ -31,8 +36,8 @@ function PharmacyHeader({ headerText = "", activeTab = "" }) {
                   <a href="#">
                     <img
                       className="avatar"
-                      src="https://cdna1.yellowpages.com.eg/uploads/contract-services/english/2024/13/el-ezaby-pharmacies-photo_99370_2020_wa_01_21627.jpg?3"
-                      alt=""
+                      src={pharmacy.profilePhoto}
+                      alt={pharmacy.name}
                     />
                   </a>
                 </div>
@@ -41,9 +46,7 @@ function PharmacyHeader({ headerText = "", activeTab = "" }) {
                 <div className="row">
                   <div className="col-md-5">
                     <div className="profile-info-left">
-                      <h3 className="user-name m-t-0 mb-0">
-                        El Ezaby Pharmacy
-                      </h3>
+                      <h3 className="user-name m-t-0 mb-0">{pharmacy.name}</h3>
                       <small className="text-muted">Cairo</small>
                       <div className="staff-id">
                         <span
@@ -98,7 +101,7 @@ function PharmacyHeader({ headerText = "", activeTab = "" }) {
                       <li>
                         <span className="title">Phone:</span>
                         <span className="text">
-                          <a>02 35317347</a>
+                          <a>{pharmacy.phone}</a>
                         </span>
                       </li>
                       <li>
@@ -109,20 +112,18 @@ function PharmacyHeader({ headerText = "", activeTab = "" }) {
                               className="__cf_email__"
                               data-cfemail="c2a1b0abb1b6abaca3a5b0adb4a7b182a7baa3afb2aea7eca1adaf"
                             >
-                              elezaby-pharmacy@gmail.com
+                              {pharmacy.email}
                             </span>
                           </a>
                         </span>
                       </li>
                       <li>
                         <span className="title">Address:</span>
-                        <span className="text">
-                          206 El Hegaz St, Al Matar, El Nozha, Cairo Governorate
-                        </span>
+                        <span className="text">{pharmacy.address}</span>
                       </li>
                       <li>
                         <span className="title">Founded:</span>
-                        <span className="text">1975</span>
+                        <span className="text">{pharmacy.foundedDate}</span>
                       </li>
                     </ul>
                   </div>
@@ -137,7 +138,7 @@ function PharmacyHeader({ headerText = "", activeTab = "" }) {
           <li className="nav-item">
             <Link
               className={`nav-link${activeTab === "about" ? " active" : ""}`}
-              to="/patient/pharmacies/pharmacy-profile"
+              to={`/patient/pharmacies/${pharmacy.slug}`}
               data-bs-toggle="tab"
             >
               About
@@ -145,11 +146,13 @@ function PharmacyHeader({ headerText = "", activeTab = "" }) {
           </li>
           <li className="nav-item">
             <Link
-              className={`nav-link${activeTab === "images" ? " active" : ""}`}
-              to="/patient/pharmacies/images"
+              className={`nav-link${
+                activeTab === "medicines" ? " active" : ""
+              }`}
+              to={`/patient/pharmacies/${pharmacy.slug}/medicines`}
               data-bs-toggle="tab"
             >
-              Images
+              Medicines
             </Link>
           </li>
         </ul>
