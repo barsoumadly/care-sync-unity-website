@@ -1,7 +1,9 @@
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
-function LaboratoryHeader({ headerText, activeTab }) {
+function LaboratoryHeader({ activeTab }) {
+  const laboratory = JSON.parse(localStorage.getItem("laboratory"));
+
   return (
     <>
       <div className="row">
@@ -13,7 +15,10 @@ function LaboratoryHeader({ headerText, activeTab }) {
             <li className="breadcrumb-item">
               <i className="feather-chevron-right" />
             </li>
-            <li className="breadcrumb-item active">{headerText}</li>
+            <li className="breadcrumb-item active">
+              {laboratory.name}
+              {activeTab === "analysis" ? " Analysis List" : " Profile"}
+            </li>
           </ul>
         </div>
         <div class="col-sm-5 col-6 text-end m-b-30">
@@ -31,7 +36,7 @@ function LaboratoryHeader({ headerText, activeTab }) {
                   <a href="#">
                     <img
                       className="avatar"
-                      src="https://lh3.googleusercontent.com/p/AF1QipNCM2ymcmttFz5-YmrUyMwNQwfN70YkJ0jFsWUZ=s1360-w1360-h1020"
+                      src={laboratory.profilePhoto}
                       alt=""
                     />
                   </a>
@@ -41,8 +46,10 @@ function LaboratoryHeader({ headerText, activeTab }) {
                 <div className="row">
                   <div className="col-md-5">
                     <div className="profile-info-left">
-                      <h3 className="user-name m-t-0 mb-0">Alfa Laboratory</h3>
-                      <small className="text-muted">Cairo</small>
+                      <h3 className="user-name m-t-0 mb-0">
+                        {laboratory.name}
+                      </h3>
+                      <small className="text-muted">{laboratory.city}</small>
                       <div className="staff-id">
                         <span
                           className="rating rating-score"
@@ -96,7 +103,7 @@ function LaboratoryHeader({ headerText, activeTab }) {
                       <li>
                         <span className="title">Phone:</span>
                         <span className="text">
-                          <a>012 81001504</a>
+                          <a>{laboratory.phone}</a>
                         </span>
                       </li>
                       <li>
@@ -107,20 +114,18 @@ function LaboratoryHeader({ headerText, activeTab }) {
                               className="__cf_email__"
                               data-cfemail="c2a1b0abb1b6abaca3a5b0adb4a7b182a7baa3afb2aea7eca1adaf"
                             >
-                              alpha-laboratory@gmail.com
+                              {laboratory.email}
                             </span>
                           </a>
                         </span>
                       </li>
                       <li>
                         <span className="title">Address:</span>
-                        <span className="text">
-                          El-Bostan, Heliopolis, Cairo Governorate
-                        </span>
+                        <span className="text">{laboratory.address}</span>
                       </li>
                       <li>
                         <span className="title">Founded:</span>
-                        <span className="text">1975</span>
+                        <span className="text">{laboratory.foundedDate}</span>
                       </li>
                     </ul>
                   </div>
@@ -135,7 +140,7 @@ function LaboratoryHeader({ headerText, activeTab }) {
           <li className="nav-item">
             <Link
               className={`nav-link${activeTab === "about" ? " active" : ""}`}
-              to="/patient/laboratories/laboratory-profile"
+              to={`/patient/laboratories/${laboratory.slug}`}
               data-bs-toggle="tab"
             >
               About
@@ -143,11 +148,11 @@ function LaboratoryHeader({ headerText, activeTab }) {
           </li>
           <li className="nav-item">
             <Link
-              className={`nav-link${activeTab === "images" ? " active" : ""}`}
-              to="/patient/laboratories/images"
+              className={`nav-link${activeTab === "analysis" ? " active" : ""}`}
+              to={`/patient/laboratories/${laboratory.slug}/analysis-list`}
               data-bs-toggle="tab"
             >
-              Images
+              Analysis List
             </Link>
           </li>
         </ul>
