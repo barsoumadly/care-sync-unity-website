@@ -66,7 +66,7 @@ import ServerDown from "./ui/ServerDown";
 import LaboratoryList from "./features/dashboard/patient/laboratories/LaboratoryList";
 import PharmacyList from "./features/dashboard/patient/pharmacies/PharmacyList";
 import PharmacyProfile from "./features/dashboard/patient/pharmacies/PharmacyProfile";
-import PharmacyImages from "./features/dashboard/patient/pharmacies/PharmacyImages";
+import PharmacyMedicines from "./features/dashboard/patient/pharmacies/PharmacyMedicines";
 import LaboratoryProfile from "./features/dashboard/patient/laboratories/LaboratoryProfile";
 import LaboratoryImages from "./features/dashboard/patient/laboratories/LaboratoryImages";
 
@@ -207,10 +207,13 @@ function App() {
               <Route path="payment-gateway" element={<PaymentGateway />} />
               <Route path="pharmacies" element={<PharmacyList />} />
               <Route
-                path="pharmacies/pharmacy-profile"
+                path="pharmacies/:pharmacyName"
                 element={<PharmacyProfile />}
               />
-              <Route path="pharmacies/images" element={<PharmacyImages />} />
+              <Route
+                path="pharmacies/:pharmacyName/medicines"
+                element={<PharmacyMedicines />}
+              />
               <Route path="laboratories" element={<LaboratoryList />} />
               <Route
                 path="laboratories/laboratory-profile"
