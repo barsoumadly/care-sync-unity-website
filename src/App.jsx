@@ -68,7 +68,7 @@ import PharmacyList from "./features/dashboard/patient/pharmacies/PharmacyList";
 import PharmacyProfile from "./features/dashboard/patient/pharmacies/PharmacyProfile";
 import PharmacyMedicines from "./features/dashboard/patient/pharmacies/PharmacyMedicines";
 import LaboratoryProfile from "./features/dashboard/patient/laboratories/LaboratoryProfile";
-import LaboratoryImages from "./features/dashboard/patient/laboratories/LaboratoryImages";
+import LaboratoryAnalysisList from "./features/dashboard/patient/laboratories/LaboratoryAnalyisList";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -216,12 +216,12 @@ function App() {
               />
               <Route path="laboratories" element={<LaboratoryList />} />
               <Route
-                path="laboratories/laboratory-profile"
+                path="laboratories/:laboratoryName"
                 element={<LaboratoryProfile />}
               />
               <Route
-                path="laboratories/images"
-                element={<LaboratoryImages />}
+                path="laboratories/:laboratoryName/analysis-list"
+                element={<LaboratoryAnalysisList />}
               />
             </Route>
 
