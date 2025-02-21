@@ -50,17 +50,17 @@ import ClinicsListOfDoctor from "./features/dashboard/doctor/ClinicsListOfDoctor
 /* Patient */
 import PatientLayout from "./features/dashboard/patient/PatientLayout";
 import PatientDashboard from "./features/dashboard/patient/PatientDashboard";
-import ClinicsList from "./features/dashboard/patient/ClinicsList";
+import ClinicsList from "./features/dashboard/patient/clinics/ClinicsList";
 import PatientAppointments from "./features/dashboard/patient/Appointments";
 import PatientChat from "./features/dashboard/patient/Chat";
 import EditProfilePatient from "./features/dashboard/patient/EditProfile";
 import PaymentGateway from "./features/dashboard/patient/PaymentGateway";
-import DoctorsList from "./features/dashboard/patient/DoctorList";
+import DoctorsList from "./features/dashboard/patient/clinics/DoctorList";
 
 import CompleteDoctorProfile from "./features/dashboard/doctor/CompleteDoctorProfile";
 import CompleteClinicProfile from "./features/dashboard/clinic/CompleteClinicProfile";
-import ClinicProfile from "./features/dashboard/patient/ClinicProfile";
-import ClinicImages from "./features/dashboard/patient/ClinicImages";
+import ClinicProfile from "./features/dashboard/patient/clinics/ClinicProfile";
+import ClinicImages from "./features/dashboard/patient/clinics/ClinicImages";
 import VerifyEmail from "./pages/VerifyEmail";
 import ServerDown from "./ui/ServerDown";
 import LaboratoryList from "./features/dashboard/patient/laboratories/LaboratoryList";
@@ -195,12 +195,15 @@ function App() {
               <Route path="chat" element={<PatientChat />} />
               <Route path="appointments" element={<PatientAppointments />} />
               <Route path="edit-profile" element={<EditProfilePatient />} />
+              <Route path="clinics/:clinicName" element={<ClinicProfile />} />
               <Route
-                path="clinics/clinic-profile"
-                element={<ClinicProfile />}
+                path="clinics/:clinicName/doctors"
+                element={<DoctorsList />}
               />
-              <Route path="clinics/doctors-list" element={<DoctorsList />} />
-              <Route path="clinics/images" element={<ClinicImages />} />
+              <Route
+                path="clinics/:clinicName/images"
+                element={<ClinicImages />}
+              />
               <Route path="payment-gateway" element={<PaymentGateway />} />
               <Route path="pharmacies" element={<PharmacyList />} />
               <Route
