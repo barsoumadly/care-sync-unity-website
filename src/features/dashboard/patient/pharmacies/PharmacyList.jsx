@@ -1,5 +1,36 @@
 import PharmacyCard from "./PharmacyCard";
 
+const pharmaciesList = [
+  {
+    id: 1,
+    name: "El Ezaby Pharmacy",
+    slug: "el-ezaby-pharmacy",
+    email: "el-ezaby-pharmacy@gmail.com",
+    city: "Cairo",
+    address: "206 El Hegaz St, Al Matar, El Nozha, Cairo Governorate",
+    phone: "02 35317347",
+    location: "El Ezaby Pharmacy",
+    foundedDate: 1975,
+    profilePhoto:
+      "https://cdna1.yellowpages.com.eg/uploads/contract-services/english/2024/13/el-ezaby-pharmacies-photo_99370_2020_wa_01_21627.jpg?3",
+    rating: "4",
+  },
+  {
+    id: 2,
+    name: "Doss Pharmacy",
+    slug: "doss-pharmacy",
+    email: "doss-pharmacies@gmail.com",
+    city: "Cairo",
+    address: "Al Maahad Eshtraki, El-Montaza, Cairo Governorate",
+    phone: "015 55612000",
+    location: "Doss Pharmacy",
+    foundedDate: 2015,
+    profilePhoto:
+      "https://lh3.googleusercontent.com/p/AF1QipNk9FGqzX96tNeb42nmWB0hfA5iXeOV-IJAii2X=s1360-w1360-h1020",
+    rating: "3.5",
+  },
+];
+
 function PharmacyList() {
   return (
     <div className="page-wrapper" style={{ minHeight: 270 }}>
@@ -67,10 +98,9 @@ function PharmacyList() {
                 </div>
                 <div className="row">
                   {/* Cards */}
-                  <PharmacyCard
-                    pharmacyName="El Ezaby Pharmacy"
-                    to="pharmacy-profile"
-                  />
+                  {pharmaciesList.map((pharmacy) => (
+                    <PharmacyCard pharmacy={pharmacy} key={pharmacy.id} />
+                  ))}
                 </div>
                 {/* /Cards */}
               </div>
