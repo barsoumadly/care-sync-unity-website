@@ -2,15 +2,13 @@ import Map from "../../../../ui/Map";
 import PharmacyHeader from "./pharmacyHeader";
 
 function PharmacyProfile() {
+  const pharmacy = JSON.parse(localStorage.getItem("pharmacy"));
+
   return (
     <div className="main-wrapper">
       <div className="page-wrapper">
         <div className="content">
-          <PharmacyHeader
-            ClinicHeader
-            activeTab="about"
-            headerText="Pharmacy Profile"
-          />
+          <PharmacyHeader activeTab="about" />
           <div className="profile-tabs">
             <div className="tab-content">
               <div className="tab-pane show active" id="about-cont">
@@ -21,7 +19,7 @@ function PharmacyProfile() {
                       <div className="experience-box">
                         <div className="hello-park">
                           <p>
-                            At El Ezaby Pharmacy, our experienced doctors and
+                            At {pharmacy.name}, our experienced doctors and
                             staff are dedicated to providing compassionate,
                             cutting-edge care.
                             <br /> We prioritize your well-being and strive for
@@ -65,8 +63,8 @@ function PharmacyProfile() {
                     </div>
                     <div className="card-box">
                       <Map
-                        name="El Ezaby Pharmacy"
-                        markerPosition="el ezaby pharmacy heliopolis"
+                        name={pharmacy.name}
+                        markerPosition={pharmacy.location}
                       />
                     </div>
                   </div>
