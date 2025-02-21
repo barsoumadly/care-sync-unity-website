@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../../context/AuthContext";
 
-function LaboratoryCard({ laboratoryName, to }) {
+function LaboratoryCard({ laboratory }) {
   const { user } = useAuth();
+
+  const saveActiveLaboratory = function (laboratory) {
+    localStorage.setItem("laboratory", JSON.stringify(laboratory));
+  };
 
   return (
     <div className="col-12 col-md-4 col-lg-3 d-flex">
@@ -16,14 +20,19 @@ function LaboratoryCard({ laboratoryName, to }) {
       >
         <img
           alt="Card Image"
-          src="https://lh3.googleusercontent.com/p/AF1QipNCM2ymcmttFz5-YmrUyMwNQwfN70YkJ0jFsWUZ=s1360-w1360-h1020"
+          src={laboratory.profilePhoto}
           className="card-img-top"
+          style={{ width: "260px", height: "194px" }}
         />
         <div className="card-header" style={{ padding: "5%" }}>
-          <h5 className="card-title mb-0">{laboratoryName}</h5>
+          <h5 className="card-title mb-0">{laboratory.name}</h5>
         </div>
         <div className="card-body card-buttons" style={{ padding: "5%" }}>
-          <Link to={to} className="btn btn-primary">
+          <Link
+            to={`/patient/laboratories/${laboratory.slug}`}
+            className="btn btn-primary"
+            onClick={() => saveActiveLaboratory(laboratory)}
+          >
             View {user.role === "DOCTOR" ? "Patients" : "Profile"}
           </Link>
         </div>
