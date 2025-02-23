@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import PharmacyCard from "./PharmacyCard";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 const pharmaciesList = [
   {
@@ -38,7 +40,7 @@ function PharmacyList() {
         {/* Page Header */}
         <div className="page-header">
           <div className="row">
-            <div className="col-sm-12">
+            <div className="col-sm-7 col-6">
               <ul className="breadcrumb">
                 <li className="breadcrumb-item">
                   <a>Pharmacies </a>
@@ -48,6 +50,11 @@ function PharmacyList() {
                 </li>
                 <li className="breadcrumb-item active">Pharmacy List</li>
               </ul>
+            </div>
+            <div class="col-sm-5 col-6 text-end">
+              <Link to="/patient/dashboard" class="btn btn-primary btn-rounded">
+                <IoArrowBackOutline /> Return Back
+              </Link>
             </div>
           </div>
         </div>
