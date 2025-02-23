@@ -12867,3 +12867,8 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
   font-family: sans-serif;
   color: #fff;
 }
+@media only screen and (max-width: 479px) {
+  .headerpage {
+    display: none;
+  }
+}
