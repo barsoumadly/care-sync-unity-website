@@ -12846,3 +12846,23 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
   right: 3%;
   top: 6%;
 }
+.modal-text {
+  font-size: 19px;
+}
+.circle {
+  background-color: rgb(46, 55, 164);
+  border: 0.1em solid rgb(46, 55, 164);
+  border-radius: 100%;
+  height: 7em;
+  width: 7em;
+  text-align: center;
+  margin-left: 170px;
+}
+
+.circle p {
+  margin-top: 0.45em;
+  font-size: 45px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: #fff;
+}
