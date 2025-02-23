@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import MedicineTuple from "./MedicineTuple";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 const prescriptionItem = {
   id: 1,
@@ -17,6 +19,31 @@ function PrescriptionPaper() {
         {/* Page Content */}
         <div className="content container-fluid">
           <div className="row justify-content-center">
+            <div className="page-header">
+              <div className="row">
+                <div className="col-sm-7 col-6">
+                  <ul className="breadcrumb">
+                    <li className="breadcrumb-item">
+                      <Link to="/patient/prescriptions">Prescriptions </Link>
+                    </li>
+                    <li className="breadcrumb-item">
+                      <i className="feather-chevron-right" />
+                    </li>
+                    <li className="breadcrumb-item active">
+                      Prescription Paper
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-sm-5 col-6 text-end">
+                  <Link
+                    to="/patient/prescriptions"
+                    class="btn btn-primary btn-rounded"
+                  >
+                    <IoArrowBackOutline /> Return to Prescriptions
+                  </Link>
+                </div>
+              </div>
+            </div>
             <div className="col-xl-10">
               <div className="card invoice-info-card">
                 <div className="card-body">
