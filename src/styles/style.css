@@ -104,7 +104,7 @@ a:hover,
 a:active,
 a:focus {
   text-decoration: none;
-  color: #009ce7;
+  color: #fff;
   outline: none;
 }
 .form-control {
