@@ -41,11 +41,11 @@ import Invoice from "./features/dashboard/clinic/Invoice";
 import DoctorLayout from "./features/dashboard/doctor/DoctorLayout";
 import DoctorDashboard from "./features/dashboard/doctor/DoctorDashboard";
 import DoctorShedule from "./features/dashboard/doctor/DoctorShedule";
-import DoctorPatientsList from "./features/dashboard/doctor/Patients";
+import DoctorPatientsList from "./features/dashboard/doctor/Patients/Patients";
 import DoctorChat from "./features/dashboard/doctor/Chat";
 import MyProfile from "./features/dashboard/doctor/MyProfile";
 import EditProfile from "./features/dashboard/doctor/EditProfile";
-import PatientProfile from "./features/dashboard/doctor/PatientProfile";
+import PatientProfile from "./features/dashboard/doctor/Patients/PatientProfile";
 import ClinicsListOfDoctor from "./features/dashboard/doctor/Patients/ClinicsListOfDoctor";
 /* Patient */
 import PatientLayout from "./features/dashboard/patient/PatientLayout";
