@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import DashboardPageHeader from "../DashboardPageHeader";
 
 function PatientProfile() {
   return (
@@ -6,34 +7,14 @@ function PatientProfile() {
       <div className="page-wrapper">
         <div className="content">
           {/* Page Header */}
-          <div className="page-header">
-            <div className="row">
-              <div className="col-sm-12">
-                <ul className="breadcrumb">
-                  <li className="breadcrumb-item">
-                    <Link to="/doctor/dashboard">Patients </Link>
-                  </li>
-                  <li className="breadcrumb-item">
-                    <i className="feather-chevron-right" />
-                  </li>
-                  <li className="breadcrumb-item">
-                    <Link to="/doctor/patients">Clinics List</Link>
-                  </li>
-
-                  <li className="breadcrumb-item">
-                    <i className="feather-chevron-right" />
-                  </li>
-                  <li className="breadcrumb-item">
-                    <Link to="/doctor/patient-list">Patient List </Link>
-                  </li>
-                  <li className="breadcrumb-item">
-                    <i className="feather-chevron-right" />
-                  </li>
-                  <li className="breadcrumb-item active">Patient Profile</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <DashboardPageHeader
+            pageList={[
+              { name: "Patients", link: "/doctor/dashboard" },
+              { name: "Clinics List", link: "/doctor/patients" },
+              { name: "Patient List", link: "/doctor/patient-list" },
+            ]}
+            currentPage="Patient Profile"
+          />
           {/* /Page Header */}
           <div className="row">
             <div className="col-sm-12">
