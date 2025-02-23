@@ -5,7 +5,6 @@ import {
   FaClinicMedical,
   FaUserEdit,
 } from "react-icons/fa";
-import { FaPrescriptionBottleMedical } from "react-icons/fa6";
 import { GiChemicalDrop, GiMedicines } from "react-icons/gi";
 import { IoIosPaper } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
