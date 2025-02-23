@@ -1,52 +1,57 @@
-import { useState } from "react";
+import PrescriptionTuple from "./PrescriptionTuple";
 
-import ClinicHeader from "./ClinicHeader";
-import DoctorField from "./DoctorField";
-import AppointmentModal from "./AppointmentModal";
-
-const doctorsList = [
+const prescriptions = [
   {
-    clinicId: 1,
     id: 1,
-    name: "Smith Bruklin",
-    profilePhoto:
-      "https://preclinic.dreamstechnologies.com/html/template/assets/img/profiles/avatar-02.jpg",
-    specialization: "Urology",
-    days: "Mon - Wed",
-    time: "2 PM - 5 PM",
-    cost: 220,
+    clinicName: "Heliopolis Hospital",
+    doctor: {
+      id: "1",
+      name: "Smith Bruklin",
+      specialization: "Urology",
+      profilePhoto:
+        "https://preclinic.dreamstechnologies.com/html/template/assets/img/profiles/avatar-02.jpg",
+      signature: "",
+    },
+    date: "05.08.2023",
   },
   {
-    clinicId: 1,
     id: 2,
-    name: "William Stephin",
-    profilePhoto:
-      "https://static.vecteezy.com/system/resources/previews/030/666/513/large_2x/doctor-high-quality-4k-ultra-hd-hdr-free-photo.jpg",
-    specialization: "Radiology",
-    days: "Sat - Tue",
-    time: "10 AM - 5 PM",
-    cost: 350,
+    clinicName: "Cleopatra Hospital",
+    doctor: {
+      id: "2",
+      name: "William Stephin",
+      specialization: "Radiology",
+      profilePhoto:
+        "https://static.vecteezy.com/system/resources/previews/030/666/513/large_2x/doctor-high-quality-4k-ultra-hd-hdr-free-photo.jpg",
+    },
+    date: "08.11.2024",
   },
 ];
 
-function DoctorsList() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpenModal = function () {
-    setIsOpen((isOpen) => !isOpen);
-  };
-
+function PrescriptionsList() {
   return (
     <>
-      <div
-        className="main-wrapper"
-        style={isOpen ? { filter: "blur(3px)" } : {}}
-      >
+      <div className="main-wrapper">
         <div className="page-wrapper">
           <div className="content">
-            <ClinicHeader activeTab="doctor-list" />
             {/* Page Header */}
-            <div className="page-header"></div>
+            <div className="page-header">
+              <div className="row">
+                <div className="col-sm-12">
+                  <ul className="breadcrumb">
+                    <li className="breadcrumb-item">
+                      <a>Prescriptions</a>
+                    </li>
+                    <li className="breadcrumb-item">
+                      <i className="feather-chevron-right" />
+                    </li>
+                    <li className="breadcrumb-item active">
+                      Prescription List
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
             {/* /Page Header */}
             <div className="row">
               <div className="col-sm-12">
@@ -59,21 +64,18 @@ function DoctorsList() {
                           <div className="col-12 col-md-6 col-xl-4">
                             <div className="input-block local-forms">
                               <label>Doctor Name </label>
-                              <input
-                                className="form-control"
-                                type="text"
-                                placeholder="ex: Smith Bruklin"
-                              />
+                              <input className="form-control" type="text" />
                             </div>
                           </div>
                           <div className="col-12 col-md-6 col-xl-4">
                             <div className="input-block local-forms">
                               <label>Specialization </label>
-                              <input
-                                className="form-control"
-                                type="text"
-                                placeholder="ex: Dentist"
-                              />
+                              <select className="form-control select">
+                                <option>Cardiology</option>
+                                <option>Neurology</option>
+                                <option>Oncology</option>
+                                <option>Otolaryngology</option>
+                              </select>
                             </div>
                           </div>
                           <div className="col-12 col-md-6 col-xl-4">
@@ -94,19 +96,17 @@ function DoctorsList() {
                         <thead>
                           <tr>
                             <th>Doctor Name</th>
+                            <th>Clinic Name</th>
                             <th>Specialization</th>
-                            <th>Days</th>
-                            <th>Time</th>
-                            <th>cost</th>
+                            <th>Date</th>
                             <th />
                           </tr>
                         </thead>
                         <tbody>
-                          {doctorsList.map((doctor) => (
-                            <DoctorField
-                              doctor={doctor}
-                              onOpenModal={handleOpenModal}
-                              key={doctor.id}
+                          {prescriptions.map((prescription) => (
+                            <PrescriptionTuple
+                              prescriptionTuple={prescription}
+                              key={prescription.id}
                             />
                           ))}
                         </tbody>
@@ -119,9 +119,8 @@ function DoctorsList() {
           </div>
         </div>
       </div>
-      <div>{isOpen && <AppointmentModal onOpenModal={handleOpenModal} />}</div>
     </>
   );
 }
 
-export default DoctorsList;
+export default PrescriptionsList;

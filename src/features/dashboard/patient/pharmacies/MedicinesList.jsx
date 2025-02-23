@@ -1,39 +1,23 @@
 import { useState } from "react";
+import PharmacyHeader from "./pharmacyHeader";
+import MedicineField from "./MedicineField";
+import OrderModal from "./OrderModal";
 
-import ClinicHeader from "./ClinicHeader";
-import DoctorField from "./DoctorField";
-import AppointmentModal from "./AppointmentModal";
-
-const doctorsList = [
-  {
-    clinicId: 1,
-    id: 1,
-    name: "Smith Bruklin",
-    profilePhoto:
-      "https://preclinic.dreamstechnologies.com/html/template/assets/img/profiles/avatar-02.jpg",
-    specialization: "Urology",
-    days: "Mon - Wed",
-    time: "2 PM - 5 PM",
-    cost: 220,
-  },
-  {
-    clinicId: 1,
-    id: 2,
-    name: "William Stephin",
-    profilePhoto:
-      "https://static.vecteezy.com/system/resources/previews/030/666/513/large_2x/doctor-high-quality-4k-ultra-hd-hdr-free-photo.jpg",
-    specialization: "Radiology",
-    days: "Sat - Tue",
-    time: "10 AM - 5 PM",
-    cost: 350,
-  },
+const medicinesList = [
+  { name: "Panadol", photo: "", expirationDate: "08-05-2030", cost: 100 },
+  { name: "Bronchicum", expirationDate: "12-09-2030", cost: 69 },
 ];
 
-function DoctorsList() {
+function MedicinesList() {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedMedicine, setSelectedMedicine] = useState({});
 
   const handleOpenModal = function () {
     setIsOpen((isOpen) => !isOpen);
+  };
+
+  const handleSelectMedicine = function (medicine) {
+    setSelectedMedicine(medicine);
   };
 
   return (
@@ -44,7 +28,7 @@ function DoctorsList() {
       >
         <div className="page-wrapper">
           <div className="content">
-            <ClinicHeader activeTab="doctor-list" />
+            <PharmacyHeader activeTab="medicines" />
             {/* Page Header */}
             <div className="page-header"></div>
             {/* /Page Header */}
@@ -58,21 +42,11 @@ function DoctorsList() {
                         <div className="row">
                           <div className="col-12 col-md-6 col-xl-4">
                             <div className="input-block local-forms">
-                              <label>Doctor Name </label>
+                              <label>Medicine Name </label>
                               <input
                                 className="form-control"
                                 type="text"
-                                placeholder="ex: Smith Bruklin"
-                              />
-                            </div>
-                          </div>
-                          <div className="col-12 col-md-6 col-xl-4">
-                            <div className="input-block local-forms">
-                              <label>Specialization </label>
-                              <input
-                                className="form-control"
-                                type="text"
-                                placeholder="ex: Dentist"
+                                placeholder="ex: Panadol"
                               />
                             </div>
                           </div>
@@ -93,20 +67,19 @@ function DoctorsList() {
                       <table className="table border-0 custom-table comman-table datatable mb-0">
                         <thead>
                           <tr>
-                            <th>Doctor Name</th>
-                            <th>Specialization</th>
-                            <th>Days</th>
-                            <th>Time</th>
-                            <th>cost</th>
+                            <th>Medicine Name</th>
+                            <th>Expiration Date</th>
+                            <th>Cost</th>
                             <th />
                           </tr>
                         </thead>
                         <tbody>
-                          {doctorsList.map((doctor) => (
-                            <DoctorField
-                              doctor={doctor}
+                          {medicinesList.map((medicine) => (
+                            <MedicineField
+                              medicine={medicine}
                               onOpenModal={handleOpenModal}
-                              key={doctor.id}
+                              key={medicine.id}
+                              onSelectMedicine={handleSelectMedicine}
                             />
                           ))}
                         </tbody>
@@ -119,9 +92,16 @@ function DoctorsList() {
           </div>
         </div>
       </div>
-      <div>{isOpen && <AppointmentModal onOpenModal={handleOpenModal} />}</div>
+      <div>
+        {isOpen && (
+          <OrderModal
+            medicine={selectedMedicine}
+            onOpenModal={handleOpenModal}
+          />
+        )}
+      </div>
     </>
   );
 }
 
-export default DoctorsList;
+export default MedicinesList;
