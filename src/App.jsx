@@ -71,6 +71,7 @@ import LaboratoryProfile from "./features/dashboard/patient/laboratories/Laborat
 import LaboratoryAnalysisList from "./features/dashboard/patient/laboratories/LaboratoryAnalyisList";
 import PrescriptionsList from "./features/dashboard/patient/prescription/PrescriptionsList";
 import PrescriptionPaper from "./features/dashboard/patient/prescription/PrescriptionPaper";
+import MedicinesList from "./features/dashboard/patient/pharmacies/MedicinesList";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -214,7 +215,7 @@ function App() {
               />
               <Route
                 path="pharmacies/:pharmacyName/medicines"
-                element={<PharmacyMedicines />}
+                element={<MedicinesList />}
               />
               <Route path="laboratories" element={<LaboratoryList />} />
               <Route
