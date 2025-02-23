@@ -51,7 +51,7 @@ import ClinicsListOfDoctor from "./features/dashboard/doctor/ClinicsListOfDoctor
 import PatientLayout from "./features/dashboard/patient/PatientLayout";
 import PatientDashboard from "./features/dashboard/patient/PatientDashboard";
 import ClinicsList from "./features/dashboard/patient/clinics/ClinicsList";
-import PatientAppointments from "./features/dashboard/patient/Appointments";
+import PatientAppointments from "./features/dashboard/patient/appointments/Appointments";
 import PatientChat from "./features/dashboard/patient/Chat";
 import EditProfilePatient from "./features/dashboard/patient/EditProfile";
 import PaymentGateway from "./features/dashboard/patient/PaymentGateway";
@@ -224,7 +224,7 @@ function App() {
                 element={<LaboratoryAnalysisList />}
               />
             </Route>
-
+            <Route path="patient/:doctorName/profile" element={<MyProfile />} />
             <Route path="*" element={<PageNotFound />} />
             <Route path="/internal-server-error" element={<ServerDown />} />
           </Routes>
