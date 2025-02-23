@@ -5,6 +5,43 @@ const TextEditor = ({ placeholder }) => {
   const editor = useRef(null);
   const [content, setContent] = useState("");
 
+  const buttons = [
+    "undo",
+    "redo",
+    "|",
+    "bold",
+    "strikethrough",
+    "underline",
+    "italic",
+    "|",
+    "superscript",
+    "subscript",
+    "|",
+    "align",
+    "|",
+    "ul",
+    "ol",
+    "outdent",
+    "indent",
+    "|",
+    "font",
+    "fontsize",
+    "brush",
+    "paragraph",
+    "|",
+    "image",
+    "link",
+    "table",
+    "|",
+    "hr",
+    "eraser",
+    "copyformat",
+    "|",
+    "selectall",
+    "print",
+    "|",
+  ];
+
   const config = useMemo(
     () => ({
       readonly: false, // all options from https://xdsoft.net/jodit/docs/,
@@ -18,6 +55,7 @@ const TextEditor = ({ placeholder }) => {
       askBeforePasteHTML: true,
       askBeforePasteFromWord: true,
       height: 500,
+      buttons: buttons,
     }),
     [placeholder]
   );
