@@ -1,7 +1,8 @@
-import { IoVideocam } from "react-icons/io5";
+import { IoArrowBackOutline, IoVideocam } from "react-icons/io5";
 import { useAuth } from "../../../context/AuthContext";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { BsArrowRightCircleFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 function Chat() {
   const { user } = useAuth();
@@ -14,7 +15,7 @@ function Chat() {
           {/* Page Header */}
           <div className="page-header">
             <div className="row">
-              <div className="col-sm-12">
+              <div className="col-sm-7 col-6">
                 <ul className="breadcrumb">
                   <li className="breadcrumb-item">
                     <a href="chat.html">App </a>
@@ -24,6 +25,14 @@ function Chat() {
                   </li>
                   <li className="breadcrumb-item active">Chat</li>
                 </ul>
+              </div>
+              <div class="col-sm-5 col-6 text-end">
+                <Link
+                  to="/patient/dashboard"
+                  class="btn btn-primary btn-rounded"
+                >
+                  <IoArrowBackOutline /> Return Back
+                </Link>
               </div>
             </div>
           </div>
