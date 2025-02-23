@@ -75,11 +75,15 @@ function EditProfile() {
                           <label>
                             City <span className="login-danger">*</span>
                           </label>
-                          <input
+                          <select
                             className="form-control"
                             type="text"
                             placeholder="ex: Cairo"
-                          />
+                          >
+                            <option value="cairo">Cairo</option>
+                            <option value="giza">Giza</option>
+                            <option value="alex">Alexandria</option>
+                          </select>
                         </div>
                       </div>
                       <div className="col-12 col-md-6 col-xl-3">
