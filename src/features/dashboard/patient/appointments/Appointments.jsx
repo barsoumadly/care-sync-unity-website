@@ -1,6 +1,8 @@
 import { useState } from "react";
 import AppointmentTuple from "./AppointmentTuple";
 import AppointmentTurn from "./AppointmentTurn";
+import { Link } from "react-router-dom";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 const appointments = [
   {
@@ -92,7 +94,7 @@ function Appointments() {
             {/* Page Header */}
             <div className="page-header">
               <div className="row">
-                <div className="col-sm-12">
+                <div className="col-sm-7 col-6">
                   <ul className="breadcrumb">
                     <li className="breadcrumb-item">
                       <a>Appointment</a>
@@ -102,6 +104,14 @@ function Appointments() {
                     </li>
                     <li className="breadcrumb-item active">Appointment List</li>
                   </ul>
+                </div>
+                <div class="col-sm-5 col-6 text-end">
+                  <Link
+                    to="/patient/dashboard"
+                    class="btn btn-primary btn-rounded"
+                  >
+                    <IoArrowBackOutline /> Return Back
+                  </Link>
                 </div>
               </div>
             </div>
