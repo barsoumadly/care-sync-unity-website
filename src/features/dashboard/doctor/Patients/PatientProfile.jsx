@@ -293,11 +293,13 @@ function Examination() {
         </div>
       </div>
 
-      <h4 className="mb-3">Prescription</h4>
-      <TextEditor placeholder="Write the prescription to the pharmacy..." />
+      <div style={{ margiTop: "10%" }}>
+        <h4 className="mb-3">Prescription</h4>
+        <TextEditor placeholder="Write the prescription to the pharmacy..." />
 
-      <h4 className="mb-3">Analysis</h4>
-      <TextEditor placeholder="Write the analysis to the lab..." />
+        <h4 className="mb-3">Analysis</h4>
+        <TextEditor placeholder="Write the analysis to the lab..." />
+      </div>
     </>
   );
 }
