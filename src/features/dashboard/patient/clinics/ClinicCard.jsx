@@ -21,7 +21,7 @@ function ClinicCard({ clinic }) {
           alt="Card Image"
           src={clinic.profilePhoto}
           className="card-img-top"
-          style={{ width: "260px", height: "174px" }}
+          style={{ width: "100%", height: "174px" }}
         />
         <div className="card-header" style={{ padding: "5%" }}>
           <h5 className="card-title mb-0" style={{ color: "#2e37a4" }}>
@@ -34,7 +34,9 @@ function ClinicCard({ clinic }) {
             {clinic.specialization.join(", ")}
           </p>
           <Link
-            to={`/patient/clinics/${clinic.slug}`}
+            to={`${user.role === "DOCTOR" ? "/doctor/" : "/patient/clinics/"}${
+              clinic.slug
+            }`}
             className="btn btn-primary"
             onClick={() => saveActiveClinic(clinic)}
           >
