@@ -1,4 +1,4 @@
-function DoctorField({ doctor, onOpenModal }) {
+function DoctorField({ doctor, onSelectDoctor, onOpenModal }) {
   return (
     <tr>
       <td className="profile-image">
@@ -19,7 +19,13 @@ function DoctorField({ doctor, onOpenModal }) {
       <td> {doctor.cost} EGP</td>
       <td>
         <div className="dropdown action-label">
-          <button className="custom-badge book-btn" onClick={onOpenModal}>
+          <button
+            className="custom-badge book-btn"
+            onClick={() => {
+              onOpenModal();
+              onSelectDoctor(doctor);
+            }}
+          >
             Book appointment
           </button>
         </div>
