@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 function OrderModal({ medicine, onOpenModal }) {
   const [paymentType, setPaymentType] = useState("cash");
+  const pharmacy = JSON.parse(localStorage.getItem("pharmacy"));
 
   return (
     <div
@@ -57,7 +58,21 @@ function OrderModal({ medicine, onOpenModal }) {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-md-6">
+                <div className="mb-3">
+                  <label htmlFor="field-3" className="form-label">
+                    Pharmacy Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="field-3"
+                    placeholder={pharmacy.name}
+                    disabled
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
                 <div className="mb-3">
                   <label htmlFor="field-3" className="form-label">
                     Address
