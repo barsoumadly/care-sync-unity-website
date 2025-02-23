@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function AppointmentModal({ onOpenModal }) {
+function AppointmentModal({ selectedDoctor, onOpenModal }) {
   const [paymentType, setPaymentType] = useState("cash");
+  const clinic = JSON.parse(localStorage.getItem("clinic"));
 
   return (
     <div
@@ -36,7 +37,7 @@ function AppointmentModal({ onOpenModal }) {
                     type="text"
                     className="form-control"
                     id="field-1"
-                    placeholder="John"
+                    placeholder={selectedDoctor.name}
                     disabled
                   />
                 </div>
@@ -50,7 +51,7 @@ function AppointmentModal({ onOpenModal }) {
                     type="text"
                     className="form-control"
                     id="field-2"
-                    placeholder="Dentist"
+                    placeholder={selectedDoctor.specialization}
                     disabled
                   />
                 </div>
@@ -66,7 +67,7 @@ function AppointmentModal({ onOpenModal }) {
                     type="text"
                     className="form-control"
                     id="field-3"
-                    placeholder="Address"
+                    placeholder={clinic.address}
                     disabled
                   />
                 </div>
@@ -97,7 +98,7 @@ function AppointmentModal({ onOpenModal }) {
                     type="text"
                     className="form-control"
                     id="field-6"
-                    placeholder="2 PM - 5 PM"
+                    placeholder={selectedDoctor.time}
                     disabled
                   />
                 </div>
@@ -111,7 +112,7 @@ function AppointmentModal({ onOpenModal }) {
                     type="text"
                     className="form-control"
                     id="field-4"
-                    placeholder="Boston"
+                    placeholder={selectedDoctor.cost}
                     disabled
                   />
                 </div>
