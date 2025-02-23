@@ -6,7 +6,8 @@ import {
   FaUserEdit,
 } from "react-icons/fa";
 import { FaPrescriptionBottleMedical } from "react-icons/fa6";
-import { GiChemicalDrop } from "react-icons/gi";
+import { GiChemicalDrop, GiMedicines } from "react-icons/gi";
+import { IoIosPaper } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
 import { SiGoogleanalytics } from "react-icons/si";
 import { NavLink } from "react-router-dom";
@@ -68,9 +69,19 @@ function PatientSidebar() {
       <li className="submenu">
         <NavLink to={"/patient/prescriptions"} className="link">
           <span className="menu-side">
-            <FaPrescriptionBottleMedical />
+            <IoIosPaper />
           </span>
           <span> Prescriptions </span>
+        </NavLink>
+      </li>
+
+      {/* Medicines */}
+      <li className="submenu">
+        <NavLink to={"/patient/medicines"} className="link">
+          <span className="menu-side">
+            <GiMedicines />
+          </span>
+          <span> Medicines </span>
         </NavLink>
       </li>
 
