@@ -1,17 +1,26 @@
-import { Link } from "react-router-dom";
+import { IoArrowBackOutline } from "react-icons/io5";
+import { Link, useNavigate } from "react-router-dom";
 
 function DashboardPageHeader({ pageList, currentPage }) {
+  const navigate = useNavigate();
+  function handleBack() {
+    navigate(-1);
+  }
+
   return (
-    <div className="page-header">
-      <div className="row">
-        <div className="col-sm-12">
-          <ul className="breadcrumb">
-            {pageList.map((page, index) => (
-              <PageHeader id={index} name={page.name} link={page.link} />
-            ))}
-            <li className="breadcrumb-item active">{currentPage}</li>
-          </ul>
-        </div>
+    <div className="row">
+      <div className="col-sm-7 col-6 headerpage">
+        <ul className="breadcrumb">
+          {pageList.map((page, index) => (
+            <PageHeader key={index} name={page.name} link={page.link} />
+          ))}
+          <li className="breadcrumb-item active">{currentPage}</li>
+        </ul>{" "}
+      </div>
+      <div className="col-sm-5 col-6 text-end m-b-30">
+        <button onClick={handleBack} className="btn btn-primary btn-rounded">
+          <IoArrowBackOutline /> Go Back
+        </button>
       </div>
     </div>
   );
