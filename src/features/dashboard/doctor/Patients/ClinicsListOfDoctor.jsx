@@ -1,5 +1,31 @@
 import { Link } from "react-router-dom";
-import ClinicCard from "../patient/clinics/ClinicCard";
+import ClinicCard from "../../patient/clinics/ClinicCard";
+
+const clinicsList = [
+  {
+    id: 1,
+    slug: "patient-list",
+    name: "Heliopolis Hospital",
+    city: "Cairo",
+    address: "El Hegaz St, Al Matar, El Nozha, Cairo Governorate",
+    location: "Heliopolis Hospital",
+    specialization: ["Cardiology", "Neurology", "Oncology", "Orthopedics"],
+    profilePhoto:
+      "https://lh5.googleusercontent.com/p/AF1QipPopa6nUNMevGnUYIrhcu2weu-SP-C661XfNIFT=w243-h174-n-k-no-nu",
+  },
+  {
+    id: 2,
+    name: "90th Street Clinic",
+    slug: "patient-list",
+    city: "Cairo",
+    specialization: ["Cardiology", "Neurology", "Oncology", "Orthopedics"],
+    address: "39 Cleopatra، Maidan Salahuddin Square, Heliopolis",
+    location: "cleopatra hospital heliopolis",
+    profilePhoto:
+      "https://lh3.googleusercontent.com/p/AF1QipO_3Ws6r-6SA5RMKVYq0SVKhjQxKVC5wH1nG7HW=s1360-w1360-h1020",
+  },
+];
+
 function ClinicsListOfDoctor() {
   return (
     <div className="page-wrapper" style={{ minHeight: 270 }}>
@@ -92,21 +118,10 @@ function ClinicsListOfDoctor() {
               </div>
               <div className="row">
                 {/* Cards */}
-                <ClinicCard
-                  clicinName="Saint Fatima Clinic"
-                  bio=" Our Specialization: cardiology, neurology, oncology, orthopedics,etc."
-                  to="/doctor/patient-list"
-                />
-                <ClinicCard
-                  clicinName="Ain Shams Clinic"
-                  bio=" Our Specialization: cardiology, neurology, oncology, orthopedics,etc."
-                  to="/doctor/patient-list"
-                />
-                <ClinicCard
-                  clicinName="90th Street Clinic"
-                  bio="Our Specialization: cardiology, neurology, oncology, orthopedics,etc."
-                  to="/doctor/patient-list"
-                />
+                {clinicsList.map((clinic) => (
+                  <ClinicCard clinic={clinic} key={clinic.id} />
+                ))}
+
                 {/* /Cards */}
               </div>
             </div>

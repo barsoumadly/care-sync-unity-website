@@ -46,7 +46,7 @@ import DoctorChat from "./features/dashboard/doctor/Chat";
 import MyProfile from "./features/dashboard/doctor/MyProfile";
 import EditProfile from "./features/dashboard/doctor/EditProfile";
 import PatientProfile from "./features/dashboard/doctor/PatientProfile";
-import ClinicsListOfDoctor from "./features/dashboard/doctor/ClinicsListOfDoctor";
+import ClinicsListOfDoctor from "./features/dashboard/doctor/Patients/ClinicsListOfDoctor";
 /* Patient */
 import PatientLayout from "./features/dashboard/patient/PatientLayout";
 import PatientDashboard from "./features/dashboard/patient/PatientDashboard";
