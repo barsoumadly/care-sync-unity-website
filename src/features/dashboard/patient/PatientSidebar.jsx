@@ -5,8 +5,10 @@ import {
   FaClinicMedical,
   FaUserEdit,
 } from "react-icons/fa";
+import { FaPrescriptionBottleMedical } from "react-icons/fa6";
 import { GiChemicalDrop } from "react-icons/gi";
 import { MdDashboard } from "react-icons/md";
+import { SiGoogleanalytics } from "react-icons/si";
 import { NavLink } from "react-router-dom";
 
 function PatientSidebar() {
@@ -52,6 +54,36 @@ function PatientSidebar() {
         </NavLink>
       </li>
 
+      {/* Appointments */}
+      <li className="submenu">
+        <NavLink to={"/patient/appointments"} className="link">
+          <span className="menu-side">
+            <AiFillSchedule />
+          </span>
+          <span> Appointments </span>
+        </NavLink>
+      </li>
+
+      {/* Prescriptions */}
+      <li className="submenu">
+        <NavLink to={"/patient/prescriptions"} className="link">
+          <span className="menu-side">
+            <FaPrescriptionBottleMedical />
+          </span>
+          <span> Prescriptions </span>
+        </NavLink>
+      </li>
+
+      {/* Analysis Results */}
+      <li className="submenu">
+        <NavLink to={"/patient/analysis-results"} className="link">
+          <span className="menu-side">
+            <SiGoogleanalytics />
+          </span>
+          <span> Analysis Results </span>
+        </NavLink>
+      </li>
+
       {/* Chat */}
       <li className="submenu">
         <NavLink to={"/patient/chat"} className="link">
@@ -60,16 +92,6 @@ function PatientSidebar() {
           </span>
           <span>Chat</span>
           <span className="menu-arrow"></span>
-        </NavLink>
-      </li>
-
-      {/* Appointments */}
-      <li className="submenu">
-        <NavLink to={"/patient/appointments"} className="link">
-          <span className="menu-side">
-            <AiFillSchedule />
-          </span>
-          <span> Appointments </span>
         </NavLink>
       </li>
 
