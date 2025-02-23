@@ -6,7 +6,7 @@ function Map({ markerPosition = "Heliopolis Hospital" }) {
           <div className="col-lg-12">
             <iframe
               className="gmap_iframe"
-              src={`https://maps.google.com/maps?width=600&height=400&hl=en&q=  ${markerPosition}&t=k&z=17&ie=UTF8&iwloc=B&output=embed
+              src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${markerPosition}&t=&z=17&ie=UTF8&iwloc=B&output=embed
               `}
               width="100%"
               height={500}
