@@ -31,9 +31,14 @@ const doctorsList = [
 
 function DoctorsList() {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedDoctor, setSelectedDoctor] = useState({});
 
   const handleOpenModal = function () {
     setIsOpen((isOpen) => !isOpen);
+  };
+
+  const handleSelectDoctor = function (doctor) {
+    setSelectedDoctor(doctor);
   };
 
   return (
@@ -106,6 +111,7 @@ function DoctorsList() {
                             <DoctorField
                               doctor={doctor}
                               onOpenModal={handleOpenModal}
+                              onSelectDoctor={handleSelectDoctor}
                               key={doctor.id}
                             />
                           ))}
@@ -119,7 +125,14 @@ function DoctorsList() {
           </div>
         </div>
       </div>
-      <div>{isOpen && <AppointmentModal onOpenModal={handleOpenModal} />}</div>
+      <div>
+        {isOpen && (
+          <AppointmentModal
+            selectedDoctor={selectedDoctor}
+            onOpenModal={handleOpenModal}
+          />
+        )}
+      </div>
     </>
   );
 }
