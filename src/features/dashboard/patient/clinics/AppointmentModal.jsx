@@ -58,7 +58,21 @@ function AppointmentModal({ selectedDoctor, onOpenModal }) {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-md-6">
+                <div className="mb-3">
+                  <label htmlFor="field-3" className="form-label">
+                    Clinic Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="field-3"
+                    placeholder={clinic.name}
+                    disabled
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
                 <div className="mb-3">
                   <label htmlFor="field-3" className="form-label">
                     Address
