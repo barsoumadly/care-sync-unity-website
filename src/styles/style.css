@@ -6774,6 +6774,7 @@ a.status-grey {
   -ms-flex-align: center;
   align-items: center;
   padding-left: 30px;
+  margin: 3%;
 }
 .profile-user-img {
   margin-right: 20px;
