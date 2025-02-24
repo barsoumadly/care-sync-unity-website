@@ -2,6 +2,7 @@ import DashboardPageHeader from "../DashboardPageHeader";
 import TextEditor from "../../../../ui/TextEditor ";
 import { useState } from "react";
 import DynamicInput from "../DynamicInput";
+import { BiTestTube } from "react-icons/bi";
 
 function PatientProfile() {
   const [option, setOption] = useState(1);
@@ -299,7 +300,10 @@ function Examination() {
           <div className="card-body">
             <div className="doctor-profile-head" style={{ padding: "20px" }}>
               {" "}
-              <h3 className="mb-5">Prescription</h3> <DynamicInput />
+              <h3 className="mb-5">Prescription</h3>{" "}
+              <DynamicInput
+                fields={{ f1: "Medicine", f2: "Duration", f3: "Amount/Day" }}
+              />
             </div>
           </div>
         </div>
@@ -310,7 +314,10 @@ function Examination() {
           <div className="card">
             <div className="card-body">
               <div className="doctor-profile-head" style={{ padding: "20px" }}>
-                <h3 className="mb-5">Analysis</h3> <DynamicInput />
+                <h3 className="mb-5">Analysis</h3>{" "}
+                <DynamicInput
+                  fields={{ f1: "Name", f2: "Type", f3: "Notes" }}
+                />
               </div>
             </div>
           </div>{" "}
