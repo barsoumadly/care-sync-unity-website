@@ -83,7 +83,7 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  // window.addEventListener(`contextmenu`, (e) => e.preventDefault());
+  window.addEventListener(`contextmenu`, (e) => e.preventDefault());
 
   // const [isLoading, setIsLoading] = useState(true);
   // setTimeout(() => setIsLoading(false), 2000);
