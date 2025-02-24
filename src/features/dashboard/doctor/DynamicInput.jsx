@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 function DynamicInput({ fields }) {
-  const { f1, f2, f3 } = fields;
   const [serviceList, setServiceList] = useState([{ medicine: "" }]);
 
   const { register, handleSubmit, reset } = useForm();

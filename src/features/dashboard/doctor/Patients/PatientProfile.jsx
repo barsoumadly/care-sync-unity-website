@@ -1,8 +1,7 @@
 import DashboardPageHeader from "../DashboardPageHeader";
-import TextEditor from "../../../../ui/TextEditor ";
+
 import { useState } from "react";
 import DynamicInput from "../DynamicInput";
-import { BiTestTube } from "react-icons/bi";
 
 function PatientProfile() {
   const [option, setOption] = useState(1);
