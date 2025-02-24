@@ -66,7 +66,6 @@ import ServerDown from "./ui/ServerDown";
 import LaboratoryList from "./features/dashboard/patient/laboratories/LaboratoryList";
 import PharmacyList from "./features/dashboard/patient/pharmacies/PharmacyList";
 import PharmacyProfile from "./features/dashboard/patient/pharmacies/PharmacyProfile";
-import PharmacyMedicines from "./features/dashboard/patient/pharmacies/PharmacyMedicines";
 import LaboratoryProfile from "./features/dashboard/patient/laboratories/LaboratoryProfile";
 import LaboratoryAnalysisList from "./features/dashboard/patient/laboratories/LaboratoryAnalyisList";
 import PrescriptionsList from "./features/dashboard/patient/prescription/PrescriptionsList";
