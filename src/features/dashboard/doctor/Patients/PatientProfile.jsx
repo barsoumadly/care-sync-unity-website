@@ -1,6 +1,7 @@
 import DashboardPageHeader from "../DashboardPageHeader";
 import TextEditor from "../../../../ui/TextEditor ";
 import { useState } from "react";
+import DynamicInput from "../DynamicInput";
 
 function PatientProfile() {
   const [option, setOption] = useState(1);
@@ -294,11 +295,28 @@ function Examination() {
       </div>
 
       <div style={{ margiTop: "10%" }}>
-        <h4 className="mb-3">Prescription</h4>
-        <TextEditor placeholder="Write the prescription to the pharmacy..." />
+        <div className="card">
+          <div className="card-body">
+            <div className="doctor-profile-head" style={{ padding: "20px" }}>
+              {" "}
+              <h3 className="mb-5">Prescription</h3> <DynamicInput />
+            </div>
+          </div>
+        </div>
 
-        <h4 className="mb-3">Analysis</h4>
-        <TextEditor placeholder="Write the analysis to the lab..." />
+        {/* <TextEditor placeholder="Write the prescription to the pharmacy..." /> */}
+
+        <div style={{ margiTop: "10%" }}>
+          <div className="card">
+            <div className="card-body">
+              <div className="doctor-profile-head" style={{ padding: "20px" }}>
+                <h3 className="mb-5">Analysis</h3> <DynamicInput />
+              </div>
+            </div>
+          </div>{" "}
+        </div>
+
+        {/* <TextEditor placeholder="Write the analysis to the lab..." /> */}
       </div>
     </>
   );
