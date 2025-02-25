@@ -1,5 +1,7 @@
 import { CgMoreVerticalAlt } from "react-icons/cg";
-import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
+import DashboardPageHeader from "./DashboardPageHeader";
+import Table from "./Table";
 
 function DoctorShedule() {
   return (
@@ -7,100 +9,66 @@ function DoctorShedule() {
       <div className="page-wrapper">
         <div className="content">
           {/* Page Header */}
-          <div className="page-header">
-            <div className="row">
-              <div className="col-sm-12">
-                <ul className="breadcrumb">
-                  <li className="breadcrumb-item">
-                    <Link to="/doctor/dashboard">Doctor Shedule </Link>
-                  </li>
-                  <li className="breadcrumb-item">
-                    <i className="feather-chevron-right" />
-                  </li>
-                  <li className="breadcrumb-item active">Schedule List</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+
+          <DashboardPageHeader
+            pageList={[{ name: "Dashboard", link: "/doctor/dashboard" }]}
+            currentPage="Doctor Shedule"
+          />
           {/* /Page Header */}
           <div className="row">
             <div className="col-sm-12">
               <div className="card card-table show-entire">
                 <div className="card-body">
                   {/* Table Header */}
-                  <div className="page-table-header mb-2">
-                    <div className="row align-items-center">
-                      <div className="col">
-                        <div className="doctor-table-blk">
-                          <h3>Schedule List</h3>
-                          <div className="doctor-search-blk">
-                            <div className="top-nav-search table-search-blk">
-                              <form>
-                                <input
-                                  type="text"
-                                  className="form-control"
-                                  placeholder="Search here"
-                                />
-                                <a className="btn">
-                                  <img
-                                    src="/images/dashborad/icons/search-normal.svg"
-                                    alt=""
-                                  />
-                                </a>
-                              </form>
-                            </div>
-                            <div className="add-group">
-                              <a
-                                href="add-schedule.html"
-                                className="btn btn-primary add-pluss ms-2"
-                              >
-                                <img
-                                  src="/images/dashborad/icons/plus.svg"
-                                  alt=""
-                                />
-                              </a>
-                              <a className="btn btn-primary doctor-refresh ms-2">
-                                <img
-                                  src="/images/dashborad/icons/re-fresh.svg"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-auto text-end float-end ms-auto download-grp">
-                        <a href="javascript:;" className=" me-2">
-                          <img
-                            src="/images/dashborad/icons/pdf-icon-01.svg"
-                            alt=""
-                          />
-                        </a>
-                        <a href="javascript:;" className=" me-2">
-                          <img
-                            src="/images/dashborad/icons/pdf-icon-02.svg"
-                            alt=""
-                          />
-                        </a>
-                        <a href="javascript:;" className=" me-2">
-                          <img
-                            src="/images/dashborad/icons/pdf-icon-03.svg"
-                            alt=""
-                          />
-                        </a>
-                        <a href="javascript:;">
-                          <img
-                            src="/images/dashborad/icons/pdf-icon-04.svg"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+                  <SearchBar name="Schedule List" />
                   {/* /Table Header */}
-                  <div className="table-responsive">
+
+                  <Table
+                    headElements={[
+                      "Num",
+                      "Clinic Name",
+                      "Specialization",
+                      "Available Days",
+                      "Available Time",
+                      "Status",
+                    ]}
+                    bodyElements={[
+                      [
+                        "Saint Fatima",
+                        "Cardiology",
+                        "Mon - Sun",
+                        "09:00 AM - 06:00 PM",
+                      ],
+                      [
+                        " 90th Street",
+                        "Cardiology",
+                        "Mon - Fri",
+                        "09:00 AM - 06:00 PM",
+                      ],
+                      [
+                        "Saint Fatima",
+                        "Cardiology",
+                        "Sat - Sun",
+                        "09:00 AM - 06:00 PM",
+                      ],
+                      [
+                        "Heliopolis Hospital",
+                        "Cardiology",
+                        "Web - Sun",
+                        "09:00 AM - 06:00 PM",
+                      ],
+                    ]}
+                    status={[
+                      { name: "Active", color: "green" },
+                      { name: "In Active", color: "pink" },
+                      { name: "In Active", color: "pink" },
+                      { name: "Active", color: "green" },
+                      { name: "In Active", color: "pink" },
+                    ]}
+                  />
+                  {/* <div className="table-responsive">
                     <table className="table border-0 custom-table comman-table datatable mb-0">
-                      <thead>
+                       <thead>
                         <tr>
                           <th></th>
                           <th>Clinic Name</th>
@@ -446,7 +414,7 @@ function DoctorShedule() {
                         </tr>
                       </tbody>
                     </table>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
