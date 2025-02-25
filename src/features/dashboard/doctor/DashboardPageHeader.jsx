@@ -8,7 +8,7 @@ function DashboardPageHeader({ pageList, currentPage }) {
   }
 
   return (
-    <div className="row">
+    <div className="row" style={{ fontWeight: "500" }}>
       <div className="col-sm-7 col-6 headerpage">
         <ul className="breadcrumb">
           {pageList.map((page, index) => (
