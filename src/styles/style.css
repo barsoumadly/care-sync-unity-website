@@ -12696,17 +12696,10 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
 
 .loader {
   height: 100%;
-  background: linear-gradient(
-      0deg,
-      rgba(51, 53, 72, 0.05),
-      rgba(51, 53, 72, 0.05)
-    ),
-    rgba(243, 239, 239, 0.8);
-  z-index: -10;
-  margin: 0;
-  height: 100%;
-  z-index: -10;
+  width: 90%;
+  margin: 1% auto;
 }
+
 .heartbeatloader {
   position: absolute;
   width: 20vmin;
@@ -12870,5 +12863,13 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
 @media only screen and (max-width: 479px) {
   .headerpage {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .loader {
+    width: 100%;
+    height: 100%;
+    margin: 50% auto;
   }
 }

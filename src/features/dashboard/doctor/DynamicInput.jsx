@@ -94,12 +94,12 @@ function DynamicInput({ fields }) {
         ))}
       </div>
       <div className="row">
-        <div className="col-12 col-md-6 col-xl-9">
+        <div className="col-12 col-md-6 col-xl-9" style={{ margin: "10px 0" }}>
           <button className={`btn btn-primary btn-block `} type="submit">
             Save Prescription
           </button>
         </div>
-        <div className="col-12 col-md-6 col-xl-3">
+        <div className="col-12 col-md-6 col-xl-3" style={{ margin: "10px 0" }}>
           <button
             className={`btn btn-primary btn-block `}
             type="button"

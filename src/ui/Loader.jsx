@@ -2,11 +2,13 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 function Loader() {
   return (
-    <DotLottieReact
-      src="https://lottie.host/61c7c818-37eb-4a33-a285-d44c4bb76bbf/VnbfXjwo9w.lottie"
-      loop
-      autoplay
-    />
+    <div className="loader">
+      <DotLottieReact
+        src="https://lottie.host/61c7c818-37eb-4a33-a285-d44c4bb76bbf/VnbfXjwo9w.lottie"
+        loop
+        autoplay
+      />
+    </div>
   );
   // return (
   //   <div className="loader">
