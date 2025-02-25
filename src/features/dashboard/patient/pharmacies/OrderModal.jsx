@@ -10,7 +10,12 @@ function OrderModal({ medicine, onOpenModal }) {
       id="con-close-modal"
       className="modal fade show"
       tabIndex={-1}
-      style={{ display: "block", paddingLeft: 0 }}
+      style={{
+        display: "block",
+        paddingLeft: 0,
+        backgroundColor: "rgb(0 0 0 / 32%)",
+        backdropFilter: "blur(3px)",
+      }}
       aria-modal="true"
       role="dialog"
     >
