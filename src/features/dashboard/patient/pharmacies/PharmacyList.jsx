@@ -10,8 +10,9 @@ const pharmaciesList = [
     email: "el-ezaby-pharmacy@gmail.com",
     city: "Cairo",
     address: "206 El Hegaz St, Al Matar, El Nozha, Cairo Governorate",
+    location:
+      "el-ezaby-pharmacy 206 El Hegaz St, Al Matar, El Nozha, Cairo Governorate",
     phone: "02 35317347",
-    location: "El Ezaby Pharmacy",
     foundedDate: 1975,
     profilePhoto:
       "https://cdna1.yellowpages.com.eg/uploads/contract-services/english/2024/13/el-ezaby-pharmacies-photo_99370_2020_wa_01_21627.jpg?3",
@@ -24,8 +25,8 @@ const pharmaciesList = [
     email: "doss-pharmacies@gmail.com",
     city: "Cairo",
     address: "Al Maahad Eshtraki, El-Montaza, Cairo Governorate",
+    location: "Doss Pharmacy Al Maahad Eshtraki, El-Montaza, Cairo Governorate",
     phone: "015 55612000",
-    location: "Doss Pharmacy",
     foundedDate: 2015,
     profilePhoto:
       "https://lh3.googleusercontent.com/p/AF1QipNk9FGqzX96tNeb42nmWB0hfA5iXeOV-IJAii2X=s1360-w1360-h1020",
