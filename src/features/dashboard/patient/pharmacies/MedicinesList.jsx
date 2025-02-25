@@ -22,10 +22,7 @@ function MedicinesList() {
 
   return (
     <>
-      <div
-        className="main-wrapper"
-        style={isOpen ? { filter: "blur(3px)" } : {}}
-      >
+      <div className="main-wrapper">
         <div className="page-wrapper">
           <div className="content">
             <PharmacyHeader activeTab="medicines" />
