@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import ClinicCard from "./ClinicCard";
 import { IoArrowBackOutline } from "react-icons/io5";
 
-const clinicsList = [
+let clinicsList = [
   {
     id: 1,
     name: "Heliopolis Hospital",
@@ -11,7 +11,8 @@ const clinicsList = [
     city: "Cairo",
     address: "El Hegaz St, Al Matar, El Nozha, Cairo Governorate",
     phone: "02 26339870",
-    location: "Heliopolis Hospital",
+    location:
+      "Heliopolis Hospital El Hegaz St, Al Matar, El Nozha, Cairo Governorate",
     specialization: ["Cardiology", "Neurology", "Oncology", "Orthopedics"],
     foundedDate: 1937,
     profilePhoto:
@@ -32,7 +33,7 @@ const clinicsList = [
     city: "Cairo",
     address: "39 Cleopatra، Maidan Salahuddin Square, Heliopolis",
     phone: "02 24143931",
-    location: "cleopatra hospital heliopolis",
+    location: "39 Cleopatra، Maidan Salahuddin Square, Almazah, Heliopolis",
     specialization: ["Gynocolgy", "Neurology", "Dentist", "Otolaryngology"],
     foundedDate: 1979,
     profilePhoto:
