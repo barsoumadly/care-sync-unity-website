@@ -2,6 +2,7 @@ import DashboardPageHeader from "../DashboardPageHeader";
 
 import { useState } from "react";
 import DynamicInput from "../DynamicInput";
+import { Link } from "react-router-dom";
 
 function PatientProfile() {
   const [option, setOption] = useState(1);
@@ -125,9 +126,14 @@ function ProfileHeader() {
                 </div>
                 <div className="col-lg-6 col-xl-4 d-flex align-items-center">
                   <div className="follow-btn-group py-3">
-                    <button type="submit" className="btn btn-info follow-btns">
-                      Message
-                    </button>
+                    <Link to="/doctor/chat">
+                      <button
+                        type="submit"
+                        className="btn btn-info follow-btns"
+                      >
+                        Message
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
