@@ -6,14 +6,6 @@ function DynamicInput({ fields }) {
 
   const { register, handleSubmit, reset } = useForm();
 
-  const handleServiceChange = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...serviceList];
-    list[index][name] = value;
-    setServiceList(list);
-    console.log(list);
-  };
-
   const handleServiceRemove = (index) => {
     const list = [...serviceList];
     list.splice(index, 1);
@@ -45,7 +37,6 @@ function DynamicInput({ fields }) {
                   className="form-control"
                   type="text"
                   value={singleService.service}
-                  onChange={(e) => handleServiceChange(e, index)}
                   required
                   {...register(`medicine${index}`)}
                 />
@@ -58,7 +49,6 @@ function DynamicInput({ fields }) {
                   className="form-control datetimepicker"
                   type="text"
                   value={singleService.service}
-                  onChange={(e) => handleServiceChange(e, index)}
                   {...register(`duration${index}`)}
                 />
               </div>
@@ -70,7 +60,6 @@ function DynamicInput({ fields }) {
                   className="form-control datetimepicker"
                   type="text"
                   value={singleService.service}
-                  onChange={(e) => handleServiceChange(e, index)}
                   {...register(`amount${index}`)}
                 />
               </div>

@@ -24,7 +24,7 @@ function Patients() {
                   <SearchBar name="Patients List" />
                   {/* /Table Header */}
                   <Table
-                    headElements={["Number", "Name", "Specialization"]}
+                    headElements={["Num", "Name", "Specialization"]}
                     bodyElements={[
                       ["Andrea Lalema", "Otolaryngology"],
                       ["Smith Bruklin", "Otolaryngology"],
