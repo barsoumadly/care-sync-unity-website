@@ -1,10 +1,25 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 
 function DynamicInput({ fields }) {
-  const [serviceList, setServiceList] = useState([{ medicine: "" }]);
+  const [serviceList, setServiceList] = useState([
+    { medicine: "", duration: "", amount: "" },
+  ]);
+  // const [medicinesList, setMedicinesList] = useState([]);
+  // const { register, handleSubmit, reset } = useForm();
 
-  const { register, handleSubmit, reset } = useForm();
+  const handleServiceChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...serviceList];
+    list[index][name] = value;
+    setServiceList(list);
+  };
+
+  const handleServiceAdd = () => {
+    setServiceList([
+      ...serviceList,
+      { medicine: "", duration: "", amount: "" },
+    ]);
+  };
 
   const handleServiceRemove = (index) => {
     const list = [...serviceList];
@@ -12,21 +27,16 @@ function DynamicInput({ fields }) {
     setServiceList(list);
   };
 
-  const handleServiceAdd = () => {
-    setServiceList([...serviceList, { medicine: "" }]);
-  };
-
   function handleCancel() {
-    setServiceList([{ medicine: "" }]);
-    reset();
+    setServiceList([{ medicine: "", duration: "", amount: "" }]);
   }
 
-  function onSubmit(data) {
-    console.log(data);
+  function handleSubmit() {
+    console.log(serviceList);
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit}>
       <div className="row">
         {serviceList.map((singleService, index) => (
           <>
@@ -36,9 +46,10 @@ function DynamicInput({ fields }) {
                 <input
                   className="form-control"
                   type="text"
-                  value={singleService.service}
+                  name="medicine"
+                  value={singleService.medicine}
+                  onChange={(e) => handleServiceChange(e, index)}
                   required
-                  {...register(`medicine${index}`)}
                 />
               </div>
             </div>
@@ -48,8 +59,9 @@ function DynamicInput({ fields }) {
                 <input
                   className="form-control datetimepicker"
                   type="text"
-                  value={singleService.service}
-                  {...register(`duration${index}`)}
+                  name="duration"
+                  onChange={(e) => handleServiceChange(e, index)}
+                  value={singleService.duration}
                 />
               </div>
             </div>
@@ -59,8 +71,9 @@ function DynamicInput({ fields }) {
                 <input
                   className="form-control datetimepicker"
                   type="text"
-                  value={singleService.service}
-                  {...register(`amount${index}`)}
+                  name="amount"
+                  value={singleService.amount}
+                  onChange={(e) => handleServiceChange(e, index)}
                 />
               </div>
             </div>
@@ -95,7 +108,11 @@ function DynamicInput({ fields }) {
       </div>
       <div className="row">
         <div className="col-12 col-md-6 col-xl-9" style={{ margin: "10px 0" }}>
-          <button className={`btn btn-primary btn-block `} type="submit">
+          <button
+            className={`btn btn-primary btn-block `}
+            type="button"
+            onClick={handleSubmit}
+          >
             Save Prescription
           </button>
         </div>
