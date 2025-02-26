@@ -3,6 +3,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { logout } from "../../../services/auth";
+import { useState } from "react";
 
 function telephoneCheck(p) {
   var phoneRe = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
@@ -15,15 +16,30 @@ function telephoneCheck(p) {
 }
 
 function CompleteClinicProfile() {
+  const [images, setImage] = useState([]);
   const { register, handleSubmit, reset } = useForm();
   const { userLogout } = useAuth();
 
+  // Upload images
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    setImage((images) => [...images, files[0]]);
+  };
+
+  function deleteHandler(image) {
+    setImage((images) => images.filter((e) => e !== image));
+    URL.revokeObjectURL(image);
+  }
+
+  // Upload Submit Form
   function onSubmit(data) {
-    console.log(data);
+    const formData = { ...data, images: images };
+    console.log(formData);
     telephoneCheck(data.mobile);
   }
 
   function handleCancel() {
+    setImage([]);
     reset();
   }
   return (
@@ -194,7 +210,7 @@ function CompleteClinicProfile() {
                               accept="image/*"
                               name="image"
                               id="file"
-                              // onchange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
+                              onChange={uploadImage}
                               className="hide-input"
                               data-cf-modified-f4b406440a9d28b1c089eaf4-=""
                             />
@@ -202,20 +218,23 @@ function CompleteClinicProfile() {
                               Choose File
                             </label>
                           </div>
-                          <div className="upload-images upload-size">
-                            <img
-                              src="/images/profile/clinic.jpeg"
-                              alt="Image"
-                            />
-                            <a
-                              href="javascript:void(0);"
-                              className="btn-icon logo-hide-btn"
-                            >
-                              <i className="feather-x-circle" />
-                            </a>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexWrap: "wrap",
+                            }}
+                          >
+                            {images.map((image, i) => (
+                              <ShowImages
+                                image={image}
+                                key={i}
+                                deleteImage={deleteHandler}
+                              />
+                            ))}
                           </div>
                         </div>
                       </div>
+
                       <div className="col-12">
                         <div className="doctor-submit text-end">
                           <button
@@ -225,7 +244,7 @@ function CompleteClinicProfile() {
                             Submit
                           </button>
                           <button
-                            type="submit"
+                            type="button"
                             className="btn btn-primary cancel-form"
                             onClick={handleCancel}
                           >
@@ -246,3 +265,19 @@ function CompleteClinicProfile() {
 }
 
 export default CompleteClinicProfile;
+
+function ShowImages({ image, deleteImage }) {
+  return (
+    <div className="upload-images upload-size" style={{ marginLeft: "30px" }}>
+      <img src={`${URL.createObjectURL(image)}`} alt="Image" />
+      <button
+        onClick={() => deleteImage(image)}
+        type="button"
+        className="btn-icon logo-hide-btn"
+        style={{ border: "0", background: "#fff" }}
+      >
+        <i className="feather-x-circle" />
+      </button>
+    </div>
+  );
+}
