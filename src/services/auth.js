@@ -1,4 +1,7 @@
 import axios from "axios";
+import { BroadcastChannel } from "broadcast-channel";
+
+const logoutChannel = new BroadcastChannel("logout");
 
 // API URL is defined in vite.config.js
 // const API_URL = import.meta.env.VITE_API_URL;
@@ -18,6 +21,19 @@ const requestEmailVerification = async function (userData) {
 
 const login = async function (userData) {
   return await axios.post(`${API_URL}/auth/login`, userData);
+};
+
+const logout = function () {
+  logoutChannel.postMessage("Logout");
+  localStorage.clear();
+  window.location.href = window.location.origin + "/login";
+};
+
+const logoutAllTabs = function () {
+  logoutChannel.onmessage = () => {
+    logout();
+    logoutChannel.close();
+  };
 };
 
 const forgotPassword = async function (userData) {
@@ -43,6 +59,8 @@ export {
   verifyEmail,
   requestEmailVerification,
   login,
+  logout,
+  logoutAllTabs,
   forgotPassword,
   verifyResetPasswordOtp,
   resetPassword,
