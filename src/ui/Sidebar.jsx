@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { logout } from "../services/auth";
 
 function Sidebar({ minbar, showbar, children }) {
   const { userLogout } = useAuth();
+
   return (
     <div className={minbar ? "mini-sidebar" : ""}>
       <div
@@ -18,10 +20,12 @@ function Sidebar({ minbar, showbar, children }) {
             </ul>
             <div className="logout-btn">
               <NavLink
-                to={"/login"}
                 replace={true}
                 className="link"
-                onClick={userLogout}
+                onClick={() => {
+                  userLogout();
+                  logout();
+                }}
               >
                 <span className="menu-side">
                   <img src="/images/dashborad/icons/logout.svg" alt="" />
