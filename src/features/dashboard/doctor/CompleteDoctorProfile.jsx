@@ -16,11 +16,23 @@ function telephoneCheck(p) {
 }
 
 function CompleteDoctorProfile() {
+  const [images, setImage] = useState([]);
   const [education, setEducation] = useState();
   const [experience, setExperience] = useState();
   const [certification, setCertification] = useState();
   const { register, handleSubmit, reset } = useForm();
   const { userLogout } = useAuth();
+
+  // Upload images
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    setImage((images) => [...images, files[0]]);
+  };
+
+  function deleteHandler(image) {
+    setImage((images) => images.filter((e) => e !== image));
+    URL.revokeObjectURL(image);
+  }
 
   function onSubmit(data) {
     const formData = {
@@ -28,8 +40,9 @@ function CompleteDoctorProfile() {
       education: education,
       experience: experience,
       certification: certification,
+      images: images,
     };
-    console.log(formData, formData.mobile);
+    console.log(formData);
     telephoneCheck(formData.mobile);
   }
 
@@ -37,6 +50,7 @@ function CompleteDoctorProfile() {
     setEducation([{}]);
     setExperience([{}]);
     setCertification([{}]);
+    setImage([]);
     reset();
   }
   return (
@@ -108,6 +122,7 @@ function CompleteDoctorProfile() {
                           <input
                             className="form-control"
                             type="text"
+                            required
                             placeholder="+1 23 456890"
                             {...register("mobile")}
                           />
@@ -122,6 +137,7 @@ function CompleteDoctorProfile() {
                           <input
                             className="form-control datetimepicker"
                             type="number"
+                            required
                             {...register("age")}
                           />
                         </div>
@@ -138,6 +154,7 @@ function CompleteDoctorProfile() {
                                 type="radio"
                                 name="gender"
                                 value={"male"}
+                                required
                                 className="form-check-input"
                                 defaultChecked=""
                                 {...register("gender")}
@@ -169,9 +186,6 @@ function CompleteDoctorProfile() {
                             className="form-control"
                             rows={3}
                             cols={30}
-                            defaultValue={
-                              "101, Elanxa Apartments, 340 N Madison Avenue"
-                            }
                             {...register("biography")}
                           />
                         </div>
@@ -255,7 +269,7 @@ function CompleteDoctorProfile() {
                               accept="image/*"
                               name="image"
                               id="file"
-                              // onchange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
+                              onChange={uploadImage}
                               className="hide-input"
                               data-cf-modified-f4b406440a9d28b1c089eaf4-=""
                             />
@@ -263,14 +277,19 @@ function CompleteDoctorProfile() {
                               Choose File
                             </label>
                           </div>
-                          <div className="upload-images upload-size">
-                            <img src="assets/img/favicon.png" alt="Image" />
-                            <a
-                              href="javascript:void(0);"
-                              className="btn-icon logo-hide-btn"
-                            >
-                              <i className="feather-x-circle" />
-                            </a>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexWrap: "wrap",
+                            }}
+                          >
+                            {images.map((image, i) => (
+                              <ShowImages
+                                image={image}
+                                key={i}
+                                deleteImage={deleteHandler}
+                              />
+                            ))}
                           </div>
                         </div>
                       </div>
@@ -283,7 +302,7 @@ function CompleteDoctorProfile() {
                             Submit
                           </button>
                           <button
-                            type="submit"
+                            type="button"
                             className="btn btn-primary cancel-form"
                             onClick={handleCancel}
                           >
@@ -393,5 +412,21 @@ function DynamicField({ fields, serviceList = [{}], setServiceList }) {
         </div>
       ))}
     </>
+  );
+}
+
+function ShowImages({ image, deleteImage }) {
+  return (
+    <div className="upload-images upload-size" style={{ marginLeft: "30px" }}>
+      <img src={`${URL.createObjectURL(image)}`} alt="Image" />
+      <button
+        onClick={() => deleteImage(image)}
+        type="button"
+        className="btn-icon logo-hide-btn"
+        style={{ border: "0", background: "#fff" }}
+      >
+        <i className="feather-x-circle" />
+      </button>
+    </div>
   );
 }
