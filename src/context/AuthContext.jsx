@@ -6,12 +6,18 @@ const initialState = {
   user: null,
   userEmail: null,
   isAuthenticated: false,
+  isProfileCompleted: false,
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case "login":
-      return { ...state, user: action.payload, isAuthenticated: true };
+      return {
+        ...state,
+        user: action.payload,
+        isAuthenticated: true,
+        isProfileCompleted: action.payload.isProfileCompleted,
+      };
     case "saveEmail":
       return { ...state, userEmail: action.payload, isAuthenticated: true };
     case "logout":
