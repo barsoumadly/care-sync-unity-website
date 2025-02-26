@@ -4,10 +4,14 @@ import Header from "../../../ui/Header";
 import Sidebar from "../../../ui/Sidebar";
 import { Outlet } from "react-router-dom";
 import DoctorSidebar from "./DoctorSidebar";
+import { useAuth } from "../../../context/AuthContext";
+
+import CompleteDoctorProfile from "./CompleteDoctorProfile";
 
 function DashboardLayout() {
   const [showbar, setShowbar] = useState(true);
   const [minbar, setMinbar] = useState(false);
+  const { isProfileCompleted } = useAuth();
 
   return (
     <>
@@ -16,12 +20,18 @@ function DashboardLayout() {
         setMinbar={setMinbar}
         url={"/doctor/dashboard"}
       />
-      <Sidebar minbar={minbar} showbar={showbar}>
-        <DoctorSidebar />
-      </Sidebar>
-      <main className={minbar ? "mini-sidebar" : ""}>
-        <Outlet />
-      </main>
+      {isProfileCompleted ? (
+        <>
+          <Sidebar minbar={minbar} showbar={showbar}>
+            <DoctorSidebar />
+          </Sidebar>
+          <main className={minbar ? "mini-sidebar" : ""}>
+            <Outlet />
+          </main>
+        </>
+      ) : (
+        <CompleteDoctorProfile />
+      )}
     </>
   );
 }
