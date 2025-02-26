@@ -7,7 +7,7 @@ function Header({ setShowbar, setMinbar, url }) {
     <div className="header">
       <div className="header-left">
         <div className="logo">
-          <NavLink to={url}>
+          <NavLink to={"/"}>
             <img
               src="/images/logo/care-sync-unity-logo.png"
               width="190"
