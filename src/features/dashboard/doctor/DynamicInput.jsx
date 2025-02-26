@@ -1,11 +1,7 @@
 import { useState } from "react";
 
 function DynamicInput({ fields }) {
-  const [serviceList, setServiceList] = useState([
-    { medicine: "", duration: "", amount: "" },
-  ]);
-  // const [medicinesList, setMedicinesList] = useState([]);
-  // const { register, handleSubmit, reset } = useForm();
+  const [serviceList, setServiceList] = useState([{}]);
 
   const handleServiceChange = (e, index) => {
     const { name, value } = e.target;
@@ -15,10 +11,7 @@ function DynamicInput({ fields }) {
   };
 
   const handleServiceAdd = () => {
-    setServiceList([
-      ...serviceList,
-      { medicine: "", duration: "", amount: "" },
-    ]);
+    setServiceList([...serviceList, {}]);
   };
 
   const handleServiceRemove = (index) => {
@@ -28,7 +21,7 @@ function DynamicInput({ fields }) {
   };
 
   function handleCancel() {
-    setServiceList([{ medicine: "", duration: "", amount: "" }]);
+    setServiceList([{}]);
   }
 
   function handleSubmit() {
@@ -46,7 +39,7 @@ function DynamicInput({ fields }) {
                 <input
                   className="form-control"
                   type="text"
-                  name="medicine"
+                  name={fields.f1.toLowerCase()}
                   value={singleService.medicine}
                   onChange={(e) => handleServiceChange(e, index)}
                   required
@@ -59,24 +52,26 @@ function DynamicInput({ fields }) {
                 <input
                   className="form-control datetimepicker"
                   type="text"
-                  name="duration"
+                  name={fields.f2.toLowerCase()}
                   onChange={(e) => handleServiceChange(e, index)}
                   value={singleService.duration}
                 />
               </div>
             </div>
-            <div className="col-12 col-md-6 col-xl-2">
-              <div className="input-block local-forms ">
-                <label>{fields.f3}</label>
-                <input
-                  className="form-control datetimepicker"
-                  type="text"
-                  name="amount"
-                  value={singleService.amount}
-                  onChange={(e) => handleServiceChange(e, index)}
-                />
+            {fields.f3 && (
+              <div className="col-12 col-md-6 col-xl-2">
+                <div className="input-block local-forms ">
+                  <label>{fields.f3}</label>
+                  <input
+                    className="form-control datetimepicker"
+                    type="text"
+                    name={fields.f3.toLowerCase()}
+                    value={singleService.amount}
+                    onChange={(e) => handleServiceChange(e, index)}
+                  />
+                </div>
               </div>
-            </div>
+            )}
             {serviceList.length - 1 === index && (
               <div className="col-12 col-md-6 col-xl-2">
                 <div className="doctor-submit">
