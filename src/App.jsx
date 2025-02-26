@@ -72,6 +72,8 @@ import PrescriptionsList from "./features/dashboard/patient/prescription/Prescri
 import PrescriptionPaper from "./features/dashboard/patient/prescription/PrescriptionPaper";
 import MedicinesList from "./features/dashboard/patient/pharmacies/MedicinesList";
 import MedicineList from "./features/dashboard/patient/medicines/MedicinesList";
+import { useEffect } from "react";
+import { logoutAllTabs } from "./services/auth";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -83,6 +85,10 @@ const queryClient = new QueryClient({
 
 function App() {
   window.addEventListener(`contextmenu`, (e) => e.preventDefault());
+
+  useEffect(() => {
+    logoutAllTabs();
+  }, []);
 
   // const [isLoading, setIsLoading] = useState(true);
   // setTimeout(() => setIsLoading(false), 2000);
