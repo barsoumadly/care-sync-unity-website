@@ -1,11 +1,26 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { IoArrowBackOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import { logout } from "../../../services/auth";
+import { useAuth } from "../../../context/AuthContext";
+
+function telephoneCheck(p) {
+  var phoneRe = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+  var digits = p.replace(/\D/g, "");
+  alert(
+    phoneRe.test(digits)
+      ? "😁Your Phone number is Vaild"
+      : "❌Your Phone number isn't Vaild"
+  );
+}
 
 function CompleteDoctorProfile() {
   const [education, setEducation] = useState();
   const [experience, setExperience] = useState();
   const [certification, setCertification] = useState();
   const { register, handleSubmit, reset } = useForm();
+  const { userLogout } = useAuth();
 
   function onSubmit(data) {
     const formData = {
@@ -14,7 +29,8 @@ function CompleteDoctorProfile() {
       experience: experience,
       certification: certification,
     };
-    console.log(formData);
+    console.log(formData, formData.mobile);
+    telephoneCheck(formData.mobile);
   }
 
   function handleCancel() {
@@ -30,7 +46,7 @@ function CompleteDoctorProfile() {
           {/* Page Header */}
           <div className="page-header">
             <div className="row">
-              <div className="col-sm-12">
+              <div className="col-sm-7 col-6">
                 <ul className="breadcrumb">
                   <li className="breadcrumb-item">
                     <a>Doctors </a>
@@ -40,6 +56,17 @@ function CompleteDoctorProfile() {
                   </li>
                   <li className="breadcrumb-item active">Complete Profile</li>
                 </ul>
+              </div>
+              <div className="col-sm-5 col-6 text-end">
+                <Link
+                  onClick={() => {
+                    userLogout();
+                    logout();
+                  }}
+                  class="btn btn-primary btn-rounded"
+                >
+                  <IoArrowBackOutline /> Logout
+                </Link>
               </div>
             </div>
           </div>
