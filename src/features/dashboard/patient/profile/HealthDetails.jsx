@@ -128,7 +128,7 @@ function HealthDetails({
             <input
               className="form-control"
               type="text"
-              placeholder="ex: 85 mmHg"
+              placeholder="ex: 85 mm/Hg"
               value={bloodPressure}
               onChange={(event) =>
                 handleBloodPressure(Number(event.target.value))
