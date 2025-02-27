@@ -4,7 +4,6 @@ import DashboardContents from "./DashboardContents";
 function PatientDashboard() {
   const { user } = useAuth();
   const hour = new Date().getHours();
-  const isProfileComplete = false;
 
   return (
     <div className="main-wrapper">
@@ -52,7 +51,7 @@ function PatientDashboard() {
               </div>
             </div>
           </div>
-          {isProfileComplete && <DashboardContents />}
+          <DashboardContents />
         </div>
       </div>
     </div>
