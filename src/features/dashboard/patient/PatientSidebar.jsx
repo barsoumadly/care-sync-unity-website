@@ -105,13 +105,13 @@ function PatientSidebar() {
         </NavLink>
       </li>
 
-      {/* Edit Profile */}
+      {/* View Profile */}
       <li className="submenu">
-        <NavLink to={"/patient/edit-profile"} className="link">
+        <NavLink to={"/patient/view-profile"} className="link">
           <span className="menu-side">
             <FaUserEdit />
           </span>
-          <span> Edit Profile </span>
+          <span> View Profile </span>
         </NavLink>
       </li>
     </>
