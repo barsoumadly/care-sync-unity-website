@@ -18,7 +18,7 @@ function PharmacyLayout() {
         setMinbar={setMinbar}
         url={"/pharmacy/dashboard"}
       />
-      {isProfileCompleted ? (
+      {true ? (
         <>
           <Sidebar minbar={minbar} showbar={showbar}>
             <PharmacySidbar />
