@@ -27,7 +27,7 @@ function CompletePatientProfile() {
     "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
   );
 
-  const handldeSubmit = function (event) {
+  const handleSubmit = function (event) {
     event.preventDefault();
     if (phoneNumber.length > 12) {
       return toast.error("Enter a valid phone number.");
@@ -80,13 +80,12 @@ function CompletePatientProfile() {
             </div>
           </div>
         </div>
-        {/* <CompleteProfileToast /> */}
-        {/* /Page Header */}
+
         <div className="row">
           <div className="col-sm-12">
             <div className="card">
               <div className="card-body">
-                <form onSubmit={handldeSubmit}>
+                <form onSubmit={handleSubmit}>
                   <PersonalDetails
                     phoneNumber={phoneNumber}
                     age={age}
