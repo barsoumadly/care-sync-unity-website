@@ -77,6 +77,8 @@ import { logoutAllTabs } from "./services/auth";
 import PatientProfileView from "./features/dashboard/patient/profile/PatientProfileView";
 import PharmacyLayout from "./features/dashboard/pharmacy/PharmacyLayout";
 import PharmacyDashboard from "./features/dashboard/pharmacy/PharmacyDashboard";
+import LaboratoryLayout from "./features/dashboard/laboratory/LaboratoryLayout";
+import LaboratoryDashboard from "./features/dashboard/laboratory/LaboratoryDashboard";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -252,6 +254,19 @@ function App() {
             >
               <Route path="dashboard" element={<PharmacyDashboard />} />
             </Route>
+
+            {/* Laboratory */}
+            <Route
+              path="laboratory"
+              element={
+                <ProtectedRoute>
+                  <LaboratoryLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="dashboard" element={<LaboratoryDashboard />} />
+            </Route>
+
             <Route path="*" element={<PageNotFound />} />
             <Route path="/internal-server-error" element={<ServerDown />} />
           </Routes>
