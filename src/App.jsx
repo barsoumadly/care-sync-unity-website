@@ -74,6 +74,9 @@ import MedicinesList from "./features/dashboard/patient/pharmacies/MedicinesList
 import MedicineList from "./features/dashboard/patient/medicines/MedicinesList";
 import { useEffect } from "react";
 import { logoutAllTabs } from "./services/auth";
+import PatientProfileView from "./features/dashboard/patient/profile/PatientProfileView";
+import PharmacyLayout from "./features/dashboard/pharmacy/PharmacyLayout";
+import PharmacyDashboard from "./features/dashboard/pharmacy/PharmacyDashboard";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -203,7 +206,7 @@ function App() {
               <Route path="clinics" element={<ClinicsList />} />
               <Route path="chat" element={<PatientChat />} />
               <Route path="appointments" element={<PatientAppointments />} />
-              <Route path="view-profile" element={<EditProfilePatient />} />
+              <Route path="view-profile" element={<PatientProfileView />} />
               <Route path="clinics/:clinicName" element={<ClinicProfile />} />
               <Route
                 path="clinics/:clinicName/doctors"
@@ -236,6 +239,18 @@ function App() {
               <Route path="prescriptions" element={<PrescriptionsList />} />
               <Route path="prescription/:id" element={<PrescriptionPaper />} />
               <Route path="medicines" element={<MedicineList />} />
+            </Route>
+
+            {/* Pharmacy */}
+            <Route
+              path="pharmacy"
+              element={
+                <ProtectedRoute>
+                  <PharmacyLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="dashboard" element={<PharmacyDashboard />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
             <Route path="/internal-server-error" element={<ServerDown />} />
