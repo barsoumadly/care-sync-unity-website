@@ -1,6 +1,6 @@
 import { FaUserEdit } from "react-icons/fa";
 import { GiMedicines } from "react-icons/gi";
-import { MdDashboard } from "react-icons/md";
+import { MdAddCircleOutline, MdDashboard } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 function PharmacySidbar() {
@@ -23,6 +23,16 @@ function PharmacySidbar() {
             <GiMedicines />
           </span>
           <span> Medicines </span>
+        </NavLink>
+      </li>
+
+      {/* Add Medicine */}
+      <li className="submenu">
+        <NavLink to={"/pharmacy/add-medicine"} className="link">
+          <span className="menu-side">
+            <MdAddCircleOutline />
+          </span>
+          <span> Add Medicine </span>
         </NavLink>
       </li>
 
