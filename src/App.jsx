@@ -79,6 +79,9 @@ import PharmacyLayout from "./features/dashboard/pharmacy/PharmacyLayout";
 import PharmacyDashboard from "./features/dashboard/pharmacy/PharmacyDashboard";
 import LaboratoryLayout from "./features/dashboard/laboratory/LaboratoryLayout";
 import LaboratoryDashboard from "./features/dashboard/laboratory/LaboratoryDashboard";
+import PharmacyMedicinesList from "./features/dashboard/pharmacy/medicines/PharmacyMedicinesList";
+import EditMedicineTuple from "./features/dashboard/pharmacy/medicines/EditMedicineTuple";
+import MedicineAddition from "./features/dashboard/pharmacy/medicines/MedicineAddition";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -253,6 +256,9 @@ function App() {
               }
             >
               <Route path="dashboard" element={<PharmacyDashboard />} />
+              <Route path="medicines" element={<PharmacyMedicinesList />} />
+              <Route path="edit-medicine" element={<EditMedicineTuple />} />
+              <Route path="add-medicine" element={<MedicineAddition />} />
             </Route>
 
             {/* Laboratory */}
