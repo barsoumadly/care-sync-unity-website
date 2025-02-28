@@ -84,6 +84,7 @@ import EditMedicineTuple from "./features/dashboard/pharmacy/medicines/EditMedic
 import MedicineAddition from "./features/dashboard/pharmacy/medicines/MedicineAddition";
 import PharmacyProfileView from "./features/dashboard/pharmacy/profile/PharmacyProfileView";
 import PharmacyEditProfile from "./features/dashboard/pharmacy/profile/PharmacyEditProfile";
+import PatientEditProfile from "./features/dashboard/patient/profile/PatientEditProfile";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -214,6 +215,7 @@ function App() {
               <Route path="chat" element={<PatientChat />} />
               <Route path="appointments" element={<PatientAppointments />} />
               <Route path="view-profile" element={<PatientProfileView />} />
+              <Route path="edit-profile" element={<PatientEditProfile />} />
               <Route path="clinics/:clinicName" element={<ClinicProfile />} />
               <Route
                 path="clinics/:clinicName/doctors"
