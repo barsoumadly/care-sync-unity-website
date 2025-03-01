@@ -1,17 +1,31 @@
+import { useForm } from "react-hook-form";
+
 function PatientAddressDetails({
-  city,
-  area,
-  address,
-  handleCity,
-  handleArea,
-  handleAddress,
+  patientData,
+  onChangePatientData,
+  onChangePageNumber,
 }) {
+  const { register, handleSubmit } = useForm();
+
+  const handleDecPageNumber = function () {
+    onChangePageNumber((pageNumber) => pageNumber - 1);
+  };
+
+  const performSubmit = function (data) {
+    onChangePatientData({ ...patientData, ...data });
+    onChangePageNumber((pageNumber) => pageNumber + 1);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(performSubmit)}>
       <div className="row">
-        <div className="col-12">
+        <div className="col-12" style={{ marginTop: "50px" }}>
           <div className="form-heading">
-            <h4>Address Details</h4>
+            <h4>
+              <span style={{ fontSize: "15px" }}>
+                Enter Your Address Details
+              </span>
+            </h4>
           </div>
         </div>
         <div className="col-12 col-md-6 col-xl-3">
@@ -22,8 +36,8 @@ function PatientAddressDetails({
             <select
               className="form-control"
               required
-              value={city}
-              onChange={(event) => handleCity(event.target.value)}
+              value={patientData.city}
+              {...register("city")}
             >
               <option value="select-option" dir="">
                 Select Option
@@ -39,8 +53,8 @@ function PatientAddressDetails({
             <select
               className="form-control"
               required
-              value={area}
-              onChange={(event) => handleArea(event.target.value)}
+              value={patientData.area}
+              {...register("area")}
             >
               <option value="select-option" dir="">
                 Select Option
@@ -58,17 +72,31 @@ function PatientAddressDetails({
               type="text"
               required
               placeholder="ex: El Hegaz St, Al Matar, El Nozha"
-              value={address}
-              onChange={(event) => handleAddress(event.target.value)}
+              value={patientData.address}
+              {...register("address")}
             />
           </div>
         </div>
       </div>
-      <div className="col-12">
-        <div className="doctor-submit text-end">
-          <button type="submit" className="btn btn-primary submit-form me-2">
-            Next
-          </button>
+
+      <div className="row">
+        <div className="col-12 col-md-6 col-xl-1">
+          <div className="doctor-submit text-end">
+            <button
+              type="submit"
+              className="btn btn-primary submit-form me-2"
+              onClick={handleDecPageNumber}
+            >
+              Back
+            </button>
+          </div>
+        </div>
+        <div className="col-12 col-md-6 col-xl-11">
+          <div className="doctor-submit text-end">
+            <button type="submit" className="btn btn-primary submit-form me-2">
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </form>
