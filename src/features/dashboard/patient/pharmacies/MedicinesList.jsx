@@ -66,7 +66,7 @@ function MedicinesList() {
                           <tr>
                             <th>Medicine Name</th>
                             <th>Expiration Date</th>
-                            <th>Cost</th>
+                            <th>Price</th>
                             <th />
                           </tr>
                         </thead>
