@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import PersonalDetails from "./PersonalDetails";
-import AddressDetails from "./AddressDetails";
-import HealthDetails from "./HealthDetails";
-import ProfilePhoto from "./ProfilePhoto";
+import PatientPersonalDetails from "./PersonalDetails";
+import PatientAddressDetails from "./PatientAddressDetails";
+import PatientHealthDetails from "./PatientHealthDetails";
+import PatientProfilePhoto from "./PatientProfilePhoto";
 import toast from "react-hot-toast";
 import { IoArrowBackOutline } from "react-icons/io5";
 
@@ -79,7 +79,7 @@ function PatientEditProfile() {
             <div className="card">
               <div className="card-body">
                 <form onSubmit={handleSubmit}>
-                  <PersonalDetails
+                  <PatientPersonalDetails
                     phoneNumber={phoneNumber}
                     age={age}
                     gender={gender}
@@ -87,7 +87,7 @@ function PatientEditProfile() {
                     handleAge={setAge}
                     handleGender={setGender}
                   />
-                  <AddressDetails
+                  <PatientAddressDetails
                     city={city}
                     area={area}
                     address={address}
@@ -95,7 +95,7 @@ function PatientEditProfile() {
                     handleArea={setArea}
                     handleAddress={setAddress}
                   />
-                  <HealthDetails
+                  <PatientHealthDetails
                     temperature={temperature}
                     weigh={weigh}
                     height={height}
@@ -111,7 +111,10 @@ function PatientEditProfile() {
                     handleBloodSugar={setBloodSugar}
                     handleBloodPressure={setBloodPressure}
                   />
-                  <ProfilePhoto avatar={avatar} handleAvatar={setAvatar} />
+                  <PatientProfilePhoto
+                    avatar={avatar}
+                    handleAvatar={setAvatar}
+                  />
                   <div className="col-12">
                     <div className="doctor-submit text-end">
                       <button
