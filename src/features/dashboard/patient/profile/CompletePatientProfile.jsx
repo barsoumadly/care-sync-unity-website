@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { logout } from "../../../../services/auth";
 import { useAuth } from "../../../../context/AuthContext";
 import { useState } from "react";
-import PersonalDetails from "./PersonalDetails";
-import AddressDetails from "./AddressDetails";
-import HealthDetails from "./HealthDetails";
-import ProfilePhoto from "./ProfilePhoto";
+import PatientPersonalDetails from "./PersonalDetails";
+import PatientAddressDetails from "./PatientAddressDetails";
+import PatientHealthDetails from "./PatientHealthDetails";
+import PatientProfilePhoto from "./PatientProfilePhoto";
 import toast from "react-hot-toast";
 
 function CompletePatientProfile() {
@@ -26,6 +26,8 @@ function CompletePatientProfile() {
   const [avatar, setAvatar] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
   );
+
+  const [patientData, setPatientData] = useState({});
 
   const handleSubmit = function (event) {
     event.preventDefault();
@@ -85,40 +87,45 @@ function CompletePatientProfile() {
           <div className="col-sm-12">
             <div className="card">
               <div className="card-body">
-                <form onSubmit={handleSubmit}>
-                  <PersonalDetails
-                    phoneNumber={phoneNumber}
-                    age={age}
-                    gender={gender}
-                    handlePhoneNumber={setPhoneNumber}
-                    handleAge={setAge}
-                    handleGender={setGender}
+                <div>
+                  <PatientPersonalDetails
+                    // phoneNumber={phoneNumber}
+                    // age={age}
+                    // gender={gender}
+                    // handlePhoneNumber={setPhoneNumber}
+                    // handleAge={setAge}
+                    // handleGender={setGender}
+                    patientData={patientData}
+                    onChangePatientData={setPatientData}
                   />
-                  <AddressDetails
-                    city={city}
-                    area={area}
-                    address={address}
-                    handleCity={setCity}
-                    handleArea={setArea}
-                    handleAddress={setAddress}
+                  <PatientAddressDetails
+                  // city={city}
+                  // area={area}
+                  // address={address}
+                  // handleCity={setCity}
+                  // handleArea={setArea}
+                  // handleAddress={setAddress}
                   />
-                  <HealthDetails
-                    temperature={temperature}
-                    weigh={weigh}
-                    height={height}
-                    heartRate={heartRate}
-                    bloodType={bloodType}
-                    bloodSugar={bloodSugar}
-                    bloodPressure={bloodPressure}
-                    handleTemperature={setTemperature}
-                    handleWeigh={setWeigh}
-                    handleHeight={setHeight}
-                    handleHeartRate={setHeartRate}
-                    handleBloodType={setBloodType}
-                    handleBloodSugar={setBloodSugar}
-                    handleBloodPressure={setBloodPressure}
+                  <PatientHealthDetails
+                  // temperature={temperature}
+                  // weigh={weigh}
+                  // height={height}
+                  // heartRate={heartRate}
+                  // bloodType={bloodType}
+                  // bloodSugar={bloodSugar}
+                  // bloodPressure={bloodPressure}
+                  // handleTemperature={setTemperature}
+                  // handleWeigh={setWeigh}
+                  // handleHeight={setHeight}
+                  // handleHeartRate={setHeartRate}
+                  // handleBloodType={setBloodType}
+                  // handleBloodSugar={setBloodSugar}
+                  // handleBloodPressure={setBloodPressure}
                   />
-                  <ProfilePhoto avatar={avatar} handleAvatar={setAvatar} />
+                  <PatientProfilePhoto
+                    avatar={avatar}
+                    handleAvatar={setAvatar}
+                  />
                   <div className="col-12">
                     <div className="doctor-submit text-end">
                       <button
@@ -129,7 +136,7 @@ function CompletePatientProfile() {
                       </button>
                     </div>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>
