@@ -159,7 +159,7 @@ function Appointments() {
                             <th>Clinic Name</th>
                             <th>Date</th>
                             <th>Specialization</th>
-                            <th>Cost</th>
+                            <th>Price</th>
                             <th>Status</th>
                             <th />
                           </tr>
