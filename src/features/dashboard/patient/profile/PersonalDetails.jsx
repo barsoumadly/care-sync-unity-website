@@ -1,19 +1,28 @@
 import { useForm } from "react-hook-form";
 
-function PatientPersonalDetails({ patientData, onChangePatientData }) {
+function PatientPersonalDetails({
+  patientData,
+  onChangePatientData,
+  onChangePageNumber,
+}) {
   const { register, handleSubmit } = useForm();
 
   const performSubmit = function (data) {
-    onChangePatientData({ ...data });
+    onChangePatientData({ ...patientData, ...data });
+    onChangePageNumber((pageNumber) => pageNumber + 1);
   };
 
   return (
     <>
       <form onSubmit={handleSubmit(performSubmit)}>
         <div className="row">
-          <div className="col-12">
+          <div className="col-12" style={{ marginTop: "50px" }}>
             <div className="form-heading">
-              <h4>Personal Details</h4>
+              <h4>
+                <span style={{ fontSize: "15px" }}>
+                  Enter Your Personal Details
+                </span>
+              </h4>
             </div>
           </div>
           <div className="col-12 col-md-6 col-xl-3">
