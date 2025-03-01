@@ -57,7 +57,7 @@ import EditProfilePatient from "./features/dashboard/patient/EditProfile";
 import PaymentGateway from "./features/dashboard/patient/PaymentGateway";
 import DoctorsList from "./features/dashboard/patient/clinics/DoctorList";
 
-import CompleteDoctorProfile from "./features/dashboard/doctor/CompleteDoctorProfile";
+import CompleteDoctorProfile from "./features/dashboard/doctor/complete-profile/CompleteDoctorProfile";
 import CompleteClinicProfile from "./features/dashboard/clinic/CompleteClinicProfile";
 import ClinicProfile from "./features/dashboard/patient/clinics/ClinicProfile";
 import ClinicImages from "./features/dashboard/patient/clinics/ClinicImages";
@@ -135,14 +135,6 @@ function App() {
 
             {/* Clinic */}
             <Route
-              path="clinic/complete-profile"
-              element={
-                <ProtectedRoute>
-                  <CompleteClinicProfile />
-                </ProtectedRoute>
-              }
-            />
-            <Route
               path="clinic"
               element={
                 <ProtectedRoute>
@@ -150,6 +142,10 @@ function App() {
                 </ProtectedRoute>
               }
             >
+              <Route
+                path="complete-profile"
+                element={<CompleteClinicProfile />}
+              />
               <Route path="dashboard" element={<ClinicDashboard />} />
               {/* Doctors */}
               <Route path="doctor-list" element={<DoctorList />} />
@@ -180,10 +176,6 @@ function App() {
 
             {/* Doctor */}
             <Route
-              path="doctor/complete-profile"
-              element={<CompleteDoctorProfile />}
-            />
-            <Route
               path="doctor"
               element={
                 <ProtectedRoute>
@@ -191,6 +183,10 @@ function App() {
                 </ProtectedRoute>
               }
             >
+              <Route
+                path="complete-profile"
+                element={<CompleteDoctorProfile />}
+              />
               <Route path="dashboard" element={<DoctorDashboard />} />
               <Route path="doctor-shedule" element={<DoctorShedule />} />
               <Route path="patients" element={<ClinicsListOfDoctor />} />
