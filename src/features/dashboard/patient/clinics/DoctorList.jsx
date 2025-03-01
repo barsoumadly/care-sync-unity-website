@@ -99,7 +99,7 @@ function DoctorsList() {
                             <th>Specialization</th>
                             <th>Days</th>
                             <th>Time</th>
-                            <th>cost</th>
+                            <th>Price</th>
                             <th />
                           </tr>
                         </thead>
