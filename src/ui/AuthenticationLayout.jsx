@@ -7,6 +7,7 @@ import { getUserById } from "../services/auth";
 
 function AuthenticationLayout() {
   const { userLogin } = useAuth();
+
   useEffect(() => {
     const getUser = async function (isAuth) {
       try {
