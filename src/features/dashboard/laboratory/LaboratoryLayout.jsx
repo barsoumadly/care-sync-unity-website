@@ -3,7 +3,6 @@ import Header from "../../../ui/Header";
 import Sidebar from "../../../ui/Sidebar";
 import { useAuth } from "../../../context/AuthContext";
 import { Outlet } from "react-router-dom";
-import LaboratoryCompleteProfile from "./profile/LaboratoryCompleteProfile";
 import LaboratorySidebar from "./LaboratorySidebar";
 
 function LaboratoryLayout() {
@@ -18,18 +17,14 @@ function LaboratoryLayout() {
         setMinbar={setMinbar}
         url={"/pharmacy/dashboard"}
       />
-      {isProfileCompleted ? (
-        <>
-          <Sidebar minbar={minbar} showbar={showbar}>
-            <LaboratorySidebar />
-          </Sidebar>
-          <main className={minbar ? "mini-sidebar" : ""}>
-            <Outlet />
-          </main>
-        </>
-      ) : (
-        <LaboratoryCompleteProfile />
+      {isProfileCompleted && (
+        <Sidebar minbar={minbar} showbar={showbar}>
+          <LaboratorySidebar />
+        </Sidebar>
       )}
+      <main className={minbar ? "mini-sidebar" : ""}>
+        <Outlet />
+      </main>
     </>
   );
 }
