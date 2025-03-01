@@ -89,6 +89,8 @@ import CompletePatientProfile from "./features/dashboard/patient/profile/Complet
 import PatientAddressDetails from "./features/dashboard/patient/profile/PatientAddressDetails";
 import PatientHealthDetails from "./features/dashboard/patient/profile/PatientHealthDetails";
 import PatientProfilePhoto from "./features/dashboard/patient/profile/PatientProfilePhoto";
+import PharmacyCompleteProfile from "./features/dashboard/pharmacy/profile/PharmacyCompleteProfile";
+import LaboratoryCompleteProfile from "./features/dashboard/laboratory/profile/LaboratoryCompleteProfile";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -269,6 +271,10 @@ function App() {
                 </ProtectedRoute>
               }
             >
+              <Route
+                path="complete-profile"
+                element={<PharmacyCompleteProfile />}
+              />
               <Route path="dashboard" element={<PharmacyDashboard />} />
               <Route path="medicines" element={<PharmacyMedicinesList />} />
               <Route path="edit-medicine" element={<EditMedicineTuple />} />
@@ -286,6 +292,10 @@ function App() {
                 </ProtectedRoute>
               }
             >
+              <Route
+                path="complete-profile"
+                element={<LaboratoryCompleteProfile />}
+              />
               <Route path="dashboard" element={<LaboratoryDashboard />} />
             </Route>
 
