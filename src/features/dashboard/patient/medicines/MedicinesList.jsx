@@ -98,7 +98,7 @@ function MedicineList() {
                             <th>Pharmacy Name</th>
                             <th>Expiration Date</th>
                             <th>Date</th>
-                            <th>Cost</th>
+                            <th>Price</th>
                             <th>Status</th>
                             <th />
                           </tr>
