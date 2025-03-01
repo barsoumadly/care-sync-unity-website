@@ -20,7 +20,7 @@ function Register() {
 
   const navigate = useNavigate();
 
-  const { saveEmail, userLogin } = useAuth();
+  const { saveEmail, userRegister } = useAuth();
 
   const onSubmit = async function (Udata) {
     setIsLoading(true);
@@ -37,7 +37,7 @@ function Register() {
       navigate("/verify-email");
       setUserRole("PATIENT");
       saveEmail(userData.email);
-      userLogin(userData);
+      userRegister(userData);
     } catch (error) {
       if (error.message === "Network Error") {
         return navigate("/internal-server-error");
