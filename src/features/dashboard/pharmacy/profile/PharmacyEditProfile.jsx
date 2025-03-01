@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import AddressDetails from "./AddressDetails";
 import PharmacyDetails from "./PharmacyDetails";
 import ProfilePhoto from "./ProfilePhoto";
 import { useState } from "react";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 function PharmacyEditProfile() {
   const [pharmacyName, setPharmacyName] = useState("");
@@ -38,6 +40,14 @@ function PharmacyEditProfile() {
                 </li>
                 <li className="breadcrumb-item active">Edit Profile</li>
               </ul>
+            </div>
+            <div class="col-sm-5 col-6 text-end">
+              <Link
+                to="/pharmacy/view-profile"
+                class="btn btn-primary btn-rounded"
+              >
+                <IoArrowBackOutline /> Return Back
+              </Link>
             </div>
           </div>
         </div>
