@@ -3,7 +3,9 @@ function ProfilePhoto({ avatar, handleAvatar }) {
     <>
       <div className="col-12">
         <div className="form-heading">
-          <h4>Profile Photo (Optional)</h4>
+          <h4>
+            Profile Photo <span style={{ fontSize: "14px" }}>(Optional)</span>
+          </h4>
         </div>
       </div>
       <div className="col-12 col-md-6 col-xl-5">
