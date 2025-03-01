@@ -5,7 +5,8 @@ import { getUserById } from "../services/auth";
 
 export function LocalStorageState() {
   const navigate = useNavigate();
-  const { userLogin } = useAuth();
+  const { userLogin, isRegistered } = useAuth();
+
   useEffect(() => {
     const getUser = async function (isAuth) {
       try {
@@ -17,6 +18,7 @@ export function LocalStorageState() {
     };
 
     let isAuth = JSON.parse(localStorage.getItem("key"));
+
     if (isAuth === null) {
       navigate("/login");
     } else {
