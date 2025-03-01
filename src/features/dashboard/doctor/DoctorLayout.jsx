@@ -9,8 +9,8 @@ import { useAuth } from "../../../context/AuthContext";
 function DashboardLayout() {
   const [showbar, setShowbar] = useState(true);
   const [minbar, setMinbar] = useState(false);
-  // const { isProfileCompleted } = useAuth();
-  const isProfileCompleted = false;
+  const { isProfileCompleted } = useAuth();
+
   return (
     <>
       <Header
@@ -19,16 +19,14 @@ function DashboardLayout() {
         url={"/doctor/dashboard"}
       />
 
-      <>
-        {isProfileCompleted && (
-          <Sidebar minbar={minbar} showbar={showbar}>
-            <DoctorSidebar />
-          </Sidebar>
-        )}
-        <main className={minbar ? "mini-sidebar" : ""}>
-          <Outlet />
-        </main>
-      </>
+      {isProfileCompleted && (
+        <Sidebar minbar={minbar} showbar={showbar}>
+          <DoctorSidebar />
+        </Sidebar>
+      )}
+      <main className={minbar ? "mini-sidebar" : ""}>
+        <Outlet />
+      </main>
     </>
   );
 }
