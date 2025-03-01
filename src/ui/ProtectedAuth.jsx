@@ -3,17 +3,21 @@ import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 
 function ProtectedAuth({ children }) {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isRegistered } = useAuth();
   const navigate = useNavigate();
 
   useEffect(
     function () {
-      if (!isAuthenticated) {
-        navigate("/login");
+      if (!isRegistered) {
+        if (!isAuthenticated) {
+          navigate("/login");
+        }
       }
     },
     [isAuthenticated, navigate]
   );
+
+  if (isRegistered) return children;
 
   if (isAuthenticated) return children;
   return true;
