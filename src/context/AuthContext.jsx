@@ -7,32 +7,47 @@ const initialState = {
   userEmail: null,
   isAuthenticated: false,
   isProfileCompleted: false,
+  isRegistered: false,
 };
 
 function reducer(state, action) {
   switch (action.type) {
+    case "register": {
+      return {
+        ...state,
+        user: action.payload,
+        isRegistered: true,
+      };
+    }
     case "login":
       return {
         ...state,
         user: action.payload,
         isAuthenticated: true,
-        isProfileCompleted: action.payload.isProfileCompleted,
+        isProfileCompleted: action.payload.profileCompleted,
       };
     case "saveEmail":
-      return { ...state, userEmail: action.payload, isAuthenticated: true };
+      return { ...state, userEmail: action.payload, isRegistered: true };
     case "logout":
-      return { ...state, user: null, isAuthenticated: false };
+      return {
+        ...state,
+        user: null,
+        isAuthenticated: false,
+      };
   }
 }
 
 function UserContextProvider({ children }) {
-  const [{ user, userEmail, isAuthenticated }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [
+    { user, userEmail, isAuthenticated, isRegistered, isProfileCompleted },
+    dispatch,
+  ] = useReducer(reducer, initialState);
   function userLogin(user, token) {
     dispatch({ type: "login", payload: user });
     localStorage.setItem("key", JSON.stringify(token));
+  }
+  function userRegister(user) {
+    dispatch({ type: "register", payload: user });
   }
   function saveEmail(userEmail) {
     dispatch({ type: "saveEmail", payload: userEmail });
@@ -47,11 +62,14 @@ function UserContextProvider({ children }) {
     <userContext.Provider
       value={{
         user,
+        userRegister,
         userLogin,
         userEmail,
         saveEmail,
         userLogout,
         isAuthenticated,
+        isRegistered,
+        isProfileCompleted,
       }}
     >
       {children}
