@@ -4,7 +4,6 @@ import Header from "../../../ui/Header";
 import Sidebar from "../../../ui/Sidebar";
 import PharmacySidbar from "./PharmacySidebar";
 import { Outlet } from "react-router-dom";
-import PharmacyCompleteProfile from "./profile/PharmacyCompleteProfile";
 
 function PharmacyLayout() {
   const [showbar, setShowbar] = useState(true);
@@ -19,7 +18,7 @@ function PharmacyLayout() {
         url={"/pharmacy/dashboard"}
       />
 
-      {true && (
+      {isProfileCompleted && (
         <Sidebar minbar={minbar} showbar={showbar}>
           <PharmacySidbar />
         </Sidebar>
