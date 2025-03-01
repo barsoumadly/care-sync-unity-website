@@ -1,7 +1,10 @@
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../../../services/auth";
+import { useAuth } from "../../../context/AuthContext";
 
-function DashboardPageHeader({ pageList, currentPage }) {
+function DashboardPageHeader({ pageList, currentPage, button = "Go Back" }) {
+  const { userLogout } = useAuth();
   const navigate = useNavigate();
   function handleBack() {
     navigate(-1);
@@ -12,15 +15,27 @@ function DashboardPageHeader({ pageList, currentPage }) {
       <div className="col-sm-7 col-6 headerpage">
         <ul className="breadcrumb">
           {pageList.map((page, index) => (
-            <PageHeader key={index} name={page.name} link={page.link} />
+            <PageHeader key={index} name={page.name} link={page?.link} />
           ))}
           <li className="breadcrumb-item active">{currentPage}</li>
         </ul>{" "}
       </div>
-      <div className="col-sm-5 col-6 text-end m-b-30">
-        <button onClick={handleBack} className="btn btn-primary btn-rounded">
-          <IoArrowBackOutline /> Go Back
-        </button>
+      <div className="col-sm-5 col-6 text-end">
+        {button === "Logout" ? (
+          <Link
+            onClick={() => {
+              userLogout();
+              logout();
+            }}
+            class="btn btn-primary btn-rounded"
+          >
+            <IoArrowBackOutline /> Logout
+          </Link>
+        ) : (
+          <button onClick={handleBack} className="btn btn-primary btn-rounded">
+            <IoArrowBackOutline /> {button}
+          </button>
+        )}
       </div>
     </div>
   );
