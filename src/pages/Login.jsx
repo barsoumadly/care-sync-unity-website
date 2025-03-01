@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, replace, useNavigate } from "react-router-dom";
 import PasswordEye from "../features/authentication/PasswordEye";
 import { login, requestEmailVerification } from "../services/auth";
 import { useAuth } from "../context/AuthContext";
@@ -19,25 +19,15 @@ function Login() {
   const navigate = useNavigate();
 
   const showCompleteProfile = function (userRole) {
-    if (userRole === "DOCTOR") {
-      navigate("/doctor/complete-profile");
-    }
+    navigate(`/${userRole.toLowerCase().split("_")[0]}/complete-profile`);
   };
 
   const navigateUser = function (userRole) {
     if (!isProfileCompleted) showCompleteProfile(userRole);
     else {
-      if (userRole === "CLINIC_ADMIN") {
-        navigate("/clinic/dashboard", { replace: true });
-      } else if (userRole === "PHARMACY_ADMIN") {
-        navigate("/pharmacy/dashboard", { replace: true });
-      } else if (userRole === "LABORATORY_ADMIN") {
-        navigate("/laboratory/dashboard", { replace: true });
-      } else if (userRole === "PATIENT") {
-        navigate("/patient/dashboard", { replace: true });
-      } else if (userRole === "DOCTOR") {
-        navigate("/doctor/dashboard", { replace: true });
-      }
+      navigate(`/${userRole.toLowerCase().split("_")[0]}/dashboard`, {
+        replace: true,
+      });
     }
   };
 
