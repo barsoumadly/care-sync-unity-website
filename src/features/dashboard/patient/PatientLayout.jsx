@@ -5,7 +5,6 @@ import Sidebar from "../../../ui/Sidebar";
 import { Outlet } from "react-router-dom";
 import PatientSidebar from "./PatientSidebar";
 import { useAuth } from "../../../context/AuthContext";
-import CompletePatientProfile from "./profile/CompletePatientProfile";
 
 function DashboardLayout() {
   const [showbar, setShowbar] = useState(true);
@@ -19,18 +18,16 @@ function DashboardLayout() {
         setMinbar={setMinbar}
         url={"/patient/dashboard"}
       />
-      {true ? (
-        <>
+      <>
+        {isProfileCompleted && (
           <Sidebar minbar={minbar} showbar={showbar}>
             <PatientSidebar />
           </Sidebar>
-          <main className={minbar ? "mini-sidebar" : ""}>
-            <Outlet />
-          </main>
-        </>
-      ) : (
-        <CompletePatientProfile />
-      )}
+        )}
+        <main className={minbar ? "mini-sidebar" : ""}>
+          <Outlet />
+        </main>
+      </>
     </>
   );
 }
