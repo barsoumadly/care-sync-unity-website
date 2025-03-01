@@ -12,29 +12,32 @@ function Login() {
 
   const [isEyeOpen, setIsEyeOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const isProfileCompleted = false;
   const { userLogin } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
 
   const navigate = useNavigate();
 
-  // const showCompleteProfile = function (userRole, isProfileCompleted) {
-  //   if (userRole === "CLINIC_ADMIN" && !isProfileCompleted) {
-  //     navigate("/clinic/complete-profile");
-  //   } else if (userRole === "PHARMACY_ADMIN" && !isProfileCompleted) {
-  //   }
-  // };
+  const showCompleteProfile = function (userRole) {
+    if (userRole === "DOCTOR") {
+      navigate("/doctor/complete-profile");
+    }
+  };
 
   const navigateUser = function (userRole) {
-    if (userRole === "CLINIC_ADMIN") {
-      navigate("/clinic/dashboard", { replace: true });
-    } else if (userRole === "PHARMACY_ADMIN") {
-      navigate("/pharmacy/dashboard", { replace: true });
-    } else if (userRole === "LABORATORY_ADMIN") {
-      navigate("/laboratory/dashboard", { replace: true });
-    } else if (userRole === "PATIENT") {
-      navigate("/patient/dashboard", { replace: true });
-    } else if (userRole === "DOCTOR") {
-      navigate("/doctor/dashboard", { replace: true });
+    if (!isProfileCompleted) showCompleteProfile(userRole);
+    else {
+      if (userRole === "CLINIC_ADMIN") {
+        navigate("/clinic/dashboard", { replace: true });
+      } else if (userRole === "PHARMACY_ADMIN") {
+        navigate("/pharmacy/dashboard", { replace: true });
+      } else if (userRole === "LABORATORY_ADMIN") {
+        navigate("/laboratory/dashboard", { replace: true });
+      } else if (userRole === "PATIENT") {
+        navigate("/patient/dashboard", { replace: true });
+      } else if (userRole === "DOCTOR") {
+        navigate("/doctor/dashboard", { replace: true });
+      }
     }
   };
 
