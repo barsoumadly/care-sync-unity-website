@@ -18,18 +18,15 @@ function PharmacyLayout() {
         setMinbar={setMinbar}
         url={"/pharmacy/dashboard"}
       />
-      {true ? (
-        <>
-          <Sidebar minbar={minbar} showbar={showbar}>
-            <PharmacySidbar />
-          </Sidebar>
-          <main className={minbar ? "mini-sidebar" : ""}>
-            <Outlet />
-          </main>
-        </>
-      ) : (
-        <PharmacyCompleteProfile />
+
+      {true && (
+        <Sidebar minbar={minbar} showbar={showbar}>
+          <PharmacySidbar />
+        </Sidebar>
       )}
+      <main className={minbar ? "mini-sidebar" : ""}>
+        <Outlet />
+      </main>
     </>
   );
 }
