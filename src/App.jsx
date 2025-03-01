@@ -22,7 +22,9 @@ import ClinicLayout from "./features/dashboard/clinic/ClinicLayout";
 import ClinicDashboard from "./features/dashboard/clinic/ClinicDashboard";
 import DoctorList from "./features/dashboard/clinic/DoctorList";
 import AddDoctor from "./features/dashboard/clinic/AddDoctor";
-
+import PatientsList from "./features/dashboard/clinic/PatientsList";
+import AddPatients from "./features/dashboard/clinic/AddPatients";
+import Payments from "./features/dashboard/clinic/Payments";
 import EmployeeSalary from "./features/dashboard/clinic/EmployeeSalary";
 import AddStaff from "./features/dashboard/clinic/AddStaff";
 import Attendance from "./features/dashboard/clinic/Attendance";
@@ -72,7 +74,6 @@ import MedicinesList from "./features/dashboard/patient/pharmacies/MedicinesList
 import MedicineList from "./features/dashboard/patient/medicines/MedicinesList";
 import { useEffect } from "react";
 import { logoutAllTabs } from "./services/auth";
-<<<<<<< HEAD
 import PatientProfileView from "./features/dashboard/patient/profile/PatientProfileView";
 import PharmacyLayout from "./features/dashboard/pharmacy/PharmacyLayout";
 import PharmacyDashboard from "./features/dashboard/pharmacy/PharmacyDashboard";
@@ -90,9 +91,6 @@ import PatientHealthDetails from "./features/dashboard/patient/profile/PatientHe
 import PatientProfilePhoto from "./features/dashboard/patient/profile/PatientProfilePhoto";
 import PharmacyCompleteProfile from "./features/dashboard/pharmacy/profile/PharmacyCompleteProfile";
 import LaboratoryCompleteProfile from "./features/dashboard/laboratory/profile/LaboratoryCompleteProfile";
-=======
-import PatientsOfDoc from "./features/dashboard/clinic/PatientsOfDoc";
->>>>>>> origin/main
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -143,32 +141,31 @@ function App() {
 
             {/* Clinic */}
             <Route
-              path="clinic/complete-profile"
-              element={
-                <ProtectedRoute>
-                  <CompleteClinicProfile />
-                </ProtectedRoute>
-              }
-            />
-            <Route
               path="clinic"
               element={
                 <ProtectedRoute>
                   <ClinicLayout />
                 </ProtectedRoute>
-              }>
+              }
+            >
+              <Route
+                path="complete-profile"
+                element={<CompleteClinicProfile />}
+              />
               <Route path="dashboard" element={<ClinicDashboard />} />
               {/* Doctors */}
               <Route path="doctor-list" element={<DoctorList />} />
               <Route path="add-doctor" element={<AddDoctor />} />
-            
+              {/* Patients */}
+              <Route path="patients-list" element={<PatientsList />} />
+              <Route path="add-patients" element={<AddPatients />} />
+              <Route path="payments" element={<Payments />} />
               {/* Staff */}
               <Route path="employee-salary" element={<EmployeeSalary />} />
               <Route path="add-staff" element={<AddStaff />} />
               <Route path="attendance" element={<Attendance />} />
               {/* Appointments */}
               <Route path="appointment-list" element={<AppointmentList />} />
-              <Route path="patient-of-doctors" element={<PatientsOfDoc />} />
               <Route path="book-appointment" element={<BookAppointment />} />
               <Route path="edit-appointment" element={<EditAppointments />} />
               {/* Doctor Schedule */}
@@ -182,20 +179,20 @@ function App() {
               <Route path="edit-profile" />
               <Route path="my-profile" />
             </Route>
-            
 
             {/* Doctor */}
-            <Route
-              path="doctor/complete-profile"
-              element={<CompleteDoctorProfile />}
-            />
             <Route
               path="doctor"
               element={
                 <ProtectedRoute>
                   <DoctorLayout />
                 </ProtectedRoute>
-              }>
+              }
+            >
+              <Route
+                path="complete-profile"
+                element={<CompleteDoctorProfile />}
+              />
               <Route path="dashboard" element={<DoctorDashboard />} />
               <Route path="doctor-shedule" element={<DoctorShedule />} />
               <Route path="patients" element={<ClinicsListOfDoctor />} />
@@ -213,12 +210,24 @@ function App() {
                 <ProtectedRoute>
                   <PatientLayout />
                 </ProtectedRoute>
-              }>
+              }
+            >
+              <Route
+                path="complete-profile"
+                element={<CompletePatientProfile />}
+              />
+              <Route
+                path="address-details"
+                element={<PatientAddressDetails />}
+              />
+              <Route path="health-details" element={<PatientHealthDetails />} />
+              <Route path="profile-photo" element={<PatientProfilePhoto />} />
               <Route path="dashboard" element={<PatientDashboard />} />
               <Route path="clinics" element={<ClinicsList />} />
               <Route path="chat" element={<PatientChat />} />
               <Route path="appointments" element={<PatientAppointments />} />
-              <Route path="view-profile" element={<EditProfilePatient />} />
+              <Route path="view-profile" element={<PatientProfileView />} />
+              <Route path="edit-profile" element={<PatientEditProfile />} />
               <Route path="clinics/:clinicName" element={<ClinicProfile />} />
               <Route
                 path="clinics/:clinicName/doctors"
@@ -252,7 +261,6 @@ function App() {
               <Route path="prescription/:id" element={<PrescriptionPaper />} />
               <Route path="medicines" element={<MedicineList />} />
             </Route>
-<<<<<<< HEAD
 
             {/* Pharmacy */}
             <Route
@@ -291,8 +299,6 @@ function App() {
               <Route path="dashboard" element={<LaboratoryDashboard />} />
             </Route>
 
-=======
->>>>>>> origin/main
             <Route path="*" element={<PageNotFound />} />
             <Route path="/internal-server-error" element={<ServerDown />} />
           </Routes>
