@@ -86,9 +86,6 @@ import PharmacyProfileView from "./features/dashboard/pharmacy/profile/PharmacyP
 import PharmacyEditProfile from "./features/dashboard/pharmacy/profile/PharmacyEditProfile";
 import PatientEditProfile from "./features/dashboard/patient/profile/PatientEditProfile";
 import CompletePatientProfile from "./features/dashboard/patient/profile/CompletePatientProfile";
-import PatientAddressDetails from "./features/dashboard/patient/profile/PatientAddressDetails";
-import PatientHealthDetails from "./features/dashboard/patient/profile/PatientHealthDetails";
-import PatientProfilePhoto from "./features/dashboard/patient/profile/PatientProfilePhoto";
 import PharmacyCompleteProfile from "./features/dashboard/pharmacy/profile/PharmacyCompleteProfile";
 import LaboratoryCompleteProfile from "./features/dashboard/laboratory/profile/LaboratoryCompleteProfile";
 
@@ -216,12 +213,6 @@ function App() {
                 path="complete-profile"
                 element={<CompletePatientProfile />}
               />
-              <Route
-                path="address-details"
-                element={<PatientAddressDetails />}
-              />
-              <Route path="health-details" element={<PatientHealthDetails />} />
-              <Route path="profile-photo" element={<PatientProfilePhoto />} />
               <Route path="dashboard" element={<PatientDashboard />} />
               <Route path="clinics" element={<ClinicsList />} />
               <Route path="chat" element={<PatientChat />} />
