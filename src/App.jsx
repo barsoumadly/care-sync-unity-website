@@ -88,6 +88,8 @@ import PatientEditProfile from "./features/dashboard/patient/profile/PatientEdit
 import CompletePatientProfile from "./features/dashboard/patient/profile/CompletePatientProfile";
 import PharmacyCompleteProfile from "./features/dashboard/pharmacy/profile/PharmacyCompleteProfile";
 import LaboratoryCompleteProfile from "./features/dashboard/laboratory/profile/LaboratoryCompleteProfile";
+import LaboratoryEditProfile from "./features/dashboard/laboratory/profile/LaboratoryEditProfile";
+import LaboratoryViewProfile from "./features/dashboard/laboratory/profile/LaboratoryViewProfile";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -288,6 +290,8 @@ function App() {
                 element={<LaboratoryCompleteProfile />}
               />
               <Route path="dashboard" element={<LaboratoryDashboard />} />
+              <Route path="view-profile" element={<LaboratoryViewProfile />} />
+              <Route path="edit-profile" element={<LaboratoryEditProfile />} />
             </Route>
 
             <Route path="*" element={<PageNotFound />} />
