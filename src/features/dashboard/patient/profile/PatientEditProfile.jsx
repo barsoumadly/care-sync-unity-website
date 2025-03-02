@@ -4,9 +4,10 @@ import PatientAddressDetails from "./PatientAddressDetails";
 import PatientHealthDetails from "./PatientHealthDetails";
 import PatientProfilePhoto from "./PatientProfilePhoto";
 import toast from "react-hot-toast";
-import { IoHome, IoPersonSharp } from "react-icons/io5";
+import { IoArrowBackOutline, IoHome, IoPersonSharp } from "react-icons/io5";
 import { FaBriefcaseMedical } from "react-icons/fa6";
 import { BsFillImageFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 function PatientEditProfile() {
   const [pageNumber, setPageNumber] = useState(1);
@@ -49,6 +50,15 @@ function PatientEditProfile() {
                 </li>
                 <li className="breadcrumb-item active">Edit Profile</li>
               </ul>
+            </div>
+
+            <div class="col-sm-5 col-6 text-end">
+              <Link
+                to="/patient/view-profile"
+                class="btn btn-primary btn-rounded"
+              >
+                <IoArrowBackOutline /> Return Back
+              </Link>
             </div>
           </div>
         </div>
