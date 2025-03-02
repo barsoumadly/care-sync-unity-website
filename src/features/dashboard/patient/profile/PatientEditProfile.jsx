@@ -1,29 +1,16 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import PatientPersonalDetails from "./PersonalDetails";
 import PatientAddressDetails from "./PatientAddressDetails";
 import PatientHealthDetails from "./PatientHealthDetails";
 import PatientProfilePhoto from "./PatientProfilePhoto";
 import toast from "react-hot-toast";
-import { IoArrowBackOutline } from "react-icons/io5";
+import { IoHome, IoPersonSharp } from "react-icons/io5";
+import { FaBriefcaseMedical } from "react-icons/fa6";
+import { BsFillImageFill } from "react-icons/bs";
 
 function PatientEditProfile() {
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("select-option");
-  const [city, setCity] = useState("select-option");
-  const [area, setArea] = useState("select-option");
-  const [address, setAddress] = useState("");
-  const [temperature, setTemperature] = useState("");
-  const [weigh, setWeigh] = useState("");
-  const [height, setHeight] = useState("");
-  const [heartRate, setHeartRate] = useState("");
-  const [bloodType, setBloodType] = useState("select-option");
-  const [bloodSugar, setBloodSugar] = useState("");
-  const [bloodPressure, setBloodPressure] = useState("");
-  const [avatar, setAvatar] = useState(
-    "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
-  );
+  const [pageNumber, setPageNumber] = useState(1);
+  const [patientData, setPatientData] = useState({});
 
   const handleSubmit = function (event) {
     event.preventDefault();
@@ -63,69 +50,149 @@ function PatientEditProfile() {
                 <li className="breadcrumb-item active">Edit Profile</li>
               </ul>
             </div>
-            <div class="col-sm-5 col-6 text-end">
-              <Link
-                to="/patient/view-profile"
-                class="btn btn-primary btn-rounded"
-              >
-                <IoArrowBackOutline /> Return Back
-              </Link>
-            </div>
           </div>
         </div>
 
         <div className="row">
           <div className="col-sm-12">
             <div className="card">
+              <div class="card-header">
+                <h4 class="card-title mb-0" style={{ fontSize: "18px" }}>
+                  {pageNumber === 1 && "Personal Details"}
+                  {pageNumber === 2 && "Address Details"}
+                  {pageNumber === 3 && "Health Details"}
+                  {pageNumber === 4 && "Profile Photo"}
+                </h4>
+              </div>
               <div className="card-body">
-                <form onSubmit={handleSubmit}>
-                  <PatientPersonalDetails
-                    phoneNumber={phoneNumber}
-                    age={age}
-                    gender={gender}
-                    handlePhoneNumber={setPhoneNumber}
-                    handleAge={setAge}
-                    handleGender={setGender}
-                  />
-                  <PatientAddressDetails
-                    city={city}
-                    area={area}
-                    address={address}
-                    handleCity={setCity}
-                    handleArea={setArea}
-                    handleAddress={setAddress}
-                  />
-                  <PatientHealthDetails
-                    temperature={temperature}
-                    weigh={weigh}
-                    height={height}
-                    heartRate={heartRate}
-                    bloodType={bloodType}
-                    bloodSugar={bloodSugar}
-                    bloodPressure={bloodPressure}
-                    handleTemperature={setTemperature}
-                    handleWeigh={setWeigh}
-                    handleHeight={setHeight}
-                    handleHeartRate={setHeartRate}
-                    handleBloodType={setBloodType}
-                    handleBloodSugar={setBloodSugar}
-                    handleBloodPressure={setBloodPressure}
-                  />
-                  <PatientProfilePhoto
-                    avatar={avatar}
-                    handleAvatar={setAvatar}
-                  />
-                  <div className="col-12">
-                    <div className="doctor-submit text-end">
-                      <button
-                        type="submit"
-                        className="btn btn-primary submit-form me-2"
+                <div className="wizard" style={{ marginLeft: "-50px" }}>
+                  <ul
+                    class="nav nav-tabs justify-content-center"
+                    id="myTab"
+                    role="tablist"
+                  >
+                    <li
+                      className="nav-item flex-fill"
+                      role="presentation"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      aria-label="Seller Details"
+                      data-bs-original-title="Seller Details"
+                    >
+                      <a
+                        class={`nav-link ${
+                          pageNumber === 1 && "active"
+                        } rounded-circle mx-auto d-flex align-items-center justify-content-center`}
+                        id="step1-tab"
+                        data-bs-toggle="tab"
+                        role="tab"
+                        aria-controls="step1"
+                        aria-selected="true"
                       >
-                        Submit
-                      </button>
-                    </div>
-                  </div>
-                </form>
+                        <IoPersonSharp />
+                      </a>
+                    </li>
+                    <li
+                      class="nav-item flex-fill"
+                      role="presentation"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      aria-label="Company Document"
+                      data-bs-original-title="Company Document"
+                    >
+                      <a
+                        className={`nav-link ${
+                          pageNumber === 2 && "active"
+                        } rounded-circle mx-auto d-flex align-items-center justify-content-center`}
+                        id="step2-tab"
+                        data-bs-toggle="tab"
+                        role="tab"
+                        aria-controls="step2"
+                        aria-selected="false"
+                        tabindex="-1"
+                      >
+                        <IoHome />
+                      </a>
+                    </li>
+                    <li
+                      class="nav-item flex-fill"
+                      role="presentation"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      aria-label="Bank Details"
+                      data-bs-original-title="Bank Details"
+                    >
+                      <a
+                        className={`nav-link ${
+                          pageNumber === 3 && "active"
+                        } rounded-circle mx-auto d-flex align-items-center justify-content-center`}
+                        href="#step3"
+                        id="step3-tab"
+                        data-bs-toggle="tab"
+                        role="tab"
+                        aria-controls="step3"
+                        aria-selected="false"
+                        tabindex="-1"
+                      >
+                        <FaBriefcaseMedical />
+                      </a>
+                    </li>
+                    <li
+                      class="nav-item flex-fill"
+                      role="presentation"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      aria-label="Bank Details"
+                      data-bs-original-title="Bank Details"
+                    >
+                      <a
+                        className={`nav-link ${
+                          pageNumber === 4 && "active"
+                        } rounded-circle mx-auto d-flex align-items-center justify-content-center`}
+                        href="#step3"
+                        id="step3-tab"
+                        data-bs-toggle="tab"
+                        role="tab"
+                        aria-controls="step3"
+                        aria-selected="false"
+                        tabindex="-1"
+                      >
+                        <BsFillImageFill />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                {pageNumber === 1 && (
+                  <PatientPersonalDetails
+                    patientData={patientData}
+                    onChangePatientData={setPatientData}
+                    onChangePageNumber={setPageNumber}
+                  />
+                )}
+
+                {pageNumber === 2 && (
+                  <PatientAddressDetails
+                    patientData={patientData}
+                    onChangePatientData={setPatientData}
+                    onChangePageNumber={setPageNumber}
+                  />
+                )}
+
+                {pageNumber === 3 && (
+                  <PatientHealthDetails
+                    patientData={patientData}
+                    onChangePatientData={setPatientData}
+                    onChangePageNumber={setPageNumber}
+                  />
+                )}
+
+                {pageNumber === 4 && (
+                  <PatientProfilePhoto
+                    patientData={patientData}
+                    onChangePatientData={setPatientData}
+                    onChangePageNumber={setPageNumber}
+                  />
+                )}
               </div>
             </div>
           </div>
