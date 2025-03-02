@@ -1,30 +1,19 @@
-import { useState } from "react";
-import { useAuth } from "../../../../context/AuthContext";
-import { Link } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import { logout } from "../../../../services/auth";
+import { useAuth } from "../../../../context/AuthContext";
+import { useState } from "react";
+import { IoHome, IoPersonSharp } from "react-icons/io5";
+import { BsFillImageFill } from "react-icons/bs";
 import LaboratoryDetails from "./LaboratoryDetails";
-import AddressDetails from "./AddressDetails";
-import ProfilePhoto from "./ProfilePhoto";
+import LaboratoryAddressDetails from "./LaboratoryAddressDetails";
+import LaboratoryProfilePhoto from "./LaboratoryProfilePhoto";
 
 function LaboratoryCompleteProfile() {
-  const [laboratoryName, setLaboratoryName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [foundedYear, setFoundedYear] = useState("");
-  const [city, setCity] = useState("select-option");
-  const [area, setArea] = useState("select-option");
-  const [address, setAddress] = useState("");
-  const [avatar, setAvatar] = useState(
-    "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
-  );
+  const [pageNumber, setPageNumber] = useState(1);
+  const [LaboratoryData, setLaboratoryData] = useState({});
+
   const { userLogout } = useAuth();
-
-  const handleSubmit = function (event) {
-    event.preventDefault();
-
-    if (phoneNumber.length > 12) {
-      return toast.error("Enter a valid phone number.");
-    }
-  };
 
   return (
     <div className="page-wrapper" style={{ marginLeft: "0px" }}>
@@ -60,36 +49,111 @@ function LaboratoryCompleteProfile() {
         <div className="row">
           <div className="col-sm-12">
             <div className="card">
+              <div class="card-header">
+                <h4 class="card-title mb-0" style={{ fontSize: "18px" }}>
+                  {pageNumber === 1 && "Laboratory Details"}
+                  {pageNumber === 2 && "Address Details"}
+                  {pageNumber === 3 && "Laboratory Profile Photo"}
+                </h4>
+              </div>
               <div className="card-body">
-                <form onSubmit={handleSubmit}>
-                  <LaboratoryDetails
-                    laboratoryName={laboratoryName}
-                    phoneNumber={phoneNumber}
-                    foundedYear={foundedYear}
-                    handleLaboratoryName={setLaboratoryName}
-                    handlePhoneNumber={setPhoneNumber}
-                    handleFoundedYear={setFoundedYear}
-                  />
-                  <AddressDetails
-                    city={city}
-                    area={area}
-                    address={address}
-                    handleCity={setCity}
-                    handleArea={setArea}
-                    handleAddress={setAddress}
-                  />
-                  <ProfilePhoto avatar={avatar} handleAvatar={setAvatar} />
-                  <div className="col-12">
-                    <div className="doctor-submit text-end">
-                      <button
-                        type="submit"
-                        className="btn btn-primary submit-form me-2"
+                <div className="wizard" style={{ marginLeft: "-50px" }}>
+                  <ul
+                    class="nav nav-tabs justify-content-center"
+                    id="myTab"
+                    role="tablist"
+                  >
+                    <li
+                      className="nav-item flex-fill"
+                      role="presentation"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      aria-label="Seller Details"
+                      data-bs-original-title="Seller Details"
+                    >
+                      <a
+                        class={`nav-link ${
+                          pageNumber === 1 && "active"
+                        } rounded-circle mx-auto d-flex align-items-center justify-content-center`}
+                        id="step1-tab"
+                        data-bs-toggle="tab"
+                        role="tab"
+                        aria-controls="step1"
+                        aria-selected="true"
                       >
-                        Submit
-                      </button>
-                    </div>
-                  </div>
-                </form>
+                        <IoPersonSharp />
+                      </a>
+                    </li>
+                    <li
+                      class="nav-item flex-fill"
+                      role="presentation"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      aria-label="Company Document"
+                      data-bs-original-title="Company Document"
+                    >
+                      <a
+                        className={`nav-link ${
+                          pageNumber === 2 && "active"
+                        } rounded-circle mx-auto d-flex align-items-center justify-content-center`}
+                        id="step2-tab"
+                        data-bs-toggle="tab"
+                        role="tab"
+                        aria-controls="step2"
+                        aria-selected="false"
+                        tabindex="-1"
+                      >
+                        <IoHome />
+                      </a>
+                    </li>
+                    <li
+                      class="nav-item flex-fill"
+                      role="presentation"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      aria-label="Bank Details"
+                      data-bs-original-title="Bank Details"
+                    >
+                      <a
+                        className={`nav-link ${
+                          pageNumber === 3 && "active"
+                        } rounded-circle mx-auto d-flex align-items-center justify-content-center`}
+                        href="#step3"
+                        id="step3-tab"
+                        data-bs-toggle="tab"
+                        role="tab"
+                        aria-controls="step3"
+                        aria-selected="false"
+                        tabindex="-1"
+                      >
+                        <BsFillImageFill />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                {pageNumber === 1 && (
+                  <LaboratoryDetails
+                    laboratoryData={LaboratoryData}
+                    onChangeLaboratoryData={setLaboratoryData}
+                    onChangePageNumber={setPageNumber}
+                  />
+                )}
+
+                {pageNumber === 2 && (
+                  <LaboratoryAddressDetails
+                    laboratoryData={LaboratoryData}
+                    onChangeLaboratoryData={setLaboratoryData}
+                    onChangePageNumber={setPageNumber}
+                  />
+                )}
+
+                {pageNumber === 3 && (
+                  <LaboratoryProfilePhoto
+                    laboratoryData={LaboratoryData}
+                    onChangeLaboratoryData={setLaboratoryData}
+                    onChangePageNumber={setPageNumber}
+                  />
+                )}
               </div>
             </div>
           </div>
