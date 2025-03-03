@@ -78,7 +78,7 @@ function ClinicSidebar({ minbar }) {
         </ul>
       </li>
 
-      {/* Patients */}
+     {/*  {/* Patients 
       <li className="submenu">
         <a className="link" onClick={() => hanbleClick(2)}>
           <span className="menu-side">
@@ -110,7 +110,7 @@ function ClinicSidebar({ minbar }) {
             </NavLink>
           </li>
         </ul>
-      </li>
+      </li> */}
 
       {/* Staff */}
       <li className="submenu">

@@ -1,4 +1,71 @@
-function EditAppointments() {
+import { useState } from "react";
+const patients = [
+  {
+    id: 1,
+    name: "Andrea Lalema",
+    image: "../images/dashborad/profiles/avatar-01.jpg",
+    paymentType: "Credit Card",
+    trueStatus: "Waiting",
+    falseStatus: "Done",
+    turn: "#INV-0004",
+  },
+  {
+    id: 2,
+    name: "Smith Bruklin",
+    image: "../images/dashborad/profiles/avatar-02.jpg",
+    paymentType: "Debit Card",
+    trueStatus: "Waiting",
+    falseStatus: "Done",
+    turn: "#INV-0001",
+  },
+  {
+    id: 3,
+    name: "Bernardo James",
+    image: "../images/dashborad/profiles/avatar-03.jpg",
+    paymentType: "Pay Pal",
+    trueStatus: "Waiting",
+    falseStatus: "Done",
+    turn: "#INV-0002",
+  },
+  {
+    id: 4,
+    name: "Mark Hay Smith",
+    image: "../images/dashborad/profiles/avatar-04.jpg",
+    paymentType: "Credit Card",
+    trueStatus: "Waiting",
+    falseStatus: "Done",
+    turn: "#INV-0003",
+  },
+  {
+    id: 5,
+    name: "Galaviz Lalema",
+    image: "../images/dashborad/profiles/avatar-05.jpg",
+    paymentType: "Debit Card",
+    trueStatus: "Waiting",
+    falseStatus: "Done",
+    turn: "#INV-0004",
+  },
+  {
+    id: 6,
+    name: "Andrea Lalema",
+    image: "../images/dashborad/profiles/avatar-06.jpg",
+    paymentType: "Pay Pal",
+    trueStatus: "Waiting",
+    falseStatus: "Done",
+    turn: "#INV-0003",
+  },
+  {
+    id: 7,
+    name: "William Stephin",
+    image: "../images/dashborad/profiles/avatar-03.jpg",
+    paymentType: "Pay Pal",
+    trueStatus: "Waiting",
+    falseStatus: "Done",
+    turn: "#INV-0005",
+  },
+];
+function PatientsOfDoc() {
+  const [WaitingList, isWaitingList] = useState(true);
   return (
     <div className="page-wrapper">
       <div className="content">
@@ -8,12 +75,12 @@ function EditAppointments() {
             <div className="col-sm-12">
               <ul className="breadcrumb">
                 <li className="breadcrumb-item">
-                  <a href="appointments.html">Appointment </a>
+                  <a href="payments.html">Accounts </a>
                 </li>
                 <li className="breadcrumb-item">
                   <i className="feather-chevron-right" />
                 </li>
-                <li className="breadcrumb-item active">Edit Appointment</li>
+                <li className="breadcrumb-item active">Payments </li>
               </ul>
             </div>
           </div>
@@ -21,235 +88,214 @@ function EditAppointments() {
         {/* /Page Header */}
         <div className="row">
           <div className="col-sm-12">
-            <div className="card">
+            <div className="card card-table show-entire">
               <div className="card-body">
-                <form>
-                  <div className="row">
-                    <div className="col-12">
-                      <div className="form-heading">
-                        <h4>Patient Details</h4>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-4">
-                      <div className="input-block local-forms">
-                        <label>
-                          First Name <span className="login-danger">*</span>
-                        </label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          defaultValue="Stephen"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-4">
-                      <div className="input-block local-forms">
-                        <label>
-                          Last Name <span className="login-danger">*</span>
-                        </label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          defaultValue="Bruklin"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-4">
-                      <div className="input-block select-gender">
-                        <label className="gen-label">
-                          Gender<span className="login-danger">*</span>
-                        </label>
-                        <div className="form-check-inline">
-                          <label className="form-check-label">
-                            <input
-                              type="radio"
-                              name="gender"
-                              className="form-check-input"
-                              defaultChecked=""
-                            />
-                            Male
-                          </label>
-                        </div>
-                        <div className="form-check-inline">
-                          <label className="form-check-label">
-                            <input
-                              type="radio"
-                              name="gender"
-                              className="form-check-input"
-                            />
-                            Female
-                          </label>
+                {/* Table Header */}
+                <div className="page-table-header mb-2">
+                  <div className="row align-items-center">
+                    <div className="col">
+                      <div className="doctor-table-blk">
+                        <h3>Payment List</h3>
+                        <div className="doctor-search-blk">
+                          <div className="top-nav-search table-search-blk">
+                            <form>
+                              <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Search here"
+                              />
+                              <a className="btn">
+                                <img
+                                  src="../images/dashborad/icons/search-normal.svg"
+                                  alt=""
+                                />
+                              </a>
+                            </form>
+                          </div>
+                          <div className="add-group">
+                            <a
+                              href="add-payment.html"
+                              className="btn btn-primary add-pluss ms-2">
+                              <img
+                                src="../images/dashborad/icons/plus.svg"
+                                alt=""
+                              />
+                            </a>
+                            <a
+                              href="javascript:;"
+                              className="btn btn-primary doctor-refresh ms-2">
+                              <img
+                                src="../images/dashborad/icons/re-fresh.svg"
+                                alt=""
+                              />
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    {/* <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>
-                          Mobile <span className="login-danger">*</span>
-                        </label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          defaultValue="+1 23 456890"
-                        />
-                      </div>
+                    {/* <div className="col-auto text-end float-end ms-auto download-grp">
+                      <a href="javascript:;" className=" me-2">
+                        <img src="../images/dashborad/icons/pdf-icon-01.svg" alt="" />
+                      </a>
+                      <a href="javascript:;" className=" me-2">
+                        <img src="../images/dashborad/icons/payment/pdf-icon-02.svg" alt="" />
+                      </a>
+                      <a href="javascript:;" className=" me-2">
+                        <img src="../images/dashborad/icons/pdf-icon-03.svg" alt="" />
+                      </a>
+                      <a href="javascript:;">
+                        <img src="../images/dashborad/icons/pdf-icon-04.svg" alt="" />
+                      </a>
                     </div> */}
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>
-                          Email 
-                        </label>
-                        <input
-                          className="form-control"
-                          type="email"
-                          defaultValue="stephen@gmail.com"
-                        />
-                      </div>
-                    </div>
-                    {/* <div className="col-12 col-sm-12">
-                      <div className="input-block local-forms">
-                        <label>
-                          Address <span className="login-danger">*</span>
-                        </label>
-                        <textarea
-                          className="form-control"
-                          rows={3}
-                          cols={30}
-                          defaultValue={
-                            "101, Elanxa Apartments, 340 N Madison Avenue"
-                          }
-                        />
-                      </div>
-                    </div> */}
-                    <div className="col-12">
-                      <div className="form-heading">
-                        <h4>Appointment Details</h4>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-4">
-                      <div className="input-block local-forms cal-icon">
-                        <label>
-                          Date of Appointment{" "}
-                          <span className="login-danger">*</span>
-                        </label>
-                        <input
-                          className="form-control datetimepicker"
-                          type="text"
-                          defaultValue="26-11-22"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-4">
-                      <div className="input-block local-forms">
-                        <label>
-                          From <span className="login-danger">*</span>
-                        </label>
-                        <div className="time-icon">
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="datetimepicker3"
-                            defaultValue="07:00 PM"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-4">
-                      <div className="input-block local-forms">
-                        <label>
-                          To <span className="login-danger">*</span>
-                        </label>
-                        <div className="time-icon">
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="datetimepicker4"
-                            defaultValue="08:00 PM"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>Consulting Doctor</label>
-                        <select className="form-control select">
-                          <option>Select Doctor</option>
-                          <option>Dr.Bernardo James</option>
-                          <option>Dr.Andrea Lalema</option>
-                          <option>Dr.William Stephin</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>Treatment </label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          defaultValue="Blood Pressure"
-                        />
-                      </div>
-                    </div>
-                  {/*   <div className="col-12 col-sm-12">
-                      <div className="input-block local-forms">
-                        <label>
-                          Notes <span className="login-danger">*</span>
-                        </label>
-                        <textarea
-                          className="form-control"
-                          rows={3}
-                          cols={30}
-                          defaultValue={
-                            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquat enim ad minim veniam, quriesstrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                          }
-                        />
-                      </div>
-                    </div> 
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-top-form">
-                        <label className="local-top">
-                          Avatar <span className="login-danger">*</span>
-                        </label>
-                        <div className="settings-btn upload-files-avator">
-                          <input
-                            type="file"
-                            accept="image/*"
-                            name="image"
-                            id="file"
-                            onchange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
-                            className="hide-input"
-                            data-cf-modified-edc4ab59e52b93fcd123ebbe-=""
-                          />
-                          <label htmlFor="file" className="upload">
-                            Choose File
-                          </label>
-                        </div>
-                        <div className="upload-images upload-size">
-                          <img src="../images/appointments/favicon.png" alt="Image" />
-                          <a
-                            href="javascript:void(0);"
-                            className="btn-icon logo-hide-btn">
-                            <i className="feather-x-circle" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>*/}
-                    <div className="col-12">
-                      <div className="doctor-submit text-end">
-                        <button
-                          type="submit"
-                          className="btn btn-primary submit-form me-2">
-                          Submit
-                        </button>
-                        <button
-                          type="submit"
-                          className="btn btn-primary cancel-form">
-                          Cancel
-                        </button>
-                      </div>
-                    </div>
                   </div>
-                </form>
+                </div>
+                {/* /Table Header */}
+                <div className="staff-search-table">
+                  <form>
+                    <div className="row">
+                      <div className="col-12 col-md-6 col-xl-4">
+                        <div className="input-block local-forms cal-icon">
+                          <label>From </label>
+                          <input
+                            className="form-control datetimepicker"
+                            type="text"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-12 col-md-6 col-xl-4">
+                        <div className="input-block local-forms cal-icon">
+                          <label>To </label>
+                          <input
+                            className="form-control datetimepicker"
+                            type="text"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-12 col-md-6 col-xl-4 ">
+                        <div className="input-block local-forms">
+                          <label>Payment Status </label>
+                          <select className="form-control select">
+                            <option>Select Payment Status</option>
+                            <option>Paid</option>
+                            <option>Un Paid</option>
+                            <option>Patially Paid</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="col-12 col-md-6 col-xl-4 ms-auto">
+                        <div className="doctor-submit">
+                          <button
+                            type="submit"
+                            className="btn btn-primary submit-list-form me-2">
+                            Search
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div className="table-responsive">
+                  <table className="table border-0 custom-table comman-table datatable mb-0">
+                    <thead>
+                      <tr>
+                        <th>
+                          <div className="form-check check-tables ">
+                            <input
+                              className="form-check-input"
+                              type="checkbox"
+                              defaultValue="something"
+                            />
+                          </div>
+                        </th>
+                        <th>Turn</th>
+                        <th>Patient</th>
+                        <th>Payment Type</th>
+                        {/*   <th>Paid Date</th> */}
+                        {/*   <th>Paid Amount</th> */}
+                        <th>Status</th>
+                        <th />
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {patients.map((patient) => (
+                        <tr key={patient.id}>
+                          <td>
+                            <div className="form-check check-tables">
+                              <input
+                                className="form-check-input"
+                                type="checkbox"
+                                defaultValue="something"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <a href="invoice-view.html">{patient.turn}</a>
+                          </td>
+                          <td className="profile-image">
+                            <a href="profile.html">
+                              <img
+                                width={28}
+                                height={28}
+                                src={patient.image}
+                                className="rounded-circle m-r-5"
+                                alt=""
+                              />{" "}
+                              {patient.name}
+                            </a>
+                          </td>
+                          <td>{patient.paymentType}</td>
+                          {/*  <td>01.10.2022</td>
+                        <td>$2450</td> */}
+                          <td>
+                            <button
+                              className={`custom-badge ${
+                                WaitingList ? "status-pink" : "status-green"
+                              } `}
+                              onClick={() => isWaitingList((done) => !done)}>
+                              {WaitingList
+                                ? patient.trueStatus
+                                : patient.falseStatus}
+                            </button>
+                          </td>
+                          <td>
+                            <div className="action-label">
+                              <button className="custom-badge book-btn">
+                                Examination
+                              </button>
+                            </div>
+                            
+                          </td>
+                          <td className="text-end">
+                            <div className="dropdown dropdown-action">
+                              <a
+                                href="#"
+                                className="action-icon dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i className="fa fa-ellipsis-v" />
+                              </a>
+                              <div className="dropdown-menu dropdown-menu-end">
+                                <a
+                                  className="dropdown-item"
+                                  href="edit-payment.html">
+                                  <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
+                                  Edit
+                                </a>
+                                <a
+                                  className="dropdown-item"
+                                  href="#"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#delete_patient">
+                                  <i className="fa fa-trash-alt m-r-5" /> Delete
+                                </a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -497,4 +543,4 @@ function EditAppointments() {
   );
 }
 
-export default EditAppointments;
+export default PatientsOfDoc;

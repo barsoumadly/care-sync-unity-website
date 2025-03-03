@@ -32,13 +32,13 @@ function AddDoctor() {
                     </div>
                     <div className="col-12 col-md-6 col-xl-4">
                       <div className="input-block local-forms">
-                        <label>
+                        <label >
                           First Name <span className="login-danger">*</span>
                         </label>
                         <input
                           className="form-control"
                           type="text"
-                          placeholder=""
+                          placeholder="pet"
                         />
                       </div>
                     </div>
@@ -50,7 +50,7 @@ function AddDoctor() {
                         <input
                           className="form-control"
                           type="text"
-                          placeholder=""
+                          placeholder="john"
                         />
                       </div>
                     </div>
@@ -62,11 +62,11 @@ function AddDoctor() {
                         <input
                           className="form-control"
                           type="text"
-                          placeholder=""
+                          placeholder="pet_john15"
                         />
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-6">
+                    {/* <div className="col-12 col-md-6 col-xl-6">
                       <div className="input-block local-forms">
                         <label>
                           Mobile <span className="login-danger">*</span>
@@ -77,7 +77,7 @@ function AddDoctor() {
                           placeholder=""
                         />
                       </div>
-                    </div>
+                    </div> */}
                     <div className="col-12 col-md-6 col-xl-6">
                       <div className="input-block local-forms">
                         <label>
@@ -86,7 +86,7 @@ function AddDoctor() {
                         <input
                           className="form-control"
                           type="email"
-                          placeholder=""
+                          placeholder="example@email.com"
                         />
                       </div>
                     </div>
@@ -98,7 +98,7 @@ function AddDoctor() {
                         <input
                           className="form-control"
                           type="password"
-                          placeholder=""
+                          placeholder="****************"
                         />
                       </div>
                     </div>
@@ -111,11 +111,11 @@ function AddDoctor() {
                         <input
                           className="form-control"
                           type="password"
-                          placeholder=""
+                          placeholder="****************"
                         />
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-6">
+                    {/* <div className="col-12 col-md-6 col-xl-6">
                       <div className="input-block local-forms cal-icon">
                         <label>
                           Date Of Birth <span className="login-danger">*</span>
@@ -126,7 +126,7 @@ function AddDoctor() {
                           placeholder=""
                         />
                       </div>
-                    </div>
+                    </div> */}
                     <div className="col-12 col-md-6 col-xl-6">
                       <div className="input-block select-gender">
                         <label className="gen-label">
@@ -138,6 +138,7 @@ function AddDoctor() {
                               type="radio"
                               name="gender"
                               className="form-check-input mt-0"
+                              defaultChecked={true}
                             />
                             Male
                           </label>
@@ -154,7 +155,7 @@ function AddDoctor() {
                         </div>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-4">
+                  {/*   <div className="col-12 col-md-6 col-xl-4">
                       <div className="input-block local-forms">
                         <label>
                           Education <span className="login-danger">*</span>
@@ -165,7 +166,7 @@ function AddDoctor() {
                           placeholder=""
                         />
                       </div>
-                    </div>
+                    </div> 
                     <div className="col-12 col-md-6 col-xl-4">
                       <div className="input-block local-forms">
                         <label>
@@ -177,7 +178,7 @@ function AddDoctor() {
                           placeholder=""
                         />
                       </div>
-                    </div>
+                    </div>*/}
                     <div className="col-12 col-md-6 col-xl-4">
                       <div className="input-block local-forms">
                         <label>
@@ -191,7 +192,7 @@ function AddDoctor() {
                         </select>
                       </div>
                     </div>
-                    <div className="col-12 col-sm-12">
+                   {/*  <div className="col-12 col-sm-12">
                       <div className="input-block local-forms">
                         <label>
                           Address <span className="login-danger">*</span>
@@ -203,7 +204,7 @@ function AddDoctor() {
                           defaultValue={""}
                         />
                       </div>
-                    </div>
+                    </div> 
                     <div className="col-12 col-md-6 col-xl-3">
                       <div className="input-block local-forms">
                         <label>
@@ -266,8 +267,8 @@ function AddDoctor() {
                           defaultValue={""}
                         />
                       </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-6">
+                    </div>*/}
+                   {/*  <div className="col-12 col-md-6 col-xl-6">
                       <div className="input-block local-top-form">
                         <label className="local-top">
                           Avatar <span className="login-danger">*</span>
@@ -314,7 +315,7 @@ function AddDoctor() {
                           </label>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="col-12">
                       <div className="doctor-submit text-end">
                         <button

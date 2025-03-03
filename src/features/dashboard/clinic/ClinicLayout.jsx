@@ -19,7 +19,7 @@ function DashboardLayout() {
         setMinbar={setMinbar}
         url={"/clinic/dashboard"}
       />
-      {isProfileCompleted && (
+      {true && (
         <Sidebar minbar={minbar} showbar={showbar}>
           <ClinicSidebar minbar={minbar} />
         </Sidebar>
