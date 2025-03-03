@@ -22,6 +22,8 @@ import ClinicLayout from "./features/dashboard/clinic/ClinicLayout";
 import ClinicDashboard from "./features/dashboard/clinic/ClinicDashboard";
 import DoctorList from "./features/dashboard/clinic/DoctorList";
 import AddDoctor from "./features/dashboard/clinic/AddDoctor";
+import EditProfileClinic from "./features/dashboard/clinic/EditProfileClinic";
+import DoctorProfile from "./features/dashboard/clinic/DoctorProfile";
 /* import PatientsList from "./features/dashboard/clinic/PatientsList";
 import AddPatients from "./features/dashboard/clinic/AddPatients"; 
 import Payments from "./features/dashboard/clinic/Payments";*/
@@ -92,6 +94,7 @@ import LaboratoryCompleteProfile from "./features/dashboard/laboratory/profile/L
 import LaboratoryEditProfile from "./features/dashboard/laboratory/profile/LaboratoryEditProfile";
 import LaboratoryViewProfile from "./features/dashboard/laboratory/profile/LaboratoryViewProfile";
 
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -156,6 +159,8 @@ function App() {
               {/* Doctors */}
               <Route path="doctor-list" element={<DoctorList />} />
               <Route path="add-doctor" element={<AddDoctor />} />
+              <Route path="doctor-profile" element={<DoctorProfile />} />
+              <Route path="edit-profile" element={<EditProfileClinic/>} />
               {/* Patients 
               <Route path="patients-list" element={<PatientsList />} />
               <Route path="add-patients" element={<AddPatients />} />
