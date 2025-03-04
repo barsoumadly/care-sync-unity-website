@@ -409,7 +409,7 @@ function Chat() {
                                   >
                                     <a href="javascript:;">
                                       <img
-                                        src="/images/chat/chat-foot-icon-03.svg"
+                                        src="/images/dashborad/icons/chat-foot-icon-03.svg"
                                         alt="Send"
                                       />
                                     </a>
