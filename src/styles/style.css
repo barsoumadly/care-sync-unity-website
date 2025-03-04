@@ -12878,3 +12878,13 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
     margin: 50% auto;
   }
 }
+
+.reminder-icon {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+}
+
+img {
+  width: 100%;
+}
