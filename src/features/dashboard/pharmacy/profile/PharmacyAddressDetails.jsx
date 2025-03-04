@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 function AddressDetails({
@@ -5,16 +6,50 @@ function AddressDetails({
   onChangePharmacyData,
   onChangePageNumber,
 }) {
-  const { register, handleSubmit } = useForm();
+  const [cities, setCities] = useState();
+  const [areas, setAreas] = useState();
+  const [selectedCity, setSelectedCity] = useState(pharmacyData.selectedCity);
+  const [selectedArea, setSelectedArea] = useState(pharmacyData.selectedArea);
 
-  const performSubmit = function (data) {
-    onChangePharmacyData({ ...pharmacyData, ...data });
-    onChangePageNumber((pageNumber) => pageNumber + 1);
-  };
+  useEffect(function () {
+    async function getCities() {
+      const response = await fetch(
+        "https://atfawry.fawrystaging.com/ECommerceWeb/api/lookups/govs"
+      );
+      const data = await response.json();
+      if (data) {
+        setCities(data);
+        if (pharmacyData.selectedCity) {
+          setAreas(
+            data.filter((city) => city.code === pharmacyData.selectedCity)
+          );
+        }
+      }
+    }
+    getCities();
+  }, []);
+
+  const { register, handleSubmit } = useForm();
 
   const handleDecPageNumber = function () {
     onChangePageNumber((pageNumber) => pageNumber - 1);
   };
+
+  const performSubmit = function (data) {
+    onChangePharmacyData({
+      ...pharmacyData,
+      ...data,
+      selectedCity,
+      selectedArea,
+    });
+    onChangePageNumber((pageNumber) => pageNumber + 1);
+  };
+
+  function hanbleSelection(event) {
+    const seletcity = event.target.value;
+    setSelectedCity(seletcity);
+    setAreas(cities?.filter((city) => city.code === seletcity));
+  }
 
   return (
     <form onSubmit={handleSubmit(performSubmit)}>
@@ -36,12 +71,17 @@ function AddressDetails({
             <select
               className="form-control"
               required
-              value={pharmacyData.city}
-              {...register("city")}
+              value={selectedCity}
+              onChange={hanbleSelection}
             >
               <option value="select-option" dir="">
                 Select Option
               </option>
+              {cities?.map((city) => (
+                <option value={city.code} key={city.id}>
+                  {city.code}
+                </option>
+              ))}
             </select>
           </div>
         </div>
@@ -53,12 +93,17 @@ function AddressDetails({
             <select
               className="form-control"
               required
-              value={pharmacyData.area}
-              {...register("area")}
+              value={selectedArea}
+              onChange={(event) => setSelectedArea(event.target.value)}
             >
               <option value="select-option" dir="">
                 Select Option
               </option>
+              {areas?.[0].cityDataModels.map((area) => (
+                <option value={area.namePrimaryLang} key={area.id}>
+                  {area?.namePrimaryLang}
+                </option>
+              ))}
             </select>
           </div>
         </div>
