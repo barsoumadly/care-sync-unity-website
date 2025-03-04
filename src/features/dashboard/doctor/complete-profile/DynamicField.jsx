@@ -34,7 +34,7 @@ function DynamicField({ fields, serviceList = [{}], setServiceList }) {
                 required
                 name={fields.f1.toLowerCase()}
                 onChange={(e) => handleServiceChange(e, index)}
-                value={singleService.duration}
+                value={singleService?.[fields.f1.toLowerCase()]}
               />
             </div>
           </div>
@@ -48,7 +48,9 @@ function DynamicField({ fields, serviceList = [{}], setServiceList }) {
                 type="text"
                 name={fields.f2.toLowerCase().split(" ").join("_")}
                 onChange={(e) => handleServiceChange(e, index)}
-                value={singleService.duration}
+                value={
+                  singleService?.[fields.f2.toLowerCase().split(" ").join("_")]
+                }
               />
             </div>
           </div>
