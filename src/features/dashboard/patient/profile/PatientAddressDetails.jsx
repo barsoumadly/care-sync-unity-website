@@ -17,7 +17,14 @@ function PatientAddressDetails({
         "https://atfawry.fawrystaging.com/ECommerceWeb/api/lookups/govs"
       );
       const data = await response.json();
-      if (data) setCities(data);
+      if (data) {
+        setCities(data);
+        if (patientData.selectedCity) {
+          setAreas(
+            data.filter((city) => city.code === patientData.selectedCity)
+          );
+        }
+      }
     }
     getCities();
   }, []);
@@ -41,9 +48,9 @@ function PatientAddressDetails({
   function hanbleSelection(event) {
     const seletcity = event.target.value;
     setSelectedCity(seletcity);
-    setAreas(cities.filter((city) => city.code === seletcity));
-    console.log(patientData.selectedArea);
+    setAreas(cities?.filter((city) => city.code === seletcity));
   }
+
   return (
     <form onSubmit={handleSubmit(performSubmit)}>
       <div className="row">
@@ -92,10 +99,6 @@ function PatientAddressDetails({
             >
               <option value="Select Area" selected disabled>
                 Select Area
-              </option>
-
-              <option value={patientData.selectedArea}>
-                {patientData.selectedArea}
               </option>
 
               {areas?.[0].cityDataModels.map((area) => (
