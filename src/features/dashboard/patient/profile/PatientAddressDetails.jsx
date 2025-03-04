@@ -8,8 +8,8 @@ function PatientAddressDetails({
 }) {
   const [cities, setCities] = useState();
   const [areas, setAreas] = useState();
-  const [selectedCity, setSelectedCity] = useState();
-  const [selectedArea, setSelectedArea] = useState();
+  const [selectedCity, setSelectedCity] = useState(patientData.selectedCity);
+  const [selectedArea, setSelectedArea] = useState(patientData.selectedArea);
 
   useEffect(function () {
     async function getCities() {
@@ -64,7 +64,7 @@ function PatientAddressDetails({
             <select
               className="form-control"
               required
-              value={patientData.selectedCity}
+              value={selectedCity}
               onChange={hanbleSelection}
             >
               <option value="Select City" selected disabled>
@@ -87,7 +87,7 @@ function PatientAddressDetails({
             <select
               className="form-control"
               required
-              value={patientData.selectedArea}
+              value={selectedArea}
               onChange={(event) => setSelectedArea(event.target.value)}
             >
               <option value="Select Area" selected disabled>
