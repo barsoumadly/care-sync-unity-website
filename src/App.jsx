@@ -93,8 +93,6 @@ import LaboratoryEditProfile from "./features/dashboard/laboratory/profile/Labor
 import LaboratoryViewProfile from "./features/dashboard/laboratory/profile/LaboratoryViewProfile";
 <<<<<<< HEAD
 import { ChatProvider } from "./context/ChatContext";
-=======
->>>>>>> parent of f88a973 (clinic)
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -153,11 +151,11 @@ function App() {
               {/* Doctors */}
               <Route path="doctor-list" element={<DoctorList />} />
               <Route path="add-doctor" element={<AddDoctor />} />
-<<<<<<< HEAD
+
               <Route path="doctor-profile" element={<DoctorProfile />} />
               <Route path="edit-profile" element={<EditProfileClinic />} />
               {/* {Patients}  */}
-=======
+
               {/* Patients 
               <Route path="patients-list" element={<PatientsList />} />
               <Route path="add-patients" element={<AddPatients />} />
@@ -175,7 +173,6 @@ function App() {
               <Route path="schedule-list" element={<ScheduleList />} />
               <Route path="add-schedule" element={<AddSchedule />} />
               <Route path="edit-schedule" element={<EditSchedule />} />
->>>>>>> parent of f88a973 (clinic)
 
               <Route
                 path="clinic"
