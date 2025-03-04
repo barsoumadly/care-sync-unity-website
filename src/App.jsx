@@ -95,7 +95,6 @@ import LaboratoryEditProfile from "./features/dashboard/laboratory/profile/Labor
 import LaboratoryViewProfile from "./features/dashboard/laboratory/profile/LaboratoryViewProfile";
 import { ChatProvider } from "./context/ChatContext";
 
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -146,7 +145,6 @@ function App() {
 
               {/* Clinic */}
               <Route
-<<<<<<< HEAD
                 path="complete-profile"
                 element={<CompleteClinicProfile />}
               />
@@ -155,9 +153,10 @@ function App() {
               <Route path="doctor-list" element={<DoctorList />} />
               <Route path="add-doctor" element={<AddDoctor />} />
               <Route path="doctor-profile" element={<DoctorProfile />} />
-              <Route path="edit-profile" element={<EditProfileClinic/>} />
-              {/* Patients 
-=======
+              <Route path="edit-profile" element={<EditProfileClinic />} />
+              {/* {Patients}  */}
+
+              <Route
                 path="clinic"
                 element={
                   <ProtectedRoute>
@@ -170,14 +169,14 @@ function App() {
                   element={<CompleteClinicProfile />}
                 />
                 <Route path="dashboard" element={<ClinicDashboard />} />
-                {/* Doctors */}
+                {/* Doctors
                 <Route path="doctor-list" element={<DoctorList />} />
                 <Route path="add-doctor" element={<AddDoctor />} />
-                {/* Patients 
->>>>>>> origin/chat
-              <Route path="patients-list" element={<PatientsList />} />
-              <Route path="add-patients" element={<AddPatients />} />
-              <Route path="payments" element={<Payments />} />*/}
+                {/* {Patients}  */}
+
+                <Route path="patients-list" element={<PatientsList />} />
+                <Route path="add-patients" element={<AddPatients />} />
+                <Route path="payments" element={<Payments />} />
                 {/* Staff */}
                 <Route path="employee-salary" element={<EmployeeSalary />} />
                 <Route path="add-staff" element={<AddStaff />} />
