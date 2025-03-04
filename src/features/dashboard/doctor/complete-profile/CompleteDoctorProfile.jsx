@@ -66,6 +66,7 @@ function CompleteDoctorProfile() {
                 <h4 className="card-title mb-0" style={{ fontSize: "18px" }}>
                   {pageNumber === 1 && "Personal Details"}
                   {pageNumber === 2 && "Professional Details"}
+
                   {pageNumber === 3 && "Profile Photo"}
                 </h4>
               </div>
