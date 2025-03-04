@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 function PatientAddressDetails({
@@ -5,6 +6,22 @@ function PatientAddressDetails({
   onChangePatientData,
   onChangePageNumber,
 }) {
+  const [cities, setCities] = useState();
+  const [areas, setAreas] = useState();
+  const [selectedCity, setSelectedCity] = useState();
+  const [selectedArea, setSelectedArea] = useState();
+
+  useEffect(function () {
+    async function getCities() {
+      const response = await fetch(
+        "https://atfawry.fawrystaging.com/ECommerceWeb/api/lookups/govs"
+      );
+      const data = await response.json();
+      if (data) setCities(data);
+    }
+    getCities();
+  }, []);
+
   const { register, handleSubmit } = useForm();
 
   const handleDecPageNumber = function () {
@@ -12,10 +29,21 @@ function PatientAddressDetails({
   };
 
   const performSubmit = function (data) {
-    onChangePatientData({ ...patientData, ...data });
+    onChangePatientData({
+      ...patientData,
+      ...data,
+      selectedCity,
+      selectedArea,
+    });
     onChangePageNumber((pageNumber) => pageNumber + 1);
   };
 
+  function hanbleSelection(event) {
+    const seletcity = event.target.value;
+    setSelectedCity(seletcity);
+    setAreas(cities.filter((city) => city.code === seletcity));
+    console.log(patientData.selectedArea);
+  }
   return (
     <form onSubmit={handleSubmit(performSubmit)}>
       <div className="row">
@@ -36,12 +64,18 @@ function PatientAddressDetails({
             <select
               className="form-control"
               required
-              value={patientData.city}
-              {...register("city")}
+              value={patientData.selectedCity}
+              onChange={hanbleSelection}
             >
-              <option value="select-option" dir="">
-                Select Option
+              <option value="Select City" selected disabled>
+                Select City
               </option>
+
+              {cities?.map((city) => (
+                <option value={city.code} key={city.id}>
+                  {city.code}
+                </option>
+              ))}
             </select>
           </div>
         </div>
@@ -53,12 +87,22 @@ function PatientAddressDetails({
             <select
               className="form-control"
               required
-              value={patientData.area}
-              {...register("area")}
+              value={patientData.selectedArea}
+              onChange={(event) => setSelectedArea(event.target.value)}
             >
-              <option value="select-option" dir="">
-                Select Option
+              <option value="Select Area" selected disabled>
+                Select Area
               </option>
+
+              <option value={patientData.selectedArea}>
+                {patientData.selectedArea}
+              </option>
+
+              {areas?.[0].cityDataModels.map((area) => (
+                <option value={area.namePrimaryLang} key={area.id}>
+                  {area?.namePrimaryLang}
+                </option>
+              ))}
             </select>
           </div>
         </div>
