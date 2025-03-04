@@ -174,9 +174,9 @@ function App() {
                 <Route path="add-doctor" element={<AddDoctor />} />
                 {/* {Patients}  */}
 
-                <Route path="patients-list" element={<PatientsList />} />
-                <Route path="add-patients" element={<AddPatients />} />
-                <Route path="payments" element={<Payments />} />
+                {/* <Route path="patients-list" element={<PatientsList />} /> */}
+                {/* <Route path="add-patients" element={<AddPatients />} /> */}
+                {/* <Route path="payments" element={<Payments />} /> */}
                 {/* Staff */}
                 <Route path="employee-salary" element={<EmployeeSalary />} />
                 <Route path="add-staff" element={<AddStaff />} />
