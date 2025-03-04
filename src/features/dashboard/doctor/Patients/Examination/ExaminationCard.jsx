@@ -12,6 +12,7 @@ function ExaminationCard({ type, setOpenCard, isAdding }) {
               : "/images/dashborad/check-mark.png"
           }`}
           alt={type}
+          style={{ width: "100%" }}
         />
       </div>
       <h4>{`${
