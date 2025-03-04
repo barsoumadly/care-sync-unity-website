@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 
 function DoctorPersonalDetails({
@@ -5,7 +6,11 @@ function DoctorPersonalDetails({
   onChangeDoctorData,
   onChangePageNumber,
 }) {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm({
+    defaultValues: useMemo(() => {
+      return doctorData;
+    }, [doctorData]),
+  });
 
   const performSubmit = function (data) {
     onChangeDoctorData({ ...doctorData, ...data });
@@ -33,7 +38,6 @@ function DoctorPersonalDetails({
               <input
                 className="form-control"
                 type="text"
-                value={doctorData?.phoneNumber}
                 placeholder="ex: 0123456789"
                 required
                 {...register("phoneNumber")}
@@ -50,7 +54,6 @@ function DoctorPersonalDetails({
                 type="number"
                 placeholder="ex: 30"
                 required
-                value={doctorData?.age}
                 {...register("age")}
               />
             </div>
@@ -60,12 +63,7 @@ function DoctorPersonalDetails({
               <label>
                 Gender <span className="login-danger">*</span>
               </label>
-              <select
-                className="form-control"
-                value={doctorData?.gender}
-                required
-                {...register("gender")}
-              >
+              <select className="form-control" required {...register("gender")}>
                 <option value="select-option" disabled>
                   Select Option
                 </option>
@@ -81,13 +79,12 @@ function DoctorPersonalDetails({
               </label>
               <select
                 className="form-control select"
-                value={doctorData?.specialization}
                 {...register("specialization")}
                 required
               >
                 <option value="Specialization">Specialization</option>
-                <option>Orthopedics</option>
-                <option>Radiology</option>
+                <option value="orthopedics">Orthopedics</option>
+                <option value="radiology">Radiology</option>
                 <option>Dentist</option>
               </select>
             </div>{" "}
@@ -102,7 +99,7 @@ function DoctorPersonalDetails({
               className="form-control"
               rows={3}
               cols={30}
-              value={doctorData?.biography}
+              required
               {...register("biography")}
             />
           </div>
