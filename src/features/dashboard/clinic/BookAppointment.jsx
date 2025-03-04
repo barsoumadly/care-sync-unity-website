@@ -35,11 +35,7 @@ function BookAppointment() {
                         <label>
                           First Name <span className="login-danger">*</span>
                         </label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          placeholder="adam"
-                        />
+                        <input className="form-control" type="text" placeholder="adam" />
                       </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-4">
@@ -47,11 +43,7 @@ function BookAppointment() {
                         <label>
                           Last Name <span className="login-danger">*</span>
                         </label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          placeholder="allah"
-                        />
+                        <input className="form-control" type="text" placeholder="allah" />
                       </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-4">
@@ -95,11 +87,7 @@ function BookAppointment() {
                         <label>
                           Email {/* <span className="login-danger">*</span> */}
                         </label>
-                        <input
-                          className="form-control"
-                          type="email"
-                          placeholder="example@email.com"
-                        />
+                        <input className="form-control" type="email" placeholder="example@email.com"/>
                       </div>
                     </div>
                     {/* <div className="col-12 col-sm-12">
@@ -115,7 +103,23 @@ function BookAppointment() {
                         />
                       </div>
                     </div> */}
-
+                    <div className="col-12 col-md-6 col-xl-6">
+                      <div className="input-block local-forms">
+                        <label>Consulting Doctor</label>
+                        <select className="form-control select">
+                          <option>Select Doctor</option>
+                          <option>Dr.Bernardo James</option>
+                          <option>Dr.Andrea Lalema</option>
+                          <option>Dr.William Stephin</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="col-12 col-md-6 col-xl-6">
+                      <div className="input-block local-forms">
+                        <label>Treatment </label>
+                        <input className="form-control" type="text" placeholder="Blood Pressure" />
+                      </div>
+                    </div>
                     <div className="col-12">
                       <div className="form-heading">
                         <h4>Appointment Details</h4>
@@ -164,29 +168,8 @@ function BookAppointment() {
                         </div>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>Consulting Doctor</label>
-                        <select className="form-control select">
-                          <option>Select Doctor</option>
-                          <option>Dr.Bernardo James</option>
-                          <option>Dr.Andrea Lalema</option>
-                          <option>Dr.William Stephin</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>Treatment </label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          placeholder="Blood Pressure"
-                        />
-                      </div>
-                    </div>
-
-                    {/*  <div className="col-12 col-sm-12">
+                    
+                   {/*  <div className="col-12 col-sm-12">
                       <div className="input-block local-forms">
                         <label>
                           Notes <span className="login-danger">*</span>

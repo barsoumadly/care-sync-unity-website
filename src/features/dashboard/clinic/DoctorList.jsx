@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const doctorInfo = [
   {
     id: 1,
@@ -218,7 +216,7 @@ function Table() {
                 </div>
               </td>
               <td className="profile-image">
-                <Link to={"/clinic/doctor-profile"}>
+                <a href="profile.html">
                   <img
                     width={28}
                     height={28}
@@ -227,7 +225,7 @@ function Table() {
                     alt=""
                   />{" "}
                   {doctor.name}
-                </Link>
+                </a>
               </td>
 
               <td>{doctor.specialization}</td>

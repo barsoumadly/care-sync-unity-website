@@ -75,16 +75,6 @@ function ClinicSidebar({ minbar }) {
               Add Doctor
             </NavLink>
           </li>
-          <li>
-            <NavLink to={"/clinic/doctor-profile"} className="link">
-              Doctor Profile
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/clinic/edit-profile"} className="link">
-              Edit Profile
-            </NavLink>
-          </li>
         </ul>
       </li>
 

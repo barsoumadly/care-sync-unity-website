@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const doctorInfo = [
+const doctorInfo =[
   {
     id: 1,
     name: "Andrea Lalema",
@@ -10,13 +10,14 @@ const doctorInfo = [
     NumberOfAppointments: 10,
     email: "example@email.com",
     days: "sun,mon,tue,wed,thu,fri,sat",
+    
   },
   {
     id: 2,
-    name: "Smith Bruklin",
-    image: "../images/dashborad/profiles/avatar-02.jpg",
+    name: "Smith Bruklin",   
+    image: "../images/dashborad/profiles/avatar-02.jpg", 
     department: "Urology",
-    specialization: "Prostate",
+    specialization: "Prostate", 
     NumberOfAppointments: 10,
     email: "example@email.com",
     days: "tue,wed,thu,sat",
@@ -80,30 +81,32 @@ const doctorInfo = [
     NumberOfAppointments: 10,
     email: "example@email.com",
     days: "tue,wed,thu,sat",
-  },
-];
+  }
+  
+]
 
 function AppointmentList() {
   return (
     <div className="page-wrapper">
-      <Content />
+      <Content  />
       <Notification />
     </div>
   );
+
 }
 
 function Content() {
   return (
     <div className="content">
       {/* Page Header */}
-      <PageHeader />
+      <PageHeader  />
       {/* /Page Header */}
       <div className="row">
         <div className="col-sm-12">
           <div className="card card-table show-entire">
             <div className="card-body">
               {/* Table Header */}
-              <TableHeader />
+              <TableHeader  />
               {/* /Table Header */}
               <Table />
             </div>
@@ -206,9 +209,9 @@ function Table() {
               </div>
             </th>
             <th>Name</th>
-
+           
             <th>Specialization</th>
-            {/*   <th>Degree</th> */}
+          {/*   <th>Degree</th> */}
             <th>Number of Appointments</th>
             <th>Email</th>
             <th>Days</th>
@@ -216,69 +219,69 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {doctorInfo.map((doctor) => (
-            <tr key={doctor.id}>
+          
+            {doctorInfo.map((doctor) => ( 
+              <tr  key={doctor.id}> 
               <td>
-                <div className="form-check check-tables">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    defaultValue="something"
-                  />
-                </div>
-              </td>
-              <td className="profile-image">
-                <Link to={"/clinic/patient-of-doctors"}>
-                  <img
-                    width={28}
-                    height={28}
-                    src={doctor.image}
-                    className="rounded-circle m-r-5"
-                    alt=""
-                  />{" "}
-                  {doctor.name}
-                </Link>
-              </td>
-
-              <td>{doctor.specialization}</td>
-              <td className="pl-5"> 
-                <td className="text-center bg-info-subtle rounded-5 rounded-top-0 w-25 h-25 pl-5 " >{doctor.NumberOfAppointments}</td> 
-                
-              </td>
-              <td>
+              <div className="form-check check-tables">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  defaultValue="something"
+                />
+              </div>
+            </td>
+            <td className="profile-image">
+              <Link to={"/clinic/patient-of-doctors"}>
+                <img
+                  width={28}
+                  height={28}
+                  src={doctor.image}
+                  className="rounded-circle m-r-5"
+                  alt=""
+                />{" "}
+                {doctor.name}
+              </Link>
+            </td>
+            
+            <td>{doctor.specialization}</td>
+            <td>
+              <td className="text-center" >{doctor.NumberOfAppointments}</td>
+            </td>
+            <td>
+              <a
+                href="cdn-cgi/l/email-protection"
+                className="__cf_email__"
+                data-cfemail="ddb8a5bcb0adb1b89db8b0bcb4b1f3beb2b0">
+                {doctor.email}
+              </a>
+            </td>
+            <td>{doctor.days}</td>
+            <td className="text-end">
+              <div className="dropdown dropdown-action">
                 <a
-                  href="cdn-cgi/l/email-protection"
-                  className="__cf_email__"
-                  data-cfemail="ddb8a5bcb0adb1b89db8b0bcb4b1f3beb2b0">
-                  {doctor.email}
+                  href="#"
+                  className="action-icon dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <i className="fa fa-ellipsis-v" />
                 </a>
-              </td>
-              <td>{doctor.days}</td>
-              <td className="text-end">
-                <div className="dropdown dropdown-action">
-                  <a
-                    href="#"
-                    className="action-icon dropdown-toggle"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <i className="fa fa-ellipsis-v" />
+                <div className="dropdown-menu dropdown-menu-end">
+                  <a className="dropdown-item" href="edit-patient.html">
+                    <i className="fa-solid fa-pen-to-square m-r-5" /> Edit
                   </a>
-                  <div className="dropdown-menu dropdown-menu-end">
-                    <a className="dropdown-item" href="edit-patient.html">
-                      <i className="fa-solid fa-pen-to-square m-r-5" /> Edit
-                    </a>
-                    <a
-                      className="dropdown-item"
-                      href="#"
-                      data-bs-toggle="modal"
-                      data-bs-target="#delete_patient">
-                      <i className="fa fa-trash-alt m-r-5" /> Delete
-                    </a>
-                  </div>
+                  <a
+                    className="dropdown-item"
+                    href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#delete_patient">
+                    <i className="fa fa-trash-alt m-r-5" /> Delete
+                  </a>
                 </div>
-              </td>
+              </div>
+            </td>
             </tr>
-          ))}
+            ))}
         </tbody>
       </table>
     </div>

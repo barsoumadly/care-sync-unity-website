@@ -22,8 +22,6 @@ import ClinicLayout from "./features/dashboard/clinic/ClinicLayout";
 import ClinicDashboard from "./features/dashboard/clinic/ClinicDashboard";
 import DoctorList from "./features/dashboard/clinic/DoctorList";
 import AddDoctor from "./features/dashboard/clinic/AddDoctor";
-import EditProfileClinic from "./features/dashboard/clinic/EditProfileClinic";
-import DoctorProfile from "./features/dashboard/clinic/DoctorProfile";
 /* import PatientsList from "./features/dashboard/clinic/PatientsList";
 import AddPatients from "./features/dashboard/clinic/AddPatients"; 
 import Payments from "./features/dashboard/clinic/Payments";*/
@@ -93,7 +91,10 @@ import PharmacyCompleteProfile from "./features/dashboard/pharmacy/profile/Pharm
 import LaboratoryCompleteProfile from "./features/dashboard/laboratory/profile/LaboratoryCompleteProfile";
 import LaboratoryEditProfile from "./features/dashboard/laboratory/profile/LaboratoryEditProfile";
 import LaboratoryViewProfile from "./features/dashboard/laboratory/profile/LaboratoryViewProfile";
+<<<<<<< HEAD
 import { ChatProvider } from "./context/ChatContext";
+=======
+>>>>>>> parent of f88a973 (clinic)
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -152,9 +153,29 @@ function App() {
               {/* Doctors */}
               <Route path="doctor-list" element={<DoctorList />} />
               <Route path="add-doctor" element={<AddDoctor />} />
+<<<<<<< HEAD
               <Route path="doctor-profile" element={<DoctorProfile />} />
               <Route path="edit-profile" element={<EditProfileClinic />} />
               {/* {Patients}  */}
+=======
+              {/* Patients 
+              <Route path="patients-list" element={<PatientsList />} />
+              <Route path="add-patients" element={<AddPatients />} />
+              <Route path="payments" element={<Payments />} />*/}
+              {/* Staff */}
+              <Route path="employee-salary" element={<EmployeeSalary />} />
+              <Route path="add-staff" element={<AddStaff />} />
+              <Route path="attendance" element={<Attendance />} />
+              {/* Appointments */}
+              <Route path="appointment-list" element={<AppointmentList />} />
+              <Route path="book-appointment" element={<BookAppointment />} />
+              <Route path="patient-of-doctors" element={<PatientsOfDoc />} />
+              <Route path="edit-appointment" element={<EditAppointments />} />
+              {/* Doctor Schedule */}
+              <Route path="schedule-list" element={<ScheduleList />} />
+              <Route path="add-schedule" element={<AddSchedule />} />
+              <Route path="edit-schedule" element={<EditSchedule />} />
+>>>>>>> parent of f88a973 (clinic)
 
               <Route
                 path="clinic"
