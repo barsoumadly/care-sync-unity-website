@@ -93,6 +93,7 @@ import PharmacyCompleteProfile from "./features/dashboard/pharmacy/profile/Pharm
 import LaboratoryCompleteProfile from "./features/dashboard/laboratory/profile/LaboratoryCompleteProfile";
 import LaboratoryEditProfile from "./features/dashboard/laboratory/profile/LaboratoryEditProfile";
 import LaboratoryViewProfile from "./features/dashboard/laboratory/profile/LaboratoryViewProfile";
+import { ChatProvider } from "./context/ChatContext";
 
 
 const queryClient = new QueryClient({
@@ -116,42 +117,36 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <UserContextProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            {/* Authentication */}
-            <Route element={<AuthenticationLayout />}>
-              <Route path="register" element={<Register />} />
-              <Route
-                path="verify-email"
-                element={
-                  <ProtectedAuth>
-                    <VerifyEmail />
-                  </ProtectedAuth>
-                }
-              />
-              <Route path="login" element={<Login />} />
-              <Route path="forgot-password" element={<ForgotPassword />} />
-              <Route
-                path="reset-password"
-                element={
-                  <ProtectedAuth>
-                    <ResetPassword />
-                  </ProtectedAuth>
-                }
-              />
-            </Route>
+        <ChatProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              {/* Authentication */}
+              <Route element={<AuthenticationLayout />}>
+                <Route path="register" element={<Register />} />
+                <Route
+                  path="verify-email"
+                  element={
+                    <ProtectedAuth>
+                      <VerifyEmail />
+                    </ProtectedAuth>
+                  }
+                />
+                <Route path="login" element={<Login />} />
+                <Route path="forgot-password" element={<ForgotPassword />} />
+                <Route
+                  path="reset-password"
+                  element={
+                    <ProtectedAuth>
+                      <ResetPassword />
+                    </ProtectedAuth>
+                  }
+                />
+              </Route>
 
-            {/* Clinic */}
-            <Route
-              path="clinic"
-              element={
-                <ProtectedRoute>
-                  <ClinicLayout />
-                </ProtectedRoute>
-              }
-            >
+              {/* Clinic */}
               <Route
+<<<<<<< HEAD
                 path="complete-profile"
                 element={<CompleteClinicProfile />}
               />
@@ -162,150 +157,177 @@ function App() {
               <Route path="doctor-profile" element={<DoctorProfile />} />
               <Route path="edit-profile" element={<EditProfileClinic/>} />
               {/* Patients 
+=======
+                path="clinic"
+                element={
+                  <ProtectedRoute>
+                    <ClinicLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route
+                  path="complete-profile"
+                  element={<CompleteClinicProfile />}
+                />
+                <Route path="dashboard" element={<ClinicDashboard />} />
+                {/* Doctors */}
+                <Route path="doctor-list" element={<DoctorList />} />
+                <Route path="add-doctor" element={<AddDoctor />} />
+                {/* Patients 
+>>>>>>> origin/chat
               <Route path="patients-list" element={<PatientsList />} />
               <Route path="add-patients" element={<AddPatients />} />
               <Route path="payments" element={<Payments />} />*/}
-              {/* Staff */}
-              <Route path="employee-salary" element={<EmployeeSalary />} />
-              <Route path="add-staff" element={<AddStaff />} />
-              <Route path="attendance" element={<Attendance />} />
-              {/* Appointments */}
-              <Route path="appointment-list" element={<AppointmentList />} />
-              <Route path="book-appointment" element={<BookAppointment />} />
-              <Route path="patient-of-doctors" element={<PatientsOfDoc />} />
-              <Route path="edit-appointment" element={<EditAppointments />} />
-              {/* Doctor Schedule */}
-              <Route path="schedule-list" element={<ScheduleList />} />
-              <Route path="add-schedule" element={<AddSchedule />} />
-              <Route path="edit-schedule" element={<EditSchedule />} />
+                {/* Staff */}
+                <Route path="employee-salary" element={<EmployeeSalary />} />
+                <Route path="add-staff" element={<AddStaff />} />
+                <Route path="attendance" element={<Attendance />} />
+                {/* Appointments */}
+                <Route path="appointment-list" element={<AppointmentList />} />
+                <Route path="book-appointment" element={<BookAppointment />} />
+                <Route path="patient-of-doctors" element={<PatientsOfDoc />} />
+                <Route path="edit-appointment" element={<EditAppointments />} />
+                {/* Doctor Schedule */}
+                <Route path="schedule-list" element={<ScheduleList />} />
+                <Route path="add-schedule" element={<AddSchedule />} />
+                <Route path="edit-schedule" element={<EditSchedule />} />
 
-              <Route path="chat" element={<Chat />} />
-              <Route path="reports" element={<Reports />} />
-              <Route path="invoice" element={<Invoice />} />
-              <Route path="edit-profile" />
-              <Route path="my-profile" />
-            </Route>
+                <Route path="chat" element={<Chat />} />
+                <Route path="reports" element={<Reports />} />
+                <Route path="invoice" element={<Invoice />} />
+                <Route path="edit-profile" />
+                <Route path="my-profile" />
+              </Route>
 
-            {/* Doctor */}
-            <Route
-              path="doctor"
-              element={
-                <ProtectedRoute>
-                  <DoctorLayout />
-                </ProtectedRoute>
-              }
-            >
+              {/* Doctor */}
               <Route
-                path="complete-profile"
-                element={<CompleteDoctorProfile />}
-              />
-              <Route path="dashboard" element={<DoctorDashboard />} />
-              <Route path="doctor-shedule" element={<DoctorShedule />} />
-              <Route path="patients" element={<ClinicsListOfDoctor />} />
-              <Route path="patient-list" element={<DoctorPatientsList />} />
-              <Route path="patient-profile" element={<PatientProfile />} />
-              <Route path="chat" element={<DoctorChat />} />
-              <Route path="my-profile" element={<MyProfile />} />
-              <Route path="edit-profile" element={<EditProfile />} />
-            </Route>
+                path="doctor"
+                element={
+                  <ProtectedRoute>
+                    <DoctorLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route
+                  path="complete-profile"
+                  element={<CompleteDoctorProfile />}
+                />
+                <Route path="dashboard" element={<DoctorDashboard />} />
+                <Route path="doctor-shedule" element={<DoctorShedule />} />
+                <Route path="patients" element={<ClinicsListOfDoctor />} />
+                <Route path="patient-list" element={<DoctorPatientsList />} />
+                <Route path="patient-profile" element={<PatientProfile />} />
+                <Route path="chat" element={<DoctorChat />} />
+                <Route path="my-profile" element={<MyProfile />} />
+                <Route path="edit-profile" element={<EditProfile />} />
+              </Route>
 
-            {/* Patient */}
-            <Route
-              path="patient"
-              element={
-                <ProtectedRoute>
-                  <PatientLayout />
-                </ProtectedRoute>
-              }
-            >
+              {/* Patient */}
               <Route
-                path="complete-profile"
-                element={<CompletePatientProfile />}
-              />
-              <Route path="dashboard" element={<PatientDashboard />} />
-              <Route path="clinics" element={<ClinicsList />} />
-              <Route path="chat" element={<PatientChat />} />
-              <Route path="appointments" element={<PatientAppointments />} />
-              <Route path="view-profile" element={<PatientProfileView />} />
-              <Route path="edit-profile" element={<PatientEditProfile />} />
-              <Route path="clinics/:clinicName" element={<ClinicProfile />} />
-              <Route
-                path="clinics/:clinicName/doctors"
-                element={<DoctorsList />}
-              />
-              <Route
-                path="clinics/:clinicName/images"
-                element={<ClinicImages />}
-              />
-              <Route path="payment-gateway" element={<PaymentGateway />} />
-              <Route path="pharmacies" element={<PharmacyList />} />
-              <Route
-                path="pharmacies/:pharmacyName"
-                element={<PharmacyProfile />}
-              />
-              <Route
-                path="pharmacies/:pharmacyName/medicines"
-                element={<MedicinesList />}
-              />
-              <Route path="laboratories" element={<LaboratoryList />} />
-              <Route
-                path="laboratories/:laboratoryName"
-                element={<LaboratoryProfile />}
-              />
-              <Route
-                path="laboratories/:laboratoryName/analysis-list"
-                element={<LaboratoryAnalysisList />}
-              />
-              <Route path=":doctorName/profile" element={<MyProfile />} />
-              <Route path="prescriptions" element={<PrescriptionsList />} />
-              <Route path="prescription/:id" element={<PrescriptionPaper />} />
-              <Route path="medicines" element={<MedicineList />} />
-            </Route>
+                path="patient"
+                element={
+                  <ProtectedRoute>
+                    <PatientLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route
+                  path="complete-profile"
+                  element={<CompletePatientProfile />}
+                />
+                <Route path="dashboard" element={<PatientDashboard />} />
+                <Route path="clinics" element={<ClinicsList />} />
+                <Route path="chat" element={<PatientChat />} />
+                <Route path="appointments" element={<PatientAppointments />} />
+                <Route path="view-profile" element={<PatientProfileView />} />
+                <Route path="edit-profile" element={<PatientEditProfile />} />
+                <Route path="clinics/:clinicName" element={<ClinicProfile />} />
+                <Route
+                  path="clinics/:clinicName/doctors"
+                  element={<DoctorsList />}
+                />
+                <Route
+                  path="clinics/:clinicName/images"
+                  element={<ClinicImages />}
+                />
+                <Route path="payment-gateway" element={<PaymentGateway />} />
+                <Route path="pharmacies" element={<PharmacyList />} />
+                <Route
+                  path="pharmacies/:pharmacyName"
+                  element={<PharmacyProfile />}
+                />
+                <Route
+                  path="pharmacies/:pharmacyName/medicines"
+                  element={<MedicinesList />}
+                />
+                <Route path="laboratories" element={<LaboratoryList />} />
+                <Route
+                  path="laboratories/:laboratoryName"
+                  element={<LaboratoryProfile />}
+                />
+                <Route
+                  path="laboratories/:laboratoryName/analysis-list"
+                  element={<LaboratoryAnalysisList />}
+                />
+                <Route path=":doctorName/profile" element={<MyProfile />} />
+                <Route path="prescriptions" element={<PrescriptionsList />} />
+                <Route
+                  path="prescription/:id"
+                  element={<PrescriptionPaper />}
+                />
+                <Route path="medicines" element={<MedicineList />} />
+              </Route>
 
-            {/* Pharmacy */}
-            <Route
-              path="pharmacy"
-              element={
-                <ProtectedRoute>
-                  <PharmacyLayout />
-                </ProtectedRoute>
-              }
-            >
+              {/* Pharmacy */}
               <Route
-                path="complete-profile"
-                element={<PharmacyCompleteProfile />}
-              />
-              <Route path="dashboard" element={<PharmacyDashboard />} />
-              <Route path="medicines" element={<PharmacyMedicinesList />} />
-              <Route path="edit-medicine" element={<EditMedicineTuple />} />
-              <Route path="add-medicine" element={<MedicineAddition />} />
-              <Route path="view-profile" element={<PharmacyProfileView />} />
-              <Route path="edit-profile" element={<PharmacyEditProfile />} />
-            </Route>
+                path="pharmacy"
+                element={
+                  <ProtectedRoute>
+                    <PharmacyLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route
+                  path="complete-profile"
+                  element={<PharmacyCompleteProfile />}
+                />
+                <Route path="dashboard" element={<PharmacyDashboard />} />
+                <Route path="medicines" element={<PharmacyMedicinesList />} />
+                <Route path="edit-medicine" element={<EditMedicineTuple />} />
+                <Route path="add-medicine" element={<MedicineAddition />} />
+                <Route path="view-profile" element={<PharmacyProfileView />} />
+                <Route path="edit-profile" element={<PharmacyEditProfile />} />
+              </Route>
 
-            {/* Laboratory */}
-            <Route
-              path="laboratory"
-              element={
-                <ProtectedRoute>
-                  <LaboratoryLayout />
-                </ProtectedRoute>
-              }
-            >
+              {/* Laboratory */}
               <Route
-                path="complete-profile"
-                element={<LaboratoryCompleteProfile />}
-              />
-              <Route path="dashboard" element={<LaboratoryDashboard />} />
-              <Route path="view-profile" element={<LaboratoryViewProfile />} />
-              <Route path="edit-profile" element={<LaboratoryEditProfile />} />
-            </Route>
+                path="laboratory"
+                element={
+                  <ProtectedRoute>
+                    <LaboratoryLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route
+                  path="complete-profile"
+                  element={<LaboratoryCompleteProfile />}
+                />
+                <Route path="dashboard" element={<LaboratoryDashboard />} />
+                <Route
+                  path="view-profile"
+                  element={<LaboratoryViewProfile />}
+                />
+                <Route
+                  path="edit-profile"
+                  element={<LaboratoryEditProfile />}
+                />
+              </Route>
 
-            <Route path="*" element={<PageNotFound />} />
-            <Route path="/internal-server-error" element={<ServerDown />} />
-          </Routes>
-        </BrowserRouter>
-
+              <Route path="*" element={<PageNotFound />} />
+              <Route path="/internal-server-error" element={<ServerDown />} />
+            </Routes>
+          </BrowserRouter>
+        </ChatProvider>
         <Toaster
           position="top-center"
           gutter={12}
