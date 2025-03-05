@@ -12884,3 +12884,11 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
   height: 150px;
   margin: auto;
 }
+
+.chat-active {
+  background-color: #2e37a4;
+}
+
+.chat-active h5, .chat-active p {
+  color: #fff !important;
+}
