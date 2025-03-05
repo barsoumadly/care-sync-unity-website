@@ -188,6 +188,10 @@ function App() {
 
               {/* Doctor */}
               <Route
+                path="doctor/complete-profile"
+                element={<CompleteDoctorProfile />}
+              />
+              <Route
                 path="doctor"
                 element={
                   <ProtectedRoute>
@@ -195,10 +199,6 @@ function App() {
                   </ProtectedRoute>
                 }
               >
-                <Route
-                  path="complete-profile"
-                  element={<CompleteDoctorProfile />}
-                />
                 <Route path="dashboard" element={<DoctorDashboard />} />
                 <Route path="doctor-shedule" element={<DoctorShedule />} />
                 <Route path="patients" element={<ClinicsListOfDoctor />} />
@@ -209,6 +209,11 @@ function App() {
                 <Route path="edit-profile" element={<EditProfile />} />
               </Route>
 
+              <Route
+                path="patient/complete-profile"
+                element={<CompletePatientProfile />}
+              />
+
               {/* Patient */}
               <Route
                 path="patient"
@@ -218,10 +223,6 @@ function App() {
                   </ProtectedRoute>
                 }
               >
-                <Route
-                  path="complete-profile"
-                  element={<CompletePatientProfile />}
-                />
                 <Route path="dashboard" element={<PatientDashboard />} />
                 <Route path="clinics" element={<ClinicsList />} />
                 <Route path="chat" element={<PatientChat />} />
@@ -267,6 +268,10 @@ function App() {
 
               {/* Pharmacy */}
               <Route
+                path="pharmacy/complete-profile"
+                element={<PharmacyCompleteProfile />}
+              />
+              <Route
                 path="pharmacy"
                 element={
                   <ProtectedRoute>
@@ -274,10 +279,6 @@ function App() {
                   </ProtectedRoute>
                 }
               >
-                <Route
-                  path="complete-profile"
-                  element={<PharmacyCompleteProfile />}
-                />
                 <Route path="dashboard" element={<PharmacyDashboard />} />
                 <Route path="medicines" element={<PharmacyMedicinesList />} />
                 <Route path="edit-medicine" element={<EditMedicineTuple />} />
@@ -288,6 +289,10 @@ function App() {
 
               {/* Laboratory */}
               <Route
+                path="laboratory/complete-profile"
+                element={<LaboratoryCompleteProfile />}
+              />
+              <Route
                 path="laboratory"
                 element={
                   <ProtectedRoute>
@@ -295,10 +300,6 @@ function App() {
                   </ProtectedRoute>
                 }
               >
-                <Route
-                  path="complete-profile"
-                  element={<LaboratoryCompleteProfile />}
-                />
                 <Route path="dashboard" element={<LaboratoryDashboard />} />
                 <Route
                   path="view-profile"
