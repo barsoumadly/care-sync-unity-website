@@ -55,7 +55,20 @@ function Chat() {
 
   const formatDateTime = (timestamp) => {
     if (!timestamp) return "";
-    return new Date(timestamp).toLocaleString();
+    const day = new Date(timestamp).toLocaleString().split(",")[0];
+    // console.log(day.split(","));
+
+    var date = new Date(timestamp);
+
+    var hour = date.getHours();
+    var time = hour >= 12 ? "PM" : "AM";
+    hour = hour % 12;
+    hour = hour ? hour : 12;
+
+    var minutes = date.getMinutes();
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+
+    return { day, time: `${hour}:${minutes} ${time}` };
   };
 
   const getOtherParticipant = (chat) => {
@@ -212,7 +225,10 @@ function Chat() {
                   <div className="card chat-message-box">
                     <div className="card-body p-0">
                       <div className="chat-body">
-                        <ul className="list-unstyled chat-message slimscroll scroll">
+                        <ul
+                          className="list-unstyled chat-message slimscroll scroll"
+                          style={{ height: "36vh" }}
+                        >
                           {activeChat.messages?.map((msg) => (
                             <li
                               key={msg._id}
@@ -238,10 +254,12 @@ function Chat() {
                                     {/* {msg.sender?._id !== user._id && (
                                       <h4>{msg.sender?.name}</h4>
                                     )} */}
-                                    <p style={{ maxWidth: "270px" }}>
+                                    <p style={{ width: "fit-content" }}>
                                       {msg.content}
                                     </p>
-                                    <span>{formatDateTime(msg.createdAt)}</span>
+                                    <span>
+                                      {formatDateTime(msg.createdAt).time}
+                                    </span>
                                   </div>
                                 </div>
                               </div>
@@ -320,10 +338,18 @@ function Chat() {
                 </>
               ) : (
                 <div className="card chat-box">
-                  <div className="chat-search-group">
-                    <div className="text-center p-4">
-                      Select a chat to start messaging
+                  <div
+                    className="text-center mt-5 py-5"
+                    style={{ padding: "0 10%" }}
+                  >
+                    <div className="reminder-icon">
+                      <img
+                        src="/images/dashborad/chat-photo.png"
+                        alt={""}
+                        style={{ width: "100%" }}
+                      />
                     </div>
+                    <h4>Select a chat to start messaging</h4>
                   </div>
                 </div>
               )}
