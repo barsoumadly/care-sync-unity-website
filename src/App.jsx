@@ -46,7 +46,7 @@ import DoctorLayout from "./features/dashboard/doctor/DoctorLayout";
 import DoctorDashboard from "./features/dashboard/doctor/DoctorDashboard";
 import DoctorShedule from "./features/dashboard/doctor/DoctorShedule";
 import DoctorPatientsList from "./features/dashboard/doctor/Patients/Patients";
-import DoctorChat from "./features/dashboard/doctor/Chat";
+import DoctorChat from "./features/dashboard/chat/Chat";
 import MyProfile from "./features/dashboard/doctor/MyProfile";
 import EditProfile from "./features/dashboard/doctor/EditProfile";
 import PatientProfile from "./features/dashboard/doctor/Patients/PatientProfile";
@@ -214,7 +214,7 @@ function App() {
                 <Route path="patient-list" element={<DoctorPatientsList />} />
                 <Route path="patient-profile" element={<PatientProfile />} />
                 <Route path="chat" element={<DoctorChat />} />
-                <Route path="my-profile" element={<MyProfile />} />
+                <Route path="view-profile" element={<MyProfile />} />
                 <Route path="edit-profile" element={<EditProfile />} />
               </Route>
 
