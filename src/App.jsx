@@ -17,6 +17,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import ProtectedCompleteProfile from "./ui/ProtectedCompleteProfile";
 /* Clinic */
 import ClinicLayout from "./features/dashboard/clinic/ClinicLayout";
 import ClinicDashboard from "./features/dashboard/clinic/ClinicDashboard";
@@ -143,6 +144,15 @@ function App() {
                 />
               </Route>
 
+              {/* Clinic */}
+              <Route
+                path="complete-profile"
+                element={
+                  <ProtectedCompleteProfile>
+                    <CompleteClinicProfile />
+                  </ProtectedCompleteProfile>
+                }
+              />
               <Route
                 path="clinic"
                 element={
@@ -151,11 +161,6 @@ function App() {
                   </ProtectedRoute>
                 }
               >
-                {/* Clinic */}
-                <Route
-                  path="complete-profile"
-                  element={<CompleteClinicProfile />}
-                />
                 <Route path="dashboard" element={<ClinicDashboard />} />
                 {/* Doctors */}
                 <Route path="doctor-list" element={<DoctorList />} />
@@ -189,7 +194,11 @@ function App() {
               {/* Doctor */}
               <Route
                 path="doctor/complete-profile"
-                element={<CompleteDoctorProfile />}
+                element={
+                  <ProtectedCompleteProfile>
+                    <CompleteDoctorProfile />
+                  </ProtectedCompleteProfile>
+                }
               />
               <Route
                 path="doctor"
@@ -209,12 +218,16 @@ function App() {
                 <Route path="edit-profile" element={<EditProfile />} />
               </Route>
 
+              {/* Patient */}
               <Route
                 path="patient/complete-profile"
-                element={<CompletePatientProfile />}
+                element={
+                  <ProtectedCompleteProfile>
+                    <CompletePatientProfile />
+                  </ProtectedCompleteProfile>
+                }
               />
 
-              {/* Patient */}
               <Route
                 path="patient"
                 element={
@@ -269,7 +282,11 @@ function App() {
               {/* Pharmacy */}
               <Route
                 path="pharmacy/complete-profile"
-                element={<PharmacyCompleteProfile />}
+                element={
+                  <ProtectedCompleteProfile>
+                    <PharmacyCompleteProfile />
+                  </ProtectedCompleteProfile>
+                }
               />
               <Route
                 path="pharmacy"
@@ -290,7 +307,11 @@ function App() {
               {/* Laboratory */}
               <Route
                 path="laboratory/complete-profile"
-                element={<LaboratoryCompleteProfile />}
+                element={
+                  <ProtectedCompleteProfile>
+                    <LaboratoryCompleteProfile />
+                  </ProtectedCompleteProfile>
+                }
               />
               <Route
                 path="laboratory"
