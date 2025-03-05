@@ -56,7 +56,7 @@ import PatientLayout from "./features/dashboard/patient/PatientLayout";
 import PatientDashboard from "./features/dashboard/patient/PatientDashboard";
 import ClinicsList from "./features/dashboard/patient/clinics/ClinicsList";
 import PatientAppointments from "./features/dashboard/patient/appointments/Appointments";
-import PatientChat from "./features/dashboard/patient/Chat";
+import PatientChat from "./features/dashboard/patient/chat/Chat";
 import EditProfilePatient from "./features/dashboard/patient/EditProfile";
 import PaymentGateway from "./features/dashboard/patient/PaymentGateway";
 import DoctorsList from "./features/dashboard/patient/clinics/DoctorList";
