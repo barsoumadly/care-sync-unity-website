@@ -13,7 +13,7 @@ function UserAvatar() {
     <>
       <div
         className="user-names"
-        onClick={() => navigate(`/${role}/view-profile`)}
+        onClick={() => navigate(`/${role.toLowerCase()}/view-profile`)}
       >
         <h5>{name}</h5>
         <span>{role}</span>
