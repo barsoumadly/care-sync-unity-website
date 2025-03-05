@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { logout } from "../../../services/auth";
 import { useState } from "react";
+import Header from "../../../ui/Header";
 
 function telephoneCheck(p) {
   var phoneRe = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
@@ -44,6 +45,7 @@ function CompleteClinicProfile() {
   }
   return (
     <>
+      <Header />
       <div className="page-wrapper" style={{ marginLeft: "0px" }}>
         <div className="content">
           {/* Page Header */}
