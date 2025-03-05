@@ -50,7 +50,7 @@ function DoctorSidebar() {
 
       {/* My Profile */}
       <li className="submenu">
-        <NavLink to={"/doctor/my-profile"} className="link">
+        <NavLink to={"/doctor/view-profile"} className="link">
           <span className="menu-side">
             <FaUserDoctor />
           </span>
