@@ -106,29 +106,28 @@ function ChatList({ user }) {
               </div>
             </form>
           </div>
+          <ul className="slimscroll scroll" style={{ height: "45vh" }}>
+            {loading ? (
+              <div className="text-center p-4">Loading chats...</div>
+            ) : error ? (
+              <div className="text-center p-4 text-danger">{error}</div>
+            ) : filteredChats.length === 0 ? (
+              <div className="text-center p-4" style={{ height: "45vh" }}>
+                <h4>No chats found</h4>
+              </div>
+            ) : (
+              filteredChats.map((chat) => {
+                const lastMessage = chat.messages?.[chat.messages?.length - 1];
+                const isOnline =
+                  chat.participants?.some((p) => onlineUsers?.has(p._id)) ||
+                  false;
+                const unreadCount =
+                  activeChat ||
+                  chat.messages?.filter((m) => !m.readBy?.includes(user.id))
+                    ?.length ||
+                  0;
 
-          {loading ? (
-            <div className="text-center p-4">Loading chats...</div>
-          ) : error ? (
-            <div className="text-center p-4 text-danger">{error}</div>
-          ) : filteredChats.length === 0 ? (
-            <div className="text-center p-4">
-              <h4>No chats found</h4>
-            </div>
-          ) : (
-            filteredChats.map((chat) => {
-              const lastMessage = chat.messages?.[chat.messages?.length - 1];
-              const isOnline =
-                chat.participants?.some((p) => onlineUsers?.has(p._id)) ||
-                false;
-              const unreadCount =
-                activeChat ||
-                chat.messages?.filter((m) => !m.readBy?.includes(user.id))
-                  ?.length ||
-                0;
-
-              return (
-                <ul className="slimscroll scroll" style={{ height: "45vh" }}>
+                return (
                   <li
                     key={chat._id}
                     className={`chat-user-group d-flex align-items-center  ${
@@ -172,10 +171,10 @@ function ChatList({ user }) {
                       </div>
                     </div>
                   </li>
-                </ul>
-              );
-            })
-          )}
+                );
+              })
+            )}
+          </ul>
         </div>
       </div>
     </div>
