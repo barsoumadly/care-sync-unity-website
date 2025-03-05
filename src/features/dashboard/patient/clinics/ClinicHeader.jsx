@@ -1,11 +1,13 @@
 import { IoArrowBackOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ActiveStar from "../../../../ui/ActiveStar";
 import InactiveStar from "../../../../ui/InactiveStar";
 import SemiactiveStar from "../../../../ui/SemiactiveStar";
+import { createChat } from "../../../../services/chat-app";
 
 function ClinicHeader({ activeTab }) {
   const clinic = JSON.parse(localStorage.getItem("clinic"));
+  const navigate = useNavigate();
 
   const numOfInactiveStars = 5 - clinic.rating;
   const activeStars = Array.from({ length: clinic.rating }, (_, i) => i + 1);
@@ -16,6 +18,15 @@ function ClinicHeader({ activeTab }) {
   } else {
     inactiveStars = Array.from({ length: numOfInactiveStars }, (_, i) => i + 1);
   }
+
+  const handleCreateChat = async function () {
+    const response = await createChat(
+      "67c6593cd2bc99b92e9e25ef",
+      JSON.parse(localStorage.getItem("key"))
+    );
+
+    localStorage.setItem("chat", JSON.stringify(response.data.data.chat));
+  };
 
   return (
     <>
@@ -85,7 +96,11 @@ function ClinicHeader({ activeTab }) {
                         </span>
                       </div>
                       <div className="staff-msg">
-                        <Link to="/patient/chat" className="btn btn-primary">
+                        <Link
+                          to="/patient/chat"
+                          className="btn btn-primary"
+                          onClick={handleCreateChat}
+                        >
                           Send Message
                         </Link>
                       </div>
