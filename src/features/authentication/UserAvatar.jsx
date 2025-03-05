@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 function UserAvatar() {
@@ -6,9 +7,14 @@ function UserAvatar() {
   name = name.split(" ").slice(0, 2).join(" ");
   role = role.split("_").join(" ");
 
+  const navigate = useNavigate();
+
   return (
     <>
-      <div className="user-names">
+      <div
+        className="user-names"
+        onClick={() => navigate(`/${role}/view-profile`)}
+      >
         <h5>{name}</h5>
         <span>{role}</span>
       </div>
