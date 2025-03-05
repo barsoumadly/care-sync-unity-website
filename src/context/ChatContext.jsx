@@ -201,7 +201,10 @@ export function ChatProvider({ children }) {
         dispatch({ type: ACTIONS.SET_ERROR, payload: null });
 
         // Set initial state
-        dispatch({ type: ACTIONS.SET_CONNECTION_STATUS, payload: "connecting" });
+        dispatch({
+          type: ACTIONS.SET_CONNECTION_STATUS,
+          payload: "connecting",
+        });
 
         // Initialize WebSocket connection with token
         await chatService.initializeSocket(token);
@@ -209,7 +212,7 @@ export function ChatProvider({ children }) {
         // Wait for successful connection before loading chats
         await new Promise((resolve, reject) => {
           const timeoutId = setTimeout(() => {
-            reject(new Error('Connection timeout'));
+            reject(new Error("Connection timeout"));
           }, 5000);
 
           const handleConnect = () => {
@@ -246,7 +249,7 @@ export function ChatProvider({ children }) {
           type: ACTIONS.SET_CONNECTION_STATUS,
           payload: status,
         });
-        
+
         if (error) {
           dispatch({
             type: ACTIONS.SET_ERROR,
@@ -310,7 +313,10 @@ export function ChatProvider({ children }) {
 
     // Cleanup
     return () => {
-      dispatch({ type: ACTIONS.SET_CONNECTION_STATUS, payload: "disconnected" });
+      dispatch({
+        type: ACTIONS.SET_CONNECTION_STATUS,
+        payload: "disconnected",
+      });
       dispatch({ type: ACTIONS.SET_ERROR, payload: null });
       dispatch({ type: ACTIONS.SET_CHATS, payload: [] });
       dispatch({ type: ACTIONS.SET_ACTIVE_CHAT, payload: null });
