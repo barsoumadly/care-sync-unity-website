@@ -37,7 +37,7 @@ function Header({ setShowbar, setMinbar, url }) {
               "linear-gradient(0deg, rgba(51, 53, 72, 0.05), rgba(51, 53, 72, 0.05)), #ffffff",
             marginTop: "13px",
             position: "relative",
-            width: "200px",
+            width: "120%",
             padding: "10px 15px 10px 15px",
             borderRadius: "50px",
           }}
