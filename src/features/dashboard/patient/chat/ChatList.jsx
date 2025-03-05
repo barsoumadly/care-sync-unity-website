@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useChat } from "../../../../context/ChatContext";
+import { useChat } from "../../../context/ChatContext";
 
 function ChatList({ user }) {
   const [searchTerm, setSearchTerm] = useState("");
   const chatCtx = useChat();
-  console.log(chatCtx);
 
   const {
     chats = [],
