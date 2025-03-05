@@ -18,7 +18,17 @@ function ChatList({ user }) {
   // Helper functions
   const formatTime = (timestamp) => {
     if (!timestamp) return "";
-    return new Date(timestamp).toLocaleTimeString();
+    var date = new Date(timestamp);
+
+    var hour = date.getHours();
+    var time = hour >= 12 ? "PM" : "AM";
+    hour = hour % 12;
+    hour = hour ? hour : 12;
+
+    var minutes = date.getMinutes();
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+
+    return `${hour}:${minutes} ${time}`;
   };
 
   const getOtherParticipant = (chat) => {
@@ -62,10 +72,9 @@ function ChatList({ user }) {
         <div className="chat-widgets">
           <div className="chat-user-group-head d-flex align-items-center">
             <div className="img-users call-user">
-              <a href="profile.html">
+              <a>
                 <img src={user.profilePhoto} alt={user.name} />
               </a>
-              <span className="active-users" />
             </div>
             <div className="chat-users user-main">
               <div className="user-titles">
@@ -77,7 +86,7 @@ function ChatList({ user }) {
             </div>
           </div>
 
-          <div className="top-liv-search top-chat-search">
+          <div className="top-liv-search top-chat-search ">
             <form>
               <div className="chat-search">
                 <div className="input-block me-2 mb-0">
@@ -104,7 +113,9 @@ function ChatList({ user }) {
           ) : error ? (
             <div className="text-center p-4 text-danger">{error}</div>
           ) : filteredChats.length === 0 ? (
-            <div className="text-center p-4">No chats found</div>
+            <div className="text-center p-4">
+              <h4>No chats found</h4>
+            </div>
           ) : (
             filteredChats.map((chat) => {
               const lastMessage = chat.messages?.[chat.messages?.length - 1];
@@ -118,43 +129,51 @@ function ChatList({ user }) {
                 0;
 
               return (
-                <div
-                  key={chat._id}
-                  className={`chat-user-group d-flex align-items-center ${
-                    activeChat?._id === chat._id ? "active" : ""
-                  }`}
-                  onClick={() => setActiveChat(chat._id)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <div className="img-users call-user">
-                    <a href="profile.html">
-                      <img src={getChatAvatar(chat)} alt={getChatName(chat)} />
-                    </a>
-                    {isOnline && <span className="active-users bg-success" />}
-                  </div>
-                  <div className="chat-users">
-                    <div className="user-titles d-flex">
-                      <h5>{getChatName(chat)}</h5>
-                      {lastMessage && (
-                        <div className="chat-user-time">
-                          <p>{formatTime(lastMessage.timestamp)}</p>
-                        </div>
-                      )}
+                <ul className="slimscroll scroll" style={{ height: "45vh" }}>
+                  <li
+                    key={chat._id}
+                    className={`chat-user-group d-flex align-items-center  ${
+                      activeChat?._id === chat._id ? "chat-active" : ""
+                    }`}
+                    onClick={() => setActiveChat(chat._id)}
+                    style={{
+                      cursor: "pointer",
+                      marginLeft: "-33px",
+                    }}
+                  >
+                    <div className="img-users call-user">
+                      <a href="profile.html">
+                        <img
+                          src={getChatAvatar(chat)}
+                          alt={getChatName(chat)}
+                        />
+                      </a>
+                      {isOnline && <span className="active-users bg-success" />}
                     </div>
-                    <div className="user-text d-flex">
-                      {lastMessage && (
-                        <>
-                          <p>{lastMessage.content?.substring(0, 30)}...</p>
-                          {unreadCount > 0 && (
-                            <div className="chat-user-count">
-                              <span>{unreadCount}</span>
-                            </div>
-                          )}
-                        </>
-                      )}
+                    <div className="chat-users">
+                      <div className="user-titles d-flex">
+                        <h5>{getChatName(chat)}</h5>
+                        {lastMessage && (
+                          <div className="chat-user-time">
+                            <p>{formatTime(lastMessage.createdAt)}</p>
+                          </div>
+                        )}
+                      </div>
+                      <div className="user-text d-flex">
+                        {lastMessage && (
+                          <>
+                            <p>{lastMessage.content?.substring(0, 30)}...</p>
+                            {unreadCount > 0 && (
+                              <div className="chat-user-count">
+                                <span>{unreadCount}</span>
+                              </div>
+                            )}
+                          </>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </li>
+                </ul>
               );
             })
           )}
