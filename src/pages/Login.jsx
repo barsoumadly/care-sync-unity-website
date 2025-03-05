@@ -12,24 +12,26 @@ function Login() {
 
   const [isEyeOpen, setIsEyeOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const isProfileCompleted = false;
+  // const isProfileCompleted = false;
   const { userLogin } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
 
   const navigate = useNavigate();
 
-  const showCompleteProfile = function (userRole) {
-    navigate(`/${userRole.toLowerCase().split("_")[0]}/complete-profile`);
-  };
+  // const showCompleteProfile = function (userRole) {
+  //   navigate(`/${userRole.toLowerCase().split("_")[0]}/complete-profile`);
+  // };
 
-  const navigateUser = function (userRole) {
-    if (!isProfileCompleted) showCompleteProfile(userRole);
-    else {
-      navigate(`/${userRole.toLowerCase().split("_")[0]}/dashboard`, {
-        replace: true,
-      });
-    }
-  };
+  // const navigateUser = function (userRole) {
+  //   console.log(isProfileCompleted);
+
+  //   if (!isProfileCompleted) showCompleteProfile(userRole);
+  //   else {
+  //     navigate(`/${userRole.toLowerCase().split("_")[0]}/dashboard`, {
+  //       replace: true,
+  //     });
+  //   }
+  // };
 
   const changeButton = function () {
     setIsLogin(false);
@@ -42,7 +44,7 @@ function Login() {
       if (isLogin) {
         const response = await login(data);
         userLogin(response?.data.user, response.data.token);
-        navigateUser(response?.data.user.role);
+        // navigateUser(response?.data.user.role);
         toast(`Welcome ${response.data.user.name}`, {
           icon: "👋",
         });
@@ -54,6 +56,8 @@ function Login() {
         toast.success("OTP Code is sent");
       }
     } catch (error) {
+      console.log(error);
+
       if (error.message === "Network Error") {
         return navigate("/internal-server-error");
       }
