@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../../../../../context/AuthContext";
 import MedicineTable from "./MedicineTable";
 import DynamicMedicineTuple from "../DynamicMedicineTuple";
+import DynamicField from "../../complete-profile/DynamicField";
 
 function AnalysisPaper({ setOpenCard, setIsAdding }) {
   // const prescription = JSON.parse(localStorage.getItem("prescription"));
@@ -69,7 +70,7 @@ function AnalysisPaper({ setOpenCard, setIsAdding }) {
                     </div>
                   </div>
                 </div>
-
+                {/* 
                 <MedicineTable>
                   <thead>
                     <tr>
@@ -89,7 +90,16 @@ function AnalysisPaper({ setOpenCard, setIsAdding }) {
                       setMedicineList={setAnalysisList}
                     />
                   </tbody>
-                </MedicineTable>
+                </MedicineTable> */}
+
+                <DynamicField
+                  fields={{
+                    f1: "Analysis Name",
+                    f4: "Notes",
+                  }}
+                  serviceList={analysisList}
+                  setServiceList={setAnalysisList}
+                />
               </div>
             </div>
           </div>
