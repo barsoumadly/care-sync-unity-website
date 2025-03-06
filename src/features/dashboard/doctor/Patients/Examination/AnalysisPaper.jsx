@@ -95,7 +95,7 @@ function AnalysisPaper({ setOpenCard, setIsAdding }) {
                 <DynamicField
                   fields={{
                     f1: "Analysis Name",
-                    f4: "Notes",
+                    f5: "Notes",
                   }}
                   serviceList={analysisList}
                   setServiceList={setAnalysisList}
