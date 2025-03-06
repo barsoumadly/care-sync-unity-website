@@ -9242,9 +9242,8 @@ td.add-remove {
   background: #55ddff30;
   border-radius: 5px;
   padding: 15px;
-  width: 200px;
+  width: fit-content;
   float: right;
-  margin-top: 20px;
 }
 .invoice-item-box p {
   color: #1b2559;
@@ -12663,6 +12662,7 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
   }
   .invoice-item-box {
     float: left;
+    margin-top: 20px;
   }
   .wizard .nav-tabs li:after {
     display: none;
@@ -12889,6 +12889,7 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
   background-color: #2e37a4;
 }
 
-.chat-active h5, .chat-active p {
+.chat-active h5,
+.chat-active p {
   color: #fff !important;
 }
