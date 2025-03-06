@@ -49,7 +49,7 @@ function DynamicField({ fields, serviceList = [{}], setServiceList }) {
                 <input
                   className="form-control"
                   type="text"
-                  placeholder="ex: 5 days"
+                  placeholder={`${fields.f1 === "Rx" ? "ex: 5 days" : ""}`}
                   name={fields.f2.toLowerCase().split(" ").join("_")}
                   onChange={(e) => handleServiceChange(e, index)}
                   value={
