@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useAuth } from "../../../../../context/AuthContext";
 import DynamicMedicineTuple from "../DynamicMedicineTuple";
 import MedicineTable from "./MedicineTable";
+import DynamicField from "../../complete-profile/DynamicField";
 
 function PrescriptionPaper({ setOpenCard, setIsAdding }) {
   // const prescription = JSON.parse(localStorage.getItem("prescription"));
@@ -24,7 +25,7 @@ function PrescriptionPaper({ setOpenCard, setIsAdding }) {
 
   function handleSubmit() {
     console.log(medicineList);
-    if (medicineList[0].name) {
+    if (medicineList[0].rx) {
       setIsAdding(true);
       setOpenCard("");
     }
@@ -36,10 +37,7 @@ function PrescriptionPaper({ setOpenCard, setIsAdding }) {
         {/* Page Content */}
         <div className=" container-fluid " style={{ marginTop: "10%" }}>
           <div className="col-xl-12 ">
-            <div
-              className="card invoice-info-card"
-              style={{ boxShadow: "rgb(46, 55, 164) 8px 8px 4px -5px" }}
-            >
+            <div className="card invoice-info-card">
               <div className="card-body">
                 <div className="invoice-item invoice-item-one">
                   <div className="row">
@@ -83,7 +81,7 @@ function PrescriptionPaper({ setOpenCard, setIsAdding }) {
                   </div>
                 </div>
 
-                <MedicineTable>
+                {/* <MedicineTable>
                   <thead>
                     <tr>
                       <th>Medicine Name</th>
@@ -106,7 +104,18 @@ function PrescriptionPaper({ setOpenCard, setIsAdding }) {
                       setMedicineList={setMedicineList}
                     />
                   </tbody>
-                </MedicineTable>
+                </MedicineTable> */}
+                <DynamicField
+                  fields={{
+                    f1: "Rx",
+                    f2: "Duration",
+                    f3: "Intake method",
+                    f4: "Dosages",
+                    f5: "Notes",
+                  }}
+                  serviceList={medicineList}
+                  setServiceList={setMedicineList}
+                />
               </div>
             </div>
           </div>
