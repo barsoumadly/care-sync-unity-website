@@ -22,7 +22,7 @@ function DynamicField({ fields, serviceList = [{}], setServiceList }) {
     <>
       {serviceList.map((singleService, index) => (
         <div key={index} className="row">
-          <div className="col-12 col-md-12 col-xl-2">
+          <div className="col-12 col-md-12 col-xl-3">
             <div className="input-block local-forms">
               <label>
                 {fields.f1}
@@ -109,7 +109,7 @@ function DynamicField({ fields, serviceList = [{}], setServiceList }) {
             </div>
           )}
           {fields.f5 && (
-            <div className="col-12 col-md-12 col-xl-4">
+            <div className="col-12 col-md-12 col-xl-3">
               <div className="input-block local-forms">
                 <label>
                   {fields.f5} {index > 0 ? `_${index + 1}` : ""}
