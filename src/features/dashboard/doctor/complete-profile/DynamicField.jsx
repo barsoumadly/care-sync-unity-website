@@ -1,3 +1,5 @@
+import { MdLibraryAdd } from "react-icons/md";
+
 function DynamicField({ fields, serviceList = [{}], setServiceList }) {
   const handleServiceChange = (e, index) => {
     const { name, value } = e.target;
@@ -20,7 +22,7 @@ function DynamicField({ fields, serviceList = [{}], setServiceList }) {
     <>
       {serviceList.map((singleService, index) => (
         <div key={index} className="row">
-          <div className="col-12 col-md-12 col-xl-4">
+          <div className="col-12 col-md-12 col-xl-2">
             <div className="input-block local-forms">
               <label>
                 {fields.f1}
@@ -30,7 +32,7 @@ function DynamicField({ fields, serviceList = [{}], setServiceList }) {
               <input
                 className="form-control"
                 type="text"
-                placeholder="M.B.B.S, M.S."
+                placeholder="Name:"
                 required
                 name={fields.f1.toLowerCase()}
                 onChange={(e) => handleServiceChange(e, index)}
@@ -38,35 +40,95 @@ function DynamicField({ fields, serviceList = [{}], setServiceList }) {
               />
             </div>
           </div>
-          <div className="col-12 col-md-12 col-xl-4">
-            <div className="input-block local-forms">
-              <label>
-                {fields.f2} {index > 0 ? `_${index + 1}` : ""}
-              </label>
-              <input
-                className="form-control"
-                type="text"
-                name={fields.f2.toLowerCase().split(" ").join("_")}
-                onChange={(e) => handleServiceChange(e, index)}
-                value={
-                  singleService?.[fields.f2.toLowerCase().split(" ").join("_")]
-                }
-              />
-            </div>
-          </div>
-          {serviceList.length - 1 === index && (
-            <div className="col-12 col-md-6 col-xl-2">
-              <div className="doctor-submit">
-                <button
-                  type="button"
-                  onClick={handleServiceAdd}
-                  className="btn btn-primary submit-list-form me-2"
-                >
-                  Add
-                </button>
+          {fields.f2 && (
+            <div className="col-12 col-md-12 col-xl-2">
+              <div className="input-block local-forms">
+                <label>
+                  {fields.f2} {index > 0 ? `_${index + 1}` : ""}
+                </label>
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="ex: 5 days"
+                  name={fields.f2.toLowerCase().split(" ").join("_")}
+                  onChange={(e) => handleServiceChange(e, index)}
+                  value={
+                    singleService?.[
+                      fields.f2.toLowerCase().split(" ").join("_")
+                    ]
+                  }
+                />
               </div>
             </div>
           )}
+          {fields.f3 && (
+            <div className="col-12 col-md-12 col-xl-2">
+              <div className="input-block local-forms">
+                <label>
+                  {fields.f4} {index > 0 ? `_${index + 1}` : ""}
+                </label>
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="During the day:"
+                  name={fields.f4.toLowerCase().split(" ").join("_")}
+                  onChange={(e) => handleServiceChange(e, index)}
+                  value={
+                    singleService?.[
+                      fields.f4.toLowerCase().split(" ").join("_")
+                    ]
+                  }
+                />
+              </div>
+            </div>
+          )}
+
+          {fields.f4 && (
+            <div className="col-12 col-md-12 col-xl-2">
+              <div className="input-block local-forms">
+                <label>
+                  {fields.f3} {index > 0 ? `_${index + 1}` : ""}
+                </label>
+
+                <select
+                  className="form-control select"
+                  fdprocessedid="m7xaqs"
+                  name={fields.f3.toLowerCase().split(" ").join("_")}
+                  onChange={(e) => handleServiceChange(e, index)}
+                  value={
+                    singleService?.[
+                      fields.f3.toLowerCase().split(" ").join("_")
+                    ]
+                  }
+                >
+                  <option disabled>Select period</option>
+                  <option>Before meal</option>
+                  <option>After meal</option>
+                </select>
+              </div>
+            </div>
+          )}
+          {fields.f5 && (
+            <div className="col-12 col-md-12 col-xl-4">
+              <div className="input-block local-forms">
+                <label>
+                  {fields.f5} {index > 0 ? `_${index + 1}` : ""}
+                </label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name={fields.f5.toLowerCase().split(" ").join("_")}
+                  onChange={(e) => handleServiceChange(e, index)}
+                  value={
+                    singleService?.[
+                      fields.f5.toLowerCase().split(" ").join("_")
+                    ]
+                  }
+                />
+              </div>
+            </div>
+          )}
+
           {serviceList.length !== 1 && (
             <div
               className="col-12 col-md-6 col-xl-2"
@@ -78,7 +140,20 @@ function DynamicField({ fields, serviceList = [{}], setServiceList }) {
                   onClick={() => handleServiceRemove(index)}
                   className="btn btn-primary submit-list-form me-2"
                 >
-                  Delete
+                  &times;
+                </button>
+              </div>
+            </div>
+          )}
+          {serviceList.length - 1 === index && (
+            <div className="col-12 col-md-6 col-xl-2">
+              <div className="doctor-submit">
+                <button
+                  type="button"
+                  onClick={handleServiceAdd}
+                  className="btn btn-primary submit-list-form me-2"
+                >
+                  <MdLibraryAdd />
                 </button>
               </div>
             </div>
