@@ -60,25 +60,40 @@ function TableRow({ num, element, button = 0, status = 0 }) {
       ))}
 
       {/* Status */}
-      {status[num] ? (
+      {status[num] && (
         <td>
           <button className={`custom-badge status-${status[num].color} `}>
             {status[num].name}
           </button>
         </td>
-      ) : (
-        <td></td>
       )}
 
       {/* Button */}
       {button ? (
-        <td>
-          <div className="dropdown action-label">
-            <Link to={button.link} style={{ marginTop: "3%", color: "#fff" }}>
-              <button className="custom-badge book-btn">{button.name}</button>
-            </Link>
-          </div>
-        </td>
+        <>
+          <td className="col-6 col-md-2 col-xl-3">
+            <div className="dropdown action-label">
+              <Link to={button.link} style={{ marginTop: "3%", color: "#fff" }}>
+                <button className="btn btn-primary submit-list-form me-2">
+                  {button.name}
+                </button>
+              </Link>
+            </div>
+          </td>
+          {/* <td className="col-6 col-md-2 col-xl-3">
+            <div className="dropdown action-label">
+              <Link to={button.link} style={{ marginTop: "3%", color: "#fff" }}>
+                <button
+                  type="button"
+                  style={{ minWidth: "0", borderRadius: "50px" }}
+                  className="btn btn-primary submit-list-form me-2"
+                >
+                  {button.name}
+                </button>
+              </Link>
+            </div>
+          </td> */}
+        </>
       ) : null}
     </>
   );
