@@ -51,8 +51,8 @@ function PatientHealthDetails({
               className="form-control"
               type="number"
               placeholder="ex: 80 KG"
-              value={patientData.weigh}
-              {...register("weigh")}
+              value={patientData.weight}
+              {...register("weight")}
             />
           </div>
         </div>
