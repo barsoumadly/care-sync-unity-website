@@ -3,13 +3,22 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { updatePatientProfile } from "../../../../services/patient";
 import { updateProfilePhoto } from "../../../../services/user";
+import { useAuth } from "../../../../context/AuthContext";
 
 function PatientProfilePhoto({ patientData, onChangePageNumber }) {
   const token = JSON.parse(localStorage.getItem("key"));
+  const { user } = useAuth();
+
   const [profilePhotoObject, setProfilePhotoObject] = useState({});
   const [profilePhoto, setProfilePhoto] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
   );
+
+  const displayedPhoto = profilePhoto.includes("blob")
+    ? profilePhoto
+    : user.profilePhoto
+    ? user.profilePhoto
+    : profilePhoto;
 
   const navigate = useNavigate();
 
@@ -65,7 +74,7 @@ function PatientProfilePhoto({ patientData, onChangePageNumber }) {
               </label>
             </div>
             <div className="upload-images upload-size">
-              <img src={profilePhoto} alt="Image" />
+              <img src={displayedPhoto} alt="Image" />
             </div>
           </div>
         </div>
