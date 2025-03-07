@@ -146,7 +146,6 @@ function CompletePatientProfile() {
                           className={`nav-link ${
                             pageNumber === 3 && "active"
                           } rounded-circle mx-auto d-flex align-items-center justify-content-center`}
-                          href="#step3"
                           id="step3-tab"
                           data-bs-toggle="tab"
                           role="tab"
@@ -169,7 +168,6 @@ function CompletePatientProfile() {
                           className={`nav-link ${
                             pageNumber === 4 && "active"
                           } rounded-circle mx-auto d-flex align-items-center justify-content-center`}
-                          href="#step3"
                           id="step3-tab"
                           data-bs-toggle="tab"
                           role="tab"
