@@ -30,4 +30,14 @@ const updatePatientProfile = async function (patientData, token) {
   }
 };
 
-export { updatePatientProfile };
+const getPatientProfile = async function (token) {
+  try {
+    return await axios.get(`${API_URL}/profile`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { updatePatientProfile, getPatientProfile };
