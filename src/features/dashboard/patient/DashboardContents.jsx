@@ -1,6 +1,19 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getPatientProfile } from "../../../services/patient";
 
 function DashboardContents() {
+  const [patientData, setPatientData] = useState({});
+
+  useEffect(function () {
+    const getProfile = async function () {
+      const token = JSON.parse(localStorage.getItem("key"));
+      const response = await getPatientProfile(token);
+      setPatientData(response.data.data);
+    };
+
+    getProfile();
+  }, []);
+
   return (
     <>
       <div className="row">
@@ -20,7 +33,8 @@ function DashboardContents() {
               <div id="heart-rate" />
               <div className="dash-content">
                 <h5>
-                  __ <span>bpm</span>
+                  <br />
+                  {patientData.heartRate || "__"} <span>bpm</span>
                 </h5>
               </div>
             </div>
@@ -42,7 +56,8 @@ function DashboardContents() {
               <div id="temperature-chart" />
               <div className="dash-content">
                 <h5>
-                  __ <span>°C</span>
+                  <br />
+                  {patientData.temperature || "__"} <span>°C</span>
                 </h5>
               </div>
             </div>
@@ -64,7 +79,8 @@ function DashboardContents() {
               <div id="pressure-chart" />
               <div className="dash-content">
                 <h5>
-                  __ <span>mm/Hg</span>
+                  <br />
+                  {patientData.bloodPressure || "__"} <span>mm/Hg</span>
                 </h5>
               </div>
               <div className="dash-content">
@@ -76,7 +92,7 @@ function DashboardContents() {
                     fontWeight: "600",
                   }}
                 >
-                  __
+                  {patientData.bloodType || "__"}
                 </span>
               </div>
             </div>
@@ -100,9 +116,12 @@ function DashboardContents() {
                       fontWeight: "600",
                     }}
                   >
-                    __
+                    {Math.round(
+                      patientData.weight /
+                        Math.pow(patientData.height * 0.01, 2)
+                    ) || "__"}
                   </span>{" "}
-                  KG/CM<sup>2</sup>
+                  KG/M<sup>2</sup>
                 </h4>
               </div>
               <div className="body-mass-blk">
@@ -117,7 +136,7 @@ function DashboardContents() {
                             fontWeight: "600",
                           }}
                         >
-                          __
+                          {patientData.weight || "__"}
                         </span>{" "}
                         KG
                       </div>
@@ -133,7 +152,7 @@ function DashboardContents() {
                             fontWeight: "600",
                           }}
                         >
-                          __
+                          {patientData.height || "__"}
                         </span>{" "}
                         CM
                       </div>
@@ -196,8 +215,8 @@ function DashboardContents() {
                       <td>Dermotology</td>
                       <td>12.05.2022 </td>
                       <td>
-                        <div class="dropdown action-label">
-                          <a class="custom-badge status-orange">Pending</a>
+                        <div className="dropdown action-label">
+                          <a className="custom-badge status-orange">Pending</a>
                         </div>
                       </td>
                     </tr>
@@ -215,8 +234,8 @@ function DashboardContents() {
                       <td>Dermotology</td>
                       <td>10.05.2022 </td>
                       <td>
-                        <div class="dropdown action-label">
-                          <a class="custom-badge status-green">Approved</a>
+                        <div className="dropdown action-label">
+                          <a className="custom-badge status-green">Approved</a>
                         </div>
                       </td>
                     </tr>
@@ -234,8 +253,8 @@ function DashboardContents() {
                       <td>Dermotology</td>
                       <td>12.05.2022 </td>
                       <td>
-                        <div class="dropdown action-label">
-                          <a class="custom-badge status-red">Cancelled</a>
+                        <div className="dropdown action-label">
+                          <a className="custom-badge status-red">Cancelled</a>
                         </div>
                       </td>
                     </tr>
