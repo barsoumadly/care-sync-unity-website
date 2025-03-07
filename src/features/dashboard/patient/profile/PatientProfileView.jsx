@@ -1,8 +1,21 @@
 import { IoArrowBackOutline } from "react-icons/io5";
 import { useAuth } from "../../../../context/AuthContext";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getPatientProfile } from "../../../../services/patient";
 
 function PatientProfileView() {
+  const [patientData, setPatientData] = useState({});
+
+  useEffect(function () {
+    const getProfile = async function () {
+      const token = JSON.parse(localStorage.getItem("key"));
+      const response = await getPatientProfile(token);
+      setPatientData(response.data.data);
+    };
+
+    getProfile();
+  }, []);
   const { user } = useAuth();
 
   return (
@@ -115,19 +128,24 @@ function PatientProfileView() {
                           <ul className="list-space">
                             <li>
                               <h4>Gender</h4>
-                              <span>Male</span>
+                              <span>{patientData.gender}</span>
                             </li>
                             <li>
                               <h4>Age</h4>
-                              <span>30</span>
+                              <span>
+                                {new Date().getFullYear() -
+                                  new Date(
+                                    patientData.dateOfBirth
+                                  ).getFullYear()}
+                              </span>
                             </li>
                             <li>
                               <h4>Weigh</h4>
-                              <span>70 KG</span>
+                              <span>{patientData.weight} KG</span>
                             </li>
                             <li>
                               <h4>Height</h4>
-                              <span>170 CM</span>
+                              <span>{patientData.height} CM</span>
                             </li>
                           </ul>
                         </div>
@@ -144,15 +162,15 @@ function PatientProfileView() {
                           <div className="skill-statistics">
                             <div className="skills-head">
                               <h5>Heart Rate</h5>
-                              <p>45%</p>
+                              <p>{patientData.heartRate}</p>
                             </div>
                             <div className="progress mb-0">
                               <div
                                 className="progress-bar bg-operations"
                                 role="progressbar"
-                                style={{ width: "45%" }}
-                                aria-valuenow={45}
-                                aria-valuemin={0}
+                                style={{ width: `${patientData.heartRate}%` }}
+                                aria-valuenow={patientData.heartRate}
+                                aria-valuemin={60}
                                 aria-valuemax={100}
                               />
                             </div>
@@ -160,14 +178,16 @@ function PatientProfileView() {
                           <div className="skill-statistics">
                             <div className="skills-head">
                               <h5>Blood Pressure</h5>
-                              <p>85%</p>
+                              <p>{patientData.bloodPressure}</p>
                             </div>
                             <div className="progress mb-0">
                               <div
                                 className="progress-bar bg-haemoglobin"
                                 role="progressbar"
-                                style={{ width: "85%" }}
-                                aria-valuenow={85}
+                                style={{
+                                  width: `${patientData.bloodPressure}%`,
+                                }}
+                                aria-valuenow={patientData.bloodPressure}
                                 aria-valuemin={0}
                                 aria-valuemax={100}
                               />
@@ -176,32 +196,45 @@ function PatientProfileView() {
                           <div className="skill-statistics">
                             <div className="skills-head">
                               <h5>Blood Sugar </h5>
-                              <p>65%</p>
+                              <p>{patientData.bloodSugar}</p>
                             </div>
                             <div className="progress mb-0">
                               <div
                                 className="progress-bar bg-statistics"
                                 role="progressbar"
-                                style={{ width: "65%" }}
-                                aria-valuenow={65}
-                                aria-valuemin={0}
-                                aria-valuemax={100}
+                                style={{ width: `${patientData.bloodSugar}%` }}
+                                aria-valuenow={patientData.bloodSugar}
+                                aria-valuemin={70}
+                                aria-valuemax={140}
                               />
                             </div>
                           </div>
                           <div className="skill-statistics">
                             <div className="skills-head">
-                              <h5>Sugar </h5>
-                              <p>90%</p>
+                              <h5>Body Mass Index </h5>
+                              <p>
+                                {Math.round(
+                                  patientData.weight /
+                                    Math.pow(patientData.height * 0.01, 2)
+                                ) || "__"}
+                              </p>
                             </div>
                             <div className="progress mb-0">
                               <div
                                 className="progress-bar bg-visit"
                                 role="progressbar"
-                                style={{ width: "90%" }}
-                                aria-valuenow={90}
-                                aria-valuemin={0}
-                                aria-valuemax={100}
+                                style={{
+                                  width: `${Math.round(
+                                    patientData.weight /
+                                      Math.pow(patientData.height * 0.01, 2)
+                                  )}%`,
+                                }}
+                                aria-valuenow={Math.round(
+                                  patientData.weight /
+                                    Math.pow(patientData.height * 0.01, 2)
+                                )}
+                                aria-valuemin={18.5}
+                                aria-valuemax={50}
                               />
                             </div>
                           </div>
@@ -240,7 +273,7 @@ function PatientProfileView() {
                             <div className="col-xl-3 col-md-6">
                               <div className="detail-personal">
                                 <h2>Mobile </h2>
-                                <h3>264-625-2583</h3>
+                                <h3>{patientData.phone}</h3>
                               </div>
                             </div>
                             <div className="col-xl-3 col-md-6">
@@ -252,7 +285,11 @@ function PatientProfileView() {
                             <div className="col-xl-3 col-md-6">
                               <div className="detail-personal">
                                 <h2>Location</h2>
-                                <h3>USA</h3>
+                                <h3>
+                                  {`${patientData.address.address}` +
+                                    ` ${patientData.address.area}` +
+                                    ` ${patientData.address.city}`}
+                                </h3>
                               </div>
                             </div>
                           </div>
@@ -278,325 +315,6 @@ function PatientProfileView() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="notification-box">
-          <div className="msg-sidebar notifications msg-noti">
-            <div className="topnav-dropdown-header">
-              <span>Messages</span>
-            </div>
-            <div
-              className="slimScrollDiv"
-              style={{
-                position: "relative",
-                overflow: "hidden",
-                width: "auto",
-                height: 146,
-              }}
-            >
-              <div
-                className="drop-scroll msg-list-scroll"
-                id="msg_list"
-                style={{ overflow: "hidden", width: "auto", height: 146 }}
-              >
-                <ul className="list-box">
-                  <li>
-                    <a href="chat.html">
-                      <div className="list-item">
-                        <div className="list-left">
-                          <span className="avatar">R</span>
-                        </div>
-                        <div className="list-body">
-                          <span className="message-author">Richard Miles </span>
-                          <span className="message-time">12:28 AM</span>
-                          <div className="clearfix" />
-                          <span className="message-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="chat.html">
-                      <div className="list-item new-message">
-                        <div className="list-left">
-                          <span className="avatar">J</span>
-                        </div>
-                        <div className="list-body">
-                          <span className="message-author">John Doe</span>
-                          <span className="message-time">1 Aug</span>
-                          <div className="clearfix" />
-                          <span className="message-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="chat.html">
-                      <div className="list-item">
-                        <div className="list-left">
-                          <span className="avatar">T</span>
-                        </div>
-                        <div className="list-body">
-                          <span className="message-author">
-                            {" "}
-                            Tarah Shropshire{" "}
-                          </span>
-                          <span className="message-time">12:28 AM</span>
-                          <div className="clearfix" />
-                          <span className="message-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="chat.html">
-                      <div className="list-item">
-                        <div className="list-left">
-                          <span className="avatar">M</span>
-                        </div>
-                        <div className="list-body">
-                          <span className="message-author">Mike Litorus</span>
-                          <span className="message-time">12:28 AM</span>
-                          <div className="clearfix" />
-                          <span className="message-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="chat.html">
-                      <div className="list-item">
-                        <div className="list-left">
-                          <span className="avatar">C</span>
-                        </div>
-                        <div className="list-body">
-                          <span className="message-author">
-                            {" "}
-                            Catherine Manseau{" "}
-                          </span>
-                          <span className="message-time">12:28 AM</span>
-                          <div className="clearfix" />
-                          <span className="message-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="chat.html">
-                      <div className="list-item">
-                        <div className="list-left">
-                          <span className="avatar">D</span>
-                        </div>
-                        <div className="list-body">
-                          <span className="message-author">
-                            {" "}
-                            Domenic Houston{" "}
-                          </span>
-                          <span className="message-time">12:28 AM</span>
-                          <div className="clearfix" />
-                          <span className="message-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="chat.html">
-                      <div className="list-item">
-                        <div className="list-left">
-                          <span className="avatar">B</span>
-                        </div>
-                        <div className="list-body">
-                          <span className="message-author">
-                            {" "}
-                            Buster Wigton{" "}
-                          </span>
-                          <span className="message-time">12:28 AM</span>
-                          <div className="clearfix" />
-                          <span className="message-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="chat.html">
-                      <div className="list-item">
-                        <div className="list-left">
-                          <span className="avatar">R</span>
-                        </div>
-                        <div className="list-body">
-                          <span className="message-author">
-                            {" "}
-                            Rolland Webber{" "}
-                          </span>
-                          <span className="message-time">12:28 AM</span>
-                          <div className="clearfix" />
-                          <span className="message-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="chat.html">
-                      <div className="list-item">
-                        <div className="list-left">
-                          <span className="avatar">C</span>
-                        </div>
-                        <div className="list-body">
-                          <span className="message-author"> Claire Mapes </span>
-                          <span className="message-time">12:28 AM</span>
-                          <div className="clearfix" />
-                          <span className="message-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="chat.html">
-                      <div className="list-item">
-                        <div className="list-left">
-                          <span className="avatar">M</span>
-                        </div>
-                        <div className="list-body">
-                          <span className="message-author">Melita Faucher</span>
-                          <span className="message-time">12:28 AM</span>
-                          <div className="clearfix" />
-                          <span className="message-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="chat.html">
-                      <div className="list-item">
-                        <div className="list-left">
-                          <span className="avatar">J</span>
-                        </div>
-                        <div className="list-body">
-                          <span className="message-author">Jeffery Lalor</span>
-                          <span className="message-time">12:28 AM</span>
-                          <div className="clearfix" />
-                          <span className="message-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="chat.html">
-                      <div className="list-item">
-                        <div className="list-left">
-                          <span className="avatar">L</span>
-                        </div>
-                        <div className="list-body">
-                          <span className="message-author">Loren Gatlin</span>
-                          <span className="message-time">12:28 AM</span>
-                          <div className="clearfix" />
-                          <span className="message-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="chat.html">
-                      <div className="list-item">
-                        <div className="list-left">
-                          <span className="avatar">T</span>
-                        </div>
-                        <div className="list-body">
-                          <span className="message-author">
-                            Tarah Shropshire
-                          </span>
-                          <span className="message-time">12:28 AM</span>
-                          <div className="clearfix" />
-                          <span className="message-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div
-                className="slimScrollBar"
-                style={{
-                  background: "rgb(135, 135, 135)",
-                  width: 4,
-                  position: "absolute",
-                  top: 0,
-                  opacity: "0.4",
-                  display: "block",
-                  borderRadius: 0,
-                  zIndex: 99,
-                  right: 1,
-                  height: "773.8px",
-                }}
-              />
-              <div
-                className="slimScrollRail"
-                style={{
-                  width: 4,
-                  height: "100%",
-                  position: "absolute",
-                  top: 0,
-                  display: "none",
-                  borderRadius: 7,
-                  background: "rgb(51, 51, 51)",
-                  opacity: "0.2",
-                  zIndex: 90,
-                  right: 1,
-                }}
-              />
-            </div>
-            <div className="topnav-dropdown-footer">
-              <a href="chat.html">See all messages</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        id="delete_patient"
-        className="modal fade delete-modal"
-        role="dialog"
-      >
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-body text-center">
-              <img src="assets/img/sent.png" alt="" width={50} height={46} />
-              <h3>Are you sure want to delete this ?</h3>
-              <div className="m-t-20">
-                {" "}
-                <a href="#" className="btn btn-white" data-bs-dismiss="modal">
-                  Close
-                </a>
-                <button type="submit" className="btn btn-danger">
-                  Delete
-                </button>
               </div>
             </div>
           </div>
