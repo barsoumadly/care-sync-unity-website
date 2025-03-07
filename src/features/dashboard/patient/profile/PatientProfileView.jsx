@@ -286,9 +286,9 @@ function PatientProfileView() {
                               <div className="detail-personal">
                                 <h2>Location</h2>
                                 <h3>
-                                  {`${patientData.address.address}` +
-                                    ` ${patientData.address.area}` +
-                                    ` ${patientData.address.city}`}
+                                  {`${patientData.address?.address}` +
+                                    ` ${patientData.address?.area}` +
+                                    ` ${patientData.address?.city}`}
                                 </h3>
                               </div>
                             </div>
