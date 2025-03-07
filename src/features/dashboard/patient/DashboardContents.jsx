@@ -167,7 +167,7 @@ function DashboardContents() {
                 </div>
                 <ul className="weight-checkit">
                   <li>Underweight</li>
-                  <li>Normal (45.5)</li>
+                  <li>Normal (25)</li>
                   <li>Overweight</li>
                 </ul>
               </div>
