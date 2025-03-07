@@ -43,15 +43,14 @@ function PatientPersonalDetails({
           <div className="col-12 col-md-6 col-xl-3">
             <div className="input-block local-forms">
               <label>
-                Age <span className="login-danger">*</span>
+                Birth Date <span className="login-danger">*</span>
               </label>
               <input
                 className="form-control"
-                type="number"
-                placeholder="ex: 30"
+                type="date"
                 required
-                value={patientData?.age}
-                {...register("age")}
+                value={patientData?.birthDate}
+                {...register("birthDate")}
               />
             </div>
           </div>
