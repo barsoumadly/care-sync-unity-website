@@ -70,30 +70,15 @@ function TableRow({ num, element, button = 0, status = 0 }) {
 
       {/* Button */}
       {button ? (
-        <>
-          <td className="col-6 col-md-2 col-xl-3">
-            <div className="dropdown action-label">
-              <Link to={button.link} style={{ marginTop: "3%", color: "#fff" }}>
-                <button className="btn btn-primary submit-list-form me-2">
-                  {button.name}
-                </button>
-              </Link>
-            </div>
-          </td>
-          {/* <td className="col-6 col-md-2 col-xl-3">
-            <div className="dropdown action-label">
-              <Link to={button.link} style={{ marginTop: "3%", color: "#fff" }}>
-                <button
-                  type="button"
-                  style={{ minWidth: "0", borderRadius: "50px" }}
-                  className="btn btn-primary submit-list-form me-2"
-                >
-                  {button.name}
-                </button>
-              </Link>
-            </div>
-          </td> */}
-        </>
+        <td className="col-6 col-md-2 col-xl-3">
+          <div className="dropdown action-label">
+            <Link to={button.link} style={{ marginTop: "3%", color: "#fff" }}>
+              <button className="btn btn-primary submit-list-form me-2">
+                {button.name}
+              </button>
+            </Link>
+          </div>
+        </td>
       ) : null}
     </>
   );
