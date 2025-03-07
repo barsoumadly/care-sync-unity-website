@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PatientPersonalDetails from "./PersonalDetails";
 import PatientAddressDetails from "./PatientAddressDetails";
 import PatientHealthDetails from "./PatientHealthDetails";
@@ -8,10 +8,37 @@ import { IoArrowBackOutline, IoHome, IoPersonSharp } from "react-icons/io5";
 import { FaBriefcaseMedical } from "react-icons/fa6";
 import { BsFillImageFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { getPatientProfile } from "../../../../services/patient";
 
 function PatientEditProfile() {
   const [pageNumber, setPageNumber] = useState(1);
   const [patientData, setPatientData] = useState({});
+
+  useEffect(function () {
+    const getProfile = async function () {
+      const token = JSON.parse(localStorage.getItem("key"));
+      const response = await getPatientProfile(token);
+      const data = response.data.data;
+      // setPatientData({
+      //   phoneNumber: data.phone,
+      //   // birthDate: data.dateOfBirth,
+      //   gender: data.gender,
+      //   city: data.address.city,
+      //   area: data.address.area,
+      //   address: data.address.address,
+      //   temperature: data.temperature || "",
+      //   weight: data.weight || "",
+      //   height: data.height || "",
+      //   heartRate: data.heartRate || "",
+      //   bloodType: data.bloodType || "select-option",
+      //   bloodType: data.bloodType || "",
+      //   bloodSugar: data.bloodSugar || "",
+      //   bloodPressure: data.bloodPressure || "",
+      // });
+    };
+
+    getProfile();
+  }, []);
 
   const handleSubmit = function (event) {
     event.preventDefault();
