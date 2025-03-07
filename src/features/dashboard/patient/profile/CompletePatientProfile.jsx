@@ -76,8 +76,8 @@ function CompletePatientProfile() {
           <div className="row">
             <div className="col-sm-12">
               <div className="card">
-                <div class="card-header">
-                  <h4 class="card-title mb-0" style={{ fontSize: "18px" }}>
+                <div className="card-header">
+                  <h4 className="card-title mb-0" style={{ fontSize: "18px" }}>
                     {pageNumber === 1 && "Personal Details"}
                     {pageNumber === 2 && "Address Details"}
                     {pageNumber === 3 && "Health Details"}
@@ -87,7 +87,7 @@ function CompletePatientProfile() {
                 <div className="card-body">
                   <div className="wizard" style={{ marginLeft: "-50px" }}>
                     <ul
-                      class="nav nav-tabs justify-content-center"
+                      className="nav nav-tabs justify-content-center"
                       id="myTab"
                       role="tablist"
                     >
@@ -100,7 +100,7 @@ function CompletePatientProfile() {
                         data-bs-original-title="Seller Details"
                       >
                         <a
-                          class={`nav-link ${
+                          className={`nav-link ${
                             pageNumber === 1 && "active"
                           } rounded-circle mx-auto d-flex align-items-center justify-content-center`}
                           id="step1-tab"
@@ -113,7 +113,7 @@ function CompletePatientProfile() {
                         </a>
                       </li>
                       <li
-                        class="nav-item flex-fill"
+                        className="nav-item flex-fill"
                         role="presentation"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
@@ -135,7 +135,7 @@ function CompletePatientProfile() {
                         </a>
                       </li>
                       <li
-                        class="nav-item flex-fill"
+                        className="nav-item flex-fill"
                         role="presentation"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
@@ -157,7 +157,7 @@ function CompletePatientProfile() {
                         </a>
                       </li>
                       <li
-                        class="nav-item flex-fill"
+                        className="nav-item flex-fill"
                         role="presentation"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
