@@ -1,25 +1,27 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { updatePatientProfile } from "../../../../services/patient";
+import { updateProfilePhoto } from "../../../../services/user";
 
-function PatientProfilePhoto({
-  patientData,
-  onChangePatientData,
-  onChangePageNumber,
-}) {
+function PatientProfilePhoto({ patientData, onChangePageNumber }) {
+  const token = JSON.parse(localStorage.getItem("key"));
+  const [profilePhotoObject, setProfilePhotoObject] = useState({});
   const [profilePhoto, setProfilePhoto] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
   );
+
   const navigate = useNavigate();
 
   const handleDecPageNumber = function () {
     onChangePageNumber((pageNumber) => pageNumber - 1);
   };
 
-  const performSubmit = function (event) {
+  const performSubmit = async function (event) {
     event.preventDefault();
 
-    onChangePatientData({ ...patientData, profilePhoto });
+    await updatePatientProfile(patientData, token);
+    await updateProfilePhoto(profilePhotoObject, token);
     // toast.promise(saveSettings(settings), {
     //   loading: "Saving...",
     //   success: <b>Data saved 👍</b>,
@@ -51,9 +53,10 @@ function PatientProfilePhoto({
                 accept="image/*"
                 name="image"
                 id="file"
-                onChange={(event) =>
-                  setProfilePhoto(URL.createObjectURL(event.target.files[0]))
-                }
+                onChange={(event) => {
+                  setProfilePhoto(URL.createObjectURL(event.target.files[0]));
+                  setProfilePhotoObject(event.target.files[0]);
+                }}
                 className="hide-input"
                 data-cf-modified-f4b406440a9d28b1c089eaf4-=""
               />
