@@ -96,16 +96,9 @@ function AppointmentModal({ selectedDoctor, onOpenModal }) {
               <div className="col-md-6">
                 <div className="mb-3">
                   <label htmlFor="field-5" className="form-label">
-                    Day
+                    Date
                   </label>
-                  <select className="form-control" id="field-5">
-                    <option value="mon">Monday</option>
-                    <option value="tue">Tuesday</option>
-                    <option value="wed">Wednesday</option>
-                    <option value="thu">Thursday</option>
-                    <option value="fri">Friday</option>
-                    <option value="sat">Saturday</option>
-                  </select>
+                  <input type="date" className="form-control" id="field-5" />
                 </div>
               </div>
               <div className="col-md-6">
