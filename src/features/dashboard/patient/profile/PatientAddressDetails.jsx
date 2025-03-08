@@ -7,18 +7,25 @@ function PatientAddressDetails({
   onChangePatientData,
   onChangePageNumber,
 }) {
+  const { data, isLoading } = useQuery({
+    queryKey: ["cities"],
+    queryFn: getCities,
+  });
+
+  async function getCities() {
+    const response = await fetch(
+      "https://atfawry.fawrystaging.com/ECommerceWeb/api/lookups/govs"
+    );
+    return await response.json();
+  }
   const [cities, setCities] = useState();
   const [areas, setAreas] = useState();
   const [selectedCity, setSelectedCity] = useState(patientData.selectedCity);
   const [selectedArea, setSelectedArea] = useState(patientData.selectedArea);
   const { register, handleSubmit, setValue } = useForm();
 
-  useEffect(function () {
-    async function getCities() {
-      const response = await fetch(
-        "https://atfawry.fawrystaging.com/ECommerceWeb/api/lookups/govs"
-      );
-      const data = await response.json();
+  useEffect(
+    function () {
       if (data) {
         setCities(data);
         if (patientData.selectedCity) {
@@ -27,10 +34,11 @@ function PatientAddressDetails({
           );
         }
       }
-    }
-    getCities();
-    setValue("address", patientData.address);
-  }, []);
+
+      setValue("address", patientData.address);
+    },
+    [data]
+  );
 
   const handleDecPageNumber = function () {
     onChangePageNumber((pageNumber) => pageNumber - 1);
