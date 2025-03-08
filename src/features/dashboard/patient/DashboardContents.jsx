@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
 import { getPatientProfile } from "../../../services/patient";
+import useProfile from "./useProfile";
+import SpinnerMini from "../../../ui/SpinnerMini";
+import toast from "react-hot-toast";
 
 function DashboardContents() {
-  const [patientData, setPatientData] = useState({});
+  const { data: patientData, isLoading, error } = useProfile();
 
-  useEffect(function () {
-    const getProfile = async function () {
-      const token = JSON.parse(localStorage.getItem("key"));
-      const response = await getPatientProfile(token);
-      setPatientData(response.data.data);
-    };
-
-    getProfile();
-  }, []);
+  if (error) toast.error(error?.message);
 
   return (
     <>
@@ -32,10 +27,14 @@ function DashboardContents() {
               </div>
               <div id="heart-rate" />
               <div className="dash-content">
-                <h5>
-                  <br />
-                  {patientData.heartRate || "__"} <span>bpm</span>
-                </h5>
+                {isLoading ? (
+                  <SpinnerMini />
+                ) : (
+                  <h5>
+                    <br />
+                    {patientData?.heartRate || "__"} <span>bpm</span>
+                  </h5>
+                )}
               </div>
             </div>
           </div>
@@ -55,10 +54,14 @@ function DashboardContents() {
               </div>
               <div id="temperature-chart" />
               <div className="dash-content">
-                <h5>
-                  <br />
-                  {patientData.temperature || "__"} <span>°C</span>
-                </h5>
+                {isLoading ? (
+                  <SpinnerMini />
+                ) : (
+                  <h5>
+                    <br />
+                    {patientData?.temperature || "__"} <span>°C</span>
+                  </h5>
+                )}
               </div>
             </div>
           </div>
@@ -78,10 +81,14 @@ function DashboardContents() {
               </div>
               <div id="pressure-chart" />
               <div className="dash-content">
-                <h5>
-                  <br />
-                  {patientData.bloodPressure || "__"} <span>mm/Hg</span>
-                </h5>
+                {isLoading ? (
+                  <SpinnerMini />
+                ) : (
+                  <h5>
+                    <br />
+                    {patientData?.bloodPressure || "__"} <span>mm/Hg</span>
+                  </h5>
+                )}
               </div>
               <div className="dash-content">
                 Blood Type:{" "}
@@ -92,7 +99,11 @@ function DashboardContents() {
                     fontWeight: "600",
                   }}
                 >
-                  {patientData.bloodType || "__"}
+                  {isLoading ? (
+                    <SpinnerMini />
+                  ) : (
+                    ` ${patientData?.bloodType || "__"}`
+                  )}
                 </span>
               </div>
             </div>
@@ -117,8 +128,8 @@ function DashboardContents() {
                     }}
                   >
                     {Math.round(
-                      patientData.weight /
-                        Math.pow(patientData.height * 0.01, 2)
+                      patientData?.weight /
+                        Math.pow(patientData?.height * 0.01, 2)
                     ) || "__"}
                   </span>{" "}
                   KG/M<sup>2</sup>
@@ -128,34 +139,42 @@ function DashboardContents() {
                 <div className="row">
                   <div className="col-md-6">
                     <center>
-                      <div className="weight-blk">
-                        <span
-                          style={{
-                            fontSize: "24px",
-                            color: "#2E37A4",
-                            fontWeight: "600",
-                          }}
-                        >
-                          {patientData.weight || "__"}
-                        </span>{" "}
-                        KG
-                      </div>
+                      {isLoading ? (
+                        <SpinnerMini />
+                      ) : (
+                        <div className="weight-blk">
+                          <span
+                            style={{
+                              fontSize: "24px",
+                              color: "#2E37A4",
+                              fontWeight: "600",
+                            }}
+                          >
+                            {patientData?.weight || "__"}
+                          </span>{" "}
+                          KG
+                        </div>
+                      )}
                     </center>
                   </div>
                   <div className="col-md-6">
                     <center>
-                      <div className="weight-blk">
-                        <span
-                          style={{
-                            fontSize: "24px",
-                            color: "#2E37A4",
-                            fontWeight: "600",
-                          }}
-                        >
-                          {patientData.height || "__"}
-                        </span>{" "}
-                        CM
-                      </div>
+                      {isLoading ? (
+                        <SpinnerMini />
+                      ) : (
+                        <div className="weight-blk">
+                          <span
+                            style={{
+                              fontSize: "24px",
+                              color: "#2E37A4",
+                              fontWeight: "600",
+                            }}
+                          >
+                            {patientData?.height || "__"}
+                          </span>{" "}
+                          CM
+                        </div>
+                      )}
                     </center>
                   </div>
                 </div>
