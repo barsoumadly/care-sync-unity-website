@@ -208,7 +208,7 @@ function Header({ setShowbar, setMinbar, url }) {
           </div>
         </li>
         <li className="nav-item ">
-          <Link to="/clinic/edit-profile-clinic" className="hasnotifications nav-link">
+          <Link to="/clinic/edit-profile" className="hasnotifications nav-link">
             <img src="/images/dashborad/icons/setting-icon-01.svg" alt="" />
           </Link>
         </li>
