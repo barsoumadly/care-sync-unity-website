@@ -17,21 +17,9 @@ function PatientPersonalDetails({
   useEffect(() => {
     const formatDate = String(personalDetails.birthDate?.split("T")[0]);
 
-    setValue("phoneNumber", personalDetails.phoneNumber, {
-      shouldValidate: true,
-      shouldDirty: true,
-      shouldTouch: true,
-    });
-    setValue("gender", personalDetails.gender, {
-      shouldValidate: true,
-      shouldDirty: true,
-      shouldTouch: true,
-    });
-    setValue("birthDate", formatDate, {
-      shouldValidate: true,
-      shouldDirty: true,
-      shouldTouch: true,
-    });
+    setValue("phoneNumber", personalDetails.phoneNumber);
+    setValue("gender", personalDetails.gender);
+    setValue("birthDate", formatDate);
   }, [personalDetails]);
 
   const performSubmit = function (data) {
