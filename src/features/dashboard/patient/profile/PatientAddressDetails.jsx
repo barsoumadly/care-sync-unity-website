@@ -1,22 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import useLocation from "../../patient/profile/useLocation";
 
 function PatientAddressDetails({
   patientData,
   onChangePatientData,
   onChangePageNumber,
 }) {
+  const { data, isLoading } = useLocation();
+
   const [cities, setCities] = useState();
   const [areas, setAreas] = useState();
   const [selectedCity, setSelectedCity] = useState(patientData.selectedCity);
   const [selectedArea, setSelectedArea] = useState(patientData.selectedArea);
+  const { register, handleSubmit, setValue } = useForm();
 
-  useEffect(function () {
-    async function getCities() {
-      const response = await fetch(
-        "https://atfawry.fawrystaging.com/ECommerceWeb/api/lookups/govs"
-      );
-      const data = await response.json();
+  useEffect(
+    function () {
       if (data) {
         setCities(data);
         if (patientData.selectedCity) {
@@ -25,11 +26,11 @@ function PatientAddressDetails({
           );
         }
       }
-    }
-    getCities();
-  }, []);
 
-  const { register, handleSubmit } = useForm();
+      setValue("address", patientData.address);
+    },
+    [data]
+  );
 
   const handleDecPageNumber = function () {
     onChangePageNumber((pageNumber) => pageNumber - 1);
@@ -119,7 +120,6 @@ function PatientAddressDetails({
               type="text"
               required
               placeholder="ex: El Hegaz St, Al Matar, El Nozha"
-              value={patientData.address}
               {...register("address")}
             />
           </div>

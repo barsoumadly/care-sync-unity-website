@@ -6,7 +6,7 @@ import { UserContextProvider } from "../context/AuthContext";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 0,
+      staleTime: Infinity,
     },
   },
 });
@@ -16,9 +16,7 @@ function AppProviders({ children }) {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <UserContextProvider>
-        <ChatProvider>
-          {children}
-        </ChatProvider>
+        <ChatProvider>{children}</ChatProvider>
       </UserContextProvider>
     </QueryClientProvider>
   );

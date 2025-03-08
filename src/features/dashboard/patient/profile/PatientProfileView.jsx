@@ -3,19 +3,14 @@ import { useAuth } from "../../../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getPatientProfile } from "../../../../services/patient";
+import useProfile from "../useProfile";
+import SpinnerMini from "../../../../ui/SpinnerMini";
 
 function PatientProfileView() {
-  const [patientData, setPatientData] = useState({});
+  const { data: patientData, isLoading, error } = useProfile();
 
-  useEffect(function () {
-    const getProfile = async function () {
-      const token = JSON.parse(localStorage.getItem("key"));
-      const response = await getPatientProfile(token);
-      setPatientData(response.data.data);
-    };
+  if (error) toast.error(error?.message);
 
-    getProfile();
-  }, []);
   const { user } = useAuth();
 
   return (
@@ -128,24 +123,24 @@ function PatientProfileView() {
                           <ul className="list-space">
                             <li>
                               <h4>Gender</h4>
-                              <span>{patientData.gender}</span>
+                              <span>{patientData?.gender}</span>
                             </li>
                             <li>
                               <h4>Age</h4>
                               <span>
                                 {new Date().getFullYear() -
                                   new Date(
-                                    patientData.dateOfBirth
+                                    patientData?.dateOfBirth
                                   ).getFullYear()}
                               </span>
                             </li>
                             <li>
                               <h4>Weigh</h4>
-                              <span>{patientData.weight} KG</span>
+                              <span>{patientData?.weight} KG</span>
                             </li>
                             <li>
                               <h4>Height</h4>
-                              <span>{patientData.height} CM</span>
+                              <span>{patientData?.height} CM</span>
                             </li>
                           </ul>
                         </div>
@@ -158,87 +153,95 @@ function PatientProfileView() {
                         <div className="heading-detail">
                           <h4>Medical Details:</h4>
                         </div>
-                        <div className="skill-blk">
-                          <div className="skill-statistics">
-                            <div className="skills-head">
-                              <h5>Heart Rate</h5>
-                              <p>{patientData.heartRate}</p>
+                        {isLoading ? (
+                          <SpinnerMini />
+                        ) : (
+                          <div className="skill-blk">
+                            <div className="skill-statistics">
+                              <div className="skills-head">
+                                <h5>Heart Rate</h5>
+                                <p>{patientData?.heartRate}</p>
+                              </div>
+                              <div className="progress mb-0">
+                                <div
+                                  className="progress-bar bg-operations"
+                                  role="progressbar"
+                                  style={{
+                                    width: `${patientData?.heartRate}%`,
+                                  }}
+                                  aria-valuenow={patientData?.heartRate}
+                                  aria-valuemin={60}
+                                  aria-valuemax={100}
+                                />
+                              </div>
                             </div>
-                            <div className="progress mb-0">
-                              <div
-                                className="progress-bar bg-operations"
-                                role="progressbar"
-                                style={{ width: `${patientData.heartRate}%` }}
-                                aria-valuenow={patientData.heartRate}
-                                aria-valuemin={60}
-                                aria-valuemax={100}
-                              />
+                            <div className="skill-statistics">
+                              <div className="skills-head">
+                                <h5>Blood Pressure</h5>
+                                <p>{patientData?.bloodPressure}</p>
+                              </div>
+                              <div className="progress mb-0">
+                                <div
+                                  className="progress-bar bg-haemoglobin"
+                                  role="progressbar"
+                                  style={{
+                                    width: `${patientData?.bloodPressure}%`,
+                                  }}
+                                  aria-valuenow={patientData?.bloodPressure}
+                                  aria-valuemin={0}
+                                  aria-valuemax={100}
+                                />
+                              </div>
+                            </div>
+                            <div className="skill-statistics">
+                              <div className="skills-head">
+                                <h5>Blood Sugar </h5>
+                                <p>{patientData?.bloodSugar}</p>
+                              </div>
+                              <div className="progress mb-0">
+                                <div
+                                  className="progress-bar bg-statistics"
+                                  role="progressbar"
+                                  style={{
+                                    width: `${patientData?.bloodSugar}%`,
+                                  }}
+                                  aria-valuenow={patientData?.bloodSugar}
+                                  aria-valuemin={70}
+                                  aria-valuemax={140}
+                                />
+                              </div>
+                            </div>
+                            <div className="skill-statistics">
+                              <div className="skills-head">
+                                <h5>Body Mass Index </h5>
+                                <p>
+                                  {Math.round(
+                                    patientData?.weight /
+                                      Math.pow(patientData?.height * 0.01, 2)
+                                  ) || "__"}
+                                </p>
+                              </div>
+                              <div className="progress mb-0">
+                                <div
+                                  className="progress-bar bg-visit"
+                                  role="progressbar"
+                                  style={{
+                                    width: `${Math.round(
+                                      patientData?.weight /
+                                        Math.pow(patientData?.height * 0.01, 2)
+                                    )}%`,
+                                  }}
+                                  aria-valuenow={Math.round(
+                                    patientData?.weight /
+                                      Math.pow(patientData?.height * 0.01, 2)
+                                  )}
+                                  aria-valuemin={18.5}
+                                  aria-valuemax={50}
+                                />
+                              </div>
                             </div>
                           </div>
-                          <div className="skill-statistics">
-                            <div className="skills-head">
-                              <h5>Blood Pressure</h5>
-                              <p>{patientData.bloodPressure}</p>
-                            </div>
-                            <div className="progress mb-0">
-                              <div
-                                className="progress-bar bg-haemoglobin"
-                                role="progressbar"
-                                style={{
-                                  width: `${patientData.bloodPressure}%`,
-                                }}
-                                aria-valuenow={patientData.bloodPressure}
-                                aria-valuemin={0}
-                                aria-valuemax={100}
-                              />
-                            </div>
-                          </div>
-                          <div className="skill-statistics">
-                            <div className="skills-head">
-                              <h5>Blood Sugar </h5>
-                              <p>{patientData.bloodSugar}</p>
-                            </div>
-                            <div className="progress mb-0">
-                              <div
-                                className="progress-bar bg-statistics"
-                                role="progressbar"
-                                style={{ width: `${patientData.bloodSugar}%` }}
-                                aria-valuenow={patientData.bloodSugar}
-                                aria-valuemin={70}
-                                aria-valuemax={140}
-                              />
-                            </div>
-                          </div>
-                          <div className="skill-statistics">
-                            <div className="skills-head">
-                              <h5>Body Mass Index </h5>
-                              <p>
-                                {Math.round(
-                                  patientData.weight /
-                                    Math.pow(patientData.height * 0.01, 2)
-                                ) || "__"}
-                              </p>
-                            </div>
-                            <div className="progress mb-0">
-                              <div
-                                className="progress-bar bg-visit"
-                                role="progressbar"
-                                style={{
-                                  width: `${Math.round(
-                                    patientData.weight /
-                                      Math.pow(patientData.height * 0.01, 2)
-                                  )}%`,
-                                }}
-                                aria-valuenow={Math.round(
-                                  patientData.weight /
-                                    Math.pow(patientData.height * 0.01, 2)
-                                )}
-                                aria-valuemin={18.5}
-                                aria-valuemax={50}
-                              />
-                            </div>
-                          </div>
-                        </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -262,38 +265,42 @@ function PatientProfileView() {
                             </li>
                           </ul>
                         </div>
-                        <div className="personal-list-out">
-                          <div className="row">
-                            <div className="col-xl-3 col-md-6">
-                              <div className="detail-personal">
-                                <h2>Full Name</h2>
-                                <h3>{user.name}</h3>
+                        {isLoading ? (
+                          <SpinnerMini />
+                        ) : (
+                          <div className="personal-list-out">
+                            <div className="row">
+                              <div className="col-xl-3 col-md-6">
+                                <div className="detail-personal">
+                                  <h2>Full Name</h2>
+                                  <h3>{user.name}</h3>
+                                </div>
                               </div>
-                            </div>
-                            <div className="col-xl-3 col-md-6">
-                              <div className="detail-personal">
-                                <h2>Mobile </h2>
-                                <h3>{patientData.phone}</h3>
+                              <div className="col-xl-3 col-md-6">
+                                <div className="detail-personal">
+                                  <h2>Mobile </h2>
+                                  <h3>{patientData?.phone}</h3>
+                                </div>
                               </div>
-                            </div>
-                            <div className="col-xl-3 col-md-6">
-                              <div className="detail-personal">
-                                <h2>Email</h2>
-                                <h3>{user.email}</h3>
+                              <div className="col-xl-3 col-md-6">
+                                <div className="detail-personal">
+                                  <h2>Email</h2>
+                                  <h3>{user.email}</h3>
+                                </div>
                               </div>
-                            </div>
-                            <div className="col-xl-3 col-md-6">
-                              <div className="detail-personal">
-                                <h2>Location</h2>
-                                <h3>
-                                  {`${patientData.address?.address}` +
-                                    ` ${patientData.address?.area}` +
-                                    ` ${patientData.address?.city}`}
-                                </h3>
+                              <div className="col-xl-3 col-md-6">
+                                <div className="detail-personal">
+                                  <h2>Location</h2>
+                                  <h3>
+                                    {`${patientData?.address?.address}` +
+                                      ` ${patientData?.address?.area}` +
+                                      ` ${patientData?.address?.city}`}
+                                  </h3>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                        )}
                         <div className="hello-park">
                           <p>
                             I am a {user.name} seeking to improve my health and
