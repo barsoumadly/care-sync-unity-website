@@ -16,25 +16,24 @@ function PatientEditProfile() {
 
   useEffect(function () {
     const getProfile = async function () {
-      const token = JSON.parse(localStorage.getItem("key"));
-      const response = await getPatientProfile(token);
+      const response = await getPatientProfile();
       const data = response.data.data;
-      // setPatientData({
-      //   phoneNumber: data.phone,
-      //   // birthDate: data.dateOfBirth,
-      //   gender: data.gender,
-      //   city: data.address.city,
-      //   area: data.address.area,
-      //   address: data.address.address,
-      //   temperature: data.temperature || "",
-      //   weight: data.weight || "",
-      //   height: data.height || "",
-      //   heartRate: data.heartRate || "",
-      //   bloodType: data.bloodType || "select-option",
-      //   bloodType: data.bloodType || "",
-      //   bloodSugar: data.bloodSugar || "",
-      //   bloodPressure: data.bloodPressure || "",
-      // });
+      setPatientData({
+        phoneNumber: data.phone,
+        // birthDate: data.dateOfBirth,
+        gender: data.gender,
+        selectedCity: data.address.city,
+        selectedArea: data.address.area,
+        address: data.address.address,
+        temperature: data.temperature || "",
+        weight: data.weight || "",
+        height: data.height || "",
+        heartRate: data.heartRate || "",
+        bloodType: data.bloodType || "select-option",
+        bloodType: data.bloodType || "",
+        bloodSugar: data.bloodSugar || "",
+        bloodPressure: data.bloodPressure || "",
+      });
     };
 
     getProfile();
