@@ -1,16 +1,24 @@
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 
+function telephoneCheck(p) {
+  var phoneRe = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+  var digits = p.replace(/\D/g, "");
+
+  return phoneRe.test(digits) ? true : false;
+}
+
 function DoctorPersonalDetails({
   doctorData,
   onChangeDoctorData,
   onChangePageNumber,
 }) {
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     defaultValues: useMemo(() => {
       return doctorData;
     }, [doctorData]),
   });
+  const { errors } = formState;
 
   const performSubmit = function (data) {
     onChangeDoctorData({ ...doctorData, ...data });
@@ -39,9 +47,15 @@ function DoctorPersonalDetails({
                 className="form-control"
                 type="text"
                 placeholder="ex: 0123456789"
-                required
-                {...register("phoneNumber")}
+                {...register("phoneNumber", {
+                  required: "This field is required",
+                  validate: (value) =>
+                    telephoneCheck(value) || "Your Phone number isn't Vaild",
+                })}
               />
+              <span className="error-message ">
+                {errors?.phoneNumber?.message}
+              </span>
             </div>
           </div>
           <div className="col-12 col-md-6 col-xl-3">
@@ -53,9 +67,9 @@ function DoctorPersonalDetails({
                 className="form-control"
                 type="number"
                 placeholder="ex: 30"
-                required
-                {...register("age")}
+                {...register("age", { required: "This field is required" })}
               />
+              <span className="error-message ">{errors?.age?.message}</span>
             </div>
           </div>
           <div className="col-12 col-md-6 col-xl-3">
@@ -63,7 +77,10 @@ function DoctorPersonalDetails({
               <label>
                 Gender <span className="login-danger">*</span>
               </label>
-              <select className="form-control" required {...register("gender")}>
+              <select
+                className="form-control"
+                {...register("gender", { required: "This field is required" })}
+              >
                 <option value="select-option" disabled>
                   Select Option
                 </option>
@@ -71,6 +88,7 @@ function DoctorPersonalDetails({
                 <option value="female">Female</option>
               </select>
             </div>
+            <span className="error-message ">{errors?.gender?.message}</span>
           </div>
           <div className="col-12 col-md-6 col-xl-3">
             <div className="input-block local-forms">
@@ -79,15 +97,19 @@ function DoctorPersonalDetails({
               </label>
               <select
                 className="form-control select"
-                {...register("specialization")}
-                required
+                {...register("specialization", {
+                  required: "This field is required",
+                })}
               >
-                <option value="Specialization">Specialization</option>
+                <option value="Specialization" disabled>
+                  Specialization
+                </option>
                 <option value="orthopedics">Orthopedics</option>
                 <option value="radiology">Radiology</option>
                 <option>Dentist</option>
               </select>
             </div>{" "}
+            <span className="error-message ">{errors?.gender?.message}</span>
           </div>
         </div>
         <div className="col-12 col-sm-12">
@@ -99,9 +121,9 @@ function DoctorPersonalDetails({
               className="form-control"
               rows={3}
               cols={30}
-              required
-              {...register("biography")}
+              {...register("biography", { required: "This field is required" })}
             />
+            <span className="error-message ">{errors?.biography?.message}</span>
           </div>
         </div>
 
