@@ -33,7 +33,7 @@ import EditAppointments from "../features/dashboard/clinic/EditAppointments";
 import ScheduleList from "../features/dashboard/clinic/ScheduleList";
 import AddSchedule from "../features/dashboard/clinic/AddSchedule";
 import EditSchedule from "../features/dashboard/clinic/EditSchedule";
-import Chat from "../features/dashboard/clinic/Chat";
+import Chat from "../features/dashboard/chat/Chat";
 import Reports from "../features/dashboard/clinic/Reports";
 import Invoice from "../features/dashboard/clinic/Invoice";
 /* Doctor */
