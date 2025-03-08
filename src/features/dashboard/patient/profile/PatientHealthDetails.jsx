@@ -1,3 +1,4 @@
+import { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 
 function PatientHealthDetails({
@@ -5,7 +6,10 @@ function PatientHealthDetails({
   onChangePatientData,
   onChangePageNumber,
 }) {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm({
+    reValidateMode: "onChange",
+    defaultValues: useMemo(() => patientData, [patientData]),
+  });
 
   const handleDecPageNumber = function () {
     onChangePageNumber((pageNumber) => pageNumber - 1);
@@ -37,7 +41,6 @@ function PatientHealthDetails({
               className="form-control"
               type="number"
               placeholder="ex: 37 °C"
-              value={patientData.temperature}
               {...register("temperature")}
             />
           </div>
@@ -51,7 +54,6 @@ function PatientHealthDetails({
               className="form-control"
               type="number"
               placeholder="ex: 80 KG"
-              value={patientData.weight}
               {...register("weight")}
             />
           </div>
@@ -65,7 +67,6 @@ function PatientHealthDetails({
               className="form-control"
               type="number"
               placeholder="ex: 170 M"
-              value={patientData.height}
               {...register("height")}
             />
           </div>
@@ -79,7 +80,6 @@ function PatientHealthDetails({
               className="form-control"
               type="number"
               placeholder="ex: 60 beats/minute"
-              value={patientData.heartRate}
               {...register("heartRate")}
             />
           </div>
@@ -91,11 +91,7 @@ function PatientHealthDetails({
             <label>
               Blood Type <span className="login-danger"></span>
             </label>
-            <select
-              className="form-control"
-              value={patientData.bloodType}
-              {...register("bloodType")}
-            >
+            <select className="form-control" {...register("bloodType")}>
               <option value="select option" disabled>
                 Select Option
               </option>
@@ -119,7 +115,6 @@ function PatientHealthDetails({
               className="form-control"
               type="number"
               placeholder="ex: 70 mg/dL"
-              value={patientData.bloodSugar}
               {...register("bloodSugar")}
             />
           </div>
@@ -133,7 +128,6 @@ function PatientHealthDetails({
               className="form-control"
               type="text"
               placeholder="ex: 85 mm/Hg"
-              value={patientData.bloodPressure}
               {...register("bloodPressure")}
             />
           </div>
