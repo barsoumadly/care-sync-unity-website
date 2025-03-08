@@ -1,3 +1,4 @@
+import { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 
 function PatientPersonalDetails({
@@ -5,7 +6,33 @@ function PatientPersonalDetails({
   onChangePatientData,
   onChangePageNumber,
 }) {
-  const { register, handleSubmit } = useForm();
+  const personalDetails = {
+    gender: patientData.gender,
+    phoneNumber: patientData.phoneNumber,
+    birthDate: patientData.birthDate,
+  };
+
+  const { register, handleSubmit, setValue } = useForm();
+
+  useEffect(() => {
+    const formatDate = String(personalDetails.birthDate?.split("T")[0]);
+
+    setValue("phoneNumber", personalDetails.phoneNumber, {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+    setValue("gender", personalDetails.gender, {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+    setValue("birthDate", formatDate, {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+  }, [personalDetails]);
 
   const performSubmit = function (data) {
     onChangePatientData({ ...patientData, ...data });
@@ -33,7 +60,6 @@ function PatientPersonalDetails({
               <input
                 className="form-control"
                 type="text"
-                value={patientData?.phoneNumber}
                 placeholder="ex: 0123456789"
                 required
                 {...register("phoneNumber")}
@@ -49,7 +75,7 @@ function PatientPersonalDetails({
                 className="form-control"
                 type="date"
                 required
-                value={patientData?.birthDate}
+                // value={patientData?.birthDate}
                 {...register("birthDate")}
               />
             </div>
@@ -61,7 +87,7 @@ function PatientPersonalDetails({
               </label>
               <select
                 className="form-control"
-                value={patientData?.gender}
+                // value={patientData?.gender}
                 required
                 {...register("gender")}
               >
