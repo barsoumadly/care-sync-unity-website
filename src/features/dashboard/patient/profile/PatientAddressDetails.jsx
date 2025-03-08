@@ -1,23 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 
 function PatientAddressDetails({
   patientData,
   onChangePatientData,
   onChangePageNumber,
 }) {
-  const { data, isLoading } = useQuery({
-    queryKey: ["cities"],
-    queryFn: getCities,
-  });
+  const { data, isLoading } = useLocation();
 
-  async function getCities() {
-    const response = await fetch(
-      "https://atfawry.fawrystaging.com/ECommerceWeb/api/lookups/govs"
-    );
-    return await response.json();
-  }
   const [cities, setCities] = useState();
   const [areas, setAreas] = useState();
   const [selectedCity, setSelectedCity] = useState(patientData.selectedCity);
