@@ -6,13 +6,14 @@ import { updateProfilePhoto } from "../../../../services/user";
 import { useAuth } from "../../../../context/AuthContext";
 
 function PatientProfilePhoto({ patientData, onChangePageNumber }) {
-  const token = JSON.parse(localStorage.getItem("key"));
   const { user } = useAuth();
 
   const [profilePhotoObject, setProfilePhotoObject] = useState({});
   const [profilePhoto, setProfilePhoto] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
   );
+
+  console.log(patientData);
 
   const displayedPhoto = profilePhoto.includes("blob")
     ? profilePhoto
@@ -29,7 +30,7 @@ function PatientProfilePhoto({ patientData, onChangePageNumber }) {
   const performSubmit = async function (event) {
     event.preventDefault();
 
-    await updatePatientProfile(patientData, token);
+    await updatePatientProfile(patientData);
     await updateProfilePhoto(profilePhotoObject, token);
     // toast.promise(saveSettings(settings), {
     //   loading: "Saving...",
