@@ -16,23 +16,21 @@ import ProtectedCompleteProfile from "../ui/ProtectedCompleteProfile";
 /* Clinic */
 import ClinicLayout from "../features/dashboard/clinic/ClinicLayout";
 import ClinicDashboard from "../features/dashboard/clinic/ClinicDashboard";
-import DoctorList from "../features/dashboard/clinic/DoctorList";
-import AddDoctor from "../features/dashboard/clinic/AddDoctor";
-/* import PatientsList from "../features/dashboard/clinic/PatientsList";
-import AddPatients from "../features/dashboard/clinic/AddPatients"; 
-import Payments from "../features/dashboard/clinic/Payments";*/
-import DoctorProfile from "../features/dashboard/clinic/DoctorProfile";
+import DoctorList from "../features/dashboard/clinic/Doctors/DoctorList";
+import AddDoctor from "../features/dashboard/clinic/Doctors/AddDoctor";
+import DoctorProfile from "../features/dashboard/clinic/Doctors/DoctorProfile";
+import EditProfileDoc from "../features/dashboard/clinic/Doctors/EditProfileDoc";
+import PatientsOfDoc from "../features/dashboard/clinic/Appointments/PatientsOfDoc";
+import EmployeeSalary from "../features/dashboard/clinic/Staff/EmployeeSalary";
+import AddStaff from "../features/dashboard/clinic/Staff/AddStaff";
+import Attendance from "../features/dashboard/clinic/Staff/Attendance";
+import AppointmentList from "../features/dashboard/clinic/Appointments/AppointmentList";
+import BookAppointment from "../features/dashboard/clinic/Appointments/BookAppointment";
+import EditAppointments from "../features/dashboard/clinic/Appointments/EditAppointments";
+import ScheduleList from "../features/dashboard/clinic/DoctorSchedule/ScheduleList";
+import AddSchedule from "../features/dashboard/clinic/DoctorSchedule/AddSchedule";
+import EditSchedule from "../features/dashboard/clinic/DoctorSchedule/EditSchedule";
 import EditProfileClinic from "../features/dashboard/clinic/EditProfileClinic";
-import PatientsOfDoc from "../features/dashboard/clinic/PatientsOfDoc";
-import EmployeeSalary from "../features/dashboard/clinic/EmployeeSalary";
-import AddStaff from "../features/dashboard/clinic/AddStaff";
-import Attendance from "../features/dashboard/clinic/Attendance";
-import AppointmentList from "../features/dashboard/clinic/AppointmentList";
-import BookAppointment from "../features/dashboard/clinic/BookAppointment";
-import EditAppointments from "../features/dashboard/clinic/EditAppointments";
-import ScheduleList from "../features/dashboard/clinic/ScheduleList";
-import AddSchedule from "../features/dashboard/clinic/AddSchedule";
-import EditSchedule from "../features/dashboard/clinic/EditSchedule";
 import Chat from "../features/dashboard/clinic/Chat";
 import Reports from "../features/dashboard/clinic/Reports";
 import Invoice from "../features/dashboard/clinic/Invoice";
@@ -121,7 +119,7 @@ function AppRoutes() {
 
         {/* Clinic */}
         <Route
-          path="complete-profile"
+          path="/clinic/complete-profile"
           element={
             <ProtectedCompleteProfile>
               <CompleteClinicProfile />
@@ -142,8 +140,8 @@ function AppRoutes() {
           <Route path="add-doctor" element={<AddDoctor />} />
 
           <Route path="doctor-profile" element={<DoctorProfile />} />
-          <Route path="edit-profile" element={<EditProfileClinic />} />
-          {/* {Patients}  */}
+          <Route path="edit-profile-Doc" element={<EditProfileDoc />} />
+          
 
           {/* Staff */}
           <Route path="employee-salary" element={<EmployeeSalary />} />
@@ -159,6 +157,7 @@ function AppRoutes() {
           <Route path="add-schedule" element={<AddSchedule />} />
           <Route path="edit-schedule" element={<EditSchedule />} />
 
+          <Route path="edit-profile-clinic" element={<EditProfileClinic/>} />
           <Route path="chat" element={<Chat />} />
           <Route path="reports" element={<Reports />} />
           <Route path="invoice" element={<Invoice />} />
