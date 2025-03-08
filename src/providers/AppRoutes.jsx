@@ -121,7 +121,7 @@ function AppRoutes() {
 
         {/* Clinic */}
         <Route
-          path="complete-profile"
+          path="/clinic/complete-profile"
           element={
             <ProtectedCompleteProfile>
               <CompleteClinicProfile />
