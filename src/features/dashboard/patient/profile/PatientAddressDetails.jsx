@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 
 function PatientAddressDetails({
@@ -6,30 +7,38 @@ function PatientAddressDetails({
   onChangePatientData,
   onChangePageNumber,
 }) {
+  const { data, isLoading } = useQuery({
+    queryKey: ["cities"],
+    queryFn: getCities,
+  });
+
   const [cities, setCities] = useState();
   const [areas, setAreas] = useState();
   const [selectedCity, setSelectedCity] = useState(patientData.selectedCity);
   const [selectedArea, setSelectedArea] = useState(patientData.selectedArea);
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue } = useForm({
+    reValidateMode: "onChange",
+    defaultValues: useMemo(() => patientData, [patientData]),
+  });
 
-  useEffect(function () {
-    async function getCities() {
-      const response = await fetch(
-        "https://atfawry.fawrystaging.com/ECommerceWeb/api/lookups/govs"
-      );
-      const data = await response.json();
-      if (data) {
-        setCities(data);
-        if (patientData.selectedCity) {
-          setAreas(
-            data.filter((city) => city.code === patientData.selectedCity)
-          );
-        }
+  async function getCities() {
+    const response = await fetch(
+      "https://atfawry.fawrystaging.com/ECommerceWeb/api/lookups/govs"
+    );
+    return await response.json();
+  }
+
+  useEffect(
+    function () {
+      setCities(data);
+      if (patientData.selectedCity) {
+        setAreas(
+          cities?.filter((city) => city.code === patientData.selectedCity)
+        );
       }
-    }
-    getCities();
-    setValue("address", patientData.address);
-  }, []);
+    },
+    [data]
+  );
 
   const handleDecPageNumber = function () {
     onChangePageNumber((pageNumber) => pageNumber - 1);
@@ -71,6 +80,7 @@ function PatientAddressDetails({
             <select
               className="form-control"
               required
+              disabled={isLoading}
               value={selectedCity}
               onChange={hanbleSelection}
             >
@@ -94,6 +104,7 @@ function PatientAddressDetails({
             <select
               className="form-control"
               required
+              disabled={isLoading}
               value={selectedArea}
               onChange={(event) => setSelectedArea(event.target.value)}
             >
