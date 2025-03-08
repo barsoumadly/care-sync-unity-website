@@ -2,7 +2,8 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8000/api/v1/patients";
 
-const updatePatientProfile = async function (patientData, token) {
+const updatePatientProfile = async function (patientData) {
+  const token = JSON.parse(localStorage.getItem("key"));
   const data = {
     phone: patientData.phoneNumber,
     dateOfBirth: patientData.birthDate,
@@ -30,7 +31,8 @@ const updatePatientProfile = async function (patientData, token) {
   }
 };
 
-const getPatientProfile = async function (token) {
+const getPatientProfile = async function () {
+  const token = JSON.parse(localStorage.getItem("key"));
   try {
     return await axios.get(`${API_URL}/profile`, {
       headers: { Authorization: `Bearer ${token}` },
