@@ -3,23 +3,41 @@ import { useAuth } from "../../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { logout } from "../../../services/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../../ui/Header";
+import toast from "react-hot-toast";
+import useLocation from "../patient/profile/useLocation";
 
 function telephoneCheck(p) {
   var phoneRe = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
   var digits = p.replace(/\D/g, "");
-  alert(
-    phoneRe.test(digits)
-      ? "😁Your Phone number is Vaild"
-      : "❌Your Phone number isn't Vaild"
-  );
+
+  return phoneRe.test(digits) ? true : false;
 }
 
 function CompleteClinicProfile() {
   const [images, setImage] = useState([]);
-  const { register, handleSubmit, reset } = useForm();
+  const [cities, setCities] = useState();
+  const [areas, setAreas] = useState();
+  const [selectedCity, setSelectedCity] = useState();
+  const [selectedArea, setSelectedArea] = useState();
+  const { register, handleSubmit, reset, formState, getValues } = useForm();
+  const { data, isLoading } = useLocation();
   const { userLogout } = useAuth();
+  const { errors } = formState;
+  useEffect(
+    function () {
+      if (data) {
+        setCities(data);
+      }
+    },
+    [data]
+  );
+  function hanbleSelection(event) {
+    const seletcity = event.target.value;
+    setSelectedCity(seletcity);
+    setAreas(cities?.filter((city) => city.code === seletcity));
+  }
 
   // Upload images
   const uploadImage = async (e) => {
@@ -34,7 +52,7 @@ function CompleteClinicProfile() {
 
   // Upload Submit Form
   function onSubmit(data) {
-    const formData = { ...data, images: images };
+    const formData = { ...data, images, selectedCity, selectedArea };
     console.log(formData);
     telephoneCheck(data.mobile);
   }
@@ -96,10 +114,14 @@ function CompleteClinicProfile() {
                           <input
                             className="form-control"
                             type="text"
-                            required
                             placeholder="ex: MedLink"
-                            {...register("clinicName")}
-                          />
+                            {...register("clinicName", {
+                              required: "This field is required",
+                            })}
+                          />{" "}
+                          <span className="error-message ">
+                            {errors?.clinicName?.message}
+                          </span>
                         </div>
                       </div>
 
@@ -111,10 +133,17 @@ function CompleteClinicProfile() {
                           <input
                             className="form-control"
                             type="text"
-                            required
                             placeholder="ex: +20123456789"
-                            {...register("mobile")}
+                            {...register("mobile", {
+                              required: "This field is required",
+                              validate: (value) =>
+                                telephoneCheck(value) ||
+                                "Your Phone number isn't Vaild",
+                            })}
                           />
+                          <span className="error-message ">
+                            {errors?.mobile?.message}
+                          </span>
                         </div>
                       </div>
 
@@ -126,10 +155,14 @@ function CompleteClinicProfile() {
                           <input
                             className="form-control"
                             type="text"
-                            required
                             placeholder="ex: 1996"
-                            {...register("founded")}
+                            {...register("founded", {
+                              required: "This field is required",
+                            })}
                           />
+                          <span className="error-message ">
+                            {errors?.founded?.message}
+                          </span>
                         </div>
                       </div>
 
@@ -141,12 +174,18 @@ function CompleteClinicProfile() {
                           </label>
                           <select
                             className="form-control select"
-                            {...register("city")}
+                            value={selectedCity}
+                            onChange={hanbleSelection}
                           >
-                            <option>Select City</option>
-                            <option>Cario</option>
-                            <option>Alexandria</option>
-                            <option>Giza</option>
+                            <option value="Select City" disabled>
+                              Select City
+                            </option>
+
+                            {cities?.map((city) => (
+                              <option value={city.code} key={city.id}>
+                                {city.code}
+                              </option>
+                            ))}
                           </select>
                         </div>
                       </div>
@@ -159,13 +198,23 @@ function CompleteClinicProfile() {
                           </label>
                           <select
                             className="form-control select"
-                            {...register("area")}
+                            value={selectedArea}
+                            onChange={(event) =>
+                              setSelectedArea(event.target.value)
+                            }
                           >
-                            <option>Select Area</option>
-                            <option>Almnib</option>
-                            <option>Ain Shams</option>
-                            <option>Shebra</option>
-                            <option>Maadi</option>
+                            <option value="Select Area" selected disabled>
+                              Select Area
+                            </option>
+
+                            {areas?.[0].cityDataModels.map((area) => (
+                              <option
+                                value={area.namePrimaryLang}
+                                key={area.id}
+                              >
+                                {area?.namePrimaryLang}
+                              </option>
+                            ))}
                           </select>
                         </div>
                       </div>
@@ -179,11 +228,16 @@ function CompleteClinicProfile() {
                           <input
                             className="form-control"
                             type="text"
-                            required
                             placeholder={
                               "101, Elanxa Apartments, 340 N Madison Avenue"
                             }
+                            {...register("address", {
+                              required: "This field is required",
+                            })}
                           />
+                          <span className="error-message ">
+                            {errors?.address?.message}
+                          </span>
                         </div>
                       </div>
                       <div className="col-12 col-sm-12">
@@ -195,10 +249,14 @@ function CompleteClinicProfile() {
                           <textarea
                             className="form-control"
                             rows={3}
-                            required
                             cols={30}
-                            {...register("biography")}
+                            {...register("biography", {
+                              required: "This field is required",
+                            })}
                           />
+                          <span className="error-message ">
+                            {errors?.biography?.message}
+                          </span>
                         </div>
                       </div>
                       <div className="col-12 col-md-6 col-xl-6">
