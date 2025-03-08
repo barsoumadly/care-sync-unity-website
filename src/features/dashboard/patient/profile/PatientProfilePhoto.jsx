@@ -1,12 +1,16 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { updatePatientProfile } from "../../../../services/patient";
-import { updateProfilePhoto } from "../../../../services/user";
+
+import SpinnerMini from "../../../../ui/SpinnerMini";
+
 import { useAuth } from "../../../../context/AuthContext";
+import useEditProfile from "./useEditProfile";
 
 function PatientProfilePhoto({ patientData, onChangePageNumber }) {
   const { user } = useAuth();
+  const { UpdatePatient, UpdateProfilePhoto, isDataLoading, isPhotoLoading } =
+    useEditProfile();
 
   const [profilePhotoObject, setProfilePhotoObject] = useState({});
   const [profilePhoto, setProfilePhoto] = useState(
@@ -27,16 +31,12 @@ function PatientProfilePhoto({ patientData, onChangePageNumber }) {
     onChangePageNumber((pageNumber) => pageNumber - 1);
   };
 
-  const performSubmit = async function (event) {
+  const performSubmit = function (event) {
     event.preventDefault();
 
-    await updatePatientProfile(patientData);
-    await updateProfilePhoto(profilePhotoObject, token);
-    // toast.promise(saveSettings(settings), {
-    //   loading: "Saving...",
-    //   success: <b>Data saved 👍</b>,
-    //   error: <b>Could not save 🥲</b>,
-    // });
+    UpdatePatient({ patientData });
+    UpdateProfilePhoto({ profilePhoto: profilePhotoObject });
+
     navigate("/patient/dashboard");
   };
 
@@ -63,6 +63,7 @@ function PatientProfilePhoto({ patientData, onChangePageNumber }) {
                 accept="image/*"
                 name="image"
                 id="file"
+                disabled={isPhotoLoading}
                 onChange={(event) => {
                   setProfilePhoto(URL.createObjectURL(event.target.files[0]));
                   setProfilePhotoObject(event.target.files[0]);
@@ -98,6 +99,7 @@ function PatientProfilePhoto({ patientData, onChangePageNumber }) {
             <button
               className="btn btn-primary submit-form me-2"
               onClick={performSubmit}
+              disabled={isDataLoading}
             >
               Submit
             </button>
