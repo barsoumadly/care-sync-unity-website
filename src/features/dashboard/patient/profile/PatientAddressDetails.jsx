@@ -10,6 +10,7 @@ function PatientAddressDetails({
   const [areas, setAreas] = useState();
   const [selectedCity, setSelectedCity] = useState(patientData.selectedCity);
   const [selectedArea, setSelectedArea] = useState(patientData.selectedArea);
+  const { register, handleSubmit, setValue } = useForm();
 
   useEffect(function () {
     async function getCities() {
@@ -27,9 +28,8 @@ function PatientAddressDetails({
       }
     }
     getCities();
+    setValue("address", patientData.address);
   }, []);
-
-  const { register, handleSubmit } = useForm();
 
   const handleDecPageNumber = function () {
     onChangePageNumber((pageNumber) => pageNumber - 1);
@@ -119,7 +119,6 @@ function PatientAddressDetails({
               type="text"
               required
               placeholder="ex: El Hegaz St, Al Matar, El Nozha"
-              value={patientData.address}
               {...register("address")}
             />
           </div>
