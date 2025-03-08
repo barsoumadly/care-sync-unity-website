@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 function DoctorProfile () {
   return (
     <>
@@ -100,11 +101,12 @@ function DoctorProfile () {
                           </div>
                           <div className="col-lg-4 col-md-4 d-flex align-items-center">
                             <div className="follow-btn-group">
-                              <button
-                                type="submit"
+                              <NavLink
+                              to ={"/clinic/edit-profile-Doc"}
+                                /* type="submit" */
                                 className="btn btn-info follow-btns">
-                                Follow
-                              </button>
+                                Edit
+                              </NavLink>
                               <button
                                 type="submit"
                                 className="btn btn-info message-btns">

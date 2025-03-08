@@ -78,39 +78,7 @@ function ClinicSidebar({ minbar }) {
         </ul>
       </li>
 
-     {/*  {/* Patients 
-      <li className="submenu">
-        <a className="link" onClick={() => hanbleClick(2)}>
-          <span className="menu-side">
-            <FaPeopleRoof />
-          </span>
-          <span>Patients </span>
-          <span className="menu-arrow">
-            {toggle === 2 ? <IoIosArrowDown /> : <IoIosArrowForward />}
-          </span>
-        </a>
-        <ul
-          style={{
-            display: `${toggle === 2 && !minbar ? "block" : "none"}`,
-          }}
-        >
-          <li>
-            <NavLink to={"/clinic/patients-list"} className="link">
-              Patients List
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/clinic/add-patients"} className="link">
-              Add Patients
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/clinic/payments"} className="link">
-              payments
-            </NavLink>
-          </li>
-        </ul>
-      </li> */}
+  
 
       {/* Staff */}
       <li className="submenu">
@@ -274,6 +242,20 @@ function ClinicSidebar({ minbar }) {
             <a href="invoices-settings.html"> Invoices Settings</a>
           </li>
         </ul>
+      </li>
+      {/* Edit Profile */}
+      <li>
+        <NavLink
+          to={"/clinic/edit-profile-clinic"}
+          className="link"
+          onClick={() => hanbleClick(0)}
+        >
+          <span className="menu-side">
+            <BsChatText />
+          </span>
+          <span>Edit Profile Clinic</span>
+          <span className="menu-arrow"></span>
+        </NavLink>
       </li>
     </>
   );

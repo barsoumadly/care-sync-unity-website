@@ -1,8 +1,5 @@
 import { useForm } from "react-hook-form";
-
-
 import { useState } from "react";
-
 function telephoneCheck(p) {
   var phoneRe = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
   var digits = p.replace(/\D/g, "");
@@ -17,7 +14,6 @@ function telephoneCheck(p) {
 function EditProfileClinic ()  {
   const [images, setImage] = useState([]);
   const { register, handleSubmit, reset } = useForm();
- 
 
   // Upload images
   const uploadImage = async (e) => {
@@ -56,7 +52,7 @@ function EditProfileClinic ()  {
                   <li className="breadcrumb-item">
                     <i className="feather-chevron-right" />
                   </li>
-                  <li className="breadcrumb-item active">Complete Profile</li>
+                  <li className="breadcrumb-item active">Edit Profile Clinic</li>
                 </ul>
               </div>
               
@@ -268,5 +264,4 @@ function ShowImages({ image, deleteImage }) {
     </div>
   );
 }
-
 export default EditProfileClinic
