@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import useLocation from "../../useLocation";
 
 function AddressDetails({
   pharmacyData,
   onChangePharmacyData,
   onChangePageNumber,
 }) {
+  const { data, isLoading } = useLocation();
+
   const [cities, setCities] = useState();
   const [areas, setAreas] = useState();
   const [selectedCity, setSelectedCity] = useState(pharmacyData.selectedCity);
   const [selectedArea, setSelectedArea] = useState(pharmacyData.selectedArea);
+  const { register, handleSubmit, setValue } = useForm();
 
-  useEffect(function () {
-    async function getCities() {
-      const response = await fetch(
-        "https://atfawry.fawrystaging.com/ECommerceWeb/api/lookups/govs"
-      );
-      const data = await response.json();
+  useEffect(
+    function () {
       if (data) {
         setCities(data);
         if (pharmacyData.selectedCity) {
@@ -25,11 +25,11 @@ function AddressDetails({
           );
         }
       }
-    }
-    getCities();
-  }, []);
 
-  const { register, handleSubmit } = useForm();
+      setValue("address", pharmacyData.address);
+    },
+    [data]
+  );
 
   const handleDecPageNumber = function () {
     onChangePageNumber((pageNumber) => pageNumber - 1);
@@ -117,7 +117,7 @@ function AddressDetails({
               type="text"
               required
               placeholder="ex: El Hegaz St, Al Matar, El Nozha"
-              value={pharmacyData.address}
+              // value={pharmacyData.address}
               {...register("address")}
             />
           </div>
