@@ -1,8 +1,6 @@
 import { IoArrowBackOutline } from "react-icons/io5";
 import { useAuth } from "../../../../context/AuthContext";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getPatientProfile } from "../../../../services/patient";
 import useProfile from "../useProfile";
 import SpinnerMini from "../../../../ui/SpinnerMini";
 
