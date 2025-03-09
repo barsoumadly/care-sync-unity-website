@@ -5,6 +5,7 @@ function PasswordEye({ isEyeOpen, setIsEyeOpen }) {
       className={`profile-views feather-eye${
         isEyeOpen ? "" : "-off"
       } confirm-password`}
+      style={{ top: "40%" }}
     ></span>
   );
 }
