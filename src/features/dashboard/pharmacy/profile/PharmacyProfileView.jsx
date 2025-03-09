@@ -1,24 +1,11 @@
 import Map from "../../../../ui/Map";
+import useProfile from "../useProfile";
 import PharmacyHeader from "./pharmacyHeader";
 
-const pharmacy = {
-  id: 1,
-  name: "El Ezaby Pharmacy",
-  slug: "el-ezaby-pharmacy",
-  email: "el-ezaby-pharmacy@gmail.com",
-  city: "Cairo",
-  address: "206 El Hegaz St, Al Matar, El Nozha, Cairo Governorate",
-  location:
-    "el-ezaby-pharmacy 206 El Hegaz St, Al Matar, El Nozha, Cairo Governorate",
-  phone: "02 35317347",
-  foundedDate: 1975,
-  profilePhoto:
-    "https://cdna1.yellowpages.com.eg/uploads/contract-services/english/2024/13/el-ezaby-pharmacies-photo_99370_2020_wa_01_21627.jpg?3",
-  rating: 4,
-};
-
 function PharmacyProfileView() {
-  // const pharmacy = JSON.parse(localStorage.getItem("pharmacy"));
+  const { data: pharmacy, error } = useProfile();
+
+  if (error) toast.error(error?.message);
 
   return (
     <div className="main-wrapper">
@@ -35,7 +22,7 @@ function PharmacyProfileView() {
                       <div className="experience-box">
                         <div className="hello-park">
                           <p>
-                            At {pharmacy.name}, our experienced doctors and
+                            At {pharmacy?.name}, our experienced doctors and
                             staff are dedicated to providing compassionate,
                             cutting-edge care.
                             <br /> We prioritize your well-being and strive for
@@ -79,8 +66,8 @@ function PharmacyProfileView() {
                     </div>
                     <div className="card-box">
                       <Map
-                        name={pharmacy.name}
-                        markerPosition={pharmacy?.location}
+                        name={pharmacy?.name}
+                        markerPosition={`${pharmacy?.name} pharmacy ${pharmacy?.address.address} ${pharmacy?.address.city}`}
                       />
                     </div>
                   </div>
