@@ -1,14 +1,35 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoArrowBackOutline, IoHome, IoPersonSharp } from "react-icons/io5";
 import { BsFillImageFill } from "react-icons/bs";
 import LaboratoryDetails from "./LaboratoryDetails";
 import LaboratoryAddressDetails from "./LaboratoryAddressDetails";
 import LaboratoryProfilePhoto from "./LaboratoryProfilePhoto";
+import useProfile from "../useProfile";
 
 function LaboratoryEditProfile() {
   const [pageNumber, setPageNumber] = useState(1);
   const [LaboratoryData, setLaboratoryData] = useState({});
+
+  const { data, isLoading, error } = useProfile();
+
+  if (error) toast.error(error.message);
+
+  useEffect(
+    function () {
+      if (!isLoading) {
+        setLaboratoryData({
+          laboratoryName: data?.name,
+          phoneNumber: data?.phone,
+          foundedYear: data.foundedYear,
+          selectedCity: data?.address.city,
+          selectedArea: data?.address.area,
+          address: data?.address.address,
+        });
+      }
+    },
+    [data]
+  );
 
   return (
     <div className="page-wrapper">
