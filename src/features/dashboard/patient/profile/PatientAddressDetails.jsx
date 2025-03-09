@@ -1,7 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import useLocation from "../../patient/profile/useLocation";
+import useLocation from "../../useLocation";
 
 function PatientAddressDetails({
   patientData,
