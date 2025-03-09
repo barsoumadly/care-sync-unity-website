@@ -6,7 +6,7 @@ import { logout } from "../../../services/auth";
 import { useEffect, useState } from "react";
 import Header from "../../../ui/Header";
 import toast from "react-hot-toast";
-import useLocation from "../patient/profile/useLocation";
+import useLocation from "../useLocation";
 
 function telephoneCheck(p) {
   var phoneRe = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
