@@ -1,5 +1,4 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 import SpinnerMini from "../../../../ui/SpinnerMini";
@@ -16,8 +15,6 @@ function PatientProfilePhoto({ patientData, onChangePageNumber }) {
   const [profilePhoto, setProfilePhoto] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
   );
-
-  console.log(patientData);
 
   const displayedPhoto = profilePhoto.includes("blob")
     ? profilePhoto
