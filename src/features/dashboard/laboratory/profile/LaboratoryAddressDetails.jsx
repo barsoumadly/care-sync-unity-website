@@ -1,16 +1,51 @@
 import { useForm } from "react-hook-form";
+import useLocation from "../../useLocation";
+import { useEffect, useState } from "react";
 
 function LaboratoryAddressDetails({
   laboratoryData,
   onChangeLaboratoryData,
   onChangePageNumber,
 }) {
-  const { register, handleSubmit } = useForm();
+  const { data, isLoading } = useLocation();
+
+  const [cities, setCities] = useState();
+  const [areas, setAreas] = useState();
+  const [selectedCity, setSelectedCity] = useState(laboratoryData.selectedCity);
+  const [selectedArea, setSelectedArea] = useState(laboratoryData.selectedArea);
+  const { register, handleSubmit, setValue } = useForm();
+
+  useEffect(
+    function () {
+      if (data) {
+        setCities(data);
+        if (laboratoryData.selectedCity) {
+          setAreas(
+            data.filter((city) => city.code === laboratoryData.selectedCity)
+          );
+        }
+      }
+
+      setValue("address", laboratoryData.address);
+    },
+    [data]
+  );
 
   const performSubmit = function (data) {
-    onChangeLaboratoryData({ ...laboratoryData, ...data });
+    onChangeLaboratoryData({
+      ...laboratoryData,
+      ...data,
+      selectedCity,
+      selectedArea,
+    });
     onChangePageNumber((pageNumber) => pageNumber + 1);
   };
+
+  function hanbleSelection(event) {
+    const seletcity = event.target.value;
+    setSelectedCity(seletcity);
+    setAreas(cities?.filter((city) => city.code === seletcity));
+  }
 
   const handleDecPageNumber = function () {
     onChangePageNumber((pageNumber) => pageNumber - 1);
@@ -36,12 +71,17 @@ function LaboratoryAddressDetails({
             <select
               className="form-control"
               required
-              value={laboratoryData.city}
-              {...register("city")}
+              value={selectedCity}
+              onChange={hanbleSelection}
             >
               <option value="select-option" dir="">
                 Select Option
               </option>
+              {cities?.map((city) => (
+                <option value={city.code} key={city.id}>
+                  {city.code}
+                </option>
+              ))}
             </select>
           </div>
         </div>
@@ -53,12 +93,17 @@ function LaboratoryAddressDetails({
             <select
               className="form-control"
               required
-              value={laboratoryData.area}
-              {...register("area")}
+              value={selectedArea}
+              onChange={(event) => setSelectedArea(event.target.value)}
             >
               <option value="select-option" dir="">
                 Select Option
               </option>
+              {areas?.[0].cityDataModels.map((area) => (
+                <option value={area.namePrimaryLang} key={area.id}>
+                  {area?.namePrimaryLang}
+                </option>
+              ))}
             </select>
           </div>
         </div>
@@ -72,7 +117,7 @@ function LaboratoryAddressDetails({
               type="text"
               required
               placeholder="ex: El Hegaz St, Al Matar, El Nozha"
-              value={laboratoryData.address}
+              // value={laboratoryData.address}
               {...register("address")}
             />
           </div>
