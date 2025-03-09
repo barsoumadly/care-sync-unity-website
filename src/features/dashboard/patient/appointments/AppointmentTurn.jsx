@@ -1,20 +1,9 @@
 import { Link } from "react-router-dom";
+import Modal from "../../../../ui/Modal";
 
 function AppointmentTurn({ onOpenModal, appointmentTurn }) {
   return (
-    <div
-      id="con-close-modal"
-      className="modal fade show"
-      tabIndex={-1}
-      style={{
-        display: "block",
-        paddingLeft: 0,
-        backgroundColor: "rgb(0 0 0 / 32%)",
-        backdropFilter: "blur(3px)",
-      }}
-      aria-modal="true"
-      role="dialog"
-    >
+    <Modal onClose={onOpenModal}>
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
@@ -58,7 +47,7 @@ function AppointmentTurn({ onOpenModal, appointmentTurn }) {
           </div>
         </div>
       </div>
-    </div>
+    </Modal>
   );
 }
 
