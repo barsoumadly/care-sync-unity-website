@@ -1,24 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from "../../../../ui/Modal";
 
 function AppointmentModal({ selectedDoctor, onOpenModal }) {
   const [paymentType, setPaymentType] = useState("cash");
   const clinic = JSON.parse(localStorage.getItem("clinic"));
 
   return (
-    <div
-      id="con-close-modal"
-      className="modal fade show"
-      tabIndex={-1}
-      style={{
-        display: "block",
-        paddingLeft: 0,
-        backgroundColor: "rgb(0 0 0 / 32%)",
-        backdropFilter: "blur(3px)",
-      }}
-      aria-modal="true"
-      role="dialog"
-    >
+    <Modal onClose={onOpenModal}>
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
@@ -170,7 +159,7 @@ function AppointmentModal({ selectedDoctor, onOpenModal }) {
           </div>
         </div>
       </div>
-    </div>
+    </Modal>
   );
 }
 
