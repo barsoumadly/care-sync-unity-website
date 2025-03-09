@@ -3,28 +3,18 @@ import { Link } from "react-router-dom";
 import ActiveStar from "../../../../ui/ActiveStar";
 import InactiveStar from "../../../../ui/InactiveStar";
 import SemiactiveStar from "../../../../ui/SemiactiveStar";
+import { useAuth } from "../../../../context/AuthContext";
+import useProfile from "../useProfile";
 
-const laboratory = {
-  id: 1,
-  name: "Alfa Laboratory",
-  slug: "alfa-laboratory",
-  email: "alfa-laboratory@gmail.com",
-  city: "Cairo",
-  address:
-    "El-Sayed El-Merghany, Manshîyet el Bakri, Heliopolis, Cairo Governorate",
-  location:
-    "Alfa Laboratory El-Sayed El-Merghany, Manshîyet el Bakri, Heliopolis, Cairo Governorate",
-  phone: "012 81001504",
-  foundedDate: 1975,
-  profilePhoto:
-    "https://lh3.googleusercontent.com/p/AF1QipNCM2ymcmttFz5-YmrUyMwNQwfN70YkJ0jFsWUZ=s1360-w1360-h1020",
-  rating: 3.5,
-};
+function LaboratoryHeader() {
+  const { user } = useAuth();
+  const { data: laboratory, error } = useProfile();
 
-function LaboratoryHeader({ activeTab }) {
-  const numOfInactiveStars = 5 - laboratory.rating;
+  if (error) toast.error(error?.message);
+
+  const numOfInactiveStars = 5 - laboratory?.rating;
   const activeStars = Array.from(
-    { length: laboratory.rating },
+    { length: laboratory?.rating },
     (_, i) => i + 1
   );
   let inactiveStars;
@@ -46,10 +36,7 @@ function LaboratoryHeader({ activeTab }) {
             <li className="breadcrumb-item">
               <i className="feather-chevron-right" />
             </li>
-            <li className="breadcrumb-item active">
-              {laboratory.name}
-              {activeTab === "analysis" ? " Analysis List" : " Profile"}
-            </li>
+            <li className="breadcrumb-item active">My Profile</li>
           </ul>
         </div>
         <div class="col-sm-5 col-6 text-end m-b-30">
@@ -65,11 +52,7 @@ function LaboratoryHeader({ activeTab }) {
               <div className="profile-img-wrap">
                 <div className="profile-img">
                   <a href="#">
-                    <img
-                      className="avatar"
-                      src={laboratory.profilePhoto}
-                      alt=""
-                    />
+                    <img className="avatar" src={user?.profilePhoto} alt="" />
                   </a>
                 </div>
               </div>
@@ -78,9 +61,11 @@ function LaboratoryHeader({ activeTab }) {
                   <div className="col-md-5">
                     <div className="profile-info-left">
                       <h3 className="user-name m-t-0 mb-0">
-                        {laboratory.name}
+                        {laboratory?.name} Laboratory
                       </h3>
-                      <small className="text-muted">{laboratory.city}</small>
+                      <small className="text-muted">
+                        {laboratory?.address?.city}
+                      </small>
                       <div className="staff-id">
                         <span className="rating rating-score">
                           {activeStars.map((star) => (
@@ -115,7 +100,7 @@ function LaboratoryHeader({ activeTab }) {
                       <li>
                         <span className="title">Phone:</span>
                         <span className="text">
-                          <a>{laboratory.phone}</a>
+                          <a>{laboratory?.phone}</a>
                         </span>
                       </li>
                       <li>
@@ -126,18 +111,24 @@ function LaboratoryHeader({ activeTab }) {
                               className="__cf_email__"
                               data-cfemail="c2a1b0abb1b6abaca3a5b0adb4a7b182a7baa3afb2aea7eca1adaf"
                             >
-                              {laboratory.email}
+                              {user?.email}
                             </span>
                           </a>
                         </span>
                       </li>
                       <li>
                         <span className="title">Address:</span>
-                        <span className="text">{laboratory.address}</span>
+                        <span className="text">
+                          {laboratory?.address?.address},{" "}
+                          {laboratory?.address?.area},{" "}
+                          {laboratory?.address?.city} Governorate
+                        </span>
                       </li>
                       <li>
                         <span className="title">Founded:</span>
-                        <span className="text">{laboratory.foundedDate}</span>
+                        <span className="text">
+                          {laboratory?.foundedYear || "__"}
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -146,6 +137,24 @@ function LaboratoryHeader({ activeTab }) {
             </div>
           </div>
         </div>
+      </div>
+      <div className="profile-tabs">
+        <ul className="nav nav-tabs nav-tabs-bottom">
+          <li className="nav-item">
+            <a
+              className="nav-link"
+              data-bs-toggle="tab"
+              data-discover="true"
+            ></a>
+          </li>
+          <li className="nav-item">
+            <a
+              className="nav-link"
+              data-bs-toggle="tab"
+              data-discover="true"
+            ></a>
+          </li>
+        </ul>
       </div>
     </>
   );
