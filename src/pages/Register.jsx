@@ -26,6 +26,7 @@ function Register() {
     setIsLoading(true);
 
     const { confirmPassword, ...userData } = Udata;
+    userData.role = userRole;
 
     if (userData.password !== confirmPassword) {
       return toast.error("Passwords are not same");
@@ -35,7 +36,7 @@ function Register() {
       await registerApi(userData);
       toast.success("Successfull");
       navigate("/verify-email");
-      setUserRole("PATIENT");
+      // setUserRole("PATIENT");
       saveEmail(userData.email);
       userRegister(userData);
     } catch (error) {
