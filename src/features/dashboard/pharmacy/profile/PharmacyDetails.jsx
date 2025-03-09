@@ -14,8 +14,6 @@ function PharmacyDetails({
   const { register, handleSubmit, setValue } = useForm();
 
   useEffect(() => {
-    console.log(pharmacyData.phoneNumber);
-
     setValue("pharmacyName", pharmacyDetails.pharmacyName);
     setValue("phoneNumber", pharmacyDetails.phoneNumber);
     setValue("foundedYear", pharmacyDetails.foundedYear);
