@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 function PharmacyDetails({
@@ -5,7 +6,20 @@ function PharmacyDetails({
   onChangePharmacyData,
   onChangePageNumber,
 }) {
-  const { register, handleSubmit } = useForm();
+  const pharmacyDetails = {
+    pharmacyName: pharmacyData.pharmacyName,
+    phoneNumber: pharmacyData.phoneNumber,
+    foundedYear: pharmacyData.foundedYear,
+  };
+  const { register, handleSubmit, setValue } = useForm();
+
+  useEffect(() => {
+    console.log(pharmacyData.phoneNumber);
+
+    setValue("pharmacyName", pharmacyDetails.pharmacyName);
+    setValue("phoneNumber", pharmacyDetails.phoneNumber);
+    setValue("foundedYear", pharmacyDetails.foundedYear);
+  }, [pharmacyDetails]);
 
   const performSubmit = function (data) {
     onChangePharmacyData({ ...pharmacyData, ...data });
@@ -33,7 +47,7 @@ function PharmacyDetails({
               type="text"
               placeholder="ex: El Ezaby"
               required
-              value={pharmacyData.pharmacyName}
+              // value={pharmacyData.pharmacyName}
               {...register("pharmacyName")}
             />
           </div>
@@ -48,7 +62,7 @@ function PharmacyDetails({
               type="text"
               placeholder="ex: 0123456789"
               required
-              value={pharmacyData.phoneNumber}
+              // value={pharmacyData.phoneNumber}
               {...register("phoneNumber")}
             />
           </div>
@@ -60,7 +74,7 @@ function PharmacyDetails({
               className="form-control"
               type="number"
               placeholder="ex: 2005"
-              value={pharmacyData.foundedYear}
+              // value={pharmacyData.foundedYear}
               {...register("foundedYear")}
             />
           </div>
