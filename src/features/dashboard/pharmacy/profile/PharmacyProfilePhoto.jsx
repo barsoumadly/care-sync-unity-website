@@ -1,14 +1,24 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useEditProfile from "./useEditProfile";
+import { useAuth } from "../../../../context/AuthContext";
 
-function ProfilePhoto({
-  pharmacyData,
-  onChangePharmacyData,
-  onChangePageNumber,
-}) {
+function ProfilePhoto({ pharmacyData, onChangePageNumber }) {
+  const { user } = useAuth();
+  const { UpdatePharmacy, UpdateProfilePhoto, isDataLoading, isPhotoLoading } =
+    useEditProfile();
+
+  const [profilePhotoObject, setProfilePhotoObject] = useState({});
   const [profilePhoto, setProfilePhoto] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
   );
+
+  const displayedPhoto = profilePhoto.includes("blob")
+    ? profilePhoto
+    : user.profilePhoto
+    ? user.profilePhoto
+    : profilePhoto;
+
   const navigate = useNavigate();
 
   const handleDecPageNumber = function () {
@@ -18,12 +28,9 @@ function ProfilePhoto({
   const performSubmit = function (event) {
     event.preventDefault();
 
-    onChangePharmacyData({ ...pharmacyData, profilePhoto });
-    // toast.promise(saveSettings(settings), {
-    //   loading: "Saving...",
-    //   success: <b>Data saved 👍</b>,
-    //   error: <b>Could not save 🥲</b>,
-    // });
+    UpdatePharmacy({ pharmacyData });
+    UpdateProfilePhoto({ profilePhoto: profilePhotoObject });
+
     navigate("/pharmacy/dashboard");
   };
 
@@ -50,8 +57,10 @@ function ProfilePhoto({
                 accept="image/*"
                 name="image"
                 id="file"
+                disabled={isPhotoLoading}
                 onChange={(event) => {
                   setProfilePhoto(URL.createObjectURL(event.target.files[0]));
+                  setProfilePhotoObject(event.target.files[0]);
                 }}
                 className="hide-input"
                 data-cf-modified-f4b406440a9d28b1c089eaf4-=""
@@ -61,7 +70,7 @@ function ProfilePhoto({
               </label>
             </div>
             <div className="upload-images upload-size">
-              <img src={profilePhoto} alt="Image" />
+              <img src={displayedPhoto} alt="Image" />
             </div>
           </div>
         </div>
@@ -84,6 +93,7 @@ function ProfilePhoto({
             <button
               className="btn btn-primary submit-form me-2"
               onClick={performSubmit}
+              disabled={isDataLoading}
             >
               Submit
             </button>
