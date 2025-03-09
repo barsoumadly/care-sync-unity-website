@@ -1,24 +1,12 @@
 import Map from "../../../../ui/Map";
+import useProfile from "../useProfile";
 import LaboratoryHeader from "./LaboratoryHeader";
 
-const laboratory = {
-  id: 1,
-  name: "Alfa Laboratory",
-  slug: "alfa-laboratory",
-  email: "alfa-laboratory@gmail.com",
-  city: "Cairo",
-  address:
-    "El-Sayed El-Merghany, Manshîyet el Bakri, Heliopolis, Cairo Governorate",
-  location:
-    "Alfa Laboratory El-Sayed El-Merghany, Manshîyet el Bakri, Heliopolis, Cairo Governorate",
-  phone: "012 81001504",
-  foundedDate: 1975,
-  profilePhoto:
-    "https://lh3.googleusercontent.com/p/AF1QipNCM2ymcmttFz5-YmrUyMwNQwfN70YkJ0jFsWUZ=s1360-w1360-h1020",
-  rating: 3.5,
-};
-
 function LaboratoryViewProfile() {
+  const { data: laboratory, error } = useProfile();
+
+  if (error) toast.error(error?.message);
+
   return (
     <div className="main-wrapper">
       <div className="page-wrapper">
@@ -34,7 +22,7 @@ function LaboratoryViewProfile() {
                       <div className="experience-box">
                         <div className="hello-park">
                           <p>
-                            At {laboratory.name}, our experienced doctors and
+                            At {laboratory?.name}, our experienced doctors and
                             staff are dedicated to providing compassionate,
                             cutting-edge care.
                             <br /> We prioritize your well-being and strive for
@@ -78,8 +66,8 @@ function LaboratoryViewProfile() {
                     </div>
                     <div className="card-box">
                       <Map
-                        name={laboratory.name}
-                        markerPosition={laboratory.location}
+                        name={laboratory?.name}
+                        markerPosition={`${laboratory?.name} laboratory ${laboratory?.address.address}, ${laboratory?.address?.city} Governorate`}
                       />
                     </div>
                   </div>
