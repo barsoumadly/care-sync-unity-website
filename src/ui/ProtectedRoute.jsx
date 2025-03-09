@@ -16,13 +16,14 @@ function ProtectedRoute({ children }) {
 
   if (isLoading) return <Loader />;
 
-  if (!isProfileCompleted)
+  if (!isProfileCompleted && isProfileCompleted !== null)
     navigate(`/${user?.role?.toLowerCase().split("_")[0]}/complete-profile`);
-  else if (type[1] === user?.role?.toLowerCase().split("_")[0]) {
-    if (isAuthenticated) return children;
-  } else {
-    navigate(-1);
-    return true;
+  else if (isAuthenticated) {
+    if (type[1] === user?.role?.toLowerCase().split("_")[0]) return children;
+    else {
+      navigate(0);
+      navigate(`/${user?.role?.toLowerCase().split("_")[0]}/dashboard`);
+    }
   }
 
   return true;
