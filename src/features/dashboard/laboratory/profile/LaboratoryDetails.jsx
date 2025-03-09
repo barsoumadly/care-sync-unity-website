@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 function LaboratoryDetails({
@@ -5,7 +6,18 @@ function LaboratoryDetails({
   onChangeLaboratoryData,
   onChangePageNumber,
 }) {
-  const { register, handleSubmit } = useForm();
+  const laboratoryDetails = {
+    laboratoryName: laboratoryData.laboratoryName,
+    phoneNumber: laboratoryData.phoneNumber,
+    foundedYear: laboratoryData.foundedYear,
+  };
+  const { register, handleSubmit, setValue } = useForm();
+
+  useEffect(() => {
+    setValue("laboratoryName", laboratoryDetails.laboratoryName);
+    setValue("phoneNumber", laboratoryDetails.phoneNumber);
+    setValue("foundedYear", laboratoryDetails.foundedYear);
+  }, [laboratoryDetails]);
 
   const performSubmit = function (data) {
     onChangeLaboratoryData({ ...laboratoryData, ...data });
@@ -33,7 +45,7 @@ function LaboratoryDetails({
               type="text"
               placeholder="ex: El Ezaby"
               required
-              value={laboratoryData.laboratoryName}
+              // value={laboratoryData.laboratoryName}
               {...register("laboratoryName")}
             />
           </div>
@@ -48,7 +60,7 @@ function LaboratoryDetails({
               type="text"
               placeholder="ex: 0123456789"
               required
-              value={laboratoryData.phoneNumber}
+              // value={laboratoryData.phoneNumber}
               {...register("phoneNumber")}
             />
           </div>
@@ -60,7 +72,7 @@ function LaboratoryDetails({
               className="form-control"
               type="number"
               placeholder="ex: 2005"
-              value={laboratoryData.foundedYear}
+              // value={laboratoryData.foundedYear}
               {...register("foundedYear")}
             />
           </div>
