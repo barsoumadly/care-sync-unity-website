@@ -121,7 +121,8 @@ function PharmacyHeader() {
                         <span className="title">Address:</span>
                         <span className="text">
                           {pharmacy?.address?.address},{" "}
-                          {pharmacy?.address?.city} Governorate
+                          {pharmacy?.address?.area}, {pharmacy?.address?.city}{" "}
+                          Governorate
                         </span>
                       </li>
                       <li>
