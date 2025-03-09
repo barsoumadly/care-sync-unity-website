@@ -6,7 +6,7 @@ const initialState = {
   user: null,
   userEmail: null,
   isAuthenticated: false,
-  isProfileCompleted: false,
+  isProfileCompleted: null,
   isRegistered: false,
 };
 
