@@ -186,29 +186,14 @@ function Header({ setShowbar, setMinbar, url }) {
         </li>
         <li className="nav-item dropdown has-arrow user-profile-list">
           <a
-            href="#"
             className="dropdown-toggle nav-link user-link"
             data-bs-toggle="dropdown"
           >
             <UserAvatar />
           </a>
-          <div className="dropdown-menu">
-            <a className="dropdown-item" href="profile.html">
-              My Profile
-            </a>
-            <a className="dropdown-item" href="edit-profile.html">
-              Edit Profile
-            </a>
-            <a className="dropdown-item" href="settings.html">
-              Settings
-            </a>
-            <a className="dropdown-item" href="login.html">
-              Logout
-            </a>
-          </div>
         </li>
         <li className="nav-item ">
-          <Link to="/clinic/edit-profile" className="hasnotifications nav-link">
+          <Link to="edit-profile" className="hasnotifications nav-link">
             <img src="/images/dashborad/icons/setting-icon-01.svg" alt="" />
           </Link>
         </li>
