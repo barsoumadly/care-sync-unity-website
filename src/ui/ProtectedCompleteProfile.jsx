@@ -15,10 +15,14 @@ function ProtectedCompleteProfile({ children }) {
   LocalStorageState();
 
   if (isLoading) return <Loader />;
-  if (!isProfileCompleted)
+  if (!isProfileCompleted && isProfileCompleted !== null) {
     if (type[1] === user?.role?.toLowerCase().split("_")[0]) return children;
-    else navigate(-1);
-  else navigate(-1);
+    else if (user) {
+      navigate(0);
+      navigate(`/${user?.role?.toLowerCase().split("_")[0]}/complete-profile`);
+    }
+  }
+  return true;
 }
 
 export default ProtectedCompleteProfile;
