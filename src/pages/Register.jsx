@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordEye from "../features/authentication/PasswordEye";
 import userRoleArr from "../data/constants";
-import UserRole from "../features/authentication/UserRole";
 import { register as registerApi } from "../services/auth";
 import AuthButton from "../ui/AuthButton";
 import toast from "react-hot-toast";
@@ -10,27 +9,21 @@ import { useAuth } from "../context/AuthContext";
 import { useForm } from "react-hook-form";
 
 function Register() {
-  const { register, handleSubmit, reset } = useForm();
-
-  const [userRole, setUserRole] = useState("PATIENT");
+  const navigate = useNavigate();
 
   const [isEyeOpen1, setIsEyeOpen1] = useState(false);
   const [isEyeOpen2, setIsEyeOpen2] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate();
-
+  const { register, handleSubmit, reset, formState, getValues } = useForm();
+  const userRoleArray = userRoleArr.slice().splice(0, 4);
   const { saveEmail, userRegister } = useAuth();
+  const { errors } = formState;
 
   const onSubmit = async function (Udata) {
     setIsLoading(true);
 
     const { confirmPassword, ...userData } = Udata;
-    userData.role = userRole;
-
-    if (userData.password !== confirmPassword) {
-      return toast.error("Passwords are not same");
-    }
 
     try {
       await registerApi(userData);
@@ -61,10 +54,6 @@ function Register() {
     setIsEyeOpen2(result);
   };
 
-  const handleUserRole = function (userRole) {
-    setUserRole(userRole);
-  };
-
   return (
     <>
       <h2>Getting Started</h2>
@@ -78,9 +67,13 @@ function Register() {
           <input
             className="form-control"
             type="text"
-            required
-            {...register("name")}
+            {...register("name", {
+              required: "This field is required",
+            })}
           />
+          {errors?.name && (
+            <span className="error-message ">{errors?.name?.message}</span>
+          )}
         </div>
 
         <div className="input-block">
@@ -90,9 +83,13 @@ function Register() {
           <input
             className="form-control"
             type="email"
-            required
-            {...register("email")}
-          />
+            {...register("email", {
+              required: "This field is required",
+            })}
+          />{" "}
+          {errors?.email && (
+            <span className="error-message ">{errors?.email?.message}</span>
+          )}
         </div>
 
         <div className="input-block">
@@ -102,13 +99,17 @@ function Register() {
           <input
             className="form-control pass-input"
             type={`${isEyeOpen1 ? "text" : "password"}`}
-            required
-            {...register("password")}
+            {...register("password", {
+              required: "This field is required",
+            })}
           />
           <PasswordEye
             isEyeOpen={isEyeOpen1}
             setIsEyeOpen={handlePasswordEye1}
-          />
+          />{" "}
+          {errors?.password && (
+            <span className="error-message ">{errors?.password?.message}</span>
+          )}
         </div>
 
         <div className="input-block">
@@ -119,22 +120,43 @@ function Register() {
           <input
             className="form-control pass-input-confirm"
             type={`${isEyeOpen2 ? "text" : "password"}`}
-            required
-            {...register("confirmPassword")}
+            {...register("confirmPassword", {
+              required: "This field is required",
+              validate: (value) =>
+                value === getValues().password || "Passwords are not same",
+            })}
           />
           <PasswordEye
             isEyeOpen={isEyeOpen2}
             setIsEyeOpen={handlePasswordEye2}
-          />
+          />{" "}
+          {errors?.confirmPassword && (
+            <span className="error-message ">
+              {errors?.confirmPassword?.message}
+            </span>
+          )}
         </div>
 
-        <UserRole
-          userRoleArr={userRoleArr.slice().splice(0, 4)}
-          userRole={userRole}
-          setUserRole={handleUserRole}
-        />
+        <div className="input-block">
+          <label>
+            User Role
+            <span className="login-danger">*</span>
+          </label>
+          <select
+            className="form-control pass-input"
+            {...register("role", {
+              required: "This field is required",
+            })}
+          >
+            {userRoleArray.map((role) => (
+              <option value={role.key} key={role.key}>
+                {role.value}
+              </option>
+            ))}
+          </select>{" "}
+          <span className="error-message ">{errors?.role?.message}</span>
+        </div>
 
-        {/* {isVisible && <ErrorMessage errorMessage={errorMessage} />} */}
         <AuthButton text="Sign up" isLoading={isLoading} />
       </form>
       {/* <!-- /Form --> */}
