@@ -8,9 +8,7 @@ import { IoArrowBackOutline, IoHome, IoPersonSharp } from "react-icons/io5";
 import { FaBriefcaseMedical } from "react-icons/fa6";
 import { BsFillImageFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { getPatientProfile } from "../../../../services/patient";
 import useProfile from "../useProfile";
-import { useQuery } from "@tanstack/react-query";
 import SpinnerMini from "../../../../ui/SpinnerMini";
 
 function PatientEditProfile() {
