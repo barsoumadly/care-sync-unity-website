@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { getPatientProfile } from "../../../services/patient";
 import useProfile from "./useProfile";
 import SpinnerMini from "../../../ui/SpinnerMini";
 import toast from "react-hot-toast";
