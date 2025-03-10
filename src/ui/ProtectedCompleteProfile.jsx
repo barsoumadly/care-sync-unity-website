@@ -21,6 +21,9 @@ function ProtectedCompleteProfile({ children }) {
       navigate(0);
       navigate(`/${user?.role?.toLowerCase().split("_")[0]}/complete-profile`);
     }
+  } else {
+    navigate(0);
+    navigate(`/${user?.role?.toLowerCase().split("_")[0]}/dashboard`);
   }
   return true;
 }
