@@ -16,7 +16,7 @@ function AuthenticationFrame({ children }) {
 
   useEffect(
     function () {
-      setTimeout(() => setIsOpen(false), 3000);
+      setTimeout(() => setIsOpen(false), 1000);
     },
     [isOpen]
   );
