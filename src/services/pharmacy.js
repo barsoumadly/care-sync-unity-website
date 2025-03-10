@@ -36,4 +36,35 @@ const getPharmacyProfile = async function () {
   }
 };
 
-export { updatePharmacyProfile, getPharmacyProfile };
+const getPharmacyList = async function () {
+  const token = JSON.parse(localStorage.getItem("key"));
+  try {
+    const response = await axios.get(`${API_URL}/`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return await response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getPharmacy = async function (pharmacyId) {
+  const token = JSON.parse(localStorage.getItem("key"));
+  try {
+    const response = await axios.get(`${API_URL}/${pharmacyId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return await response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  updatePharmacyProfile,
+  getPharmacyProfile,
+  getPharmacyList,
+  getPharmacy,
+};
