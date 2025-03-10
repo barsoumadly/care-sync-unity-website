@@ -117,7 +117,9 @@ function PharmacyHeader({ activeTab }) {
                       <li>
                         <span className="title">Address:</span>
                         <span className="text">
-                          {pharmacy?.address.address}
+                          {pharmacy?.address?.address},{" "}
+                          {pharmacy?.address?.area}, {pharmacy?.address?.city}{" "}
+                          Governorate
                         </span>
                       </li>
                       <li>
