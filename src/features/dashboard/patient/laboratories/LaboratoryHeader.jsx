@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import ActiveStar from "../../../../ui/ActiveStar";
 import InactiveStar from "../../../../ui/InactiveStar";
 import SemiactiveStar from "../../../../ui/SemiactiveStar";
+import useUser from "../../useUser";
 
 function LaboratoryHeader({ activeTab }) {
   const laboratory = JSON.parse(localStorage.getItem("laboratory"));
+  const { data: laboratoryUser } = useUser(laboratory.userId);
 
   const numOfInactiveStars = 5 - laboratory.rating;
   const activeStars = Array.from(
@@ -32,7 +34,7 @@ function LaboratoryHeader({ activeTab }) {
               <i className="feather-chevron-right" />
             </li>
             <li className="breadcrumb-item active">
-              {laboratory.name}
+              {laboratory?.name}
               {activeTab === "analysis" ? " Analysis List" : " Profile"}
             </li>
           </ul>
@@ -52,8 +54,8 @@ function LaboratoryHeader({ activeTab }) {
                   <a href="#">
                     <img
                       className="avatar"
-                      src={laboratory.profilePhoto}
-                      alt=""
+                      src={laboratoryUser?.profilePhoto?.url}
+                      alt={laboratory?.name}
                     />
                   </a>
                 </div>
@@ -63,9 +65,11 @@ function LaboratoryHeader({ activeTab }) {
                   <div className="col-md-5">
                     <div className="profile-info-left">
                       <h3 className="user-name m-t-0 mb-0">
-                        {laboratory.name}
+                        {laboratory?.name} Laboratory
                       </h3>
-                      <small className="text-muted">{laboratory.city}</small>
+                      <small className="text-muted">
+                        {laboratory?.address?.city}
+                      </small>
                       <div className="staff-id">
                         <span className="rating rating-score">
                           {activeStars.map((star) => (
@@ -97,7 +101,7 @@ function LaboratoryHeader({ activeTab }) {
                       <li>
                         <span className="title">Phone:</span>
                         <span className="text">
-                          <a>{laboratory.phone}</a>
+                          <a>{laboratory?.phone}</a>
                         </span>
                       </li>
                       <li>
@@ -108,18 +112,24 @@ function LaboratoryHeader({ activeTab }) {
                               className="__cf_email__"
                               data-cfemail="c2a1b0abb1b6abaca3a5b0adb4a7b182a7baa3afb2aea7eca1adaf"
                             >
-                              {laboratory.email}
+                              {laboratoryUser?.email}
                             </span>
                           </a>
                         </span>
                       </li>
                       <li>
                         <span className="title">Address:</span>
-                        <span className="text">{laboratory.address}</span>
+                        <span className="text">
+                          {laboratory?.address?.address},{" "}
+                          {laboratory?.address?.area},{" "}
+                          {laboratory?.address?.city} Governorate
+                        </span>
                       </li>
                       <li>
                         <span className="title">Founded:</span>
-                        <span className="text">{laboratory.foundedDate}</span>
+                        <span className="text">
+                          {laboratory.foundedYear || "__"}
+                        </span>
                       </li>
                     </ul>
                   </div>
