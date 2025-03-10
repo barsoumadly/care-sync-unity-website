@@ -23,7 +23,7 @@ function LaboratoryProfile() {
                       <div className="experience-box">
                         <div className="hello-park">
                           <p>
-                            At {laboratory.name}, our experienced doctors and
+                            At {laboratory?.name}, our experienced doctors and
                             staff are dedicated to providing compassionate,
                             cutting-edge care.
                             <br /> We prioritize your well-being and strive for
@@ -37,9 +37,7 @@ function LaboratoryProfile() {
                             </div>
                             <div className="experience-content">
                               <div className="timeline-content">
-                                <a href="#/" className="name">
-                                  Pharmacy Foundation
-                                </a>
+                                <a className="name">Pharmacy Foundation</a>
                                 <div>team of healthcare professionals</div>
                                 <span className="time">1974 - 1975</span>
                               </div>
@@ -51,9 +49,7 @@ function LaboratoryProfile() {
                             </div>
                             <div className="experience-content">
                               <div className="timeline-content">
-                                <a href="#/" className="name">
-                                  Recent Developments
-                                </a>
+                                <a className="name">Recent Developments</a>
                                 <div>
                                   It began to attract medical tourists from
                                   other countries.
@@ -67,8 +63,8 @@ function LaboratoryProfile() {
                     </div>
                     <div className="card-box">
                       <Map
-                        name={laboratory.name}
-                        markerPosition={laboratory.location}
+                        name={laboratory?.name}
+                        markerPosition={`${laboratory?.name} laboratory ${laboratory?.address.address}, ${laboratory?.address?.city} Governorate`}
                       />
                     </div>
                   </div>
