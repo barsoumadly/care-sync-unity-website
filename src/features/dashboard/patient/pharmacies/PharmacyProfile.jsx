@@ -33,9 +33,7 @@ function PharmacyProfile() {
                             </div>
                             <div className="experience-content">
                               <div className="timeline-content">
-                                <a href="#/" className="name">
-                                  Pharmacy Foundation
-                                </a>
+                                <a className="name">Pharmacy Foundation</a>
                                 <div>team of healthcare professionals</div>
                                 <span className="time">1974 - 1975</span>
                               </div>
@@ -63,8 +61,8 @@ function PharmacyProfile() {
                     </div>
                     <div className="card-box">
                       <Map
-                        name={pharmacy.name}
-                        markerPosition={pharmacy.location}
+                        name={pharmacy?.name}
+                        markerPosition={`${pharmacy?.name} pharmacy ${pharmacy?.address.address} ${pharmacy?.address.city}`}
                       />
                     </div>
                   </div>
