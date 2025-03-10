@@ -78,8 +78,6 @@ function ClinicSidebar({ minbar }) {
         </ul>
       </li>
 
-  
-
       {/* Staff */}
       <li className="submenu">
         <a className="link" onClick={() => hanbleClick(3)}>
@@ -143,40 +141,6 @@ function ClinicSidebar({ minbar }) {
           <li>
             <NavLink to={"/clinic/edit-appointment"} className="link">
               Edit Appointment
-            </NavLink>
-          </li>
-        </ul>
-      </li>
-
-      {/* Doctor Schedule */}
-      <li className="submenu">
-        <a className="link" onClick={() => hanbleClick(5)}>
-          <span className="menu-side">
-            <GrSchedules />
-          </span>
-          <span> Doctor Schedule </span>
-          <span className="menu-arrow">
-            {toggle === 5 ? <IoIosArrowDown /> : <IoIosArrowForward />}
-          </span>
-        </a>
-        <ul
-          style={{
-            display: `${toggle === 5 && !minbar ? "block" : "none"}`,
-          }}
-        >
-          <li>
-            <NavLink to={"/clinic/schedule-list"} className="link">
-              Schedule List
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/clinic/add-schedule"} className="link">
-              Add Schedule
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/clinic/edit-schedule"} className="link">
-              Edit Schedule
             </NavLink>
           </li>
         </ul>
@@ -253,7 +217,7 @@ function ClinicSidebar({ minbar }) {
           <span className="menu-side">
             <BsChatText />
           </span>
-          <span>Edit Profile Clinic</span>
+          <span>Edit Profile</span>
           <span className="menu-arrow"></span>
         </NavLink>
       </li>
