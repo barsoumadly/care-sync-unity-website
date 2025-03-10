@@ -36,4 +36,35 @@ const getLaboratoryProfile = async function () {
   }
 };
 
-export { updateLaboratoryProfile, getLaboratoryProfile };
+const getLaboratoryList = async function () {
+  const token = JSON.parse(localStorage.getItem("key"));
+  try {
+    const response = await axios.get(`${API_URL}/`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return await response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getLaboratory = async function (laboratoryId) {
+  const token = JSON.parse(localStorage.getItem("key"));
+  try {
+    const response = await axios.get(`${API_URL}/${laboratoryId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return await response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  updateLaboratoryProfile,
+  getLaboratoryProfile,
+  getLaboratoryList,
+  getLaboratory,
+};
