@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import ActiveStar from "../../../../ui/ActiveStar";
 import InactiveStar from "../../../../ui/InactiveStar";
 import SemiactiveStar from "../../../../ui/SemiactiveStar";
+import useUser from "../../useUser";
 
 function PharmacyHeader({ activeTab }) {
   const pharmacy = JSON.parse(localStorage.getItem("pharmacy"));
+  const { data: pharmacyUser } = useUser(pharmacy.userId);
 
   const numOfInactiveStars = 5 - pharmacy.rating;
   const activeStars = Array.from({ length: pharmacy.rating }, (_, i) => i + 1);
@@ -49,8 +51,8 @@ function PharmacyHeader({ activeTab }) {
                   <a href="#">
                     <img
                       className="avatar"
-                      src={pharmacy.profilePhoto}
-                      alt={pharmacy.name}
+                      src={pharmacyUser?.profilePhoto?.url}
+                      alt={pharmacy?.name}
                     />
                   </a>
                 </div>
@@ -59,8 +61,12 @@ function PharmacyHeader({ activeTab }) {
                 <div className="row">
                   <div className="col-md-5">
                     <div className="profile-info-left">
-                      <h3 className="user-name m-t-0 mb-0">{pharmacy.name}</h3>
-                      <small className="text-muted">{pharmacy.city}</small>
+                      <h3 className="user-name m-t-0 mb-0">
+                        {pharmacy?.name} Pharmacy
+                      </h3>
+                      <small className="text-muted">
+                        {pharmacy?.address.city}
+                      </small>
                       <div className="staff-id">
                         <span className="rating rating-score">
                           {activeStars.map((star) => (
@@ -92,7 +98,7 @@ function PharmacyHeader({ activeTab }) {
                       <li>
                         <span className="title">Phone:</span>
                         <span className="text">
-                          <a>{pharmacy.phone}</a>
+                          <a>{pharmacy?.phone}</a>
                         </span>
                       </li>
                       <li>
@@ -103,18 +109,22 @@ function PharmacyHeader({ activeTab }) {
                               className="__cf_email__"
                               data-cfemail="c2a1b0abb1b6abaca3a5b0adb4a7b182a7baa3afb2aea7eca1adaf"
                             >
-                              {pharmacy.email}
+                              {pharmacyUser?.email}
                             </span>
                           </a>
                         </span>
                       </li>
                       <li>
                         <span className="title">Address:</span>
-                        <span className="text">{pharmacy.address}</span>
+                        <span className="text">
+                          {pharmacy?.address.address}
+                        </span>
                       </li>
                       <li>
                         <span className="title">Founded:</span>
-                        <span className="text">{pharmacy.foundedDate}</span>
+                        <span className="text">
+                          {pharmacy?.foundedYear || "__"}
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -129,7 +139,7 @@ function PharmacyHeader({ activeTab }) {
           <li className="nav-item">
             <Link
               className={`nav-link${activeTab === "about" ? " active" : ""}`}
-              to={`/patient/pharmacies/${pharmacy.slug}`}
+              to={`/patient/pharmacies/${pharmacy?.slug}`}
               data-bs-toggle="tab"
             >
               About
@@ -140,7 +150,7 @@ function PharmacyHeader({ activeTab }) {
               className={`nav-link${
                 activeTab === "medicines" ? " active" : ""
               }`}
-              to={`/patient/pharmacies/${pharmacy.slug}/medicines`}
+              to={`/patient/pharmacies/${pharmacy?.slug}/medicines`}
               data-bs-toggle="tab"
             >
               Medicines
