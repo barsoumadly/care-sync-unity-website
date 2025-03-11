@@ -1,6 +1,12 @@
+import { useState } from "react";
+import { CgMoreVerticalAlt } from "react-icons/cg";
+import { FaEdit } from "react-icons/fa";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import AppointmentTableTuples from "./AppointmentTableTuples";
+import CheckChosicModal from "../reusable/CheckChosicModal";
 
-const doctorInfo =[
+const doctorInfo = [
   {
     id: 1,
     name: "Andrea Lalema",
@@ -10,14 +16,13 @@ const doctorInfo =[
     NumberOfAppointments: 10,
     email: "example@email.com",
     days: "sun,mon,tue,wed,thu,fri,sat",
-    
   },
   {
     id: 2,
-    name: "Smith Bruklin",   
-    image: "../images/dashborad/profiles/avatar-02.jpg", 
+    name: "Smith Bruklin",
+    image: "../images/dashborad/profiles/avatar-02.jpg",
     department: "Urology",
-    specialization: "Prostate", 
+    specialization: "Prostate",
     NumberOfAppointments: 10,
     email: "example@email.com",
     days: "tue,wed,thu,sat",
@@ -81,34 +86,25 @@ const doctorInfo =[
     NumberOfAppointments: 10,
     email: "example@email.com",
     days: "tue,wed,thu,sat",
-  }
-  
-]
+  },
+];
 
 function AppointmentList() {
   return (
     <div className="page-wrapper">
-      <Content  />
-      <Notification />
-    </div>
-  );
-
-}
-
-function Content() {
-  return (
-    <div className="content">
-      {/* Page Header */}
-      <PageHeader  />
-      {/* /Page Header */}
-      <div className="row">
-        <div className="col-sm-12">
-          <div className="card card-table show-entire">
-            <div className="card-body">
-              {/* Table Header */}
-              <TableHeader  />
-              {/* /Table Header */}
-              <Table />
+      <div className="content">
+        {/* Page Header */}
+        <PageHeader />
+        {/* /Page Header */}
+        <div className="row">
+          <div className="col-sm-12">
+            <div className="card card-table show-entire">
+              <div className="card-body">
+                {/* Table Header */}
+                <TableHeader />
+                {/* /Table Header */}
+                <Table />
+              </div>
             </div>
           </div>
         </div>
@@ -162,368 +158,71 @@ function TableHeader() {
               <div className="add-group">
                 <a
                   href="add-patient.html"
-                  className="btn btn-primary add-pluss ms-2">
+                  className="btn btn-primary add-pluss ms-2"
+                >
                   <img src="../images/dashborad/icons/plus.svg" alt="" />
                 </a>
                 <a
                   href="javascript:;"
-                  className="btn btn-primary doctor-refresh ms-2">
+                  className="btn btn-primary doctor-refresh ms-2"
+                >
                   <img src="../images/dashborad/icons/re-fresh.svg" alt="" />
                 </a>
               </div>
             </div>
           </div>
         </div>
-        {/* <div className="col-auto text-end float-end ms-auto download-grp">
-          <a href="javascript:;" className=" me-2">
-            <img src="../images/dashborad/icons/pdf-icon-01.svg" alt="" />
-          </a>
-          <a href="javascript:;" className=" me-2">
-            <img src="../images/dashborad/icons/pdf-icon-02.svg" alt="" />
-          </a>
-          <a href="javascript:;" className=" me-2">
-            <img src="../images/dashborad/icons/pdf-icon-03.svg" alt="" />
-          </a>
-          <a href="javascript:;">
-            <img src="../images/dashborad/icons/pdf-icon-04.svg" alt="" />
-          </a>
-        </div> */}
       </div>
     </div>
   );
 }
 
 function Table() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [doctorId, setDoctorId] = useState(false);
+
+  const handleOpenModal = function (id) {
+    setDoctorId(id);
+    setIsOpen((isOpen) => !isOpen);
+  };
   return (
-    <div className="table-responsive">
-      <table className="table border-0 custom-table comman-table datatable mb-0">
-        <thead>
-          <tr>
-            <th>
-              <div className="form-check check-tables">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  defaultValue="something"
-                />
-              </div>
-            </th>
-            <th>Name</th>
-           
-            <th>Specialization</th>
-          {/*   <th>Degree</th> */}
-            <th>Number of Appointments</th>
-            <th>Email</th>
-            <th>Days</th>
-            <th />
-          </tr>
-        </thead>
-        <tbody>
-          
-            {doctorInfo.map((doctor) => ( 
-              <tr  key={doctor.id}> 
-              <td>
-              <div className="form-check check-tables">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  defaultValue="something"
-                />
-              </div>
-            </td>
-            <td className="profile-image">
-              <Link to={"/clinic/patient-of-doctors"}>
-                <img
-                  width={28}
-                  height={28}
-                  src={doctor.image}
-                  className="rounded-circle m-r-5"
-                  alt=""
-                />{" "}
-                {doctor.name}
-              </Link>
-            </td>
-            
-            <td>{doctor.specialization}</td>
-            <td>
-              <td className="text-center" >{doctor.NumberOfAppointments}</td>
-            </td>
-            <td>
-              <a
-                href="cdn-cgi/l/email-protection"
-                className="__cf_email__"
-                data-cfemail="ddb8a5bcb0adb1b89db8b0bcb4b1f3beb2b0">
-                {doctor.email}
-              </a>
-            </td>
-            <td>{doctor.days}</td>
-            <td className="text-end">
-              <div className="dropdown dropdown-action">
-                <a
-                  href="#"
-                  className="action-icon dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  <i className="fa fa-ellipsis-v" />
-                </a>
-                <div className="dropdown-menu dropdown-menu-end">
-                  <a className="dropdown-item" href="edit-patient.html">
-                    <i className="fa-solid fa-pen-to-square m-r-5" /> Edit
-                  </a>
-                  <a
-                    className="dropdown-item"
-                    href="#"
-                    data-bs-toggle="modal"
-                    data-bs-target="#delete_patient">
-                    <i className="fa fa-trash-alt m-r-5" /> Delete
-                  </a>
+    <>
+      <div className="table-responsive">
+        <table className="table border-0 custom-table comman-table datatable mb-0">
+          <thead>
+            <tr>
+              <th>
+                <div className="form-check check-tables">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    defaultValue="something"
+                  />
                 </div>
-              </div>
-            </td>
+              </th>
+              <th>Name</th>
+              <th>Specialization</th>
+              <th>Number of Appointments</th>
+              <th>Email</th>
+              <th>Days</th>
+              <th />
             </tr>
+          </thead>
+          <tbody>
+            {doctorInfo.map((doctor) => (
+              <AppointmentTableTuples
+                doctor={doctor}
+                key={doctor.id}
+                handleOpenModal={handleOpenModal}
+              />
             ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-function Notification() {
-  return (
-    <div className="notification-box">
-      <div className="msg-sidebar notifications msg-noti">
-        <div className="topnav-dropdown-header">
-          <span>Messages</span>
-        </div>
-        <div className="drop-scroll msg-list-scroll" id="msg_list">
-          <ul className="list-box">
-            <li>
-              <a href="chat.html">
-                <div className="list-item">
-                  <div className="list-left">
-                    <span className="avatar">R</span>
-                  </div>
-                  <div className="list-body">
-                    <span className="message-author">Richard Miles </span>
-                    <span className="message-time">12:28 AM</span>
-                    <div className="clearfix" />
-                    <span className="message-content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="chat.html">
-                <div className="list-item new-message">
-                  <div className="list-left">
-                    <span className="avatar">J</span>
-                  </div>
-                  <div className="list-body">
-                    <span className="message-author">John Doe</span>
-                    <span className="message-time">1 Aug</span>
-                    <div className="clearfix" />
-                    <span className="message-content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="chat.html">
-                <div className="list-item">
-                  <div className="list-left">
-                    <span className="avatar">T</span>
-                  </div>
-                  <div className="list-body">
-                    <span className="message-author"> Tarah Shropshire </span>
-                    <span className="message-time">12:28 AM</span>
-                    <div className="clearfix" />
-                    <span className="message-content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="chat.html">
-                <div className="list-item">
-                  <div className="list-left">
-                    <span className="avatar">M</span>
-                  </div>
-                  <div className="list-body">
-                    <span className="message-author">Mike Litorus</span>
-                    <span className="message-time">12:28 AM</span>
-                    <div className="clearfix" />
-                    <span className="message-content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="chat.html">
-                <div className="list-item">
-                  <div className="list-left">
-                    <span className="avatar">C</span>
-                  </div>
-                  <div className="list-body">
-                    <span className="message-author"> Catherine Manseau </span>
-                    <span className="message-time">12:28 AM</span>
-                    <div className="clearfix" />
-                    <span className="message-content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="chat.html">
-                <div className="list-item">
-                  <div className="list-left">
-                    <span className="avatar">D</span>
-                  </div>
-                  <div className="list-body">
-                    <span className="message-author"> Domenic Houston </span>
-                    <span className="message-time">12:28 AM</span>
-                    <div className="clearfix" />
-                    <span className="message-content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="chat.html">
-                <div className="list-item">
-                  <div className="list-left">
-                    <span className="avatar">B</span>
-                  </div>
-                  <div className="list-body">
-                    <span className="message-author"> Buster Wigton </span>
-                    <span className="message-time">12:28 AM</span>
-                    <div className="clearfix" />
-                    <span className="message-content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="chat.html">
-                <div className="list-item">
-                  <div className="list-left">
-                    <span className="avatar">R</span>
-                  </div>
-                  <div className="list-body">
-                    <span className="message-author"> Rolland Webber </span>
-                    <span className="message-time">12:28 AM</span>
-                    <div className="clearfix" />
-                    <span className="message-content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="chat.html">
-                <div className="list-item">
-                  <div className="list-left">
-                    <span className="avatar">C</span>
-                  </div>
-                  <div className="list-body">
-                    <span className="message-author"> Claire Mapes </span>
-                    <span className="message-time">12:28 AM</span>
-                    <div className="clearfix" />
-                    <span className="message-content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="chat.html">
-                <div className="list-item">
-                  <div className="list-left">
-                    <span className="avatar">M</span>
-                  </div>
-                  <div className="list-body">
-                    <span className="message-author">Melita Faucher</span>
-                    <span className="message-time">12:28 AM</span>
-                    <div className="clearfix" />
-                    <span className="message-content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="chat.html">
-                <div className="list-item">
-                  <div className="list-left">
-                    <span className="avatar">J</span>
-                  </div>
-                  <div className="list-body">
-                    <span className="message-author">Jeffery Lalor</span>
-                    <span className="message-time">12:28 AM</span>
-                    <div className="clearfix" />
-                    <span className="message-content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="chat.html">
-                <div className="list-item">
-                  <div className="list-left">
-                    <span className="avatar">L</span>
-                  </div>
-                  <div className="list-body">
-                    <span className="message-author">Loren Gatlin</span>
-                    <span className="message-time">12:28 AM</span>
-                    <div className="clearfix" />
-                    <span className="message-content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="chat.html">
-                <div className="list-item">
-                  <div className="list-left">
-                    <span className="avatar">T</span>
-                  </div>
-                  <div className="list-body">
-                    <span className="message-author">Tarah Shropshire</span>
-                    <span className="message-time">12:28 AM</span>
-                    <div className="clearfix" />
-                    <span className="message-content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="topnav-dropdown-footer">
-          <a href="chat.html">See all messages</a>
-        </div>
+          </tbody>
+        </table>
       </div>
-    </div>
+      {isOpen && (
+        <CheckChosicModal handleOpenModal={handleOpenModal} id={doctorId} />
+      )}
+    </>
   );
 }
 
