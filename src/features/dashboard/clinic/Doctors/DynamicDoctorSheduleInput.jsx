@@ -6,10 +6,10 @@ function DynamicDoctorSheduleInput({ control, register, errors }) {
     control,
   });
   return (
-    <div className="row">
+    <>
       {fields.map((field, index) => {
         return (
-          <>
+          <div className="row">
             <div className="col-12 col-md-6 col-xl-4">
               <div className="input-block local-forms">
                 <label>
@@ -32,7 +32,6 @@ function DynamicDoctorSheduleInput({ control, register, errors }) {
                 </select>
               </div>
             </div>
-
             <div className="col-12 col-md-6 col-xl-3">
               <div className="input-block local-forms">
                 <label>
@@ -50,7 +49,6 @@ function DynamicDoctorSheduleInput({ control, register, errors }) {
                 </span>
               </div>{" "}
             </div>
-
             <div className="col-12 col-md-6 col-xl-3">
               <div className="input-block local-forms">
                 <label>
@@ -68,36 +66,40 @@ function DynamicDoctorSheduleInput({ control, register, errors }) {
                 </span>
               </div>{" "}
             </div>
+            {index === fields.length - 1 && (
+              <div className="col-12 col-md-6 col-xl-1">
+                <div className="doctor-submit">
+                  <button
+                    className="btn btn-primary submit-form me-2"
+                    type="button"
+                    style={{ minWidth: "100%" }}
+                    onClick={() => append({ day: "", to: "", from: "" })}
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+            )}
 
             {index > 0 && (
-              <div className="col-12 col-md-6 col-xl-2">
+              <div className="col-12 col-md-6 col-xl-1">
                 {" "}
                 <div className="doctor-submit">
                   <button
                     className="btn btn-primary cancel-form"
+                    style={{ minWidth: "100%" }}
                     type="button"
                     onClick={() => remove(index)}
                   >
-                    Remove shedule{" "}
+                    Remove{" "}
                   </button>
                 </div>{" "}
               </div>
             )}
-          </>
+          </div>
         );
       })}
-      <div className="col-12 col-md-6 col-xl-2">
-        <div className="doctor-submit">
-          <button
-            className="btn btn-primary submit-form me-2"
-            type="button"
-            onClick={() => append({ day: "", to: "", from: "" })}
-          >
-            Add shedule{" "}
-          </button>
-        </div>{" "}
-      </div>{" "}
-    </div>
+    </>
   );
 }
 
