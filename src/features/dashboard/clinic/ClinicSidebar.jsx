@@ -210,7 +210,7 @@ function ClinicSidebar({ minbar }) {
       {/* Edit Profile */}
       <li>
         <NavLink
-          to={"/clinic/edit-profile-clinic"}
+          to={"/clinic/edit-profile"}
           className="link"
           onClick={() => hanbleClick(0)}
         >
