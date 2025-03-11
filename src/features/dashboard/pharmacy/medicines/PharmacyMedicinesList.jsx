@@ -1,32 +1,12 @@
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import MedicineTuple from "./MedicineTuple";
-
-const medicines = [
-  {
-    id: 1,
-    name: "Bronchicum",
-    quantity: 15,
-    cost: 100,
-    expirationDate: "12-09-2030",
-  },
-  {
-    id: 2,
-    name: "Panadol",
-    quantity: 25,
-    cost: 69,
-    expirationDate: "08-05-2030",
-  },
-  {
-    id: 3,
-    name: "zerocin 500mg",
-    expirationDate: "09-11-2030",
-    quantity: 8,
-    cost: 80,
-  },
-];
+import useMedicine from "./useMedicine";
 
 function PharmacyMedicinesList() {
+  const { isLoading, data, error } = useMedicine();
+  const medicines = data?.medicines;
+
   return (
     <>
       <div className="main-wrapper">
@@ -96,10 +76,10 @@ function PharmacyMedicinesList() {
                           </tr>
                         </thead>
                         <tbody>
-                          {medicines.map((medicine) => (
+                          {medicines?.map((medicine) => (
                             <MedicineTuple
                               medicine={medicine}
-                              key={medicine.id}
+                              key={medicine._id}
                             />
                           ))}
                         </tbody>
