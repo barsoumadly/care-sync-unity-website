@@ -156,7 +156,7 @@ function AppRoutes() {
           <Route path="add-schedule" element={<AddSchedule />} />
           <Route path="edit-schedule" element={<EditSchedule />} /> */}
 
-          <Route path="edit-profile-clinic" element={<EditProfileClinic />} />
+          <Route path="edit-profile" element={<EditProfileClinic />} />
           <Route path="chat" element={<Chat />} />
           <Route path="reports" element={<Reports />} />
           <Route path="invoice" element={<Invoice />} />
