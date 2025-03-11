@@ -2,6 +2,7 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import DynamicField from "./DynamicField";
 import { useState } from "react";
+import { addMedicineList } from "../../../../services/medicine";
 
 function MedicineAddition() {
   const [medicineList, setMedicineList] = useState([{}]);
@@ -12,9 +13,9 @@ function MedicineAddition() {
     setOpenCard(false);
   }
 
-  function handleSubmit() {
-    console.log(medicineList);
+  async function handleSubmit() {
     if (medicineList[0].medicine_name) {
+      await addMedicineList(medicineList);
       setMedicineList([{}]);
       setOpenCard(false);
     }
