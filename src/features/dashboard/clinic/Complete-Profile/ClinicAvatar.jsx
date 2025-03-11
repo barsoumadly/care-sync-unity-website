@@ -1,7 +1,8 @@
-function ClinicAvatar({
-  avatar = "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg",
-  handleAvatar,
-}) {
+function ClinicAvatar({ avatar, handleAvatar }) {
+  let photo = avatar;
+  if (typeof avatar !== "string") {
+    photo = URL.createObjectURL(avatar);
+  }
   return (
     <>
       <div className="col-12">
@@ -33,7 +34,7 @@ function ClinicAvatar({
             </label>
           </div>
           <div className="upload-images upload-size">
-            <img src={avatar} alt="Image" />
+            {avatar && <img src={photo} alt="Image" />}
           </div>
         </div>
       </div>
