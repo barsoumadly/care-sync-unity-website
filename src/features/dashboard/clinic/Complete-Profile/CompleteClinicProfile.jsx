@@ -18,17 +18,28 @@ function telephoneCheck(p) {
   return phoneRe.test(digits) ? true : false;
 }
 
-function CompleteClinicProfile() {
+function CompleteClinicProfile({ clinicData }) {
+  console.log(clinicData);
+
   const [images, setImage] = useState([]);
-  const [avatar, setAvatar] = useState();
+  const [avatar, setAvatar] = useState(
+    "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
+  );
   const [cities, setCities] = useState();
   const [areas, setAreas] = useState();
-  const [selectedCity, setSelectedCity] = useState();
-  const [selectedArea, setSelectedArea] = useState();
-  const { register, handleSubmit, reset, formState, getValues } = useForm();
+  const [selectedCity, setSelectedCity] = useState(clinicData.selectedCity);
+  const [selectedArea, setSelectedArea] = useState(clinicData.selectedArea);
+  const { register, handleSubmit, reset, formState, setValue } = useForm();
   const { data, isLoading } = useLocation();
-  const { userLogout } = useAuth();
+  const { userLogout, isProfileCompleted } = useAuth();
   const { errors } = formState;
+
+  useEffect(() => {
+    setValue("clinicName", clinicData?.clinicName);
+    setValue("mobile", clinicData?.mobile);
+    setValue("founded", clinicData?.founded);
+    setValue("address", clinicData?.address);
+  }, [clinicData]);
 
   useEffect(
     function () {
@@ -57,8 +68,11 @@ function CompleteClinicProfile() {
   }
   return (
     <>
-      <Header />
-      <div className="page-wrapper" style={{ marginLeft: "0px" }}>
+      {!isProfileCompleted && <Header />}
+      <div
+        className="page-wrapper"
+        style={{ marginLeft: `${isProfileCompleted ? "" : "0px"}` }}
+      >
         <div className="content">
           {/* Page Header */}
           <div className="page-header">
@@ -71,7 +85,9 @@ function CompleteClinicProfile() {
                   <li className="breadcrumb-item">
                     <i className="feather-chevron-right" />
                   </li>
-                  <li className="breadcrumb-item active">Complete Profile</li>
+                  <li className="breadcrumb-item active">
+                    {isProfileCompleted ? "Edit " : "Complete "}Profile
+                  </li>
                 </ul>
               </div>
               <div className="col-sm-5 col-6 text-end">
