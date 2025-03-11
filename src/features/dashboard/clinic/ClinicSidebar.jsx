@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AiFillSchedule } from "react-icons/ai";
 import { BsChatText } from "react-icons/bs";
-import { FaFlag, FaPeopleRoof, FaUserDoctor } from "react-icons/fa6";
+import { FaFlag, FaGear, FaPeopleRoof, FaUserDoctor } from "react-icons/fa6";
 import { GrSchedules } from "react-icons/gr";
 import { ImUserTie } from "react-icons/im";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
@@ -215,7 +215,7 @@ function ClinicSidebar({ minbar }) {
           onClick={() => hanbleClick(0)}
         >
           <span className="menu-side">
-            <BsChatText />
+            <FaGear />
           </span>
           <span>Edit Profile</span>
           <span className="menu-arrow"></span>
