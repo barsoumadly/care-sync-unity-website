@@ -55,7 +55,7 @@ import PaymentGateway from "../features/dashboard/patient/PaymentGateway";
 import DoctorsList from "../features/dashboard/patient/clinics/DoctorList";
 
 import CompleteDoctorProfile from "../features/dashboard/doctor/complete-profile/CompleteDoctorProfile";
-import CompleteClinicProfile from "../features/dashboard/clinic/CompleteClinicProfile";
+import CompleteClinicProfile from "../features/dashboard/clinic/Complete-Profile/CompleteClinicProfile";
 import ClinicProfile from "../features/dashboard/patient/clinics/ClinicProfile";
 import ClinicImages from "../features/dashboard/patient/clinics/ClinicImages";
 import VerifyEmail from "../pages/VerifyEmail";
@@ -141,7 +141,6 @@ function AppRoutes() {
 
           <Route path="doctor-profile" element={<DoctorProfile />} />
           <Route path="edit-profile-Doc" element={<EditProfileDoc />} />
-          
 
           {/* Staff */}
           <Route path="employee-salary" element={<EmployeeSalary />} />
@@ -153,11 +152,11 @@ function AppRoutes() {
           <Route path="patient-of-doctors" element={<PatientsOfDoc />} />
           <Route path="edit-appointment" element={<EditAppointments />} />
           {/* Doctor Schedule */}
-          <Route path="schedule-list" element={<ScheduleList />} />
+          {/* <Route path="schedule-list" element={<ScheduleList />} />
           <Route path="add-schedule" element={<AddSchedule />} />
-          <Route path="edit-schedule" element={<EditSchedule />} />
+          <Route path="edit-schedule" element={<EditSchedule />} /> */}
 
-          <Route path="edit-profile-clinic" element={<EditProfileClinic/>} />
+          <Route path="edit-profile-clinic" element={<EditProfileClinic />} />
           <Route path="chat" element={<Chat />} />
           <Route path="reports" element={<Reports />} />
           <Route path="invoice" element={<Invoice />} />
