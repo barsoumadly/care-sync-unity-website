@@ -4,8 +4,8 @@ function Button({ type, name, onClick }) {
       type={type}
       className={`${
         type === "submit"
-          ? "btn btn-primary submit-form me-2"
-          : "btn btn-primary cancel-form"
+          ? "btn btn-primary submit-form me-3"
+          : "btn btn-primary cancel-form me-4"
       }`}
       onClick={onClick}
     >
