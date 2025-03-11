@@ -1,4 +1,6 @@
 import { useState } from "react";
+import PatientTableTuples from "./PatientTableTuples";
+import CheckChosicModal from "../reusable/CheckChosicModal";
 const patients = [
   {
     id: 1,
@@ -65,7 +67,13 @@ const patients = [
   },
 ];
 function PatientsOfDoc() {
-  const [WaitingList, isWaitingList] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [patientId, setPatientId] = useState(false);
+
+  const handleOpenModal = function (id) {
+    setPatientId(id);
+    setIsOpen((isOpen) => !isOpen);
+  };
   return (
     <div className="page-wrapper">
       <div className="content">
@@ -115,7 +123,8 @@ function PatientsOfDoc() {
                           <div className="add-group">
                             <a
                               href="add-payment.html"
-                              className="btn btn-primary add-pluss ms-2">
+                              className="btn btn-primary add-pluss ms-2"
+                            >
                               <img
                                 src="../images/dashborad/icons/plus.svg"
                                 alt=""
@@ -123,7 +132,8 @@ function PatientsOfDoc() {
                             </a>
                             <a
                               href="javascript:;"
-                              className="btn btn-primary doctor-refresh ms-2">
+                              className="btn btn-primary doctor-refresh ms-2"
+                            >
                               <img
                                 src="../images/dashborad/icons/re-fresh.svg"
                                 alt=""
@@ -186,7 +196,8 @@ function PatientsOfDoc() {
                         <div className="doctor-submit">
                           <button
                             type="submit"
-                            className="btn btn-primary submit-list-form me-2">
+                            className="btn btn-primary submit-list-form me-2"
+                          >
                             Search
                           </button>
                         </div>
@@ -218,80 +229,11 @@ function PatientsOfDoc() {
                     </thead>
                     <tbody>
                       {patients.map((patient) => (
-                        <tr key={patient.id}>
-                          <td>
-                            <div className="form-check check-tables">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                defaultValue="something"
-                              />
-                            </div>
-                          </td>
-                          <td>
-                            <a href="invoice-view.html">{patient.turn}</a>
-                          </td>
-                          <td className="profile-image">
-                            <a href="profile.html">
-                              <img
-                                width={28}
-                                height={28}
-                                src={patient.image}
-                                className="rounded-circle m-r-5"
-                                alt=""
-                              />{" "}
-                              {patient.name}
-                            </a>
-                          </td>
-                          <td>{patient.paymentType}</td>
-                          {/*  <td>01.10.2022</td>
-                        <td>$2450</td> */}
-                          <td>
-                            <button
-                              className={`custom-badge ${
-                                WaitingList ? "status-pink" : "status-green"
-                              } `}
-                              onClick={() => isWaitingList((done) => !done)}>
-                              {WaitingList
-                                ? patient.trueStatus
-                                : patient.falseStatus}
-                            </button>
-                          </td>
-                          <td>
-                            <div className="action-label">
-                              <button className="custom-badge book-btn">
-                                Examination
-                              </button>
-                            </div>
-                            
-                          </td>
-                          <td className="text-end">
-                            <div className="dropdown dropdown-action">
-                              <a
-                                href="#"
-                                className="action-icon dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i className="fa fa-ellipsis-v" />
-                              </a>
-                              <div className="dropdown-menu dropdown-menu-end">
-                                <a
-                                  className="dropdown-item"
-                                  href="edit-payment.html">
-                                  <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                  Edit
-                                </a>
-                                <a
-                                  className="dropdown-item"
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#delete_patient">
-                                  <i className="fa fa-trash-alt m-r-5" /> Delete
-                                </a>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
+                        <PatientTableTuples
+                          key={patient.id}
+                          patient={patient}
+                          handleOpenModal={handleOpenModal}
+                        />
                       ))}
                     </tbody>
                   </table>
@@ -299,244 +241,13 @@ function PatientsOfDoc() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="notification-box">
-        <div className="msg-sidebar notifications msg-noti">
-          <div className="topnav-dropdown-header">
-            <span>Messages</span>
-          </div>
-          <div className="drop-scroll msg-list-scroll" id="msg_list">
-            <ul className="list-box">
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">R</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Richard Miles </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item new-message">
-                    <div className="list-left">
-                      <span className="avatar">J</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">John Doe</span>
-                      <span className="message-time">1 Aug</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">T</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Tarah Shropshire </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">M</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Mike Litorus</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">C</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">
-                        {" "}
-                        Catherine Manseau{" "}
-                      </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">D</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Domenic Houston </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">B</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Buster Wigton </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">R</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Rolland Webber </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">C</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Claire Mapes </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">M</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Melita Faucher</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">J</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Jeffery Lalor</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">L</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Loren Gatlin</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">T</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Tarah Shropshire</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="topnav-dropdown-footer">
-            <a href="chat.html">See all messages</a>
-          </div>
+          {isOpen && (
+            <CheckChosicModal
+              handleOpenModal={handleOpenModal}
+              id={patientId}
+              name="Patient"
+            />
+          )}
         </div>
       </div>
     </div>
