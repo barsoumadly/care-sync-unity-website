@@ -1,38 +1,38 @@
-// const prescriptionItem = {
-//   id: 1,
-//   medicines: [
-//     { id: 1, name: "Panadol", duration: "3 days", amount: "2" },
-//     { id: 2, name: "Bronchicum", duration: "1 week", amount: "3" },
-//   ],
-// };
-
-import { useState } from "react";
 import { useAuth } from "../../../../../context/AuthContext";
-import DynamicMedicineTuple from "../DynamicMedicineTuple";
-import MedicineTable from "./MedicineTable";
-import DynamicField from "../../complete-profile/DynamicField";
+import { useForm } from "react-hook-form";
+import DynamicPrescriptionInput from "./DynamicPrescriptionInput";
+import toast from "react-hot-toast";
 
 function PrescriptionPaper({ setOpenCard, setIsAdding }) {
-  // const prescription = JSON.parse(localStorage.getItem("prescription"));
-  const date = new Date().toLocaleDateString();
   const { user } = useAuth();
-  const [medicineList, setMedicineList] = useState([{}]);
+  const date = new Date().toLocaleDateString();
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      prescriptionPaper: [{}],
+    },
+  });
+
+  function onSubmit(data) {
+    console.log(data);
+    setIsAdding(true);
+    setOpenCard("");
+    toast.success("Prescription successfully saved");
+  }
 
   function handleCancel() {
-    setMedicineList([{}]);
+    reset();
     setOpenCard("");
   }
 
-  function handleSubmit() {
-    console.log(medicineList);
-    if (medicineList[0].rx) {
-      setIsAdding(true);
-      setOpenCard("");
-    }
-  }
-
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="main-wrapper ">
         {/* Page Content */}
         <div className=" container-fluid " style={{ marginTop: "10%" }}>
@@ -105,16 +105,11 @@ function PrescriptionPaper({ setOpenCard, setIsAdding }) {
                     />
                   </tbody>
                 </MedicineTable> */}
-                <DynamicField
-                  fields={{
-                    f1: "Rx",
-                    f2: "Duration",
-                    f3: "Intake method",
-                    f4: "Dosages",
-                    f5: "Notes",
-                  }}
-                  serviceList={medicineList}
-                  setServiceList={setMedicineList}
+
+                <DynamicPrescriptionInput
+                  control={control}
+                  register={register}
+                  errors={errors}
                 />
               </div>
             </div>
@@ -139,7 +134,7 @@ function PrescriptionPaper({ setOpenCard, setIsAdding }) {
           </button>
         </div>
       </div>
-    </>
+    </form>
   );
 }
 
