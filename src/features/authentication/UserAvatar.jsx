@@ -8,7 +8,7 @@ function UserAvatar() {
   role = role.split("_").join(" ");
 
   const navigate = useNavigate();
-  console.log(avatar);
+
   return (
     <>
       <div
