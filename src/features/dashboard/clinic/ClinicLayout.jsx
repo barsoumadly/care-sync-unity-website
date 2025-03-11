@@ -5,7 +5,7 @@ import Sidebar from "../../../ui/Sidebar";
 import ClinicSidebar from "./ClinicSidebar";
 import { Outlet } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
-import CompleteClinicProfile from "./CompleteClinicProfile";
+import CompleteClinicProfile from "./Complete-Profile/CompleteClinicProfile";
 
 function DashboardLayout() {
   const [showbar, setShowbar] = useState(true);
