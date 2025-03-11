@@ -6,9 +6,9 @@ function MedicineTuple({ medicine }) {
   return (
     <tr>
       <td>{medicine.name}</td>
-      <td>{medicine.quantity}</td>
-      <td>{medicine.cost} EGP</td>
-      <td>{medicine.expirationDate}</td>
+      <td>{medicine.quantity} Pieces</td>
+      <td>{medicine.price} EGP</td>
+      <td>{medicine.expirationDate.split("-").reverse().join("-")}</td>
       <td>
         <div class="dropdown action-label">
           <button
