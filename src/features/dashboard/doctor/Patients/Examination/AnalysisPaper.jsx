@@ -3,26 +3,38 @@ import { useAuth } from "../../../../../context/AuthContext";
 import MedicineTable from "./MedicineTable";
 import DynamicMedicineTuple from "../DynamicMedicineTuple";
 import DynamicField from "../../complete-profile/DynamicField";
+import DynamicAnalysisInput from "./DynamicAnalysisInput";
+import { useForm } from "react-hook-form";
 
 function AnalysisPaper({ setOpenCard, setIsAdding }) {
-  // const prescription = JSON.parse(localStorage.getItem("prescription"));
-  const date = new Date().toLocaleDateString();
   const { user } = useAuth();
-  const [analysisList, setAnalysisList] = useState([{}]);
+  const date = new Date().toLocaleDateString();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      analysisPaper: [{}],
+    },
+  });
 
-  function handleCancel() {
-    setAnalysisList([{}]);
+  function onSubmit(data) {
+    console.log(data);
+    setIsAdding(true);
     setOpenCard("");
+    toast.success("Analysis successfully saved");
   }
 
-  function handleSubmit() {
-    console.log(analysisList);
-    if (analysisList) setIsAdding(true);
+  function handleCancel() {
+    reset();
     setOpenCard("");
   }
 
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="main-wrapper ">
         {/* Page Content */}
         <div className=" container-fluid " style={{ marginTop: "10%" }}>
@@ -92,13 +104,10 @@ function AnalysisPaper({ setOpenCard, setIsAdding }) {
                   </tbody>
                 </MedicineTable> */}
 
-                <DynamicField
-                  fields={{
-                    f1: "Analysis Name",
-                    f5: "Notes",
-                  }}
-                  serviceList={analysisList}
-                  setServiceList={setAnalysisList}
+                <DynamicAnalysisInput
+                  control={control}
+                  register={register}
+                  errors={errors}
                 />
               </div>
             </div>
@@ -123,7 +132,7 @@ function AnalysisPaper({ setOpenCard, setIsAdding }) {
           </button>
         </div>
       </div>
-    </>
+    </form>
   );
 }
 
