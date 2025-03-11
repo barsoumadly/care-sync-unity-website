@@ -610,6 +610,10 @@ table.table td h2 span {
   transform-origin: left top 0;
   box-shadow: inherit;
   background-color: #fff;
+  position: absolute;
+  inset: 0px 0px auto auto;
+  margin: 0px;
+  transform: translate(0px, 33.3333px);
 }
 .navbar-nav .open .dropdown-menu {
   background-color: #fff;
