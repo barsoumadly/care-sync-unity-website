@@ -35,6 +35,20 @@ const getAnalysisList = async function () {
   }
 };
 
+const getAnalysisListById = async function (id) {
+  const token = JSON.parse(localStorage.getItem("key"));
+
+  try {
+    const response = await axios.get(`${API_URL}/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const editAnalysisDetails = async function (analysisId, analysisData) {
   const token = JSON.parse(localStorage.getItem("key"));
 
@@ -72,4 +86,5 @@ export {
   getAnalysisList,
   editAnalysisDetails,
   deleteAnalysis,
+  getAnalysisListById,
 };
