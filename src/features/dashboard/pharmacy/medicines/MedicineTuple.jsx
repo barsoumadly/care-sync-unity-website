@@ -13,7 +13,7 @@ function MedicineTuple({ medicine }) {
         <div class="dropdown action-label">
           <button
             class="custom-badge book-btn"
-            onClick={() => navigate("/pharmacy/edit-medicine")}
+            onClick={() => navigate(`/pharmacy/edit-medicine/${medicine._id}`)}
           >
             Edit
           </button>
