@@ -1,6 +1,6 @@
 import { FaUserEdit } from "react-icons/fa";
 import { GiMedicines } from "react-icons/gi";
-import { MdDashboard } from "react-icons/md";
+import { MdAddCircleOutline, MdDashboard } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 function LaboratorySidebar() {
@@ -18,11 +18,21 @@ function LaboratorySidebar() {
 
       {/* Medicines */}
       <li className="submenu">
-        <NavLink to={"/laboratory/medicines"} className="link">
+        <NavLink to={"/laboratory/analysis-list"} className="link">
           <span className="menu-side">
             <GiMedicines />
           </span>
-          <span> Analysis Tests </span>
+          <span> Analysis List </span>
+        </NavLink>
+      </li>
+
+      {/* Add Analysis */}
+      <li className="submenu">
+        <NavLink to={"/laboratory/add-analysis"} className="link">
+          <span className="menu-side">
+            <MdAddCircleOutline />
+          </span>
+          <span> Add Analysis </span>
         </NavLink>
       </li>
 
