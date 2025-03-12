@@ -87,6 +87,9 @@ import PharmacyCompleteProfile from "../features/dashboard/pharmacy/profile/Phar
 import LaboratoryCompleteProfile from "../features/dashboard/laboratory/profile/LaboratoryCompleteProfile";
 import LaboratoryEditProfile from "../features/dashboard/laboratory/profile/LaboratoryEditProfile";
 import LaboratoryViewProfile from "../features/dashboard/laboratory/profile/LaboratoryViewProfile";
+import AnalysisList from "../features/dashboard/laboratory/analysis/AnalysisList";
+import AnalysisAddition from "../features/dashboard/laboratory/analysis/AnalysisAddition";
+import EditAnalysisTuple from "../features/dashboard/laboratory/analysis/EditAnalysisTuple";
 import { ChatProvider } from "../context/ChatContext";
 
 function AppRoutes() {
@@ -291,6 +294,12 @@ function AppRoutes() {
           <Route path="dashboard" element={<LaboratoryDashboard />} />
           <Route path="view-profile" element={<LaboratoryViewProfile />} />
           <Route path="edit-profile" element={<LaboratoryEditProfile />} />
+          <Route path="analysis-list" element={<AnalysisList />} />
+          <Route path="add-analysis" element={<AnalysisAddition />} />
+          <Route
+            path="edit-analysis/:analysisId"
+            element={<EditAnalysisTuple />}
+          />
         </Route>
 
         <Route path="*" element={<PageNotFound />} />
