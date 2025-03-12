@@ -36,4 +36,22 @@ const getMedicinesList = async function () {
   }
 };
 
-export { addMedicineList, getMedicinesList };
+const editMedicineDetails = async function (medicineId, medicineData) {
+  const token = JSON.parse(localStorage.getItem("key"));
+
+  try {
+    const response = await axios.put(
+      `${API_URL}/`,
+      { medicineId, medicineData },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { addMedicineList, getMedicinesList, editMedicineDetails };
