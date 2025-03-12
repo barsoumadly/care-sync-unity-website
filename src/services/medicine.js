@@ -54,4 +54,23 @@ const editMedicineDetails = async function (medicineId, medicineData) {
   }
 };
 
-export { addMedicineList, getMedicinesList, editMedicineDetails };
+const deleteMedicine = async function (medicineId) {
+  const token = JSON.parse(localStorage.getItem("key"));
+
+  try {
+    const response = await axios.delete(`${API_URL}/${medicineId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  addMedicineList,
+  getMedicinesList,
+  editMedicineDetails,
+  deleteMedicine,
+};
