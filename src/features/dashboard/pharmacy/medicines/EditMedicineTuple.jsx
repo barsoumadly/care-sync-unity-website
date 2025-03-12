@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { editMedicineDetails } from "../../../../services/medicine";
 
 function EditMedicineTuple() {
-  const { isLoading, data, error } = useMedicine();
+  const { data } = useMedicine();
   const { medicineId } = useParams();
 
   const { register, handleSubmit, setValue } = useForm();
