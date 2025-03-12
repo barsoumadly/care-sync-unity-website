@@ -101,7 +101,7 @@ function MedicineAddition() {
                       className="btn btn-primary submit-form me-2"
                       onClick={handleSubmit}
                     >
-                      Save Prescription
+                      Save Medicines
                     </button>
                     <button
                       type="button"
