@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import LaboratoryCard from "./LaboratoryCard";
 import { IoArrowBackOutline } from "react-icons/io5";
 import useLaboratory from "./useLaboratory";
+import LoadingSpinner from "../../../../ui/LoadingSpinner";
 
 // const laboratories = [
 //   {
@@ -113,12 +114,16 @@ function LaboratoryList() {
                 </div>
                 <div className="row">
                   {/* Cards */}
-                  {laboratories?.map((laboratory) => (
-                    <LaboratoryCard
-                      laboratory={laboratory}
-                      key={laboratory.id}
-                    />
-                  ))}
+                  {isLoading ? (
+                    <LoadingSpinner />
+                  ) : (
+                    laboratories?.map((laboratory) => (
+                      <LaboratoryCard
+                        laboratory={laboratory}
+                        key={laboratory.id}
+                      />
+                    ))
+                  )}
                 </div>
                 {/* /Cards */}
               </div>
