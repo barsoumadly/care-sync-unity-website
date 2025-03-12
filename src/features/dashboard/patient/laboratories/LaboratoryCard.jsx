@@ -35,7 +35,6 @@ function LaboratoryCard({ laboratory }) {
             to={`/patient/laboratories/${laboratory?.slug}`}
             className="btn btn-primary"
             onClick={() => saveActiveLaboratory(laboratory)}
-            target="blank"
           >
             View {user.role === "DOCTOR" ? "Patients" : "Profile"}
           </Link>
