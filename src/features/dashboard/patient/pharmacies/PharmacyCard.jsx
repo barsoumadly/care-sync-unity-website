@@ -34,7 +34,6 @@ function PharmacyCard({ pharmacy }) {
             to={`/patient/pharmacies/${pharmacy.slug}`}
             className="btn btn-primary"
             onClick={() => saveActivePharmacy(pharmacy)}
-            target="blank"
           >
             View {user.role === "DOCTOR" ? "Patients" : "Profile"}
           </Link>
