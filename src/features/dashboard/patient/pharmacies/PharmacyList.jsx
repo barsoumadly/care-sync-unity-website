@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import PharmacyCard from "./PharmacyCard";
 import { IoArrowBackOutline } from "react-icons/io5";
 import usePharmacy from "./usePharmacy";
+import LoadingSpinner from "../../../../ui/LoadingSpinner";
 
 function PharmacyList() {
   const { data: pharmaciesList, isLoading, error } = usePharmacy();
@@ -79,9 +80,13 @@ function PharmacyList() {
                 </div>
                 <div className="row">
                   {/* Cards */}
-                  {pharmaciesList?.map((pharmacy) => (
-                    <PharmacyCard pharmacy={pharmacy} key={pharmacy.id} />
-                  ))}
+                  {isLoading ? (
+                    <LoadingSpinner />
+                  ) : (
+                    pharmaciesList?.map((pharmacy) => (
+                      <PharmacyCard pharmacy={pharmacy} key={pharmacy.id} />
+                    ))
+                  )}
                 </div>
               </div>
             </div>
