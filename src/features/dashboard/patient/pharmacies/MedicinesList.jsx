@@ -33,33 +33,6 @@ function MedicinesList() {
               <div className="col-sm-12">
                 <div className="card card-table show-entire">
                   <div className="card-body">
-                    {/* /Table Header */}
-                    <div className="staff-search-table">
-                      <form>
-                        <div className="row">
-                          <div className="col-12 col-md-6 col-xl-4">
-                            <div className="input-block local-forms">
-                              <label>Medicine Name </label>
-                              <input
-                                className="form-control"
-                                type="text"
-                                placeholder="ex: Panadol"
-                              />
-                            </div>
-                          </div>
-                          <div className="col-12 col-md-6 col-xl-4">
-                            <div className="doctor-submit">
-                              <button
-                                type="submit"
-                                className="btn btn-primary submit-list-form me-2"
-                              >
-                                Search
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
                     <div className="table-responsive">
                       <table className="table border-0 custom-table comman-table datatable mb-0">
                         <thead>
