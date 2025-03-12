@@ -262,7 +262,10 @@ function AppRoutes() {
         >
           <Route path="dashboard" element={<PharmacyDashboard />} />
           <Route path="medicines" element={<PharmacyMedicinesList />} />
-          <Route path="edit-medicine" element={<EditMedicineTuple />} />
+          <Route
+            path="edit-medicine/:medicineId"
+            element={<EditMedicineTuple />}
+          />
           <Route path="add-medicine" element={<MedicineAddition />} />
           <Route path="view-profile" element={<PharmacyProfileView />} />
           <Route path="edit-profile" element={<PharmacyEditProfile />} />
