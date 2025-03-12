@@ -6,7 +6,6 @@ function AnalysisTuple({ analysis, onOpenModal, onChangeActiveAnalysis }) {
 
   const handleDelete = async function (id) {
     await deleteAnalysis(id);
-    navigate("/laboratory/analysis-list");
   };
 
   return (
