@@ -1,10 +1,14 @@
 import { useMoveBack } from "../hooks/useMoveBack";
 
-function ServerDown() {
+function ServerDown({ error = false }) {
   const moveBack = useMoveBack();
+  console.log(error);
 
   return (
-    <div className="main-wrapper error-wrapper">
+    <div
+      className="main-wrapper error-wrapper"
+      style={{ height: `${error ? "100%" : "100vh"}` }}
+    >
       <div className="error-box">
         <img
           className="img-fluid"
