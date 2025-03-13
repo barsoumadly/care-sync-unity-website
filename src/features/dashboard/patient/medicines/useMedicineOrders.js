@@ -3,7 +3,7 @@ import { getMedicineOrders } from "../../../../services/medicineOrders";
 
 function useMedicineOrders() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["analysis-list"],
+    queryKey: ["medicine-orders"],
     queryFn: getMedicineOrders,
   });
 
