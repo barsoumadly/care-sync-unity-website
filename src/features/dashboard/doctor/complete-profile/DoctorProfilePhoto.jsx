@@ -1,18 +1,13 @@
 import { useState } from "react";
 
-function DoctorProfilePhoto({ doctorData, onChangeDoctorData }) {
-  const [profilePhoto, setProfilePhoto] = useState(
-    "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
-  );
-
+function DoctorProfilePhoto({ profilePhoto, setProfilePhoto }) {
   const performSubmit = function (event) {
     const photo = URL.createObjectURL(event.target.files[0]);
     setProfilePhoto(photo);
-    onChangeDoctorData({ ...doctorData, photo });
   };
 
   return (
-    <form>
+    <>
       <div className="row">
         <div className="col-12" style={{ marginTop: "50px" }}>
           <div className="form-heading">
@@ -48,7 +43,7 @@ function DoctorProfilePhoto({ doctorData, onChangeDoctorData }) {
           </div>
         </div>
       </div>
-    </form>
+    </>
   );
 }
 
