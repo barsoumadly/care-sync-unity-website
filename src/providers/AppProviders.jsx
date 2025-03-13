@@ -6,7 +6,7 @@ import { UserContextProvider } from "../context/AuthContext";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: Infinity,
+      staleTime: 0,
     },
   },
 });
