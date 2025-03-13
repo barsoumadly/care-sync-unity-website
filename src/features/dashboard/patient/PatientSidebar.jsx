@@ -76,11 +76,11 @@ function PatientSidebar() {
 
       {/* Medicines */}
       <li className="submenu">
-        <NavLink to={"/patient/medicines"} className="link">
+        <NavLink to={"/patient/medicine-orders"} className="link">
           <span className="menu-side">
             <GiMedicines />
           </span>
-          <span> Medicines </span>
+          <span> Medicines Orders </span>
         </NavLink>
       </li>
 
