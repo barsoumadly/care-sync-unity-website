@@ -90,7 +90,7 @@ import LaboratoryViewProfile from "../features/dashboard/laboratory/profile/Labo
 import AnalysisList from "../features/dashboard/laboratory/analysis/AnalysisList";
 import AnalysisAddition from "../features/dashboard/laboratory/analysis/AnalysisAddition";
 import EditAnalysisTuple from "../features/dashboard/laboratory/analysis/EditAnalysisTuple";
-import { ChatProvider } from "../context/ChatContext";
+import OrdersList from "../features/dashboard/patient/medicines/OrdersList";
 
 function AppRoutes() {
   return (
@@ -243,7 +243,8 @@ function AppRoutes() {
           <Route path=":doctorName/profile" element={<MyProfile />} />
           <Route path="prescriptions" element={<PrescriptionsList />} />
           <Route path="prescription/:id" element={<PrescriptionPaper />} />
-          <Route path="medicines" element={<MedicineList />} />
+          <Route path="medicine-orders" element={<OrdersList />} />
+          <Route path="medicine-orders/:id" element={<MedicineList />} />
         </Route>
 
         {/* Pharmacy */}
