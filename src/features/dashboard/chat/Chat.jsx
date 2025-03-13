@@ -5,6 +5,7 @@ import { useChat } from "../../../context/ChatContext";
 import { useState, useEffect, useRef } from "react";
 import { ImAttachment } from "react-icons/im";
 import ChatList from "./ChatList";
+import ServerDown from "../../../ui/ServerDown";
 
 function Chat() {
   const { user } = useAuth();
@@ -147,7 +148,9 @@ function Chat() {
           <div className="content">
             <div className="card">
               <div className="card-body">
-                <div className="text-center text-danger">{errorMessage}</div>
+                <div className="text-center text-danger">
+                  <ServerDown error={true} />
+                </div>
               </div>
             </div>
           </div>
