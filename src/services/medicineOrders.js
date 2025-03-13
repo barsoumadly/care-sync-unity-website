@@ -51,4 +51,37 @@ const getMedicineOrdersById = async function (id) {
   }
 };
 
-export { getMedicineOrders, getMedicineOrdersById };
+const getMedicineOrdersByPharmacyId = async function (id) {
+  const token = JSON.parse(localStorage.getItem("key"));
+
+  try {
+    const response = await axios.get(`${API_URL}/pharmacy/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const editMedicineOrderStatus = async function (id, data) {
+  const token = JSON.parse(localStorage.getItem("key"));
+
+  try {
+    const response = await axios.put(`${API_URL}/${id}`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  getMedicineOrders,
+  getMedicineOrdersById,
+  getMedicineOrdersByPharmacyId,
+  editMedicineOrderStatus,
+};
