@@ -91,6 +91,8 @@ import AnalysisList from "../features/dashboard/laboratory/analysis/AnalysisList
 import AnalysisAddition from "../features/dashboard/laboratory/analysis/AnalysisAddition";
 import EditAnalysisTuple from "../features/dashboard/laboratory/analysis/EditAnalysisTuple";
 import OrdersList from "../features/dashboard/patient/medicines/OrdersList";
+import PharmacyOrdersList from "../features/dashboard/pharmacy/orders/PharmacyOrdersList";
+import MedicinesOrderList from "../features/dashboard/pharmacy/orders/MedicinesOrderList";
 
 function AppRoutes() {
   return (
@@ -271,6 +273,8 @@ function AppRoutes() {
             element={<EditMedicineTuple />}
           />
           <Route path="add-medicine" element={<MedicineAddition />} />
+          <Route path="medicine-orders" element={<PharmacyOrdersList />} />
+          <Route path="medicine-orders/:id" element={<MedicinesOrderList />} />
           <Route path="view-profile" element={<PharmacyProfileView />} />
           <Route path="edit-profile" element={<PharmacyEditProfile />} />
         </Route>
