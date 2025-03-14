@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import ClinicCard from "../../patient/clinics/ClinicCard";
-import SearchBar from "../SearchBar";
-import DashboardPageHeader from "../DashboardPageHeader";
+import ClinicCard from "../../../patient/clinics/ClinicCard";
+import SearchBar from "../../SearchBar";
+import DashboardPageHeader from "../../DashboardPageHeader";
 
 const clinicsList = [
   {
