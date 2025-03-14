@@ -2,8 +2,12 @@ import { useState } from "react";
 import ExaminationCard from "./ExaminationCard";
 import PrescriptionPaper from "./WritingPrescriptionPaper";
 import AnalysisPaper from "./AnalysisPaper";
+import { useLocation } from "react-router-dom";
 
 function Examination() {
+  const PATIENT_ID = useLocation().pathname.split("/")[3];
+  console.log(PATIENT_ID);
+
   const [openCard, setOpenCard] = useState("");
   const [isAddingPrescription, setIsAddingPrescription] = useState(false);
   const [isAddingAnalysis, setIsAddingAnalysis] = useState(false);
