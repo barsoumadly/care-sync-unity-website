@@ -6,10 +6,6 @@ function PharmacyCard({ pharmacy }) {
   const { user } = useAuth();
   const { data: pharmacyUser } = useUser(pharmacy.userId);
 
-  const saveActivePharmacy = function (pharmacy) {
-    localStorage.setItem("pharmacy", JSON.stringify(pharmacy));
-  };
-
   return (
     <div className="col-12 col-md-4 col-lg-3 d-flex">
       <div
@@ -31,9 +27,8 @@ function PharmacyCard({ pharmacy }) {
         </div>
         <div className="card-body card-buttons" style={{ padding: "5%" }}>
           <Link
-            to={`/patient/pharmacies/${pharmacy.slug}`}
+            to={`/patient/pharmacies/${pharmacy.slug}/${pharmacy._id}`}
             className="btn btn-primary"
-            onClick={() => saveActivePharmacy(pharmacy)}
           >
             View {user.role === "DOCTOR" ? "Patients" : "Profile"}
           </Link>
