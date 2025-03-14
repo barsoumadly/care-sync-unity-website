@@ -7,8 +7,6 @@ import LoadingSpinner from "../../../../ui/LoadingSpinner";
 function OrdersList() {
   const { isLoading, data } = useMedicineOrders();
 
-  console.log(data);
-
   return (
     <>
       <div className="main-wrapper">
