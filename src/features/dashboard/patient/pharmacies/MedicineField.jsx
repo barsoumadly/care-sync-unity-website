@@ -6,8 +6,8 @@ function MedicineField({ medicine, onOpenModal, onSelectMedicine }) {
       <td className="profile-image">
         <Link>{medicine.name}</Link>
       </td>
-      <td> {medicine.expirationDate}</td>
-      <td> {medicine.cost} EGP</td>
+      <td> {medicine.expirationDate.split("-").reverse().join("-")}</td>
+      <td> {medicine.price} EGP</td>
       <td>
         <div className="dropdown action-label">
           <button
@@ -17,7 +17,7 @@ function MedicineField({ medicine, onOpenModal, onSelectMedicine }) {
               onOpenModal();
             }}
           >
-            Order Medicine
+            Add to Orders
           </button>
         </div>
       </td>
