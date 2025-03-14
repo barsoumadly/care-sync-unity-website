@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Modal from "../../../../ui/Modal";
 
-function OrderModal({ medicine, onOpenModal }) {
-  const [paymentType, setPaymentType] = useState("cash");
-  const pharmacy = JSON.parse(localStorage.getItem("pharmacy"));
+function OrderModal({ medicine, onOpenModal, onSetOrders }) {
+  const [quantity, setQuantity] = useState(1);
+
+  const handleAddMedicine = function (data) {
+    onSetOrders((medicines) => [...medicines, data]);
+    onOpenModal(false);
+  };
 
   return (
     <Modal onClose={onOpenModal}>
       <div className="modal-dialog">
         <div className="modal-content ">
           <div className="modal-header">
-            <h4 className="modal-title">Order Medicine</h4>
+            <h4 className="modal-title">Add Medicine</h4>
             <button
               type="button"
               className="btn-close"
@@ -22,7 +25,7 @@ function OrderModal({ medicine, onOpenModal }) {
           </div>
           <div className="modal-body p-4">
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-md-4">
                 <div className="mb-3">
                   <label htmlFor="field-1" className="form-label">
                     Medicine Name
@@ -36,80 +39,43 @@ function OrderModal({ medicine, onOpenModal }) {
                   />
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-md-4">
                 <div className="mb-3">
                   <label htmlFor="field-2" className="form-label">
-                    Cost
+                    Price
                   </label>
                   <input
                     type="text"
                     className="form-control"
                     id="field-2"
-                    placeholder={medicine.cost}
+                    placeholder={medicine.price}
                     disabled
                   />
                 </div>
               </div>
-            </div>
-            <div className="row">
-              <div className="col-md-6">
-                <div className="mb-3">
-                  <label htmlFor="field-3" className="form-label">
-                    Pharmacy Name
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="field-3"
-                    placeholder={pharmacy.name}
-                    disabled
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="mb-3">
-                  <label htmlFor="field-3" className="form-label">
-                    Address
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="field-3"
-                    placeholder="20 mohamed amin - ahmed essmat"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-6">
+              <div className="col-md-4">
                 <div className="mb-3">
                   <label htmlFor="field-4" className="form-label">
-                    Phone Number
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="field-4"
-                    placeholder="0123456789"
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="mb-3">
-                  <label htmlFor="field-4" className="form-label">
-                    Payment Type
+                    Quantity
                   </label>
                   <select
                     className="form-control"
-                    value={paymentType}
-                    onChange={(event) => setPaymentType(event.target.value)}
+                    value={quantity}
+                    onChange={(event) =>
+                      setQuantity(Number(event.target.value))
+                    }
                   >
-                    <option value="cash">Cash</option>
-                    <option value="credit">Credit</option>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={2}>4</option>
+                    <option value={5}>5</option>
                   </select>
                 </div>
               </div>
             </div>
+
+            <div className="row"></div>
           </div>
           <div className="modal-footer">
             <button
@@ -120,18 +86,22 @@ function OrderModal({ medicine, onOpenModal }) {
             >
               Close
             </button>
-            <Link
-              to={
-                paymentType === "cash"
-                  ? "/patient/appointments"
-                  : "/patient/payment-gateway"
-              }
+            <button
               type="button"
               className="btn btn-info"
               style={{ backgroundColor: "#2e37a4", color: "#fff" }}
+              onClick={() =>
+                handleAddMedicine({
+                  name: medicine.name,
+                  quantity,
+                  expirationDate: medicine.expirationDate,
+                  price: quantity * medicine.price,
+                  _id: medicine._id,
+                })
+              }
             >
-              Order Medicine
-            </Link>
+              Add Medicine
+            </button>
           </div>
         </div>
       </div>
