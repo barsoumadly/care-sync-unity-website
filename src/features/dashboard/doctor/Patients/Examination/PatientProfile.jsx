@@ -1,10 +1,10 @@
-import DashboardPageHeader from "../DashboardPageHeader";
+import DashboardPageHeader from "../../DashboardPageHeader";
 
 import { useState } from "react";
 import ProfileHeader from "./ProfileHeader";
 import AboutOfPatient from "./AboutOfPatient";
 import StaticOfHealth from "./StaticOfHealth";
-import Examination from "./Examination/Examination";
+import Examination from "./Examination";
 import MedicalHistory from "./MedicalHistory";
 
 function PatientProfile() {
