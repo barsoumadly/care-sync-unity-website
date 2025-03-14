@@ -93,6 +93,7 @@ import EditAnalysisTuple from "../features/dashboard/laboratory/analysis/EditAna
 import OrdersList from "../features/dashboard/patient/medicines/OrdersList";
 import PharmacyOrdersList from "../features/dashboard/pharmacy/orders/PharmacyOrdersList";
 import MedicinesOrderList from "../features/dashboard/pharmacy/orders/MedicinesOrderList";
+import OrderPaper from "../features/dashboard/patient/pharmacies/OrderPaper";
 
 function AppRoutes() {
   return (
@@ -226,13 +227,14 @@ function AppRoutes() {
           <Route path="payment-gateway" element={<PaymentGateway />} />
           <Route path="pharmacies" element={<PharmacyList />} />
           <Route
-            path="pharmacies/:pharmacyName"
+            path="pharmacies/:pharmacyName/:id"
             element={<PharmacyProfile />}
           />
           <Route
-            path="pharmacies/:pharmacyName/medicines"
+            path="pharmacies/:pharmacyName/:id/medicines"
             element={<MedicinesList />}
           />
+          <Route path="check-order" element={<OrderPaper />} />
           <Route path="laboratories" element={<LaboratoryList />} />
           <Route
             path="laboratories/:laboratoryName"
