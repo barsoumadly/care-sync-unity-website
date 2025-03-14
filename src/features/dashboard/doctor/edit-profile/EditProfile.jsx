@@ -1,12 +1,12 @@
 import { useState } from "react";
-import PageWrapper from "./PageWrapper";
-import PageCard from "./PageCard";
+import PageWrapper from "../PageWrapper";
+import PageCard from "../PageCard";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import DashboardPageHeader from "./DashboardPageHeader";
-import DoctorPersonalDetails from "./complete-profile/PersonalDetails";
-import DoctorProfessionalDetails from "./complete-profile/DoctorProfessionalDetails";
-import DoctorProfilePhoto from "./complete-profile/DoctorProfilePhoto";
+import DashboardPageHeader from "../DashboardPageHeader";
+import DoctorPersonalDetails from "../complete-profile/PersonalDetails";
+import DoctorProfessionalDetails from "../complete-profile/DoctorProfessionalDetails";
+import DoctorProfilePhoto from "../complete-profile/DoctorProfilePhoto";
 
 function EditProfile() {
   const [profilePhoto, setProfilePhoto] = useState(
