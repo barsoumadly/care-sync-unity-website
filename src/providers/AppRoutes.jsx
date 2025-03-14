@@ -38,12 +38,12 @@ import Invoice from "../features/dashboard/clinic/Invoice";
 import DoctorLayout from "../features/dashboard/doctor/DoctorLayout";
 import DoctorDashboard from "../features/dashboard/doctor/DoctorDashboard";
 import DoctorShedule from "../features/dashboard/doctor/DoctorShedule";
-import DoctorPatientsList from "../features/dashboard/doctor/Patients/Patients";
+import DoctorPatientsList from "../features/dashboard/doctor/Patients/PatientList/Patients";
 import DoctorChat from "../features/dashboard/chat/Chat";
 import MyProfile from "../features/dashboard/doctor/MyProfile";
 import EditProfile from "../features/dashboard/doctor/EditProfile";
-import PatientProfile from "../features/dashboard/doctor/Patients/PatientProfile";
-import ClinicsListOfDoctor from "../features/dashboard/doctor/Patients/ClinicsListOfDoctor";
+import PatientProfile from "../features/dashboard/doctor/Patients/Examination/PatientProfile";
+import ClinicsListOfDoctor from "../features/dashboard/doctor/Patients/ClinicList/ClinicsListOfDoctor";
 /* Patient */
 import PatientLayout from "../features/dashboard/patient/PatientLayout";
 import PatientDashboard from "../features/dashboard/patient/PatientDashboard";
@@ -191,7 +191,10 @@ function AppRoutes() {
           <Route path="doctor-shedule" element={<DoctorShedule />} />
           <Route path="patients" element={<ClinicsListOfDoctor />} />
           <Route path="patient-list" element={<DoctorPatientsList />} />
-          <Route path="patient-profile" element={<PatientProfile />} />
+          <Route
+            path="patient-profile/:patientId"
+            element={<PatientProfile />}
+          />
           <Route path="chat" element={<DoctorChat />} />
           <Route path="view-profile" element={<MyProfile />} />
           <Route path="edit-profile" element={<EditProfile />} />
