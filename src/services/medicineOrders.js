@@ -2,22 +2,17 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8000/api/v1/medicine-orders";
 
-const addMedicinesOrder = async function (pharmacyId, medicineList) {
+const addMedicinesOrder = async function (order) {
   const token = JSON.parse(localStorage.getItem("key"));
 
-  const medicines = medicineList.map((medicine) => {
-    return {
-      name: medicine.medicine_name,
-      quantity: Number(medicine.quantity),
-      price: Number(medicine.price),
-      expirationDate: medicine.expiration_date,
-    };
-  });
-
   try {
-    await axios.post(`${API_URL}/`, medicines, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    await axios.post(
+      `${API_URL}/`,
+      { order },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
   } catch (error) {
     console.log(error);
   }
@@ -84,4 +79,5 @@ export {
   getMedicineOrdersById,
   getMedicineOrdersByPharmacyId,
   editMedicineOrderStatus,
+  addMedicinesOrder,
 };
