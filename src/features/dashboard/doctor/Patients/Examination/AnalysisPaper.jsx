@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useAuth } from "../../../../../context/AuthContext";
-import MedicineTable from "./MedicineTable";
-import DynamicMedicineTuple from "../DynamicMedicineTuple";
-import DynamicField from "../../complete-profile/DynamicField";
 import DynamicAnalysisInput from "./DynamicAnalysisInput";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 function AnalysisPaper({ setOpenCard, setIsAdding }) {
   const { user } = useAuth();
