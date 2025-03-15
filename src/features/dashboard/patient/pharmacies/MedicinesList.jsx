@@ -65,32 +65,59 @@ function MedicinesList() {
               <div className="col-sm-12">
                 <div className="card card-table show-entire">
                   <div className="card-body">
-                    <div className="table-responsive">
-                      {isLoading ? (
-                        <LoadingSpinner />
-                      ) : (
-                        <table className="table border-0 custom-table comman-table datatable mb-0">
-                          <thead>
-                            <tr>
-                              <th>Medicine Name</th>
-                              <th>Expiration Date</th>
-                              <th>Price</th>
-                              <th />
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {medicines?.map((medicine) => (
-                              <MedicineField
-                                medicine={medicine}
-                                onOpenModal={handleOpenModal}
-                                key={medicine.id}
-                                onSelectMedicine={handleSelectMedicine}
-                              />
-                            ))}
-                          </tbody>
-                        </table>
-                      )}
-                    </div>
+                    {medicines.length === 0 ? (
+                      <div className=" container-fluid ">
+                        <div className="col-xl-12 ">
+                          <div className="card invoice-info-card">
+                            <div className="card-boyd">
+                              <div
+                                className="text-center mt-5 py-5"
+                                style={{
+                                  padding: "0px 10%",
+                                  backgroundColor: "#fff",
+                                }}
+                              >
+                                <div className="reminder-icon">
+                                  <img
+                                    alt="medicine"
+                                    src="/images/dashborad/medicine.webp"
+                                    style={{ width: "100%" }}
+                                  />
+                                </div>
+                                <h4>No medicines are Found</h4>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="table-responsive">
+                        {isLoading ? (
+                          <LoadingSpinner />
+                        ) : (
+                          <table className="table border-0 custom-table comman-table datatable mb-0">
+                            <thead>
+                              <tr>
+                                <th>Medicine Name</th>
+                                <th>Expiration Date</th>
+                                <th>Price</th>
+                                <th />
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {medicines?.map((medicine) => (
+                                <MedicineField
+                                  medicine={medicine}
+                                  onOpenModal={handleOpenModal}
+                                  key={medicine.id}
+                                  onSelectMedicine={handleSelectMedicine}
+                                />
+                              ))}
+                            </tbody>
+                          </table>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
