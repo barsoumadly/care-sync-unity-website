@@ -7,6 +7,8 @@ import LoadingSpinner from "../../../../ui/LoadingSpinner";
 function LaboratoryOrderList() {
   const { isLoading, data } = useAnalysisOrders();
 
+  const orders = [...data];
+
   return (
     <>
       <div className="main-wrapper">
@@ -57,7 +59,7 @@ function LaboratoryOrderList() {
                             </tr>
                           </thead>
                           <tbody>
-                            {data?.map((order, index) => (
+                            {orders?.reverse()?.map((order, index) => (
                               <OrderTuple
                                 order={order}
                                 key={order._id}
