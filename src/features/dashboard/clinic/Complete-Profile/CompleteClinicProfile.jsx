@@ -19,16 +19,14 @@ function telephoneCheck(p) {
 }
 
 function CompleteClinicProfile({ clinicData }) {
-  console.log(clinicData);
-
   const [images, setImage] = useState([]);
   const [avatar, setAvatar] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
   );
   const [cities, setCities] = useState();
   const [areas, setAreas] = useState();
-  const [selectedCity, setSelectedCity] = useState(clinicData.selectedCity);
-  const [selectedArea, setSelectedArea] = useState(clinicData.selectedArea);
+  const [selectedCity, setSelectedCity] = useState(clinicData?.selectedCity);
+  const [selectedArea, setSelectedArea] = useState(clinicData?.selectedArea);
   const { register, handleSubmit, reset, formState, setValue } = useForm();
   const { data, isLoading } = useLocation();
   const { userLogout, isProfileCompleted } = useAuth();
@@ -159,20 +157,12 @@ function CompleteClinicProfile({ clinicData }) {
 
                       <div className="col-12 col-md-6 col-xl-4">
                         <div className="input-block local-forms">
-                          <label>
-                            Founded <span className="login-danger">*</span>
-                          </label>
+                          <label>Founded</label>
                           <input
                             className="form-control"
                             type="text"
                             placeholder="ex: 1996"
-                            {...register("founded", {
-                              required: "This field is required",
-                            })}
                           />
-                          <span className="error-message ">
-                            {errors?.founded?.message}
-                          </span>
                         </div>
                       </div>
 
@@ -253,21 +243,12 @@ function CompleteClinicProfile({ clinicData }) {
 
                       <div className="col-12 col-sm-12">
                         <div className="input-block local-forms">
-                          <label>
-                            Start Biography{" "}
-                            <span className="login-danger">*</span>
-                          </label>
+                          <label>Start Biography</label>
                           <textarea
                             className="form-control"
                             rows={3}
                             cols={30}
-                            {...register("biography", {
-                              required: "This field is required",
-                            })}
                           />
-                          <span className="error-message ">
-                            {errors?.biography?.message}
-                          </span>
                         </div>
                       </div>
 
