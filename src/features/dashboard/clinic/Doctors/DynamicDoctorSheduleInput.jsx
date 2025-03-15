@@ -35,34 +35,34 @@ function DynamicDoctorSheduleInput({ control, register, errors }) {
             <div className="col-12 col-md-6 col-xl-3">
               <div className="input-block local-forms">
                 <label>
-                  From <span className="login-danger">*</span>
+                  Start Time <span className="login-danger">*</span>
                 </label>
                 <input
                   className="form-control"
                   type="time"
-                  {...register(`doctorShedule.${index}.from`, {
+                  {...register(`doctorShedule.${index}.startTime`, {
                     required: "This field is required",
                   })}
                 />
                 <span className="error-message ">
-                  {errors?.doctorShedule?.[index].from.message}
+                  {errors?.doctorShedule?.[index].startTime.message}
                 </span>
               </div>{" "}
             </div>
             <div className="col-12 col-md-6 col-xl-3">
               <div className="input-block local-forms">
                 <label>
-                  To <span className="login-danger">*</span>
+                  End Time <span className="login-danger">*</span>
                 </label>
                 <input
                   className="form-control"
                   type="time"
-                  {...register(`doctorShedule.${index}.to`, {
+                  {...register(`doctorShedule.${index}.endTime`, {
                     required: "This field is required",
                   })}
                 />{" "}
                 <span className="error-message ">
-                  {errors?.doctorShedule?.[index].to.message}
+                  {errors?.doctorShedule?.[index].endTime.message}
                 </span>
               </div>{" "}
             </div>
@@ -73,7 +73,7 @@ function DynamicDoctorSheduleInput({ control, register, errors }) {
                     className="btn btn-primary submit-form me-2"
                     type="button"
                     style={{ minWidth: "100%" }}
-                    onClick={() => append({ day: "", to: "", from: "" })}
+                    onClick={() => append({})}
                   >
                     Add
                   </button>
