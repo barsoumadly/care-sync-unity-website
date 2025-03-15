@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { IoArrowBackOutline } from "react-icons/io5";
@@ -10,6 +10,7 @@ import useLocation from "../../useLocation";
 import Button from "../reusable/Button";
 import ClinicImages from "./ClinicImages";
 import ClinicAvatar from "./ClinicAvatar";
+import useEditClinicProfile from "./useEditClinicProfile";
 
 function telephoneCheck(p) {
   var phoneRe = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
@@ -27,10 +28,17 @@ function CompleteClinicProfile({ clinicData }) {
   const [areas, setAreas] = useState();
   const [selectedCity, setSelectedCity] = useState(clinicData?.selectedCity);
   const [selectedArea, setSelectedArea] = useState(clinicData?.selectedArea);
-  const { register, handleSubmit, reset, formState, setValue } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+    setValue,
+  } = useForm();
   const { data, isLoading } = useLocation();
   const { userLogout, isProfileCompleted } = useAuth();
-  const { errors } = formState;
+  const { updateProfile, UpdateProfilePhoto } = useEditClinicProfile();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setValue("clinicName", clinicData?.clinicName);
@@ -55,9 +63,11 @@ function CompleteClinicProfile({ clinicData }) {
 
   // Upload Submit Form
   function onSubmit(data) {
-    const formData = { ...data, images, avatar, selectedCity, selectedArea };
+    const formData = { ...data, images, selectedCity, selectedArea };
+    updateProfile({ clinicData: formData });
+    UpdateProfilePhoto({ profilePhoto: avatar });
     console.log(formData);
-    telephoneCheck(data.mobile);
+    navigate("/clinic/dashboard");
   }
 
   function handleCancel() {
