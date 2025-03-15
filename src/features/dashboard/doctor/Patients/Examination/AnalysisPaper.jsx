@@ -4,7 +4,7 @@ import DynamicAnalysisInput from "./DynamicAnalysisInput";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
-function AnalysisPaper({ setOpenCard, setIsAdding }) {
+function AnalysisPaper({ setOpenCard, setIsAdding, clinicName, patientName }) {
   const { user } = useAuth();
   const date = new Date().toLocaleDateString();
   const {
@@ -50,7 +50,7 @@ function AnalysisPaper({ setOpenCard, setIsAdding }) {
                       </div>
                       <div className="invoice-head">
                         <h2>Prescription</h2>
-                        <p>Patient Name: </p>
+                        <p>Patient Name: {patientName}</p>
                       </div>
                     </div>
                     <div className="col-md-6">
@@ -58,7 +58,7 @@ function AnalysisPaper({ setOpenCard, setIsAdding }) {
                         <strong className="customer-text-one">
                           Prescription From
                         </strong>
-                        <h6 className="invoice-name">Clinic Name</h6>
+                        <h6 className="invoice-name">{clinicName}</h6>
                         <p>Date: {date} </p>
                       </div>
                     </div>
