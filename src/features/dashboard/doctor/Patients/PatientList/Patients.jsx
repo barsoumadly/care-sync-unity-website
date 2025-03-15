@@ -2,6 +2,7 @@ import DashboardPageHeader from "../../DashboardPageHeader";
 import SearchBar from "../../SearchBar";
 import Table from "./Table";
 import PatientTuples from "./PatientTuples";
+import { useLocation } from "react-router-dom";
 
 const patientList = [
   {
@@ -27,6 +28,9 @@ const patientList = [
 ];
 
 function Patients() {
+  const CLINIC_NAME = useLocation().pathname.split("/")[2];
+  console.log(CLINIC_NAME);
+
   return (
     <div className="main-wrapper">
       <div className="page-wrapper">
@@ -63,9 +67,10 @@ function Patients() {
                           <PatientTuples
                             num={index}
                             element={element}
+                            clinicName={CLINIC_NAME}
                             button={{
                               name: "Examination",
-                              link: "/doctor/patient-profile",
+                              link: `/doctor/${CLINIC_NAME}`,
                             }}
                           />
                         </tr>
