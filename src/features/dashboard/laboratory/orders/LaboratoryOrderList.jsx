@@ -1,12 +1,11 @@
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import useMedicineOrders from "./useMedicineOrders";
-import OrderTuple from "./OrderTuple";
+import useAnalysisOrders from "./useAnalysisOrders";
+import OrderTuple from "./AnalysisTuple";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 
-function OrdersList() {
-  const { isLoading, data: orders } = useMedicineOrders();
-  const data = orders ? [...orders] : [];
+function LaboratoryOrderList() {
+  const { isLoading, data } = useAnalysisOrders();
 
   return (
     <>
@@ -19,7 +18,7 @@ function OrdersList() {
                 <div className="col-sm-7 col-6">
                   <ul className="breadcrumb">
                     <li className="breadcrumb-item">
-                      <a>Medicine Orders</a>
+                      <a>Analysis Orders</a>
                     </li>
                     <li className="breadcrumb-item">
                       <i className="feather-chevron-right" />
@@ -29,7 +28,7 @@ function OrdersList() {
                 </div>
                 <div class="col-sm-5 col-6 text-end">
                   <Link
-                    to="/patient/dashboard"
+                    to="/laboratory/dashboard"
                     class="btn btn-primary btn-rounded"
                   >
                     <IoArrowBackOutline /> Return Back
@@ -42,48 +41,23 @@ function OrdersList() {
               <div className="col-sm-12">
                 <div className="card card-table show-entire">
                   <div className="card-body">
-                    <div className="staff-search-table">
-                      <form>
-                        <div className="row">
-                          <div className="col-12 col-md-6 col-xl-3">
-                            <div className="input-block local-forms">
-                              <label>Pharmacy Name </label>
-                              <input
-                                className="form-control"
-                                type="text"
-                                placeholder="ex. Royal"
-                              />
-                            </div>
-                          </div>
-                          <div className="col-12 col-md-6 col-xl-3">
-                            <div className="doctor-submit">
-                              <button
-                                type="submit"
-                                className="btn btn-primary submit-list-form me-2"
-                              >
-                                Search
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
                     <div className="table-responsive">
                       {isLoading ? (
                         <LoadingSpinner />
-                      ) : data.length !== 0 ? (
+                      ) : data?.length !== 0 ? (
                         <table className="table border-0 custom-table comman-table datatable mb-0">
                           <thead>
                             <tr>
                               <th>Order Number</th>
-                              <th>Pharmacy Name</th>
+                              <th>Patient Name</th>
+                              <th>Phone Number</th>
                               <th>Date</th>
                               <th>Status</th>
                               <th />
                             </tr>
                           </thead>
                           <tbody>
-                            {data?.reverse()?.map((order, index) => (
+                            {data?.map((order, index) => (
                               <OrderTuple
                                 order={order}
                                 key={order._id}
@@ -107,15 +81,15 @@ function OrdersList() {
                                   <div className="reminder-icon">
                                     <img
                                       alt="medicine"
-                                      src="/images/dashborad/order.png"
+                                      src="/images/dashborad/analysis.png"
                                       style={{
-                                        width: "180%",
-                                        marginTop: "-90px",
-                                        marginLeft: "-40px",
+                                        width: "150%",
+                                        marginTop: "-80px",
+                                        marginLeft: "-30px",
                                       }}
                                     />
                                   </div>
-                                  <h4>No orders are Found</h4>
+                                  <h4>No Orders are Found</h4>
                                 </div>
                               </div>
                             </div>
@@ -134,4 +108,4 @@ function OrdersList() {
   );
 }
 
-export default OrdersList;
+export default LaboratoryOrderList;

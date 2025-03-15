@@ -133,12 +133,39 @@ function ClinicsList() {
                   </form>
                 </div>
 
-                <div className="row">
-                  {/* Cards */}
-                  {clinicsList.map((clinic) => (
-                    <ClinicCard clinic={clinic} key={clinic.id} />
-                  ))}
-                </div>
+                {clinicsList.length !== 0 ? (
+                  <div className="row">
+                    {/* Cards */}
+                    {clinicsList.map((clinic) => (
+                      <ClinicCard clinic={clinic} key={clinic.id} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className=" container-fluid ">
+                    <div className="col-xl-12 ">
+                      <div className="card invoice-info-card">
+                        <div className="card-boyd">
+                          <div
+                            className="text-center mt-5 py-5"
+                            style={{
+                              padding: "0px 10%",
+                              backgroundColor: "#fff",
+                            }}
+                          >
+                            <div className="reminder-icon">
+                              <img
+                                alt="medicine"
+                                src="/images/dashborad/clinic.png"
+                                style={{ width: "160%", marginLeft: "-40px" }}
+                              />
+                            </div>
+                            <h4>No clinics are Found</h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -94,6 +94,11 @@ import OrdersList from "../features/dashboard/patient/medicines/OrdersList";
 import PharmacyOrdersList from "../features/dashboard/pharmacy/orders/PharmacyOrdersList";
 import MedicinesOrderList from "../features/dashboard/pharmacy/orders/MedicinesOrderList";
 import OrderPaper from "../features/dashboard/patient/pharmacies/OrderPaper";
+import AnalysisResults from "../features/dashboard/patient/analysis/AnalysisResults";
+import Results from "../features/dashboard/patient/analysis/Results";
+import LaboratoryOrderList from "../features/dashboard/laboratory/orders/LaboratoryOrderList";
+import AnalysisOrderList from "../features/dashboard/laboratory/orders/AnalysisOrderList";
+import OrderAddition from "../features/dashboard/laboratory/orders/OrderAddition";
 
 function AppRoutes() {
   return (
@@ -235,6 +240,8 @@ function AppRoutes() {
           />
           <Route path="check-order" element={<OrderPaper />} />
           <Route path="laboratories" element={<LaboratoryList />} />
+          <Route path="analysis-results" element={<AnalysisResults />} />
+          <Route path="analysis-results/:id" element={<Results />} />
           <Route
             path="laboratories/:laboratoryName"
             element={<LaboratoryProfile />}
@@ -302,6 +309,9 @@ function AppRoutes() {
           <Route path="edit-profile" element={<LaboratoryEditProfile />} />
           <Route path="analysis-list" element={<AnalysisList />} />
           <Route path="add-analysis" element={<AnalysisAddition />} />
+          <Route path="analysis-orders" element={<LaboratoryOrderList />} />
+          <Route path="analysis-orders/:id" element={<AnalysisOrderList />} />
+          <Route path="add-order" element={<OrderAddition />} />
           <Route
             path="edit-analysis/:analysisId"
             element={<EditAnalysisTuple />}

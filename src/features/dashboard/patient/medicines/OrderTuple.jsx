@@ -7,6 +7,7 @@ function OrderTuple({ order, orderNumber }) {
     <tr>
       <td>#{orderNumber}</td>
       <td>{order.pharmacyName} Pharmacy</td>
+      <td>{new Date(order.createdAt).toLocaleDateString()}</td>
       <td>
         <div className="dropdown action-label">
           <a

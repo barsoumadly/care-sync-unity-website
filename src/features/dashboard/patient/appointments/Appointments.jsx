@@ -75,6 +75,8 @@ function Appointments() {
   const [isOpen, setIsOpen] = useState(false);
   const [appointmentTurn, setAppointmentTurn] = useState(null);
 
+  // const appointments = [];
+
   const handleOpenModal = function () {
     setIsOpen((isOpen) => !isOpen);
   };
@@ -118,66 +120,99 @@ function Appointments() {
                 <div className="card card-table show-entire">
                   <div className="card-body">
                     {/* /Table Header */}
-                    <div className="staff-search-table">
-                      <form>
-                        <div className="row">
-                          <div className="col-12 col-md-6 col-xl-4">
-                            <div className="input-block local-forms">
-                              <label>Doctor Name </label>
-                              <input className="form-control" type="text" />
+
+                    {appointments.length !== 0 ? (
+                      <>
+                        <div className="staff-search-table">
+                          <form>
+                            <div className="row">
+                              <div className="col-12 col-md-6 col-xl-4">
+                                <div className="input-block local-forms">
+                                  <label>Doctor Name </label>
+                                  <input className="form-control" type="text" />
+                                </div>
+                              </div>
+                              <div className="col-12 col-md-6 col-xl-4">
+                                <div className="input-block local-forms">
+                                  <label>Appointment Status </label>
+                                  <select className="form-control select">
+                                    <option>Pending</option>
+                                    <option>Approved</option>
+                                    <option>Declined</option>
+                                    <option>Examined</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div className="col-12 col-md-6 col-xl-4">
+                                <div className="doctor-submit">
+                                  <button
+                                    type="submit"
+                                    className="btn btn-primary submit-list-form me-2"
+                                  >
+                                    Search
+                                  </button>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <div className="col-12 col-md-6 col-xl-4">
-                            <div className="input-block local-forms">
-                              <label>Appointment Status </label>
-                              <select className="form-control select">
-                                <option>Pending</option>
-                                <option>Approved</option>
-                                <option>Declined</option>
-                                <option>Examined</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div className="col-12 col-md-6 col-xl-4">
-                            <div className="doctor-submit">
-                              <button
-                                type="submit"
-                                className="btn btn-primary submit-list-form me-2"
+                          </form>
+                        </div>
+                        <div className="table-responsive">
+                          <table className="table border-0 custom-table comman-table datatable mb-0">
+                            <thead>
+                              <tr>
+                                <th>Doctor Name</th>
+                                <th>Clinic Name</th>
+                                <th>Date</th>
+                                <th>Specialization</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th />
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {appointments.map((appointment) => (
+                                <AppointmentTuple
+                                  appointmentTuple={appointment}
+                                  onOpenModal={handleOpenModal}
+                                  onChangeAppointmentTurn={
+                                    handleChangeAppointmentTurn
+                                  }
+                                  key={appointment.id}
+                                />
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </>
+                    ) : (
+                      <div className=" container-fluid ">
+                        <div className="col-xl-12 ">
+                          <div className="card invoice-info-card">
+                            <div className="card-boyd">
+                              <div
+                                className="text-center mt-5 py-5"
+                                style={{
+                                  padding: "0px 10%",
+                                  backgroundColor: "#fff",
+                                }}
                               >
-                                Search
-                              </button>
+                                <div className="reminder-icon">
+                                  <img
+                                    alt="medicine"
+                                    src="/images/dashborad/appointment.png"
+                                    style={{
+                                      width: "170%",
+                                      marginLeft: "-55px",
+                                    }}
+                                  />
+                                </div>
+                                <h4>No appointments are Found</h4>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </form>
-                    </div>
-                    <div className="table-responsive">
-                      <table className="table border-0 custom-table comman-table datatable mb-0">
-                        <thead>
-                          <tr>
-                            <th>Doctor Name</th>
-                            <th>Clinic Name</th>
-                            <th>Date</th>
-                            <th>Specialization</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                            <th />
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {appointments.map((appointment) => (
-                            <AppointmentTuple
-                              appointmentTuple={appointment}
-                              onOpenModal={handleOpenModal}
-                              onChangeAppointmentTurn={
-                                handleChangeAppointmentTurn
-                              }
-                              key={appointment.id}
-                            />
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

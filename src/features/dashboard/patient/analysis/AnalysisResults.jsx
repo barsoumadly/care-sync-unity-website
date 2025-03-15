@@ -1,12 +1,11 @@
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import useMedicineOrders from "./useMedicineOrders";
-import OrderTuple from "./OrderTuple";
+import AnalysisTuple from "./analysisTuple";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
+import useAnalysisOrders from "./useAnalysisOrders";
 
-function OrdersList() {
-  const { isLoading, data: orders } = useMedicineOrders();
-  const data = orders ? [...orders] : [];
+function AnalysisResults() {
+  const { isLoading, data } = useAnalysisOrders();
 
   return (
     <>
@@ -19,7 +18,7 @@ function OrdersList() {
                 <div className="col-sm-7 col-6">
                   <ul className="breadcrumb">
                     <li className="breadcrumb-item">
-                      <a>Medicine Orders</a>
+                      <a>Analysis Orders</a>
                     </li>
                     <li className="breadcrumb-item">
                       <i className="feather-chevron-right" />
@@ -47,7 +46,7 @@ function OrdersList() {
                         <div className="row">
                           <div className="col-12 col-md-6 col-xl-3">
                             <div className="input-block local-forms">
-                              <label>Pharmacy Name </label>
+                              <label>Laboratory Name </label>
                               <input
                                 className="form-control"
                                 type="text"
@@ -75,19 +74,19 @@ function OrdersList() {
                         <table className="table border-0 custom-table comman-table datatable mb-0">
                           <thead>
                             <tr>
-                              <th>Order Number</th>
-                              <th>Pharmacy Name</th>
+                              <th>Analysis Number</th>
+                              <th>Laboratory Name</th>
                               <th>Date</th>
                               <th>Status</th>
                               <th />
                             </tr>
                           </thead>
                           <tbody>
-                            {data?.reverse()?.map((order, index) => (
-                              <OrderTuple
-                                order={order}
-                                key={order._id}
-                                orderNumber={index + 1}
+                            {data?.map((analysis, index) => (
+                              <AnalysisTuple
+                                analysis={analysis}
+                                key={analysis._id}
+                                analysisNumber={index + 1}
                               />
                             ))}
                           </tbody>
@@ -107,15 +106,15 @@ function OrdersList() {
                                   <div className="reminder-icon">
                                     <img
                                       alt="medicine"
-                                      src="/images/dashborad/order.png"
+                                      src="/images/dashborad/analysis.png"
                                       style={{
-                                        width: "180%",
-                                        marginTop: "-90px",
-                                        marginLeft: "-40px",
+                                        width: "150%",
+                                        marginTop: "-80px",
+                                        marginLeft: "-30px",
                                       }}
                                     />
                                   </div>
-                                  <h4>No orders are Found</h4>
+                                  <h4>No Results are Found</h4>
                                 </div>
                               </div>
                             </div>
@@ -134,4 +133,4 @@ function OrdersList() {
   );
 }
 
-export default OrdersList;
+export default AnalysisResults;
