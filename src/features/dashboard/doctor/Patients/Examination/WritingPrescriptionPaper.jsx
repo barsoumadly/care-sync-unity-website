@@ -3,7 +3,12 @@ import { useForm } from "react-hook-form";
 import DynamicPrescriptionInput from "./DynamicPrescriptionInput";
 import toast from "react-hot-toast";
 
-function PrescriptionPaper({ setOpenCard, setIsAdding }) {
+function PrescriptionPaper({
+  setOpenCard,
+  setIsAdding,
+  clinicName,
+  patientName,
+}) {
   const { user } = useAuth();
   const date = new Date().toLocaleDateString();
 
@@ -50,7 +55,7 @@ function PrescriptionPaper({ setOpenCard, setIsAdding }) {
                       </div>
                       <div className="invoice-head">
                         <h2>Prescription</h2>
-                        <p>Patient Name: </p>
+                        <p>Patient Name: {patientName}</p>
                       </div>
                     </div>
                     <div className="col-md-6">
@@ -58,7 +63,7 @@ function PrescriptionPaper({ setOpenCard, setIsAdding }) {
                         <strong className="customer-text-one">
                           Prescription From
                         </strong>
-                        <h6 className="invoice-name">Clinic Name</h6>
+                        <h6 className="invoice-name">{clinicName}</h6>
                         <p>Date: {date} </p>
                       </div>
                     </div>
@@ -80,31 +85,6 @@ function PrescriptionPaper({ setOpenCard, setIsAdding }) {
                     </div>
                   </div>
                 </div>
-
-                {/* <MedicineTable>
-                  <thead>
-                    <tr>
-                      <th>Medicine Name</th>
-                      <th>Duration</th>
-                      <th>Amount/Day</th>
-                      <th>Notes</th>
-                      <th></th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <DynamicMedicineTuple
-                      fields={{
-                        f1: "name",
-                        f2: "Duration",
-                        f3: "Amount/Day",
-                        f4: "Notes",
-                      }}
-                      medicineList={medicineList}
-                      setMedicineList={setMedicineList}
-                    />
-                  </tbody>
-                </MedicineTable> */}
 
                 <DynamicPrescriptionInput
                   control={control}
