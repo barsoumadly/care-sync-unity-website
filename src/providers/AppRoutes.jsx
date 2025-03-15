@@ -144,10 +144,8 @@ function AppRoutes() {
           {/* Doctors */}
           <Route path="doctor-list" element={<DoctorList />} />
           <Route path="add-doctor" element={<AddDoctor />} />
-
           <Route path="doctor-profile" element={<DoctorProfile />} />
           <Route path="edit-profile-Doc" element={<EditProfileDoc />} />
-
           {/* Staff */}
           <Route path="employee-salary" element={<EmployeeSalary />} />
           <Route path="add-staff" element={<AddStaff />} />
@@ -157,17 +155,12 @@ function AppRoutes() {
           <Route path="book-appointment" element={<BookAppointment />} />
           <Route path="patient-of-doctors" element={<PatientsOfDoc />} />
           <Route path="edit-appointment" element={<EditAppointments />} />
-          {/* Doctor Schedule */}
-          {/* <Route path="schedule-list" element={<ScheduleList />} />
-          <Route path="add-schedule" element={<AddSchedule />} />
-          <Route path="edit-schedule" element={<EditSchedule />} /> */}
 
           <Route path="edit-profile" element={<EditProfileClinic />} />
           <Route path="chat" element={<Chat />} />
           <Route path="reports" element={<Reports />} />
           <Route path="invoice" element={<Invoice />} />
-          <Route path="edit-profile" />
-          <Route path="my-profile" />
+          <Route path="view-profile" />
         </Route>
 
         {/* Doctor */}
