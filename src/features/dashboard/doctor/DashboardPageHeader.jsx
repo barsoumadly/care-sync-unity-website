@@ -20,7 +20,7 @@ function DashboardPageHeader({ pageList, currentPage, button = "Go Back" }) {
           <li className="breadcrumb-item active">{currentPage}</li>
         </ul>{" "}
       </div>
-      <div className="col-sm-5 col-6 text-end">
+      <div className="col-sm-5 text-end">
         {button === "Logout" ? (
           <Link
             onClick={() => {

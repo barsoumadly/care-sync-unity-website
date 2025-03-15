@@ -183,9 +183,12 @@ function AppRoutes() {
           <Route path="dashboard" element={<DoctorDashboard />} />
           <Route path="doctor-shedule" element={<DoctorShedule />} />
           <Route path="patients" element={<ClinicsListOfDoctor />} />
-          <Route path="patient-list" element={<DoctorPatientsList />} />
           <Route
-            path="patient-profile/:patientId"
+            path=":clinicName/patient-list"
+            element={<DoctorPatientsList />}
+          />
+          <Route
+            path=":clinicName/:patientId/patient-profile"
             element={<PatientProfile />}
           />
           <Route path="chat" element={<DoctorChat />} />
