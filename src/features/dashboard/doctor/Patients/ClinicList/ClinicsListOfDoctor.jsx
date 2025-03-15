@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ClinicCard from "../../../patient/clinics/ClinicCard";
+import ClinicCard from "./ClinicCard";
 import SearchBar from "../../SearchBar";
 import DashboardPageHeader from "../../DashboardPageHeader";
 
@@ -7,7 +7,7 @@ const clinicsList = [
   {
     id: 1,
     slug: "patient-list",
-    name: "Heliopolis Hospital",
+    name: "Heliopolis-Hospital",
     city: "Cairo",
     address: "El Hegaz St, Al Matar, El Nozha, Cairo Governorate",
     location: "Heliopolis Hospital",
@@ -17,7 +17,7 @@ const clinicsList = [
   },
   {
     id: 2,
-    name: "90th Street Clinic",
+    name: "90th-Street-Clinic",
     slug: "patient-list",
     city: "Cairo",
     specialization: ["Cardiology", "Neurology", "Oncology", "Orthopedics"],
