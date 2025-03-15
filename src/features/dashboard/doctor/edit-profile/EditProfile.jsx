@@ -9,9 +9,7 @@ import DoctorProfessionalDetails from "../complete-profile/DoctorProfessionalDet
 import DoctorProfilePhoto from "../complete-profile/DoctorProfilePhoto";
 
 function EditProfile() {
-  const [profilePhoto, setProfilePhoto] = useState(
-    "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
-  );
+  const [profilePhoto, setProfilePhoto] = useState();
 
   const {
     register,
@@ -50,47 +48,42 @@ function EditProfile() {
       />
       {/* /Page contant */}
       <div className="row">
-        <PageCard>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="row">
-              <DoctorPersonalDetails
-                register={register}
-                errors={errors}
-                type="edit"
-              />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <PageCard>
+            <DoctorPersonalDetails
+              register={register}
+              errors={errors}
+              profilePhoto={profilePhoto}
+              setProfilePhoto={setProfilePhoto}
+              type="edit"
+            />
+          </PageCard>
 
-              <DoctorProfessionalDetails
-                register={register}
-                control={control}
-                errors={errors}
-                type="edit"
-              />
+          <DoctorProfessionalDetails
+            register={register}
+            control={control}
+            errors={errors}
+            type="edit"
+          />
 
-              <DoctorProfilePhoto
-                profilePhoto={profilePhoto}
-                setProfilePhoto={setProfilePhoto}
-              />
+          <div className="col-12 mb-5">
+            <div className="doctor-submit text-end">
+              <button
+                type="submit"
+                className="btn btn-primary submit-form me-2"
+              >
+                Submit
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary cancel-form"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
             </div>
-
-            <div className="col-12">
-              <div className="doctor-submit text-end">
-                <button
-                  type="submit"
-                  className="btn btn-primary submit-form me-2"
-                >
-                  Submit
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary cancel-form"
-                  onClick={handleCancel}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </form>
-        </PageCard>
+          </div>
+        </form>
       </div>
     </PageWrapper>
   );
