@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import CompleteClinicProfile from "./Complete-Profile/CompleteClinicProfile";
+import useClinicProfile from "./useClinicProfile";
 
 const ClinicData = {
   id: 1,
@@ -16,6 +17,9 @@ const ClinicData = {
 };
 
 function EditProfileClinic() {
+  const { data } = useClinicProfile();
+  console.log(data);
+
   return <CompleteClinicProfile clinicData={ClinicData} />;
 }
 
