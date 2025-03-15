@@ -9,6 +9,8 @@ function PharmacyOrdersList() {
   const { user } = useAuth();
   const { isLoading, data } = useMedicineOrders(user.id);
 
+  const orders = [...data];
+
   return (
     <>
       <div className="main-wrapper">
@@ -60,7 +62,7 @@ function PharmacyOrdersList() {
                             </tr>
                           </thead>
                           <tbody>
-                            {data?.map((order, index) => (
+                            {orders?.reverse()?.map((order, index) => (
                               <OrderTuple
                                 order={order}
                                 key={order._id}
