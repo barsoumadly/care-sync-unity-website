@@ -7,6 +7,8 @@ import useAnalysisOrders from "./useAnalysisOrders";
 function AnalysisResults() {
   const { isLoading, data } = useAnalysisOrders();
 
+  const orders = [...data];
+
   return (
     <>
       <div className="main-wrapper">
@@ -82,7 +84,7 @@ function AnalysisResults() {
                             </tr>
                           </thead>
                           <tbody>
-                            {data?.map((analysis, index) => (
+                            {orders?.reverse()?.map((analysis, index) => (
                               <AnalysisTuple
                                 analysis={analysis}
                                 key={analysis._id}
