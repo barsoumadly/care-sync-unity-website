@@ -3058,18 +3058,18 @@ table.dataTable thead .sorting_desc_disabled:after {
 -----------------------*/
 
 .profile-img-wrap {
-  height: 120px;
+  height: 140px;
   position: absolute;
-  width: 120px;
+  width: 140px;
   background: #fff;
   overflow: hidden;
 }
 .profile-basic {
-  margin-left: 140px;
+  margin-left: 160px;
 }
 .profile-img-wrap img {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
 }
 .fileupload.btn {
   position: absolute;
@@ -12921,4 +12921,7 @@ body[data-layout-mode="dark"] .alertify .ajs-header {
   backdrop-filter: blur(4px);
   z-index: 1000;
   transition: all 0.5s;
+}
+.minbar {
+  margin-left: 0;
 }
