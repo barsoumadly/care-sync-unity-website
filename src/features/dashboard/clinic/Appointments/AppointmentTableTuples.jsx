@@ -37,7 +37,7 @@ function AppointmentTableTuples({ doctor, handleOpenModal }) {
       </td>
       <td>{doctor.days}</td>
 
-      <td className="text-end">
+      {/* <td className="text-end">
         <div className="dropdown dropdown-action">
           <a
             className="action-icon dropdown-toggle"
@@ -65,7 +65,7 @@ function AppointmentTableTuples({ doctor, handleOpenModal }) {
             </button>
           </div>
         </div>
-      </td>
+      </td> */}
     </tr>
   );
 }

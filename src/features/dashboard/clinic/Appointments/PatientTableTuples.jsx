@@ -53,31 +53,9 @@ function PatientTableTuples({ patient, handleOpenModal }) {
       </td>
       <td className="text-end">
         <div className="dropdown dropdown-action">
-          <a
-            className="action-icon dropdown-toggle"
-            onClick={() => setDropdown((dropdown) => !dropdown)}
-          >
-            <CgMoreVerticalAlt />
-          </a>
-          <div
-            className="dropdown-menu dropdown-menu-end"
-            style={{
-              display: `${dropdown ? "block" : "none"}`,
-            }}
-          >
-            <Link to="/clinic/edit-profile-Doc" className="dropdown-item">
-              <FaEdit /> Edit
-            </Link>
-            <button
-              className="dropdown-item"
-              onClick={() => {
-                handleOpenModal(patient.id);
-                setDropdown((dropdown) => !dropdown);
-              }}
-            >
-              <RiDeleteBin6Fill /> Delete
-            </button>
-          </div>
+          <Link to="/clinic/edit-appointment" className="dropdown-item">
+            <FaEdit /> Edit
+          </Link>
         </div>
       </td>
     </tr>

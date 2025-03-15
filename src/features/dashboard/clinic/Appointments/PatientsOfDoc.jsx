@@ -143,27 +143,13 @@ function PatientsOfDoc() {
                         </div>
                       </div>
                     </div>
-                    {/* <div className="col-auto text-end float-end ms-auto download-grp">
-                      <a href="javascript:;" className=" me-2">
-                        <img src="../images/dashborad/icons/pdf-icon-01.svg" alt="" />
-                      </a>
-                      <a href="javascript:;" className=" me-2">
-                        <img src="../images/dashborad/icons/payment/pdf-icon-02.svg" alt="" />
-                      </a>
-                      <a href="javascript:;" className=" me-2">
-                        <img src="../images/dashborad/icons/pdf-icon-03.svg" alt="" />
-                      </a>
-                      <a href="javascript:;">
-                        <img src="../images/dashborad/icons/pdf-icon-04.svg" alt="" />
-                      </a>
-                    </div> */}
                   </div>
                 </div>
                 {/* /Table Header */}
                 <div className="staff-search-table">
                   <form>
                     <div className="row">
-                      <div className="col-12 col-md-6 col-xl-4">
+                      <div className="col-12 col-md-6 col-xl-3">
                         <div className="input-block local-forms cal-icon">
                           <label>From </label>
                           <input
@@ -172,7 +158,7 @@ function PatientsOfDoc() {
                           />
                         </div>
                       </div>
-                      <div className="col-12 col-md-6 col-xl-4">
+                      <div className="col-12 col-md-6 col-xl-3">
                         <div className="input-block local-forms cal-icon">
                           <label>To </label>
                           <input
@@ -181,7 +167,7 @@ function PatientsOfDoc() {
                           />
                         </div>
                       </div>
-                      <div className="col-12 col-md-6 col-xl-4 ">
+                      <div className="col-12 col-md-6 col-xl-3 ">
                         <div className="input-block local-forms">
                           <label>Payment Status </label>
                           <select className="form-control select">
@@ -192,7 +178,7 @@ function PatientsOfDoc() {
                           </select>
                         </div>
                       </div>
-                      <div className="col-12 col-md-6 col-xl-4 ms-auto">
+                      <div className="col-12 col-md-6 col-xl-3 ms-auto">
                         <div className="doctor-submit">
                           <button
                             type="submit"
