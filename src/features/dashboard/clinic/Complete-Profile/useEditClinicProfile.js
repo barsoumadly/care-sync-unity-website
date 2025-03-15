@@ -1,8 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
+import { updateClinicProfile } from "../../../../services/clinic";
+import { updateProfilePhoto } from "../../../../services/user";
 
 function useEditClinicProfile() {
-  const { mutate: updateClinicProfile, isDataLoading } = useMutation({
-    // mutationFn: ({ clinicData }) => updateClinicProfile(doctorData),
+  const { mutate: updateProfile, isDataLoading } = useMutation({
+    mutationFn: ({ clinicData }) => updateClinicProfile(clinicData),
     onSuccess: () => {
       toast.success("Your profile successfully saved");
     },
@@ -10,11 +12,11 @@ function useEditClinicProfile() {
   });
 
   const { mutate: UpdateProfilePhoto, isPhotoLoading } = useMutation({
-    // mutationFn: ({ profilePhoto }) => updateProfilePhoto(profilePhoto),
+    mutationFn: ({ profilePhoto }) => updateProfilePhoto(profilePhoto),
   });
 
   return {
-    updateClinicProfile,
+    updateProfile,
     UpdateProfilePhoto,
     isDataLoading,
     isPhotoLoading,
