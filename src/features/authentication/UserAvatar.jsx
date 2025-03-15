@@ -5,7 +5,7 @@ function UserAvatar() {
   const { user, isProfileCompleted } = useAuth();
   let { name, role, profilePhoto: avatar } = user;
   name = name.split(" ").slice(0, 2).join(" ");
-  role = role.split("_").join(" ");
+  role = role.split("_");
 
   const navigate = useNavigate();
 
@@ -15,12 +15,12 @@ function UserAvatar() {
         className="user-names"
         onClick={() =>
           isProfileCompleted
-            ? navigate(`/${role.toLowerCase()}/view-profile`)
+            ? navigate(`/${role[0].toLowerCase()}/view-profile`)
             : null
         }
       >
         <h5>{name}</h5>
-        <span>{role}</span>
+        <span>{role.join(" ")}</span>
       </div>
       <span className="user-img">
         <img src={avatar} alt="Admin" />
