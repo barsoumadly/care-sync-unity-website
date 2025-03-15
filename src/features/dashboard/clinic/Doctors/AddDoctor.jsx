@@ -1,6 +1,7 @@
-import { useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Button from "../reusable/Button";
 import DynamicDoctorSheduleInput from "./DynamicDoctorSheduleInput";
+import useAddDoctor from "./useAddDoctor";
 function AddDoctor() {
   const {
     register,
@@ -8,16 +9,19 @@ function AddDoctor() {
     reset,
     control,
     formState: { errors },
-    getValues,
   } = useForm({
     defaultValues: {
       doctorShedule: [{}],
     },
   });
 
+  const { addNewDoctor, isDataLoading } = useAddDoctor();
+
   function onSubmit(data) {
     console.log(data);
+    addNewDoctor({ doctorData: data });
   }
+
   function handleCancel() {
     reset();
   }
