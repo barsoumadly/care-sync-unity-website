@@ -82,10 +82,39 @@ function PharmacyList() {
                   {/* Cards */}
                   {isLoading ? (
                     <LoadingSpinner />
-                  ) : (
+                  ) : pharmaciesList.length !== 0 ? (
                     pharmaciesList?.map((pharmacy) => (
                       <PharmacyCard pharmacy={pharmacy} key={pharmacy.id} />
                     ))
+                  ) : (
+                    <div className=" container-fluid ">
+                      <div className="col-xl-12 ">
+                        <div className="card invoice-info-card">
+                          <div className="card-boyd">
+                            <div
+                              className="text-center mt-5 py-5"
+                              style={{
+                                padding: "0px 10%",
+                                backgroundColor: "#fff",
+                              }}
+                            >
+                              <div className="reminder-icon">
+                                <img
+                                  alt="pharmacy"
+                                  src="/images/dashborad/pharmacy.png"
+                                  style={{
+                                    width: "150%",
+                                    marginTop: "-20px",
+                                    marginLeft: "-35px",
+                                  }}
+                                />
+                              </div>
+                              <h4>No pharmacies are Found</h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   )}
                 </div>
               </div>
