@@ -12,7 +12,7 @@ function VerifyEmail() {
   const inputRefs = useRef([]);
   const navigate = useNavigate();
 
-  const { user } = useAuth();
+  const { userEmail, setVerify } = useAuth();
 
   const handleChange = (index, value) => {
     const newCode = [...code];
@@ -52,7 +52,8 @@ function VerifyEmail() {
 
     const otp = code.join("");
     try {
-      await verifyEmail({ email: user.email, otp });
+      await verifyEmail({ email: userEmail, otp });
+      setVerify();
       navigate("/login");
       toast.success("Email verified successfully");
     } catch (error) {
@@ -84,7 +85,7 @@ function VerifyEmail() {
           <p className="text-center text-gray-300 mb-6">
             Please enter the code sent to:{" "}
             <span style={{ fontWeight: "600", color: "#6B7280" }}>
-              {user.email}
+              {userEmail}
             </span>
           </p>
           <form onSubmit={handleSubmit} className="space-y-6">
