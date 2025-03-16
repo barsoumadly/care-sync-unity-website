@@ -1,5 +1,5 @@
 import { IoArrowBackOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DynamicField from "./DynamicField";
 import { useState } from "react";
 import { addAnalysisList } from "../../../../services/analysis";
@@ -7,6 +7,7 @@ import { addAnalysisList } from "../../../../services/analysis";
 function AnalysisAddition() {
   const [analysisList, setAnalysisList] = useState([{}]);
   const [openCard, setOpenCard] = useState(false);
+  const navigate = useNavigate();
 
   function handleCancel() {
     setAnalysisList([{}]);
@@ -14,12 +15,10 @@ function AnalysisAddition() {
   }
 
   async function handleSubmit() {
-    console.log(analysisList);
-
     if (analysisList[0].analysis_name) {
       await addAnalysisList(analysisList);
       setAnalysisList([{}]);
-      setOpenCard(false);
+      navigate("/laboratory/analysis-list");
     }
   }
 
