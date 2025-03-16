@@ -1,51 +1,75 @@
-import { useNavigate } from "react-router-dom";
-import { deleteAnalysis } from "../../../../services/analysis";
+import { Link } from "react-router-dom";
+import { CgMoreVerticalAlt } from "react-icons/cg";
+import { FaEdit } from "react-icons/fa";
+import { RiDeleteBin6Fill } from "react-icons/ri";
+import { useState } from "react";
+import LoadingSpinner from "../../../../ui/LoadingSpinner";
+import useAnalysisDelete from "./useAnalysisDelete";
 
 function AnalysisTuple({ analysis, onOpenModal, onChangeActiveAnalysis }) {
-  const navigate = useNavigate();
+  const { removeAnalysis, isDataLoading } = useAnalysisDelete();
+  const [dropdown, setDropdown] = useState(false);
 
-  const handleDelete = async function (id) {
-    await deleteAnalysis(id);
+  const handleDelete = function (id) {
+    removeAnalysis({ id });
   };
 
   return (
     <tr>
-      <td>{analysis.name}</td>
-      <td style={{ paddingRight: "40px" }}>{analysis.price} EGP</td>
-      <td>
-        <div class="dropdown action-label">
-          <button
-            class="custom-badge book-btn"
-            onClick={() => {
-              onChangeActiveAnalysis(analysis);
-              onOpenModal();
-            }}
-            style={{ marginRight: "120px" }}
-          >
-            Show Details
-          </button>
-        </div>
-        <div class="dropdown action-label">
-          <button
-            class="custom-badge book-btn"
-            style={{ backgroundColor: "#41ab5d", marginRight: "20px" }}
-            onClick={() =>
-              navigate(`/laboratory/edit-analysis/${analysis._id}`)
-            }
-          >
-            Edit
-          </button>
-        </div>
-        <div class="dropdown action-label">
-          <button
-            class="custom-badge book-btn"
-            style={{ backgroundColor: "#f03d32" }}
-            onClick={() => handleDelete(analysis._id)}
-          >
-            Delete
-          </button>
-        </div>
-      </td>
+      {isDataLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <td>{analysis.name}</td>
+          <td style={{ paddingRight: "40px" }}>{analysis.price} EGP</td>
+          <td>
+            <div class="dropdown action-label">
+              <button
+                class="custom-badge book-btn"
+                onClick={() => {
+                  onChangeActiveAnalysis(analysis);
+                  onOpenModal();
+                }}
+                style={{ marginRight: "120px" }}
+              >
+                Show Details
+              </button>
+            </div>
+          </td>
+          <td className="text-end">
+            <div className="dropdown dropdown-action">
+              <a
+                className="action-icon dropdown-toggle"
+                onClick={() => setDropdown((dropdown) => !dropdown)}
+              >
+                <CgMoreVerticalAlt />
+              </a>
+              <div
+                className="dropdown-menu dropdown-menu-end"
+                style={{
+                  display: `${dropdown ? "block" : "none"}`,
+                }}
+              >
+                <Link
+                  to={`/laboratory/edit-analysis/${analysis._id}`}
+                  className="dropdown-item"
+                >
+                  <FaEdit /> Edit
+                </Link>
+                <button
+                  className="dropdown-item"
+                  onClick={() => {
+                    handleDelete(analysis._id);
+                    setDropdown((dropdown) => !dropdown);
+                  }}
+                >
+                  <RiDeleteBin6Fill /> Delete
+                </button>
+              </div>
+            </div>
+          </td>
+        </>
+      )}
     </tr>
   );
 }
