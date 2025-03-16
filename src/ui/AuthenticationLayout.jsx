@@ -18,9 +18,10 @@ function AuthenticationLayout() {
       }
     };
 
-    let isAuth = JSON.parse(localStorage.getItem("key"));
-    if (isAuth !== null) {
-      getUser(isAuth);
+    let isAuth = localStorage.getItem("key");
+
+    if (isAuth !== null && isAuth !== "undefined") {
+      getUser(JSON.parse(isAuth));
     }
   }, []);
 
