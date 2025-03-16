@@ -8,13 +8,14 @@ import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 
 function Login() {
-  const { register, handleSubmit, reset } = useForm();
+  const { userLogin, saveEmail, userEmail } = useAuth();
+
+  const { register, handleSubmit, reset, setValue } = useForm();
 
   const [isEyeOpen, setIsEyeOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  // const isProfileCompleted = false;
-  const { userLogin } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
+  const [email, setEmail] = useState();
 
   const navigate = useNavigate();
 
@@ -33,7 +34,8 @@ function Login() {
   //   }
   // };
 
-  const changeButton = function () {
+  const changeButton = function (email) {
+    setEmail(email);
     setIsLogin(false);
   };
 
@@ -48,9 +50,11 @@ function Login() {
         toast(`Welcome ${response.data.user.name}`, {
           icon: "👋",
         });
+
+        setEmail(data?.email);
+        setValue("email", data?.email);
       } else {
-        const email = data?.email;
-        userLogin({ email });
+        saveEmail(email);
         await requestEmailVerification({ email });
         navigate("/verify-email");
         toast.success("OTP Code is sent");
@@ -62,7 +66,7 @@ function Login() {
         return navigate("/internal-server-error");
       }
       if (error.response.data.message === "Please verify your email to login")
-        changeButton();
+        changeButton(data?.email);
       toast.error(error.response.data.message);
     } finally {
       setIsLoading(false);
@@ -76,24 +80,24 @@ function Login() {
 
   return (
     <>
-      <h2>{isLogin ? "Login" : "Verify Email"}</h2>
-
+      <h2>{isLogin ? "Login" : "Great, now verify your email"}</h2>
+      <div className="input-block">
+        <label style={{ background: `${isLoading ? "none" : "#ffffff"}` }}>
+          Email <span className="login-danger">*</span>
+        </label>
+        <input
+          className="form-control"
+          type="email"
+          required
+          disabled={isLoading}
+          {...register("email")}
+        />
+      </div>
       {/* <!-- Form --> */}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="input-block">
-          <label style={{ background: `${isLoading ? "none" : "#ffffff"}` }}>
-            Email <span className="login-danger">*</span>
-          </label>
-          <input
-            className="form-control"
-            type="email"
-            required
-            disabled={isLoading}
-            {...register("email")}
-          />
-        </div>
         {isLogin && (
           <>
+            {" "}
             <div className="input-block">
               <label
                 style={{ background: `${isLoading ? "none" : "#ffffff"}` }}
@@ -112,7 +116,6 @@ function Login() {
                 setIsEyeOpen={handlePasswordEye}
               />
             </div>
-
             <div className="forgotpass">
               <Link to="/forgot-password">Forgot Password?</Link>
             </div>
