@@ -4,13 +4,12 @@ import ActiveStar from "../../../../ui/ActiveStar";
 import InactiveStar from "../../../../ui/InactiveStar";
 import SemiactiveStar from "../../../../ui/SemiactiveStar";
 import { createChat } from "../../../../services/chat-app";
+import useUser from "../../useUser";
 
-function ClinicHeader({ activeTab }) {
-  const clinic = JSON.parse(localStorage.getItem("clinic"));
-  const navigate = useNavigate();
-
-  const numOfInactiveStars = 5 - clinic.rating;
-  const activeStars = Array.from({ length: clinic.rating }, (_, i) => i + 1);
+function ClinicHeader({ activeTab, clinic }) {
+  const { data: clinicUser } = useUser(clinic?.adminId);
+  const numOfInactiveStars = 5 - clinic?.rating;
+  const activeStars = Array.from({ length: clinic?.rating }, (_, i) => i + 1);
   let inactiveStars;
 
   if (Number.isInteger(numOfInactiveStars)) {
@@ -40,7 +39,7 @@ function ClinicHeader({ activeTab }) {
               <i className="feather-chevron-right" />
             </li>
             <li className="breadcrumb-item active">
-              {clinic.name}
+              {clinic?.name} Hospital
               {activeTab === "doctor-list"
                 ? " Doctors"
                 : activeTab === "images"
@@ -64,8 +63,8 @@ function ClinicHeader({ activeTab }) {
                   <a href="#">
                     <img
                       className="avatar"
-                      src={clinic.profilePhoto}
-                      alt={clinic.name}
+                      src={clinicUser?.profilePhoto?.url}
+                      alt={clinic?.name}
                     />
                   </a>
                 </div>
@@ -74,8 +73,12 @@ function ClinicHeader({ activeTab }) {
                 <div className="row">
                   <div className="col-md-5">
                     <div className="profile-info-left">
-                      <h3 className="user-name m-t-0 mb-0">{clinic.name}</h3>
-                      <small className="text-muted">{clinic.city}</small>
+                      <h3 className="user-name m-t-0 mb-0">
+                        {clinic?.name} Hospital
+                      </h3>
+                      <small className="text-muted">
+                        {clinic?.address?.city}
+                      </small>
                       <div className="staff-id">
                         <span className="rating rating-score">
                           {activeStars.map((star) => (
@@ -111,7 +114,7 @@ function ClinicHeader({ activeTab }) {
                       <li>
                         <span className="title">Phone:</span>
                         <span className="text">
-                          <a>{clinic.phone}</a>
+                          <a>{clinic?.phone}</a>
                         </span>
                       </li>
                       <li>
@@ -122,18 +125,23 @@ function ClinicHeader({ activeTab }) {
                               className="__cf_email__"
                               data-cfemail="c2a1b0abb1b6abaca3a5b0adb4a7b182a7baa3afb2aea7eca1adaf"
                             >
-                              {clinic.email}
+                              {clinicUser?.email}
                             </span>
                           </a>
                         </span>
                       </li>
                       <li>
                         <span className="title">Address:</span>
-                        <span className="text">{clinic.address}</span>
+                        <span className="text">
+                          {clinic?.address?.address}, {clinic?.address?.area},{" "}
+                          {clinic?.address?.city} Governorate
+                        </span>
                       </li>
                       <li>
                         <span className="title">Founded:</span>
-                        <span className="text">{clinic.foundedDate}</span>
+                        <span className="text">
+                          {clinic?.foundedYear || "__"}
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -148,7 +156,7 @@ function ClinicHeader({ activeTab }) {
           <li className="nav-item">
             <Link
               className={`nav-link${activeTab === "about" ? " active" : ""}`}
-              to={`/patient/clinics/${clinic.slug}`}
+              to={`/patient/clinics/${clinic.slug}/${clinic._id}`}
               data-bs-toggle="tab"
             >
               About
@@ -156,7 +164,7 @@ function ClinicHeader({ activeTab }) {
           </li>
           <li className="nav-item">
             <Link
-              to={`/patient/clinics/${clinic.slug}/doctors`}
+              to={`/patient/clinics/${clinic.slug}/${clinic._id}/doctors`}
               className={`nav-link${
                 activeTab === "doctor-list" ? " active" : ""
               }`}
@@ -168,7 +176,7 @@ function ClinicHeader({ activeTab }) {
           <li className="nav-item">
             <Link
               className={`nav-link${activeTab === "images" ? " active" : ""}`}
-              to={`/patient/clinics/${clinic.slug}/images`}
+              to={`/patient/clinics/${clinic.slug}/${clinic._id}/images`}
               data-bs-toggle="tab"
             >
               Images
