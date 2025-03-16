@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../../context/AuthContext";
+import useUser from "../../useUser";
 
 function ClinicCard({ clinic }) {
-  const saveActiveClinic = function (clinic) {
-    localStorage.setItem("clinic", JSON.stringify(clinic));
-  };
-
   const { user } = useAuth();
+  const { data: clinicUser } = useUser(clinic.adminId);
+
   return (
     <div className="col-12 col-md-4 col-lg-3 d-flex">
       <div
@@ -19,26 +18,25 @@ function ClinicCard({ clinic }) {
       >
         <img
           alt="Card Image"
-          src={clinic.profilePhoto}
+          src={clinicUser?.profilePhoto?.url}
           className="card-img-top"
           style={{ width: "100%", height: "174px" }}
         />
         <div className="card-header" style={{ padding: "5%" }}>
           <h5 className="card-title mb-0" style={{ color: "#2e37a4" }}>
-            <strong>{clinic.name}</strong>
+            <strong>{clinic.name} Hospital</strong>
           </h5>
         </div>
         <div className="card-body card-buttons" style={{ padding: "5%" }}>
           <p className="card-text">
-            <span style={{ fontWeight: "600" }}>Our Specialization: </span>
-            {clinic.specialization.join(", ")}
+            {/* <span style={{ fontWeight: "600" }}>Our Specialization: </span> */}
+            {/* {clinic.specialization.join(", ")} */}
           </p>
           <Link
             to={`${user.role === "DOCTOR" ? "/doctor/" : "/patient/clinics/"}${
               clinic.slug
-            }`}
+            }/${clinic._id}`}
             className="btn btn-primary"
-            onClick={() => saveActiveClinic(clinic)}
           >
             View {user.role === "DOCTOR" ? "Patients" : "Profile"}
           </Link>
