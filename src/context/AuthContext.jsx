@@ -19,6 +19,7 @@ function reducer(state, action) {
         isRegistered: true,
       };
     }
+
     case "login":
       return {
         ...state,
@@ -26,8 +27,13 @@ function reducer(state, action) {
         isAuthenticated: true,
         isProfileCompleted: action.payload.profileCompleted,
       };
+
     case "saveEmail":
       return { ...state, userEmail: action.payload, isRegistered: true };
+
+    case "isVerify":
+      return { ...state, isRegistered: false, isAuthenticated: true };
+
     case "logout":
       return {
         ...state,
@@ -42,15 +48,22 @@ function UserContextProvider({ children }) {
     { user, userEmail, isAuthenticated, isRegistered, isProfileCompleted },
     dispatch,
   ] = useReducer(reducer, initialState);
+
   function userLogin(user, token) {
     dispatch({ type: "login", payload: user });
     localStorage.setItem("key", JSON.stringify(token));
   }
+
   function userRegister(user) {
     dispatch({ type: "register", payload: user });
   }
+
   function saveEmail(userEmail) {
     dispatch({ type: "saveEmail", payload: userEmail });
+  }
+
+  function setVerify() {
+    dispatch({ type: "isVerify" });
   }
 
   function userLogout() {
@@ -70,6 +83,7 @@ function UserContextProvider({ children }) {
         isAuthenticated,
         isRegistered,
         isProfileCompleted,
+        setVerify,
       }}
     >
       {children}
