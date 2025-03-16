@@ -1,5 +1,5 @@
 import { IoArrowBackOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DynamicField from "./DynamicField";
 import { useState } from "react";
 import { addMedicineList } from "../../../../services/medicine";
@@ -7,6 +7,7 @@ import { addMedicineList } from "../../../../services/medicine";
 function MedicineAddition() {
   const [medicineList, setMedicineList] = useState([{}]);
   const [openCard, setOpenCard] = useState(false);
+  const navigate = useNavigate();
 
   function handleCancel() {
     setMedicineList([{}]);
@@ -17,7 +18,7 @@ function MedicineAddition() {
     if (medicineList[0].medicine_name) {
       await addMedicineList(medicineList);
       setMedicineList([{}]);
-      setOpenCard(false);
+      navigate("/pharmacy/medicines");
     }
   }
 
