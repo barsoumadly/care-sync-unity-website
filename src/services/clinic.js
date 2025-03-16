@@ -64,4 +64,28 @@ const addDoctor = async function (doctorData) {
   }
 };
 
-export { updateClinicProfile, getClinicProfile, addDoctor };
+const getClinics = async function () {
+  try {
+    const response = await axios.get(`${API_URL}/`);
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getClinic = async function (id) {
+  try {
+    const response = await axios.get(`${API_URL}/${id}`);
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  updateClinicProfile,
+  getClinicProfile,
+  addDoctor,
+  getClinics,
+  getClinic,
+};
