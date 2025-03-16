@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import ClinicCard from "./ClinicCard";
 import { IoArrowBackOutline } from "react-icons/io5";
+import useClinics from "./useClinics";
+import LoadingSpinner from "../../../../ui/LoadingSpinner";
+import useProfile from "../useProfile";
 
 let clinicsList = [
   {
@@ -49,6 +52,14 @@ let clinicsList = [
 ];
 
 function ClinicsList() {
+  const { data: clinicsList, isLoading } = useClinics();
+
+  const { data: user, isLoading: isLoad } = useProfile();
+
+  const nearestClinics = clinicsList?.filter(
+    (clinic) => clinic.address.area === user?.address?.area
+  );
+
   return (
     <div className="page-wrapper" style={{ minHeight: 270 }}>
       <div className="content container-fluid">
@@ -133,10 +144,12 @@ function ClinicsList() {
                   </form>
                 </div>
 
-                {clinicsList.length !== 0 ? (
+                {isLoading ? (
+                  <LoadingSpinner />
+                ) : nearestClinics?.length !== 0 ? (
                   <div className="row">
                     {/* Cards */}
-                    {clinicsList.map((clinic) => (
+                    {nearestClinics?.map((clinic) => (
                       <ClinicCard clinic={clinic} key={clinic.id} />
                     ))}
                   </div>
