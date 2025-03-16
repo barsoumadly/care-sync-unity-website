@@ -65,7 +65,7 @@ function MedicinesList() {
               <div className="col-sm-12">
                 <div className="card card-table show-entire">
                   <div className="card-body">
-                    {medicines?.length === 0 ? (
+                    {medicines?.length === 0 || medicines === undefined ? (
                       <div className=" container-fluid ">
                         <div className="col-xl-12 ">
                           <div className="card invoice-info-card">
