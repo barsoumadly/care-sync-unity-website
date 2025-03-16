@@ -9,7 +9,7 @@ function PharmacyOrdersList() {
   const { user } = useAuth();
   const { isLoading, data } = useMedicineOrders(user.id);
 
-  const orders = [...data];
+  const orders = isLoading ? [] : data?.length ? [...data] : [];
 
   return (
     <>
