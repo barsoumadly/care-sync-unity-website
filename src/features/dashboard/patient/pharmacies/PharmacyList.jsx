@@ -2,10 +2,16 @@ import { Link } from "react-router-dom";
 import PharmacyCard from "./PharmacyCard";
 import { IoArrowBackOutline } from "react-icons/io5";
 import usePharmacy from "./usePharmacy";
+import useProfile from "../useProfile";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 
 function PharmacyList() {
   const { data: pharmaciesList, isLoading, error } = usePharmacy();
+  const { data: user, isLoading: isLoad } = useProfile();
+
+  const nearestPharmacies = pharmaciesList?.filter(
+    (pharmacy) => pharmacy.address.area === user?.address?.area
+  );
 
   if (error) toast.error(error?.message);
 
@@ -82,8 +88,8 @@ function PharmacyList() {
                   {/* Cards */}
                   {isLoading ? (
                     <LoadingSpinner />
-                  ) : pharmaciesList.length !== 0 ? (
-                    pharmaciesList?.map((pharmacy) => (
+                  ) : nearestPharmacies?.length !== 0 ? (
+                    nearestPharmacies?.map((pharmacy) => (
                       <PharmacyCard pharmacy={pharmacy} key={pharmacy.id} />
                     ))
                   ) : (
