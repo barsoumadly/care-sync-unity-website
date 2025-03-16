@@ -7,7 +7,7 @@ import useAnalysisOrders from "./useAnalysisOrders";
 function AnalysisResults() {
   const { isLoading, data } = useAnalysisOrders();
 
-  const orders = [...data];
+  const orders = isLoading ? [] : [...data];
 
   return (
     <>
