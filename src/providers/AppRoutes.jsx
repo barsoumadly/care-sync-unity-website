@@ -225,9 +225,15 @@ function AppRoutes() {
           <Route path="appointments" element={<PatientAppointments />} />
           <Route path="view-profile" element={<PatientProfileView />} />
           <Route path="edit-profile" element={<PatientEditProfile />} />
-          <Route path="clinics/:clinicName" element={<ClinicProfile />} />
-          <Route path="clinics/:clinicName/doctors" element={<DoctorsList />} />
-          <Route path="clinics/:clinicName/images" element={<ClinicImages />} />
+          <Route path="clinics/:clinicName/:id" element={<ClinicProfile />} />
+          <Route
+            path="clinics/:clinicName/:id/doctors"
+            element={<DoctorsList />}
+          />
+          <Route
+            path="clinics/:clinicName/:id/images"
+            element={<ClinicImages />}
+          />
           <Route path="payment-gateway" element={<PaymentGateway />} />
           <Route path="pharmacies" element={<PharmacyList />} />
           <Route
