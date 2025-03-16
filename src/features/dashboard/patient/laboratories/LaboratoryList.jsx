@@ -3,9 +3,15 @@ import LaboratoryCard from "./LaboratoryCard";
 import { IoArrowBackOutline } from "react-icons/io5";
 import useLaboratory from "./useLaboratory";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
+import useProfile from "../useProfile";
 
 function LaboratoryList() {
   const { data: laboratories, isLoading, error } = useLaboratory();
+  const { data: user, isLoading: isLoad } = useProfile();
+
+  const nearestLaboratories = laboratories?.filter(
+    (laboratory) => laboratory.address.area === user?.address?.area
+  );
 
   if (error) toast.error(error?.message);
 
@@ -82,8 +88,8 @@ function LaboratoryList() {
                   {/* Cards */}
                   {isLoading ? (
                     <LoadingSpinner />
-                  ) : laboratories.length !== 0 ? (
-                    laboratories?.map((laboratory) => (
+                  ) : nearestLaboratories?.length !== 0 ? (
+                    nearestLaboratories?.map((laboratory) => (
                       <LaboratoryCard
                         laboratory={laboratory}
                         key={laboratory.id}
