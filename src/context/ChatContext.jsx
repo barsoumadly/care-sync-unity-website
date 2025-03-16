@@ -178,7 +178,7 @@ export function ChatProvider({ children }) {
   const getToken = () => {
     const tokenStr = localStorage.getItem("key");
     if (!tokenStr) return null;
-    return JSON.parse(tokenStr);
+    if (tokenStr !== "undefined") return JSON.parse(tokenStr);
   };
 
   useEffect(() => {
