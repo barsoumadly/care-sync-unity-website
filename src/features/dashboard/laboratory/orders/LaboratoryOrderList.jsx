@@ -7,7 +7,7 @@ import LoadingSpinner from "../../../../ui/LoadingSpinner";
 function LaboratoryOrderList() {
   const { isLoading, data } = useAnalysisOrders();
 
-  const orders = [...data];
+  const orders = isLoading ? [] : [...data];
 
   return (
     <>
