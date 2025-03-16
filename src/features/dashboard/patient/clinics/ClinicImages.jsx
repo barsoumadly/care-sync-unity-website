@@ -1,23 +1,30 @@
+import { useParams } from "react-router-dom";
 import ClinicHeader from "./ClinicHeader";
+import useClinicProfile from "./useClinicProfile";
+import LoadingSpinner from "../../../../ui/LoadingSpinner";
 
 function ClinicImages() {
-  const clinic = JSON.parse(localStorage.getItem("clinic"));
-
+  const { id } = useParams();
+  const { data: clinic, isLoading } = useClinicProfile(id);
   return (
     <div className="main-wrapper">
-      <div className="page-wrapper" style={{ minHeight: 270 }}>
-        <div className="content">
-          <ClinicHeader activeTab="images" />
-          {/* Page Header */}
-          <div className="page-header"></div>
-          {/* /Page Header */}
-          <div id="lightgallery" className="row">
-            {clinic.images.map((imageUrl) => (
-              <Image imageUrl={imageUrl} key={imageUrl} />
-            ))}
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <div className="page-wrapper" style={{ minHeight: 270 }}>
+          <div className="content">
+            <ClinicHeader activeTab="images" clinic={clinic} />
+            {/* Page Header */}
+            <div className="page-header"></div>
+            {/* /Page Header */}
+            <div id="lightgallery" className="row">
+              {clinic?.images?.map((imageUrl) => (
+                <Image imageUrl={imageUrl} key={imageUrl} />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
