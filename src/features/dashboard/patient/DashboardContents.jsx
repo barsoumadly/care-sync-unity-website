@@ -7,6 +7,59 @@ import AnalysisTuple from "./analysis/analysisTuple";
 import LoadingSpinner from "../../../ui/LoadingSpinner";
 import { Link } from "react-router-dom";
 import useAnalysisOrders from "./analysis/useAnalysisOrders";
+import { useState } from "react";
+import AppointmentTupleDashboard from "./appointments/AppointmentTupleDashboard";
+
+const appointments = [
+  {
+    id: 1,
+    clinicName: "Heliopolis Hospital",
+    clinicId: 1,
+    date: "04.10.2022",
+    doctor: {
+      id: "1",
+      name: "Smith Bruklin",
+      specialization: "Urology",
+      profilePhoto:
+        "https://preclinic.dreamstechnologies.com/html/template/assets/img/profiles/avatar-02.jpg",
+    },
+
+    status: "pending",
+    turn: 3,
+  },
+  {
+    id: 2,
+    clinicName: "Cleopatra Hospital",
+    clinicId: 2,
+    date: "05.08.2023",
+    doctor: {
+      id: "2",
+      name: "William Stephin",
+      specialization: "Radiology",
+      profilePhoto:
+        "https://static.vecteezy.com/system/resources/previews/030/666/513/large_2x/doctor-high-quality-4k-ultra-hd-hdr-free-photo.jpg",
+    },
+
+    status: "approved",
+    turn: 1,
+  },
+  {
+    id: 4,
+    clinicName: "Heliopolis Hospital",
+    clinicId: 4,
+    date: "07.11.2024",
+    doctor: {
+      id: "4",
+      name: "Andrea Lalema",
+      specialization: "Otolaryngology",
+      profilePhoto:
+        "https://preclinic.dreamstechnologies.com/html/template/assets/img/profiles/avatar-04.jpg",
+    },
+
+    status: "examined",
+    turn: 1,
+  },
+];
 
 function DashboardContents() {
   const { data: patientData, isLoading, error } = useProfile();
@@ -14,8 +67,6 @@ function DashboardContents() {
   const { isLoading: isLoad2, data: analysis } = useAnalysisOrders();
   const medicineOrders = isLoad1 ? [] : [...medicines];
   const analysisOrders = isLoad2 ? [] : [...analysis];
-
-  console.log(analysisOrders);
 
   if (error) toast.error(error?.message);
 
@@ -207,93 +258,76 @@ function DashboardContents() {
 
         <div className="col-12 col-md-12  col-xl-8">
           <div className="card">
-            <div className="card-header">
-              <h4 className="card-title d-inline-block">
-                Appointments History
-                <br />
-                <br />
-                <br />
-              </h4>
-              {/* <Link
-                to="/patient/appointments"
-                className="patient-views float-end"
-              >
-                Show all
-              </Link> */}
-            </div>
-            <div className="card-body p-0 table-dash">
-              <div className="table-responsive">
-                <table className="table mb-0 border-0 datatable custom-table patient-table">
-                  <thead>
-                    <tr>
-                      <th>Doctor name</th>
-                      <th>Diagnosis</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th />
-                      <th />
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="table-image">
-                        <img
-                          width={28}
-                          height={28}
-                          className="rounded-circle"
-                          src="assets/img/profiles/avatar-02.jpg"
-                          alt=""
-                        />
-                        <h2>Dr.Jenny Smith</h2>
-                      </td>
-                      <td>Dermotology</td>
-                      <td>12.05.2022 </td>
-                      <td>
-                        <div className="dropdown action-label">
-                          <a className="custom-badge status-orange">Pending</a>
+            <div className="card-body">
+              <div className="chart-title patient-visit">
+                <h4>Recent Appointments</h4>
+                <Link
+                  to="/patient/appointments"
+                  style={{ color: "rgb(46, 55, 164)" }}
+                >
+                  Show all
+                </Link>
+              </div>
+              <div className="body-mass-blk">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="table-responsive">
+                      {isLoad1 ? (
+                        <LoadingSpinner />
+                      ) : appointments?.length !== 0 ? (
+                        <table className="table border-0 custom-table comman-table datatable mb-0">
+                          <thead>
+                            <tr>
+                              <th>Doctor Name</th>
+                              <th>Clinic Name</th>
+                              <th>Date</th>
+                              <th>Specialization</th>
+                              <th>Status</th>
+                              <th />
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {appointments.map((appointment) => (
+                              <AppointmentTupleDashboard
+                                appointmentTuple={appointment}
+                                key={appointment.id}
+                              />
+                            ))}
+                          </tbody>
+                        </table>
+                      ) : (
+                        <div className=" container-fluid ">
+                          <div className="col-xl-12 ">
+                            <div className="card invoice-info-card">
+                              <div className="card-boyd">
+                                <div
+                                  className="text-center mt-5 py-5"
+                                  style={{
+                                    padding: "0px 10%",
+                                    backgroundColor: "#fff",
+                                  }}
+                                >
+                                  <div className="reminder-icon">
+                                    <img
+                                      alt="medicine"
+                                      src="/images/dashborad/order.png"
+                                      style={{
+                                        width: "180%",
+                                        marginTop: "-90px",
+                                        marginLeft: "-40px",
+                                      }}
+                                    />
+                                  </div>
+                                  <h4>No orders are Found</h4>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="table-image">
-                        <img
-                          width={28}
-                          height={28}
-                          className="rounded-circle"
-                          src="assets/img/profiles/avatar-04.jpg"
-                          alt=""
-                        />
-                        <h2>Andrea Lalema</h2>
-                      </td>
-                      <td>Dermotology</td>
-                      <td>10.05.2022 </td>
-                      <td>
-                        <div className="dropdown action-label">
-                          <a className="custom-badge status-green">Approved</a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="table-image">
-                        <img
-                          width={28}
-                          height={28}
-                          className="rounded-circle"
-                          src="assets/img/profiles/avatar-05.jpg"
-                          alt=""
-                        />
-                        <h2>Dr.William Stephin</h2>
-                      </td>
-                      <td>Dermotology</td>
-                      <td>12.05.2022 </td>
-                      <td>
-                        <div className="dropdown action-label">
-                          <a className="custom-badge status-red">Cancelled</a>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
