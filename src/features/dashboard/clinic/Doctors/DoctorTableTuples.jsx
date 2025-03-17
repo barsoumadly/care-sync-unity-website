@@ -23,29 +23,26 @@ function DoctorTableTuples({ doctor, handleOpenModal }) {
             <img
               width={28}
               height={28}
-              src={doctor.image}
+              src={doctor.user.profilePhoto.url}
               className="rounded-circle m-r-5"
               alt=""
             />{" "}
-            {doctor.name}
+            {doctor.user.name}
           </Link>
         </td>
 
-        <td>{doctor.specialization}</td>
+        <td>{doctor.doctor.specialization}</td>
 
-        <td>
-          <a>{doctor.mobile}</a>
-        </td>
         <td>
           <a
             href="cdn-cgi/l/email-protection"
             className="__cf_email__"
             data-cfemail="ddb8a5bcb0adb1b89db8b0bcb4b1f3beb2b0"
           >
-            {doctor.email}
+            {doctor.user.email}
           </a>
         </td>
-        <td>{doctor.joiningDate}</td>
+        <td>{doctor.user.createdAt.split("T")[0]}</td>
         <td className="text-end">
           <div className="dropdown dropdown-action">
             <a
@@ -60,7 +57,10 @@ function DoctorTableTuples({ doctor, handleOpenModal }) {
                 display: `${dropdown ? "block" : "none"}`,
               }}
             >
-              <Link to="/clinic/edit-profile-Doc" className="dropdown-item">
+              <Link
+                to={`/clinic/edit-profile-Doc/${doctor.doctor._id}`}
+                className="dropdown-item"
+              >
                 <FaEdit /> Edit
               </Link>
               <button
