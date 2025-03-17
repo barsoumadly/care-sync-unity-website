@@ -1,9 +1,12 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-function useAddDoctor() {
+function useDeleteDoctor() {
+  const queryClient = useQueryClient();
+
   const { mutate: addNewDoctor, isDataLoading } = useMutation({
-    // mutationFn: ({ doctorId }) => (doctorId),
+    // mutationFn: ({ doctorId }) => deleteDoctor(doctorId),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["doctorList"] });
       toast.success("Doctor successfully added");
     },
     onError: (err) => toast.error(err.message),
@@ -15,4 +18,4 @@ function useAddDoctor() {
   };
 }
 
-export default useAddDoctor;
+export default useDeleteDoctor;
