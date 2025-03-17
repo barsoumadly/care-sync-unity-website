@@ -28,6 +28,7 @@ function CompleteClinicProfile({ clinicData }) {
   const [areas, setAreas] = useState();
   const [selectedCity, setSelectedCity] = useState(clinicData?.selectedCity);
   const [selectedArea, setSelectedArea] = useState(clinicData?.selectedArea);
+
   const {
     register,
     handleSubmit,
@@ -172,6 +173,7 @@ function CompleteClinicProfile({ clinicData }) {
                             className="form-control"
                             type="text"
                             placeholder="ex: 1996"
+                            {...register("founded")}
                           />
                         </div>
                       </div>
@@ -187,7 +189,7 @@ function CompleteClinicProfile({ clinicData }) {
                             value={selectedCity}
                             onChange={hanbleSelection}
                           >
-                            <option value="Select City" disabled>
+                            <option value="Select City" selected disabled>
                               Select City
                             </option>
 
@@ -258,6 +260,7 @@ function CompleteClinicProfile({ clinicData }) {
                             className="form-control"
                             rows={3}
                             cols={30}
+                            {...register("biography")}
                           />
                         </div>
                       </div>
