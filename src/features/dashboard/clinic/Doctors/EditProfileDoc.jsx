@@ -1,26 +1,34 @@
 import { useFieldArray, useForm } from "react-hook-form";
 import Button from "../reusable/Button";
 import DynamicDoctorSheduleInput from "./DynamicDoctorSheduleInput";
+import useEditDoctor from "./useEtidDoctor";
+import { useLocation } from "react-router-dom";
 function EditProfileDoc() {
+  const DATA = useLocation().pathname.split("/");
+  const DOCTOR_ID = DATA[3];
+
   const {
     register,
     handleSubmit,
     reset,
     control,
     formState: { errors },
-    getValues,
   } = useForm({
     defaultValues: {
       doctorShedule: [{}],
     },
   });
+  const { updateDoctorData, isDataLoading } = useEditDoctor(DOCTOR_ID);
 
   function onSubmit(data) {
+    updateDoctorData({ data });
     console.log(data);
   }
+
   function handleCancel() {
     reset();
   }
+
   return (
     <div className="page-wrapper">
       <div className="content">
