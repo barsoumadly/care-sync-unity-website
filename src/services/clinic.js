@@ -5,26 +5,19 @@ const API_URL = "http://localhost:8000/api/v1/clinics";
 const updateClinicProfile = async function (clinicData) {
   const formData = new FormData();
 
-  const photos = clinicData.images.map((image) =>
-    formData.append("image", image)
-  );
+  clinicData.images.map((image) => formData.append("photos", image));
+  formData.append("name", clinicData.clinicName);
+  formData.append("phone", clinicData.mobile);
+  formData.append("address[city]", clinicData.selectedCity);
+  formData.append("address[state]", clinicData.selectedArea);
+  formData.append("address[street]", clinicData.address);
+  formData.append("founded", clinicData.founded);
+  formData.append("biography", clinicData.biography);
 
   const token = JSON.parse(localStorage.getItem("key"));
-  const data = {
-    name: clinicData.clinicName,
-    phone: clinicData.mobile,
-    address: {
-      city: clinicData.selectedCity,
-      state: clinicData.selectedArea,
-      street: clinicData.address,
-    },
-    founded: clinicData.founded,
-    biography: clinicData.biography,
-    photos,
-  };
 
   try {
-    await axios.put(`${API_URL}/`, data, {
+    await axios.put(`${API_URL}/`, formData, {
       headers: { Authorization: `Bearer ${token}` },
     });
   } catch (error) {
@@ -82,10 +75,47 @@ const getClinic = async function (id) {
   }
 };
 
+const getDoctorList = async function () {
+  const token = JSON.parse(localStorage.getItem("key"));
+
+  try {
+    const response = await axios.get(`${API_URL}/own-doctors`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const updateDoctor = async function (doctorData, doctorId) {
+  const formData = new FormData();
+
+  formData.append("name", doctorData.doctorName);
+  formData.append("email", doctorData.email);
+  formData.append("gender", doctorData.gender);
+  formData.append("password", doctorData.password);
+  formData.append("specialization", doctorData.specialization);
+
+  formData.append("schedule", doctorData.doctorShedule);
+
+  const token = JSON.parse(localStorage.getItem("key"));
+
+  try {
+    await axios.put(`${API_URL}/doctors/${doctorId}`, formData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export {
   updateClinicProfile,
   getClinicProfile,
   addDoctor,
   getClinics,
   getClinic,
+  getDoctorList,
+  updateDoctor,
 };
