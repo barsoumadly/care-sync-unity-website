@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
+import { getDoctorList } from "../../../../services/clinic";
 
 function useDoctorList() {
   const { data, error, isLoading } = useQuery({
     queryKey: ["doctorList"],
-    // queryFn: ,
+    queryFn: getDoctorList,
   });
   return { data, error, isLoading };
 }
