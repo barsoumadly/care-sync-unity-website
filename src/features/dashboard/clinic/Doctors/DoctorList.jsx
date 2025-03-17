@@ -1,82 +1,85 @@
 import { useState } from "react";
 import CheckChosicModal from "../reusable/CheckChosicModal";
 import DoctorTableTuples from "./DoctorTableTuples";
+import useDoctorList from "./useDoctorList";
 
-const doctorInfo = [
-  {
-    id: 1,
-    name: "Andrea Lalema",
-    image: "../images/dashborad/profiles/avatar-01.jpg",
-    specialization: "Infertility",
-    mobile: "+1 23 456890",
-    email: "example@email.com",
-    joiningDate: "01.10.2022",
-  },
-  {
-    id: 2,
-    name: "Smith Bruklin",
-    image: "../images/dashborad/profiles/avatar-02.jpg",
-    specialization: "Prostate",
-    mobile: "+1 23 456890",
-    email: "example@email.com",
-    joiningDate: "01.10.2022",
-  },
-  {
-    id: 3,
-    name: "William Stephin",
-    image: "../images/dashborad/profiles/avatar-03.jpg",
-    specialization: "Cancer",
-    mobile: "+1 23 456890",
-    email: "example@email.com",
-    joiningDate: "01.10.2022",
-  },
-  {
-    id: 4,
-    name: "Bernardo James",
-    image: "../images/dashborad/profiles/avatar-04.jpg",
-    specialization: "Prostate",
-    mobile: "+1 23 456890",
-    email: "example@email.com",
-    joiningDate: "01.10.2022",
-  },
-  {
-    id: 5,
-    name: "Cristina Groves",
-    image: "../images/dashborad/profiles/avatar-06.jpg",
-    specialization: "Prostate",
-    mobile: "+1 23 456890",
-    email: "example@email.com",
-    joiningDate: "01.10.2022",
-  },
-  {
-    id: 6,
-    name: "Mark Hay Smith",
-    image: "../images/dashborad/profiles/avatar-05.jpg",
-    specialization: "Prostate",
-    mobile: "+1 23 456890",
-    email: "example@email.com",
-    joiningDate: "01.10.2022",
-  },
-  {
-    id: 7,
-    name: "Andrea Lalema",
-    image: "../images/dashborad/profiles/avatar-01.jpg",
-    specialization: "Infertility",
-    mobile: "+1 23 456890",
-    email: "example@email.com",
-    joiningDate: "01.10.2022",
-  },
-  {
-    id: 8,
-    name: "Smith Bruklin",
-    image: "../images/dashborad/profiles/avatar-02.jpg",
-    specialization: "Prostate",
-    mobile: "+1 23 456890",
-    email: "example@email.com",
-    joiningDate: "01.10.2022",
-  },
-];
+// const doctorInfo = [
+//   {
+//     id: 1,
+//     name: "Andrea Lalema",
+//     image: "../images/dashborad/profiles/avatar-01.jpg",
+//     specialization: "Infertility",
+//     mobile: "+1 23 456890",
+//     email: "example@email.com",
+//     joiningDate: "01.10.2022",
+//   },
+//   {
+//     id: 2,
+//     name: "Smith Bruklin",
+//     image: "../images/dashborad/profiles/avatar-02.jpg",
+//     specialization: "Prostate",
+//     mobile: "+1 23 456890",
+//     email: "example@email.com",
+//     joiningDate: "01.10.2022",
+//   },
+//   {
+//     id: 3,
+//     name: "William Stephin",
+//     image: "../images/dashborad/profiles/avatar-03.jpg",
+//     specialization: "Cancer",
+//     mobile: "+1 23 456890",
+//     email: "example@email.com",
+//     joiningDate: "01.10.2022",
+//   },
+//   {
+//     id: 4,
+//     name: "Bernardo James",
+//     image: "../images/dashborad/profiles/avatar-04.jpg",
+//     specialization: "Prostate",
+//     mobile: "+1 23 456890",
+//     email: "example@email.com",
+//     joiningDate: "01.10.2022",
+//   },
+//   {
+//     id: 5,
+//     name: "Cristina Groves",
+//     image: "../images/dashborad/profiles/avatar-06.jpg",
+//     specialization: "Prostate",
+//     mobile: "+1 23 456890",
+//     email: "example@email.com",
+//     joiningDate: "01.10.2022",
+//   },
+//   {
+//     id: 6,
+//     name: "Mark Hay Smith",
+//     image: "../images/dashborad/profiles/avatar-05.jpg",
+//     specialization: "Prostate",
+//     mobile: "+1 23 456890",
+//     email: "example@email.com",
+//     joiningDate: "01.10.2022",
+//   },
+//   {
+//     id: 7,
+//     name: "Andrea Lalema",
+//     image: "../images/dashborad/profiles/avatar-01.jpg",
+//     specialization: "Infertility",
+//     mobile: "+1 23 456890",
+//     email: "example@email.com",
+//     joiningDate: "01.10.2022",
+//   },
+//   {
+//     id: 8,
+//     name: "Smith Bruklin",
+//     image: "../images/dashborad/profiles/avatar-02.jpg",
+//     specialization: "Prostate",
+//     mobile: "+1 23 456890",
+//     email: "example@email.com",
+//     joiningDate: "01.10.2022",
+//   },
+// ];
 function DoctorList() {
+  const { data } = useDoctorList();
+  console.log(data);
   return (
     <div className="page-wrapper">
       <div className="content">
@@ -90,7 +93,7 @@ function DoctorList() {
                 {/* Table Header */}
                 <TableHeader />
                 {/* /Table Header */}
-                <Table />
+                <Table doctorInfo={data} />
               </div>
             </div>
           </div>
@@ -163,7 +166,7 @@ function TableHeader() {
     </div>
   );
 }
-function Table() {
+function Table({ doctorInfo }) {
   const [isOpen, setIsOpen] = useState(false);
   const [doctorId, setDoctorId] = useState(false);
 
@@ -189,14 +192,13 @@ function Table() {
               </th>
               <th>Name</th>
               <th>Specialization</th>
-              <th>Mobile</th>
               <th>Email</th>
               <th>Joining Date</th>
               <th />
             </tr>
           </thead>
           <tbody>
-            {doctorInfo.map((doctor) => (
+            {doctorInfo?.map((doctor) => (
               <DoctorTableTuples
                 doctor={doctor}
                 key={doctor.id}
