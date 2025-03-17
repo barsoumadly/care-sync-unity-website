@@ -150,7 +150,10 @@ function AppRoutes() {
           <Route path="doctor-list" element={<DoctorList />} />
           <Route path="add-doctor" element={<AddDoctor />} />
           <Route path="doctor-profile" element={<DoctorProfile />} />
-          <Route path="edit-profile-Doc" element={<EditProfileDoc />} />
+          <Route
+            path="edit-profile-Doc/:doctorId"
+            element={<EditProfileDoc />}
+          />
           {/* Staff */}
           <Route path="employee-salary" element={<EmployeeSalary />} />
           <Route path="add-staff" element={<AddStaff />} />
