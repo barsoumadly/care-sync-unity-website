@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import Button from "../reusable/Button";
 import DynamicDoctorSheduleInput from "./DynamicDoctorSheduleInput";
 import useAddDoctor from "./useAddDoctor";
+import { useNavigate } from "react-router-dom";
 function AddDoctor() {
   const {
     register,
@@ -188,6 +189,7 @@ function AddDoctor() {
                           type="button"
                           name="Cancel"
                           onClick={handleCancel}
+                          disabled={isDataLoading}
                         />
                       </div>
                     </div>
