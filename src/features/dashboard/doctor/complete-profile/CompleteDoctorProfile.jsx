@@ -11,8 +11,8 @@ import DoctorProfessionalDetails from "./DoctorProfessionalDetails";
 import DoctorProfilePhoto from "./DoctorProfilePhoto";
 import Header from "../../../../ui/Header";
 import { useForm } from "react-hook-form";
-import PageWrapper from "../PageWrapper";
-import PageCard from "../PageCard";
+import PageWrapper from "../../PageWrapper";
+import PageCard from "../../PageCard";
 import DashboardPageHeader from "../DashboardPageHeader";
 
 function CompleteDoctorProfile() {
