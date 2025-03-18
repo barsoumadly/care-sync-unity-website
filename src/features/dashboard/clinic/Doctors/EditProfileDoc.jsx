@@ -7,6 +7,7 @@ import PasswordEye from "../../../authentication/PasswordEye";
 import { useEffect, useState } from "react";
 import useDoctorList from "./useDoctorList";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
+import MedicalSpecialties from "../../../../data/MedicalSpecialties";
 function EditProfileDoc() {
   const DATA = useLocation().pathname.split("/");
   const DOCTOR_ID = DATA[3];
@@ -117,9 +118,9 @@ function EditProfileDoc() {
                               })}
                             >
                               <option disabled>Select Specialization</option>
-                              <option>Orthopedics</option>
-                              <option>Radiology</option>
-                              <option>Dentist</option>
+                              {MedicalSpecialties.map((specialty) => (
+                                <option key={specialty}>{specialty}</option>
+                              ))}
                             </select>
                           </div>
                           <span className="error-message ">
