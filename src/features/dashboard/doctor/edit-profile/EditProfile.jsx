@@ -1,6 +1,6 @@
 import { useState } from "react";
-import PageWrapper from "../PageWrapper";
-import PageCard from "../PageCard";
+import PageWrapper from "../../PageWrapper";
+import PageCard from "../../PageCard";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import DashboardPageHeader from "../DashboardPageHeader";
