@@ -20,9 +20,7 @@ function ClinicImages({ images, setImage }) {
       </div>
       <div className="col-12 col-md-6 col-xl-5">
         <div className="input-block local-top-form">
-          <label className="local-top">
-            Clinic images <span className="login-danger">*</span>
-          </label>
+          <label className="local-top">Clinic images</label>
           <div className="settings-btn upload-files-avator">
             <input
               type="file"
