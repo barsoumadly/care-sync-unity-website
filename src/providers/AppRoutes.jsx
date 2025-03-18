@@ -18,7 +18,7 @@ import ClinicLayout from "../features/dashboard/clinic/ClinicLayout";
 import ClinicDashboard from "../features/dashboard/clinic/ClinicDashboard";
 import DoctorList from "../features/dashboard/clinic/Doctors/DoctorList";
 import AddDoctor from "../features/dashboard/clinic/Doctors/AddDoctor";
-import DoctorProfile from "../features/dashboard/clinic/Doctors/DoctorProfile";
+
 import EditProfileDoc from "../features/dashboard/clinic/Doctors/EditProfileDoc";
 import PatientsOfDoc from "../features/dashboard/clinic/Appointments/PatientsOfDoc";
 import EmployeeSalary from "../features/dashboard/clinic/Staff/EmployeeSalary";
@@ -149,7 +149,6 @@ function AppRoutes() {
           {/* Doctors */}
           <Route path="doctor-list" element={<DoctorList />} />
           <Route path="add-doctor" element={<AddDoctor />} />
-          <Route path="doctor-profile" element={<DoctorProfile />} />
           <Route
             path="edit-profile-Doc/:doctorId"
             element={<EditProfileDoc />}
