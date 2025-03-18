@@ -3,6 +3,7 @@ function ClinicImages({ images, setImage }) {
     const files = e.target.files;
     setImage((images) => [...images, files[0]]);
   };
+
   function deleteHandler(image) {
     setImage((images) => images.filter((e) => e !== image));
     URL.revokeObjectURL(image);
@@ -42,8 +43,12 @@ function ClinicImages({ images, setImage }) {
               flexWrap: "wrap",
             }}
           >
-            {images.map((image, i) => (
-              <ShowImages image={image} key={i} deleteImage={deleteHandler} />
+            {images?.map((image, i) => (
+              <ShowImages
+                image={image.url ? image.url : image}
+                key={i}
+                deleteImage={deleteHandler}
+              />
             ))}
           </div>
         </div>
@@ -54,9 +59,16 @@ function ClinicImages({ images, setImage }) {
 
 export default ClinicImages;
 function ShowImages({ image, deleteImage }) {
+  function checkPhoto(photo) {
+    if (typeof photo !== "string") {
+      return URL.createObjectURL(photo);
+    }
+    return photo;
+  }
+
   return (
     <div className="upload-images upload-size" style={{ marginRight: "20px" }}>
-      <img src={`${URL.createObjectURL(image)}`} alt="Image" />
+      <img src={`${checkPhoto(image)}`} alt="Image" />
       <button
         onClick={() => deleteImage(image)}
         type="button"
