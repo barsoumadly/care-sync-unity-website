@@ -3,6 +3,8 @@ import Button from "../reusable/Button";
 import DynamicDoctorSheduleInput from "./DynamicDoctorSheduleInput";
 import useAddDoctor from "./useAddDoctor";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import PasswordEye from "../../../authentication/PasswordEye";
 function AddDoctor() {
   const {
     register,
@@ -15,8 +17,11 @@ function AddDoctor() {
       doctorShedule: [{}],
     },
   });
-
+  const [isEyeOpen, setIsEyeOpen] = useState(false);
   const { addNewDoctor, isDataLoading } = useAddDoctor();
+  const handlePasswordEye = function (result) {
+    setIsEyeOpen(result);
+  };
 
   function onSubmit(data) {
     console.log(data);
@@ -159,11 +164,15 @@ function AddDoctor() {
                         </label>
                         <input
                           className="form-control"
-                          type="password"
+                          type={`${isEyeOpen ? "text" : "password"}`}
                           placeholder="****************"
                           {...register("password", {
                             required: "This field is required",
                           })}
+                        />{" "}
+                        <PasswordEye
+                          isEyeOpen={isEyeOpen}
+                          setIsEyeOpen={handlePasswordEye}
                         />
                         <span className="error-message ">
                           {errors?.password?.message}
@@ -184,12 +193,15 @@ function AddDoctor() {
                     {/* Button */}
                     <div className="col-12">
                       <div className="doctor-submit text-end">
-                        <Button type="submit" name="Sumbit" />
+                        <Button
+                          type="submit"
+                          name="Sumbit"
+                          disabled={isDataLoading}
+                        />
                         <Button
                           type="button"
                           name="Cancel"
                           onClick={handleCancel}
-                          disabled={isDataLoading}
                         />
                       </div>
                     </div>
