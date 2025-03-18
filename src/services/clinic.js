@@ -6,11 +6,11 @@ const updateClinicProfile = async function (clinicData) {
   const formData = new FormData();
 
   clinicData.images.map((image) => formData.append("photos", image));
-  formData.append("name", clinicData.clinicName);
-  formData.append("phone", clinicData.mobile);
-  formData.append("address[city]", clinicData.selectedCity);
-  formData.append("address[state]", clinicData.selectedArea);
-  formData.append("address[street]", clinicData.address);
+  formData.append("name", clinicData.name);
+  formData.append("phone", clinicData.phone);
+  formData.append("address[city]", clinicData.city);
+  formData.append("address[state]", clinicData.state);
+  formData.append("address[street]", clinicData.street);
   formData.append("founded", clinicData.founded);
   formData.append("biography", clinicData.biography);
 
