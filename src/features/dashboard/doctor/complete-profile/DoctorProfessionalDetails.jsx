@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import DynamicProfileInput from "../DynamicProfileInput";
-import PageCard from "../PageCard";
+import PageCard from "../../PageCard";
 
 function DoctorProfessionalDetails({
   // doctorData,
