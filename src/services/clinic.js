@@ -91,7 +91,7 @@ const getDoctorList = async function () {
 const updateDoctor = async function (doctorData, doctorId) {
   const formData = new FormData();
 
-  formData.append("name", doctorData.doctorName);
+  formData.append("name", doctorData.name);
   formData.append("email", doctorData.email);
   formData.append("gender", doctorData.gender);
   formData.append("password", doctorData.password);
