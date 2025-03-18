@@ -11,6 +11,7 @@ import Button from "../reusable/Button";
 import ClinicImages from "./ClinicImages";
 import ClinicAvatar from "./ClinicAvatar";
 import useEditClinicProfile from "./useEditClinicProfile";
+import useUser from "../../useUser";
 
 function telephoneCheck(p) {
   var phoneRe = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
@@ -26,8 +27,15 @@ function CompleteClinicProfile({ clinicData }) {
   );
   const [cities, setCities] = useState();
   const [areas, setAreas] = useState();
-  const [selectedCity, setSelectedCity] = useState(clinicData?.selectedCity);
-  const [selectedArea, setSelectedArea] = useState(clinicData?.selectedArea);
+  const [selectedCity, setSelectedCity] = useState();
+  const [selectedArea, setSelectedArea] = useState();
+
+  const { data, isLoading } = useLocation();
+  const { userLogout, isProfileCompleted } = useAuth();
+  const { data: userData } = useUser(clinicData?.adminId);
+  const { updateProfile, UpdateProfilePhoto } = useEditClinicProfile();
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -36,17 +44,21 @@ function CompleteClinicProfile({ clinicData }) {
     formState: { errors },
     setValue,
   } = useForm();
-  const { data, isLoading } = useLocation();
-  const { userLogout, isProfileCompleted } = useAuth();
-  const { updateProfile, UpdateProfilePhoto } = useEditClinicProfile();
-  const navigate = useNavigate();
 
   useEffect(() => {
-    setValue("clinicName", clinicData?.clinicName);
-    setValue("mobile", clinicData?.mobile);
-    setValue("founded", clinicData?.founded);
-    setValue("address", clinicData?.address);
-  }, [clinicData]);
+    setValue("name", clinicData?.name);
+    setValue("phone", clinicData?.phone);
+    setValue("founded", clinicData?.founded.split("T")[0]);
+    setValue("biography", clinicData?.biography);
+
+    setSelectedCity(clinicData?.address.city);
+    setSelectedArea(clinicData?.address.state);
+    setAreas(cities?.filter((city) => city.code === clinicData?.address.city));
+    setValue("street", clinicData?.address.street);
+
+    setImage(clinicData?.photos);
+    setAvatar(userData?.profilePhoto?.url);
+  }, [clinicData, userData]);
 
   useEffect(
     function () {
@@ -64,7 +76,12 @@ function CompleteClinicProfile({ clinicData }) {
 
   // Upload Submit Form
   function onSubmit(data) {
-    const formData = { ...data, images, selectedCity, selectedArea };
+    const formData = {
+      ...data,
+      images,
+      city: selectedCity,
+      state: selectedArea,
+    };
     updateProfile({ clinicData: formData });
     UpdateProfilePhoto({ profilePhoto: avatar });
     console.log(formData);
@@ -134,7 +151,7 @@ function CompleteClinicProfile({ clinicData }) {
                             className="form-control"
                             type="text"
                             placeholder="ex: MedLink"
-                            {...register("clinicName", {
+                            {...register("name", {
                               required: "This field is required",
                             })}
                           />{" "}
@@ -153,7 +170,7 @@ function CompleteClinicProfile({ clinicData }) {
                             className="form-control"
                             type="text"
                             placeholder="ex: +20123456789"
-                            {...register("mobile", {
+                            {...register("phone", {
                               required: "This field is required",
                               validate: (value) =>
                                 telephoneCheck(value) ||
@@ -189,7 +206,7 @@ function CompleteClinicProfile({ clinicData }) {
                             value={selectedCity}
                             onChange={hanbleSelection}
                           >
-                            <option value="Select City" selected disabled>
+                            <option value="Select City" selected>
                               Select City
                             </option>
 
@@ -215,7 +232,7 @@ function CompleteClinicProfile({ clinicData }) {
                               setSelectedArea(event.target.value)
                             }
                           >
-                            <option value="Select Area" selected disabled>
+                            <option value="Select Area" selected>
                               Select Area
                             </option>
 
@@ -243,7 +260,7 @@ function CompleteClinicProfile({ clinicData }) {
                             placeholder={
                               "101, Elanxa Apartments, 340 N Madison Avenue"
                             }
-                            {...register("address", {
+                            {...register("street", {
                               required: "This field is required",
                             })}
                           />
