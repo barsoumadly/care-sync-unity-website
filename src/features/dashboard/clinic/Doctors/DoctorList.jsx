@@ -2,6 +2,7 @@ import { useState } from "react";
 import CheckChosicModal from "../reusable/CheckChosicModal";
 import DoctorTableTuples from "./DoctorTableTuples";
 import useDoctorList from "./useDoctorList";
+import LoadingSpinner from "../../../../ui/LoadingSpinner";
 
 // const doctorInfo = [
 //   {
@@ -78,7 +79,7 @@ import useDoctorList from "./useDoctorList";
 //   },
 // ];
 function DoctorList() {
-  const { data } = useDoctorList();
+  const { data, isLoading } = useDoctorList();
   console.log(data);
   return (
     <div className="page-wrapper">
@@ -90,10 +91,8 @@ function DoctorList() {
           <div className="col-sm-12">
             <div className="card card-table show-entire">
               <div className="card-body">
-                {/* Table Header */}
-                <TableHeader />
-                {/* /Table Header */}
-                <Table doctorInfo={data} />
+                <CardHeader />
+                {isLoading ? <LoadingSpinner /> : <Table doctorInfo={data} />}
               </div>
             </div>
           </div>
@@ -122,7 +121,7 @@ function PageHeader() {
     </div>
   );
 }
-function TableHeader() {
+function CardHeader() {
   return (
     <div className="page-table-header mb-2">
       <div className="row align-items-center">
