@@ -5,6 +5,7 @@ function DynamicDoctorSheduleInput({ control, register, errors }) {
     name: "doctorShedule",
     control,
   });
+
   return (
     <>
       {fields.map((field, index) => {
