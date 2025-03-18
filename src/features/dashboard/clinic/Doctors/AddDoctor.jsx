@@ -2,9 +2,10 @@ import { useForm } from "react-hook-form";
 import Button from "../reusable/Button";
 import DynamicDoctorSheduleInput from "./DynamicDoctorSheduleInput";
 import useAddDoctor from "./useAddDoctor";
-import { useNavigate } from "react-router-dom";
+import MedicalSpecialties from "../../../../data/MedicalSpecialties";
 import { useState } from "react";
 import PasswordEye from "../../../authentication/PasswordEye";
+
 function AddDoctor() {
   const {
     register,
@@ -24,7 +25,6 @@ function AddDoctor() {
   };
 
   function onSubmit(data) {
-    console.log(data);
     addNewDoctor({ doctorData: data });
   }
 
@@ -92,9 +92,9 @@ function AddDoctor() {
                           })}
                         >
                           <option disabled>Select Specialization</option>
-                          <option>Orthopedics</option>
-                          <option>Radiology</option>
-                          <option>Dentist</option>
+                          {MedicalSpecialties.map((specialty) => (
+                            <option key={specialty}>{specialty}</option>
+                          ))}
                         </select>
                       </div>
                       <span className="error-message ">
