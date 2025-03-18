@@ -19,28 +19,20 @@ function DoctorTableTuples({ doctor, handleOpenModal }) {
           </div>
         </td>
         <td className="profile-image">
-          <Link to={"/clinic/doctor-profile"}>
-            <img
-              width={28}
-              height={28}
-              src={doctor.user.profilePhoto.url}
-              className="rounded-circle m-r-5"
-              alt=""
-            />{" "}
-            {doctor.user.name}
-          </Link>
+          <img
+            width={28}
+            height={28}
+            src={doctor.user.profilePhoto.url}
+            className="rounded-circle m-r-5"
+            alt=""
+          />{" "}
+          {doctor.user.name}
         </td>
 
         <td>{doctor.doctor.specialization}</td>
 
         <td>
-          <a
-            href="cdn-cgi/l/email-protection"
-            className="__cf_email__"
-            data-cfemail="ddb8a5bcb0adb1b89db8b0bcb4b1f3beb2b0"
-          >
-            {doctor.user.email}
-          </a>
+          <a className="__cf_email__">{doctor.user.email}</a>
         </td>
         <td>{doctor.user.createdAt.split("T")[0]}</td>
         <td className="text-end">
