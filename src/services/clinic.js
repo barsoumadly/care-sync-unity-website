@@ -97,7 +97,13 @@ const updateDoctor = async function (doctorData, doctorId) {
   formData.append("password", doctorData.password);
   formData.append("specialization", doctorData.specialization);
 
-  formData.append("schedule", doctorData.doctorShedule);
+  doctorData.doctorShedule.map((schedule) => {
+    formData.append("schedule[day]", schedule.day);
+    formData.append("schedule[startTime]", schedule.startTime);
+    formData.append("schedule[endTime]", schedule.endTime);
+  });
+
+  console.log(doctorData.doctorShedule);
 
   const token = JSON.parse(localStorage.getItem("key"));
 
