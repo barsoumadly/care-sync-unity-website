@@ -19,15 +19,12 @@ function AddDoctor() {
       doctorShedule: [{}],
     },
   });
-  const [isEyeOpen, setIsEyeOpen] = useState(false);
+
   const { addNewDoctor, isDataLoading } = useAddDoctor();
   const navigate = useNavigate();
-  const handlePasswordEye = function (result) {
-    setIsEyeOpen(result);
-  };
 
   function onSubmit(data) {
-    addNewDoctor({ doctorData: data });
+    addNewDoctor(data);
     navigate("/clinic/doctor-list");
   }
 
@@ -162,7 +159,7 @@ function AddDoctor() {
                         </span>
                       </div>
                     </div>
-
+                    {/* 
                     <div className="col-12 col-md-6 col-xl-6">
                       <div className="input-block local-forms">
                         <label>
@@ -184,7 +181,7 @@ function AddDoctor() {
                           {errors?.password?.message}
                         </span>
                       </div>
-                    </div>
+                    </div> */}
 
                     {/* Doctor Shedule  */}
                     <div className="form-heading">
