@@ -99,7 +99,6 @@ import Results from "../features/dashboard/patient/analysis/Results";
 import LaboratoryOrderList from "../features/dashboard/laboratory/orders/LaboratoryOrderList";
 import AnalysisOrderList from "../features/dashboard/laboratory/orders/AnalysisOrderList";
 import OrderAddition from "../features/dashboard/laboratory/orders/OrderAddition";
-import DoctorProfileView from "../features/dashboard/clinic/DoctorProfileView";
 
 function AppRoutes() {
   return (
@@ -168,7 +167,7 @@ function AppRoutes() {
           <Route path="chat" element={<Chat />} />
           <Route path="reports" element={<Reports />} />
           <Route path="invoice" element={<Invoice />} />
-          <Route path="view-profile" element={<DoctorProfileView/>} />
+          <Route path="view-profile" />
         </Route>
 
         {/* Doctor */}
