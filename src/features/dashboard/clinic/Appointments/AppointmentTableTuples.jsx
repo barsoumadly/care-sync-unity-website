@@ -10,7 +10,7 @@ function AppointmentTableTuples({ doctor, handleOpenModal }) {
     <tr>
       <td></td>
       <td className="profile-image">
-        <Link to={"/clinic/patient-of-doctors"}>
+        <Link to={`/clinic/${doctor.name}/${doctor.doctorId}`}>
           <img
             width={28}
             height={28}
@@ -24,10 +24,9 @@ function AppointmentTableTuples({ doctor, handleOpenModal }) {
 
       <td>{doctor.specialization}</td>
 
-      <td style={{ padding: "15px 100px" }}>{doctor.NumberOfAppointments}</td>
+      <td style={{ padding: "15px 100px" }}>{doctor.appointmentCount}</td>
 
-      
-      <td>{doctor.days}</td>
+      <td>{doctor.workingDays.map((day) => `${day?.day ? day?.day : ""}-`)}</td>
 
       {/* <td className="text-end">
         <div className="dropdown dropdown-action">
