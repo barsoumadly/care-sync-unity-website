@@ -123,6 +123,9 @@ a:focus {
   box-shadow: none;
   outline: 0 none;
 }
+
+
+
 a {
   color: #2e37a4;
   text-decoration: none;
@@ -312,14 +315,14 @@ table.table td h2 span {
 .cal-icon:after {
   background: transparent url("../images/dashborad/icons/calendar-icon.svg")
     no-repeat scroll 0 0;
-  bottom: 0;
+  
   content: "";
   display: block;
   height: 24px;
   margin: auto;
   position: absolute;
   right: 15px;
-  top: 0;
+  top: 10px;
   width: 24px;
   cursor: pointer;
 }

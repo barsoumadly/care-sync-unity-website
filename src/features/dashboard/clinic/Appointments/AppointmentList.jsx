@@ -14,7 +14,6 @@ const doctorInfo = [
     department: "Otolaryngology",
     specialization: "Infertility",
     NumberOfAppointments: 10,
-    email: "example@email.com",
     days: "sun,mon,tue,wed,thu,fri,sat",
   },
   {
@@ -24,7 +23,6 @@ const doctorInfo = [
     department: "Urology",
     specialization: "Prostate",
     NumberOfAppointments: 10,
-    email: "example@email.com",
     days: "tue,wed,thu,sat",
   },
   {
@@ -34,7 +32,7 @@ const doctorInfo = [
     department: "Radiology",
     specialization: "Cancer",
     NumberOfAppointments: 10,
-    email: "example@email.com",
+   
     days: "sun,mon,tue,wed,thu,fri,sat",
   },
   {
@@ -44,7 +42,7 @@ const doctorInfo = [
     department: "Dentist",
     specialization: "Prostate",
     NumberOfAppointments: 10,
-    email: "example@email.com",
+   
     days: "sun,mon,tue,wed,thu,fri,sat",
   },
   {
@@ -54,7 +52,7 @@ const doctorInfo = [
     department: "Gynocolgy",
     specialization: "Prostate",
     NumberOfAppointments: 10,
-    email: "example@email.com",
+   
     days: "sun,mon,tue,wed,thu,fri,sat",
   },
   {
@@ -64,7 +62,7 @@ const doctorInfo = [
     department: "Gynocolgy",
     specialization: "Prostate",
     NumberOfAppointments: 10,
-    email: "example@email.com",
+   
     days: "sun,mon,tue,wed,thu,fri,sat",
   },
   {
@@ -74,7 +72,7 @@ const doctorInfo = [
     department: "Otolaryngology",
     specialization: "Infertility",
     NumberOfAppointments: 10,
-    email: "example@email.com",
+   
     days: "sun,mon,tue,wed,thu,fri,sat",
   },
   {
@@ -84,7 +82,7 @@ const doctorInfo = [
     department: "Urology",
     specialization: "Prostate",
     NumberOfAppointments: 10,
-    email: "example@email.com",
+   
     days: "tue,wed,thu,sat",
   },
 ];
@@ -203,7 +201,6 @@ function Table() {
               <th>Name</th>
               <th>Specialization</th>
               <th>Number of Appointments</th>
-              <th>Email</th>
               <th>Days</th>
               <th />
             </tr>

@@ -1,4 +1,15 @@
+import { useForm } from "react-hook-form";
+
 function EditAppointments() {
+  const { register, handleSubmit, formState, getValues } = useForm();
+  const { errors } = formState;
+  console.log(errors);
+  function onSubmit(data) {
+    console.log(data);
+  }
+  function onError(errors) {
+    console.log(errors);
+  } 
   return (
     <div className="page-wrapper">
       <div className="content">
@@ -23,7 +34,7 @@ function EditAppointments() {
           <div className="col-sm-12">
             <div className="card">
               <div className="card-body">
-                <form>
+                <form onSubmit={handleSubmit(onSubmit, onError)}>
                   <div className="row">
                     <div className="col-12">
                       <div className="form-heading">
@@ -38,8 +49,14 @@ function EditAppointments() {
                         <input
                           className="form-control"
                           type="text"
-                          defaultValue="Stephen"
+                          placeholder="Stephen"
+                          {...register("firstName", {
+                            required: "This field is require",
+                          })}
                         />
+                        <span className="error-message">
+                          {errors?.firstName?.message}
+                        </span>
                       </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-4">
@@ -50,8 +67,14 @@ function EditAppointments() {
                         <input
                           className="form-control"
                           type="text"
-                          defaultValue="Bruklin"
+                          placeholder="Bruklin"
+                          {...register("lastName", {
+                            required: "This field is require",
+                          })}
                         />
+                        <span className="error-message">
+                          {errors?.lastName?.message}
+                        </span>
                       </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-4">
@@ -66,6 +89,9 @@ function EditAppointments() {
                               name="gender"
                               className="form-check-input"
                               defaultChecked=""
+                              {...register("gender", {
+                                required: "This field is require",
+                              })}
                             />
                             Male
                           </label>
@@ -76,97 +102,27 @@ function EditAppointments() {
                               type="radio"
                               name="gender"
                               className="form-check-input"
+                              {...register("gender", {
+                                required: "This field is require",
+                              })}
                             />
                             Female
                           </label>
                         </div>
+                        <span className="error-message">
+                          {errors?.gender?.message}
+                        </span>
                       </div>
                     </div>
-                    {/* <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>
-                          Mobile <span className="login-danger">*</span>
-                        </label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          defaultValue="+1 23 456890"
-                        />
-                      </div>
-                    </div> */}
+
                     <div className="col-12 col-md-6 col-xl-6">
                       <div className="input-block local-forms">
-                        <label>
-                          Email 
-                        </label>
+                        <label>Email</label>
                         <input
                           className="form-control"
                           type="email"
                           defaultValue="stephen@gmail.com"
                         />
-                      </div>
-                    </div>
-                    {/* <div className="col-12 col-sm-12">
-                      <div className="input-block local-forms">
-                        <label>
-                          Address <span className="login-danger">*</span>
-                        </label>
-                        <textarea
-                          className="form-control"
-                          rows={3}
-                          cols={30}
-                          defaultValue={
-                            "101, Elanxa Apartments, 340 N Madison Avenue"
-                          }
-                        />
-                      </div>
-                    </div> */}
-                    <div className="col-12">
-                      <div className="form-heading">
-                        <h4>Appointment Details</h4>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-4">
-                      <div className="input-block local-forms cal-icon">
-                        <label>
-                          Date of Appointment{" "}
-                          <span className="login-danger">*</span>
-                        </label>
-                        <input
-                          className="form-control datetimepicker"
-                          type="text"
-                          defaultValue="26-11-22"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-4">
-                      <div className="input-block local-forms">
-                        <label>
-                          From <span className="login-danger">*</span>
-                        </label>
-                        <div className="time-icon">
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="datetimepicker3"
-                            defaultValue="07:00 PM"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-4">
-                      <div className="input-block local-forms">
-                        <label>
-                          To <span className="login-danger">*</span>
-                        </label>
-                        <div className="time-icon">
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="datetimepicker4"
-                            defaultValue="08:00 PM"
-                          />
-                        </div>
                       </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-6">
@@ -180,60 +136,79 @@ function EditAppointments() {
                         </select>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>Treatment </label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          defaultValue="Blood Pressure"
-                        />
+
+                    <div className="col-12">
+                      <div className="form-heading">
+                        <h4>Appointment Details</h4>
                       </div>
                     </div>
-                  {/*   <div className="col-12 col-sm-12">
+                    <div className="col-12 col-md-6 col-xl-4">
+                      <div className="input-block local-forms ">
+                        <label>
+                          Date of Appointment{" "}
+                          <span className="login-danger">*</span>
+                        </label>
+                        <input
+                          className="form-control datetimepicker"
+                          type="date"
+                          {...register("date", {
+                            required: "This field is require",
+                          })}
+                        />
+                        <span className="error-message">
+                          {errors?.date?.message}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="col-12 col-md-6 col-xl-4">
                       <div className="input-block local-forms">
                         <label>
-                          Notes <span className="login-danger">*</span>
+                          From <span className="login-danger">*</span>
                         </label>
-                        <textarea
-                          className="form-control"
-                          rows={3}
-                          cols={30}
-                          defaultValue={
-                            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquat enim ad minim veniam, quriesstrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                          }
-                        />
-                      </div>
-                    </div> 
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-top-form">
-                        <label className="local-top">
-                          Avatar <span className="login-danger">*</span>
-                        </label>
-                        <div className="settings-btn upload-files-avator">
+                        <div>
                           <input
-                            type="file"
-                            accept="image/*"
-                            name="image"
-                            id="file"
-                            onchange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
-                            className="hide-input"
-                            data-cf-modified-edc4ab59e52b93fcd123ebbe-=""
+                            type="time"
+                            className="form-control"
+                            id="datetimepicker3"
+                            {...register("from", {
+                              required: "This field is require",
+                              validate: (value) =>
+                                value > getValues("to") ||
+                                "From time must be less than to time",
+                            })}
                           />
-                          <label htmlFor="file" className="upload">
-                            Choose File
-                          </label>
-                        </div>
-                        <div className="upload-images upload-size">
-                          <img src="../images/appointments/favicon.png" alt="Image" />
-                          <a
-                            href="javascript:void(0);"
-                            className="btn-icon logo-hide-btn">
-                            <i className="feather-x-circle" />
-                          </a>
+                          <span className="error-message">
+                            {errors?.from?.message}
+                          </span>
                         </div>
                       </div>
-                    </div>*/}
+                    </div>
+                    <div className="col-12 col-md-6 col-xl-4">
+                      <div className="input-block local-forms">
+                        <label>
+                          To <span className="login-danger">*</span>
+                        </label>
+                        <div>
+                          <input
+                            type="time"
+                            className="form-control"
+                            id="datetimepicker4"
+                            {...register("to", {
+                              required: "This field is require",
+                              validate: (value) =>
+                                value < getValues("from") ||
+                                "To time must be greater than from time",
+                            })}
+                          />
+                          <span className="error-message">
+                            {errors?.to?.message}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
+                    
                     <div className="col-12">
                       <div className="doctor-submit text-end">
                         <button

@@ -1,4 +1,14 @@
+import { useForm } from "react-hook-form";
 function BookAppointment() {
+  const { register, handleSubmit, formState ,getValues } = useForm();
+  const { errors } = formState;
+  console.log(errors);
+  function onSubmit(data) {
+    console.log(data);
+  }
+  function onError(errors) {
+    console.log(errors);
+  }
   return (
     <div className="page-wrapper">
       <div className="content">
@@ -23,7 +33,7 @@ function BookAppointment() {
           <div className="col-sm-12">
             <div className="card">
               <div className="card-body">
-                <form>
+                <form onSubmit={handleSubmit(onSubmit, onError)}>
                   <div className="row">
                     <div className="col-12">
                       <div className="form-heading">
@@ -35,29 +45,55 @@ function BookAppointment() {
                         <label>
                           First Name <span className="login-danger">*</span>
                         </label>
-                        <input className="form-control" type="text" placeholder="adam" />
+                        <input
+                          {...register("firstName", {
+                            required: "This field is require",
+                          })}
+                          id="firstName"
+                          className="form-control"
+                          type="text"
+                          placeholder="adam"
+                        />
+                        <span className="error-message">
+                          {errors?.firstName?.message}
+                        </span>
                       </div>
                     </div>
+
                     <div className="col-12 col-md-6 col-xl-4">
                       <div className="input-block local-forms">
                         <label>
                           Last Name <span className="login-danger">*</span>
                         </label>
-                        <input className="form-control" type="text" placeholder="allah" />
+                        <input
+                          {...register("lastName", {
+                            required: "This field is require",
+                          })}
+                          className="form-control"
+                          type="text"
+                          placeholder="allah"
+                        />
+                        <span className="error-message">
+                          {errors?.lastName?.message}
+                        </span>
                       </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-4">
-                      <div className="input-block select-gender">
+                      <div
+                        className="input-block select-gender">
                         <label className="gen-label">
                           Gender<span className="login-danger">*</span>
                         </label>
                         <div className="form-check-inline">
                           <label className="form-check-label">
                             <input
+                            {...register("gender", {
+                              required: "This field is require",
+                            })}
                               type="radio"
                               name="gender"
                               className="form-check-input"
-                              defaultChecked="checked"
+                              /* defaultChecked="checked" */
                             />
                             Male
                           </label>
@@ -65,6 +101,9 @@ function BookAppointment() {
                         <div className="form-check-inline">
                           <label className="form-check-label">
                             <input
+                            {...register("gender", {
+                              required: "This field is require",
+                            })}
                               type="radio"
                               name="gender"
                               className="form-check-input"
@@ -72,37 +111,25 @@ function BookAppointment() {
                             Female
                           </label>
                         </div>
+                        <span className="error-message">
+                          {errors?.gender?.message}
+                        </span>
                       </div>
                     </div>
-                    {/* <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>
-                          Mobile <span className="login-danger">*</span>
-                        </label>
-                        <input className="form-control" type="text" />
-                      </div>
-                    </div> */}
+
                     <div className="col-12 col-md-6 col-xl-6">
                       <div className="input-block local-forms">
                         <label>
                           Email {/* <span className="login-danger">*</span> */}
                         </label>
-                        <input className="form-control" type="email" placeholder="example@email.com"/>
-                      </div>
-                    </div>
-                    {/* <div className="col-12 col-sm-12">
-                      <div className="input-block local-forms">
-                        <label>
-                          Address <span className="login-danger">*</span>
-                        </label>
-                        <textarea
+                        <input
                           className="form-control"
-                          rows={3}
-                          cols={30}
-                          defaultValue={""}
+                          type="email"
+                          placeholder="example@email.com"
                         />
                       </div>
-                    </div> */}
+                    </div>
+
                     <div className="col-12 col-md-6 col-xl-6">
                       <div className="input-block local-forms">
                         <label>Consulting Doctor</label>
@@ -114,28 +141,25 @@ function BookAppointment() {
                         </select>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>Treatment </label>
-                        <input className="form-control" type="text" placeholder="Blood Pressure" />
-                      </div>
-                    </div>
+                    
                     <div className="col-12">
                       <div className="form-heading">
                         <h4>Appointment Details</h4>
                       </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-4">
-                      <div className="input-block local-forms cal-icon">
+                      <div className="input-block local-forms ">
                         <label>
                           Date of Appointment{" "}
                           <span className="login-danger">*</span>
                         </label>
                         <input
+                        {...register("date",{required: "This field is require"})}
                           className="form-control datetimepicker"
-                          type="text"
+                          type="date"
                           placeholder="dd/mm/yyyy"
                         />
+                        <span className="error-message">{errors?.date?.message}</span>
                       </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-4">
@@ -143,13 +167,18 @@ function BookAppointment() {
                         <label>
                           From <span className="login-danger">*</span>
                         </label>
-                        <div className="time-icon">
+                        <div /* className="time-icon" */>
                           <input
-                            type="text"
+                          {...register("from", 
+                            {required: "This field is require"
+                              ,validate:(value)=> value < getValues("to") || "From time must be less than To time"
+                            })}
+                            type="time"
                             className="form-control"
                             id="datetimepicker3"
                             placeholder="hh:mm"
                           />
+                          <span className="error-message">{errors?.from?.message}</span>
                         </div>
                       </div>
                     </div>
@@ -158,51 +187,22 @@ function BookAppointment() {
                         <label>
                           To <span className="login-danger">*</span>
                         </label>
-                        <div className="time-icon">
+                        <div /*className="time-icon" */>
                           <input
-                            type="text"
+                          {...register("to",
+                            {required: "This field is require"
+                              , validate: (value) => value > getValues("from") || "To time must be greater than from time"
+                            })}
+                            type="time"
                             className="form-control"
                             id="datetimepicker4"
                             placeholder="hh:mm"
                           />
+                          <span className="error-message">{errors?.to?.message}</span>
                         </div>
                       </div>
                     </div>
-                    
-                   {/*  <div className="col-12 col-sm-12">
-                      <div className="input-block local-forms">
-                        <label>
-                          Notes <span className="login-danger">*</span>
-                        </label>
-                        <textarea
-                          className="form-control"
-                          rows={3}
-                          cols={30}
-                          defaultValue={""}
-                        />
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-top-form">
-                        <label className="local-top">
-                          Avatar <span className="login-danger">*</span>
-                        </label>
-                        <div className="settings-btn upload-files-avator">
-                          <input
-                            type="file"
-                            accept="image/*"
-                            name="image"
-                            id="file"
-                            onChange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
-                            className="hide-input"
-                            data-cf-modified-9a0768263c3e2639b8a42f5f-=""
-                          />
-                          <label htmlFor="file" className="upload">
-                            Choose File
-                          </label>
-                        </div>
-                      </div>
-                    </div> */}
+
                     <div className="col-12">
                       <div className="doctor-submit text-end">
                         <button

@@ -2,8 +2,10 @@ import { Link, NavLink } from "react-router-dom";
 import UserAvatar from "../features/authentication/UserAvatar";
 import { FaCalendarDays } from "react-icons/fa6";
 import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
 
 function Header({ setShowbar, setMinbar, url }) {
+  const { dropdownOpen, setDropdownOpen } = useState(false);
   const { isProfileCompleted } = useAuth();
   return (
     <div className="header">
@@ -27,8 +29,7 @@ function Header({ setShowbar, setMinbar, url }) {
           </div>
           <div
             className="mobile_btn float-start"
-            onClick={() => setShowbar((show) => !show)}
-          >
+            onClick={() => setShowbar((show) => !show)}>
             <img src="/images/dashborad/icons/bar-icon.svg" alt="" />
           </div>{" "}
         </>
@@ -45,8 +46,7 @@ function Header({ setShowbar, setMinbar, url }) {
             width: "120%",
             padding: "10px 15px 10px 15px",
             borderRadius: "50px",
-          }}
-        >
+          }}>
           <div style={{ fontSize: "16px", color: " #2e37a4" }}>
             <FaCalendarDays />
             <span style={{ marginLeft: "10%", fontWeight: "600" }}>
@@ -63,14 +63,17 @@ function Header({ setShowbar, setMinbar, url }) {
             {" "}
             <li className="nav-item dropdown d-none d-md-block">
               <a
+                onClick={() => setDropdownOpen((dropdownOpen) => !dropdownOpen)}
                 href="#"
                 className="dropdown-toggle nav-link"
-                data-bs-toggle="dropdown"
-              >
+                data-bs-toggle="dropdown">
                 <img src="/images/dashborad/icons/note-icon-02.svg" alt="" />
                 <span className="pulse"></span>
               </a>
-              <div className="dropdown-menu notifications">
+              <div
+                className={`dropdown-menu notifications ${
+                  dropdownOpen ? "show" : ""
+                }`}>
                 <div className="topnav-dropdown-header">
                   <span>Notifications</span>
                 </div>
@@ -213,12 +216,12 @@ function Header({ setShowbar, setMinbar, url }) {
           </>
         )}
         <li className="nav-item dropdown has-arrow user-profile-list">
-          <a
+          <Link
+            to="view-profile"
             className="dropdown-toggle nav-link user-link"
-            data-bs-toggle="dropdown"
-          >
+            data-bs-toggle="dropdown">
             <UserAvatar />
-          </a>
+          </Link>
         </li>
         {isProfileCompleted && (
           <li className="nav-item ">

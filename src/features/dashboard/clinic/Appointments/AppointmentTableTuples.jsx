@@ -26,15 +26,7 @@ function AppointmentTableTuples({ doctor, handleOpenModal }) {
 
       <td style={{ padding: "15px 100px" }}>{doctor.NumberOfAppointments}</td>
 
-      <td>
-        <a
-          href="cdn-cgi/l/email-protection"
-          className="__cf_email__"
-          data-cfemail="ddb8a5bcb0adb1b89db8b0bcb4b1f3beb2b0"
-        >
-          {doctor.email}
-        </a>
-      </td>
+      
       <td>{doctor.days}</td>
 
       {/* <td className="text-end">
