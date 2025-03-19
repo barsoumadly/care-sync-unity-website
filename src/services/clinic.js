@@ -127,6 +127,22 @@ const deleteDoctor = async function (doctorId) {
   }
 };
 
+const getAppointmentList = async function () {
+  const token = JSON.parse(localStorage.getItem("key"));
+
+  try {
+    const response = await axios.get(
+      `${API_URL}/appointments/doctors-appointments`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export {
   updateClinicProfile,
   getClinicProfile,
@@ -136,4 +152,5 @@ export {
   getDoctorList,
   updateDoctor,
   deleteDoctor,
+  getAppointmentList,
 };
