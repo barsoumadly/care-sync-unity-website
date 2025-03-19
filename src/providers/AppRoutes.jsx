@@ -160,7 +160,7 @@ function AppRoutes() {
           {/* Appointments */}
           <Route path="appointment-list" element={<AppointmentList />} />
           <Route path="book-appointment" element={<BookAppointment />} />
-          <Route path="patient-of-doctors" element={<PatientsOfDoc />} />
+          <Route path=":doctorName/:doctorId/" element={<PatientsOfDoc />} />
           <Route path="edit-appointment" element={<EditAppointments />} />
 
           <Route path="edit-profile" element={<EditProfileClinic />} />
