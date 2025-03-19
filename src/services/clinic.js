@@ -37,26 +37,6 @@ const getClinicProfile = async function () {
   }
 };
 
-const addDoctor = async function (doctorData) {
-  const token = JSON.parse(localStorage.getItem("key"));
-  const data = {
-    name: doctorData.doctorName,
-    gender: doctorData.gender,
-    schedule: doctorData.doctorShedule,
-    email: doctorData.email,
-    password: doctorData.password,
-    specialization: doctorData.specialization,
-  };
-
-  try {
-    await axios.post(`${API_URL}/doctors`, data, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const getClinics = async function () {
   try {
     const response = await axios.get(`${API_URL}/`);
@@ -88,6 +68,26 @@ const getDoctorList = async function () {
   }
 };
 
+const addDoctor = async function (doctorData) {
+  const token = JSON.parse(localStorage.getItem("key"));
+  const data = {
+    name: doctorData.doctorName,
+    gender: doctorData.gender,
+    schedule: doctorData.doctorShedule,
+    email: doctorData.email,
+    password: doctorData.password,
+    specialization: doctorData.specialization,
+  };
+
+  try {
+    await axios.post(`${API_URL}/doctors`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const updateDoctor = async function (doctorData, doctorId) {
   const formData = new FormData();
 
@@ -103,14 +103,25 @@ const updateDoctor = async function (doctorData, doctorId) {
     formData.append("schedule[endTime]", schedule.endTime);
   });
 
-  console.log(doctorData.doctorShedule);
-
   const token = JSON.parse(localStorage.getItem("key"));
-
   try {
     await axios.put(`${API_URL}/doctors/${doctorId}`, formData, {
       headers: { Authorization: `Bearer ${token}` },
     });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deleteDoctor = async function (doctorId) {
+  const token = JSON.parse(localStorage.getItem("key"));
+
+  try {
+    const response = await axios.delete(`${API_URL}/doctors/${doctorId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return response.data;
   } catch (error) {
     console.log(error);
   }
@@ -124,4 +135,5 @@ export {
   getClinic,
   getDoctorList,
   updateDoctor,
+  deleteDoctor,
 };
