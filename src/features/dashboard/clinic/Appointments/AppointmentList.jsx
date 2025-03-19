@@ -5,87 +5,88 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import AppointmentTableTuples from "./AppointmentTableTuples";
 import CheckChosicModal from "../reusable/CheckChosicModal";
+import useAppointmentList from "./useAppointmentList";
 
-const doctorInfo = [
-  {
-    id: 1,
-    name: "Andrea Lalema",
-    image: "../images/dashborad/profiles/avatar-01.jpg",
-    department: "Otolaryngology",
-    specialization: "Infertility",
-    NumberOfAppointments: 10,
-    days: "sun,mon,tue,wed,thu,fri,sat",
-  },
-  {
-    id: 2,
-    name: "Smith Bruklin",
-    image: "../images/dashborad/profiles/avatar-02.jpg",
-    department: "Urology",
-    specialization: "Prostate",
-    NumberOfAppointments: 10,
-    days: "tue,wed,thu,sat",
-  },
-  {
-    id: 3,
-    name: "William Stephin",
-    image: "../images/dashborad/profiles/avatar-03.jpg",
-    department: "Radiology",
-    specialization: "Cancer",
-    NumberOfAppointments: 10,
-   
-    days: "sun,mon,tue,wed,thu,fri,sat",
-  },
-  {
-    id: 4,
-    name: "Bernardo James",
-    image: "../images/dashborad/profiles/avatar-04.jpg",
-    department: "Dentist",
-    specialization: "Prostate",
-    NumberOfAppointments: 10,
-   
-    days: "sun,mon,tue,wed,thu,fri,sat",
-  },
-  {
-    id: 5,
-    name: "Cristina Groves",
-    image: "../images/dashborad/profiles/avatar-06.jpg",
-    department: "Gynocolgy",
-    specialization: "Prostate",
-    NumberOfAppointments: 10,
-   
-    days: "sun,mon,tue,wed,thu,fri,sat",
-  },
-  {
-    id: 6,
-    name: "Mark Hay Smith",
-    image: "../images/dashborad/profiles/avatar-05.jpg",
-    department: "Gynocolgy",
-    specialization: "Prostate",
-    NumberOfAppointments: 10,
-   
-    days: "sun,mon,tue,wed,thu,fri,sat",
-  },
-  {
-    id: 7,
-    name: "Andrea Lalema",
-    image: "../images/dashborad/profiles/avatar-01.jpg",
-    department: "Otolaryngology",
-    specialization: "Infertility",
-    NumberOfAppointments: 10,
-   
-    days: "sun,mon,tue,wed,thu,fri,sat",
-  },
-  {
-    id: 8,
-    name: "Smith Bruklin",
-    image: "../images/dashborad/profiles/avatar-02.jpg",
-    department: "Urology",
-    specialization: "Prostate",
-    NumberOfAppointments: 10,
-   
-    days: "tue,wed,thu,sat",
-  },
-];
+// const doctorInfo = [
+//   {
+//     id: 1,
+//     name: "Andrea Lalema",
+//     image: "../images/dashborad/profiles/avatar-01.jpg",
+//     department: "Otolaryngology",
+//     specialization: "Infertility",
+//     NumberOfAppointments: 10,
+//     days: "sun,mon,tue,wed,thu,fri,sat",
+//   },
+//   {
+//     id: 2,
+//     name: "Smith Bruklin",
+//     image: "../images/dashborad/profiles/avatar-02.jpg",
+//     department: "Urology",
+//     specialization: "Prostate",
+//     NumberOfAppointments: 10,
+//     days: "tue,wed,thu,sat",
+//   },
+//   {
+//     id: 3,
+//     name: "William Stephin",
+//     image: "../images/dashborad/profiles/avatar-03.jpg",
+//     department: "Radiology",
+//     specialization: "Cancer",
+//     NumberOfAppointments: 10,
+
+//     days: "sun,mon,tue,wed,thu,fri,sat",
+//   },
+//   {
+//     id: 4,
+//     name: "Bernardo James",
+//     image: "../images/dashborad/profiles/avatar-04.jpg",
+//     department: "Dentist",
+//     specialization: "Prostate",
+//     NumberOfAppointments: 10,
+
+//     days: "sun,mon,tue,wed,thu,fri,sat",
+//   },
+//   {
+//     id: 5,
+//     name: "Cristina Groves",
+//     image: "../images/dashborad/profiles/avatar-06.jpg",
+//     department: "Gynocolgy",
+//     specialization: "Prostate",
+//     NumberOfAppointments: 10,
+
+//     days: "sun,mon,tue,wed,thu,fri,sat",
+//   },
+//   {
+//     id: 6,
+//     name: "Mark Hay Smith",
+//     image: "../images/dashborad/profiles/avatar-05.jpg",
+//     department: "Gynocolgy",
+//     specialization: "Prostate",
+//     NumberOfAppointments: 10,
+
+//     days: "sun,mon,tue,wed,thu,fri,sat",
+//   },
+//   {
+//     id: 7,
+//     name: "Andrea Lalema",
+//     image: "../images/dashborad/profiles/avatar-01.jpg",
+//     department: "Otolaryngology",
+//     specialization: "Infertility",
+//     NumberOfAppointments: 10,
+
+//     days: "sun,mon,tue,wed,thu,fri,sat",
+//   },
+//   {
+//     id: 8,
+//     name: "Smith Bruklin",
+//     image: "../images/dashborad/profiles/avatar-02.jpg",
+//     department: "Urology",
+//     specialization: "Prostate",
+//     NumberOfAppointments: 10,
+
+//     days: "tue,wed,thu,sat",
+//   },
+// ];
 
 function AppointmentList() {
   return (
@@ -178,6 +179,7 @@ function TableHeader() {
 function Table() {
   const [isOpen, setIsOpen] = useState(false);
   const [doctorId, setDoctorId] = useState(false);
+  const { data: doctorInfo } = useAppointmentList();
 
   const handleOpenModal = function (id) {
     setDoctorId(id);
@@ -206,7 +208,7 @@ function Table() {
             </tr>
           </thead>
           <tbody>
-            {doctorInfo.map((doctor) => (
+            {doctorInfo?.map((doctor) => (
               <AppointmentTableTuples
                 doctor={doctor}
                 key={doctor.id}
