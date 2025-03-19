@@ -5,15 +5,12 @@ import toast from "react-hot-toast";
 
 function useAddDoctor() {
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
 
   const { mutate: addNewDoctor, isDataLoading } = useMutation({
-    mutationFn: ({ doctorData }) => addDoctor(doctorData),
+    mutationFn: addDoctor,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["doctorList"] });
-
       toast.success("Doctor successfully added");
-      navigate("/clinic/doctor-list");
+      queryClient.invalidateQueries({ queryKey: ["doctorList"] });
     },
     onError: (err) => toast.error(err.message),
   });
