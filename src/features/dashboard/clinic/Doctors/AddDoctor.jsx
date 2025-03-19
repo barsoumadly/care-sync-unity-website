@@ -5,6 +5,7 @@ import useAddDoctor from "./useAddDoctor";
 import MedicalSpecialties from "../../../../data/MedicalSpecialties";
 import { useState } from "react";
 import PasswordEye from "../../../authentication/PasswordEye";
+import { useNavigate } from "react-router-dom";
 
 function AddDoctor() {
   const {
@@ -20,12 +21,14 @@ function AddDoctor() {
   });
   const [isEyeOpen, setIsEyeOpen] = useState(false);
   const { addNewDoctor, isDataLoading } = useAddDoctor();
+  const navigate = useNavigate();
   const handlePasswordEye = function (result) {
     setIsEyeOpen(result);
   };
 
   function onSubmit(data) {
     addNewDoctor({ doctorData: data });
+    navigate("/clinic/doctor-list");
   }
 
   function handleCancel() {
@@ -128,6 +131,9 @@ function AddDoctor() {
                               name="gender"
                               className="form-check-input mt-0"
                               value={"female"}
+                              {...register("gender", {
+                                required: "This field is required",
+                              })}
                             />
                             Female
                           </label>
