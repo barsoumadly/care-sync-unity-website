@@ -26,7 +26,16 @@ function AppointmentTableTuples({ doctor, handleOpenModal }) {
 
       <td style={{ padding: "15px 100px" }}>{doctor.appointmentCount}</td>
 
-      <td>{doctor.workingDays.map((day) => `${day?.day ? day?.day : ""}-`)}</td>
+      <td>
+        {doctor.workingDays.map((day) => (
+          <div
+            className={`custom-badge status-pink`}
+            style={{ marginLeft: "2px", minWidth: "0" }}
+          >
+            {`${day?.day ? day?.day : "-"}`}
+          </div>
+        ))}
+      </td>
 
       {/* <td className="text-end">
         <div className="dropdown dropdown-action">
