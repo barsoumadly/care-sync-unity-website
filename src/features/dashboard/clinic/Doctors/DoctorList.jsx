@@ -3,6 +3,7 @@ import CheckChosicModal from "../reusable/CheckChosicModal";
 import DoctorTableTuples from "./DoctorTableTuples";
 import useDoctorList from "./useDoctorList";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
+import useDeleteDoctor from "./useDeleteDoctor";
 
 // const doctorInfo = [
 //   {
@@ -80,7 +81,6 @@ import LoadingSpinner from "../../../../ui/LoadingSpinner";
 // ];
 function DoctorList() {
   const { data, isLoading } = useDoctorList();
-  console.log(data);
   return (
     <div className="page-wrapper">
       <div className="content">
@@ -168,6 +168,13 @@ function CardHeader() {
 function Table({ doctorInfo }) {
   const [isOpen, setIsOpen] = useState(false);
   const [doctorId, setDoctorId] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
+  const { deleteDoctorData } = useDeleteDoctor();
+
+  const handleDropdown = function (id) {
+    if (id === dropdown) setDropdown(0);
+    else setDropdown(id);
+  };
 
   const handleOpenModal = function (id) {
     setDoctorId(id);
@@ -175,44 +182,75 @@ function Table({ doctorInfo }) {
   };
 
   return (
-    <>
-      <div className="table-responsive">
-        <table className="table border-0 custom-table comman-table datatable mb-0">
-          <thead>
-            <tr>
-              <th>
-                <div className="form-check check-tables">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    defaultValue="something"
-                  />
-                </div>
-              </th>
-              <th>Name</th>
-              <th>Specialization</th>
-              <th>Email</th>
-              <th>Joining Date</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {doctorInfo?.map((doctor) => (
-              <DoctorTableTuples
-                doctor={doctor}
-                key={doctor.id}
+    <div className="table-responsive">
+      <div
+        id="DataTables_Table_0_wrapper"
+        className="dt-container dt-empty-footer"
+      >
+        <div className="table-dt-layout-row dt-layout-table">
+          <table className="table border-0 custom-table comman-table datatable mb-0">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Email</th>
+                <th>Joining Date</th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              {doctorInfo?.map((doctor) => (
+                <DoctorTableTuples
+                  doctor={doctor}
+                  key={doctor.doctor._id}
+                  handleOpenModal={handleOpenModal}
+                  dropdown={dropdown}
+                  setDropdown={handleDropdown}
+                />
+              ))}
+            </tbody>
+          </table>
+          <div>
+            {isOpen && (
+              <CheckChosicModal
+                onConfirm={deleteDoctorData}
                 handleOpenModal={handleOpenModal}
+                id={doctorId}
               />
-            ))}
-          </tbody>
-        </table>
-        <div>
-          {isOpen && (
-            <CheckChosicModal handleOpenModal={handleOpenModal} id={doctorId} />
-          )}
+            )}
+          </div>
+        </div>
+        <div className="dt-layout-row">
+          <div className="dt-layout-cell dt-layout-start">
+            <div className="dt-info">
+              Showing {doctorInfo.length} of {doctorInfo.length} entries
+            </div>
+          </div>
+          <div className="dt-layout-cell dt-layout-end">
+            <div className="dt-paging">
+              <nav aria-label="pagination">
+                <button
+                  className="dt-paging-button disabled previous"
+                  type="button"
+                >
+                  Previous
+                </button>
+                <button className="dt-paging-button current" type="button">
+                  1
+                </button>
+                <button
+                  className="dt-paging-button disabled next"
+                  type="button"
+                >
+                  Next
+                </button>
+              </nav>
+            </div>
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

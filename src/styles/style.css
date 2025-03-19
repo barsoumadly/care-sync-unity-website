@@ -235,6 +235,49 @@ table.table td h2 span {
 .table-nowrap th {
   white-space: nowrap;
 }
+div.dt-container div.dt-layout-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0.75em 0;
+  font-size: 14px;
+  padding: 0 20px;
+}
+div.dt-container .dt-paging .dt-paging-button {
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 1.5em;
+  padding: .5em 1em;
+  margin-left: 2px;
+  text-align: center;
+  text-decoration: none !important;
+  cursor: pointer;
+  color: inherit !important;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background: transparent;
+}
+
+div.dt-container .dt-paging .dt-paging-button.current {
+  background: #2e37a4 !important;
+  border-color: #2e37a4 !important;
+  padding: 0;
+  color: #fff !important;
+  padding: 5px 15px !important;
+  margin: 0 !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button.disabled,
+div.dt-container .dt-paging .dt-paging-button.disabled:hover,
+div.dt-container .dt-paging .dt-paging-button.disabled:active {
+  cursor: default;
+  color: rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid transparent;
+  background: #e9ecef !important;
+  box-shadow: none;
+}
+
 /*-----------------
 	3. Helper Class
 -----------------------*/

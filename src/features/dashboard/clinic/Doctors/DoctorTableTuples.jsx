@@ -4,20 +4,11 @@ import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
-function DoctorTableTuples({ doctor, handleOpenModal }) {
-  const [dropdown, setDropdown] = useState(false);
+function DoctorTableTuples({ doctor, handleOpenModal, dropdown, setDropdown }) {
   return (
     <>
       <tr>
-        <td>
-          <div className="form-check check-tables">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              defaultValue="something"
-            />
-          </div>
-        </td>
+        <td></td>
         <td className="profile-image">
           <img
             width={28}
@@ -39,14 +30,14 @@ function DoctorTableTuples({ doctor, handleOpenModal }) {
           <div className="dropdown dropdown-action">
             <a
               className="action-icon dropdown-toggle"
-              onClick={() => setDropdown((dropdown) => !dropdown)}
+              onClick={() => setDropdown(doctor.doctor._id)}
             >
               <CgMoreVerticalAlt />
             </a>
             <div
               className="dropdown-menu dropdown-menu-end"
               style={{
-                display: `${dropdown ? "block" : "none"}`,
+                display: `${dropdown === doctor.doctor._id ? "block" : "none"}`,
               }}
             >
               <Link
@@ -58,8 +49,8 @@ function DoctorTableTuples({ doctor, handleOpenModal }) {
               <button
                 className="dropdown-item"
                 onClick={() => {
-                  handleOpenModal(doctor.id);
-                  setDropdown((dropdown) => !dropdown);
+                  handleOpenModal(doctor.doctor._id);
+                  setDropdown(doctor.doctor._id);
                 }}
               >
                 <RiDeleteBin6Fill /> Delete

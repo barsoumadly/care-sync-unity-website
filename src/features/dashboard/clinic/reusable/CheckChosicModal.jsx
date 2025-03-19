@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import Modal from "../../../../ui/Modal";
 import toast from "react-hot-toast";
+import SpinnerMini from "../../../../ui/SpinnerMini";
 
-function CheckChosicModal({ handleOpenModal, id, name = "Doctor" }) {
+function CheckChosicModal({ handleOpenModal, onConfirm, id, name = "Doctor" }) {
   function hanbleDelete() {
-    console.log(id);
-    toast.success(`${name} successfully deleted`);
+    onConfirm(id);
     handleOpenModal();
   }
   return (
@@ -44,7 +44,7 @@ function CheckChosicModal({ handleOpenModal, id, name = "Doctor" }) {
               onClick={hanbleDelete}
               style={{ backgroundColor: "#2e37a4", color: "#fff" }}
             >
-              Delete {name}
+              Delete ${name}
             </Link>
           </div>
         </div>
