@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PatientTableTuples from "./PatientTableTuples";
 import CheckChosicModal from "../reusable/CheckChosicModal";
+import { useLocation } from "react-router-dom";
 const patients = [
   {
     id: 1,
@@ -69,6 +70,8 @@ const patients = [
 function PatientsOfDoc() {
   const [isOpen, setIsOpen] = useState(false);
   const [patientId, setPatientId] = useState(false);
+  const path = useLocation();
+  const doctorId = path.pathname.split("/")[3];
 
   const handleOpenModal = function (id) {
     setPatientId(id);
