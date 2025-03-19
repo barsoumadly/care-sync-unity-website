@@ -34,7 +34,7 @@ function EditProfileDoc() {
     setValue("name", doctorData?.[0]?.user?.name);
     setValue("specialization", doctorData?.[0]?.doctor?.specialization);
     setValue("email", doctorData?.[0]?.user?.email);
-    setValue("gender", doctorData?.[0]?.user?.gender);
+    setValue("gender", doctorData?.[0]?.doctor?.gender);
     setValue("doctorShedule", doctorData?.[0]?.schedule);
   }, [doctorData]);
 
@@ -44,7 +44,6 @@ function EditProfileDoc() {
 
   function onSubmit(data) {
     updateDoctorData({ data });
-    console.log(data);
   }
 
   function handleCancel() {
@@ -154,6 +153,9 @@ function EditProfileDoc() {
                                   name="gender"
                                   className="form-check-input mt-0"
                                   value={"female"}
+                                  {...register("gender", {
+                                    required: "This field is required",
+                                  })}
                                 />
                                 Female
                               </label>
