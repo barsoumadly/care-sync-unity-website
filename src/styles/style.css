@@ -124,8 +124,6 @@ a:focus {
   outline: 0 none;
 }
 
-
-
 a {
   color: #2e37a4;
   text-decoration: none;
@@ -248,7 +246,7 @@ div.dt-container .dt-paging .dt-paging-button {
   box-sizing: border-box;
   display: inline-block;
   min-width: 1.5em;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   margin-left: 2px;
   text-align: center;
   text-decoration: none !important;
@@ -358,7 +356,7 @@ div.dt-container .dt-paging .dt-paging-button.disabled:active {
 .cal-icon:after {
   background: transparent url("../images/dashborad/icons/calendar-icon.svg")
     no-repeat scroll 0 0;
-  
+
   content: "";
   display: block;
   height: 24px;
@@ -7910,7 +7908,7 @@ blockquote p {
 .blog-views li:first-child {
   margin-right: 10px;
 }
-log-img .blog-grp-blk {
+.blog-grp-blk {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
