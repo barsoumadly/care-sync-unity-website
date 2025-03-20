@@ -85,7 +85,7 @@ function EditProfileDoc() {
                       <LoadingSpinner />
                     ) : (
                       <>
-                        <div className="col-12 col-md-6 col-xl-4">
+                        <div className="col-12 col-md-6 col-xl-3">
                           <div className="input-block local-forms">
                             <label>
                               Doctor Name{" "}
@@ -104,7 +104,7 @@ function EditProfileDoc() {
                             </span>
                           </div>
                         </div>
-                        <div className="col-12 col-md-6 col-xl-4">
+                        <div className="col-12 col-md-6 col-xl-3">
                           <div className="input-block local-forms">
                             <label>
                               Specialization{" "}
@@ -125,8 +125,26 @@ function EditProfileDoc() {
                           <span className="error-message ">
                             {errors?.specialization?.message}
                           </span>
-                        </div>
+                        </div>{" "}
                         <div className="col-12 col-md-6 col-xl-4">
+                          <div className="input-block local-forms">
+                            <label>
+                              Email <span className="login-danger">*</span>
+                            </label>
+                            <input
+                              className="form-control"
+                              type="email"
+                              placeholder="example@email.com"
+                              {...register("email", {
+                                required: "This field is required",
+                              })}
+                            />
+                            <span className="error-message ">
+                              {errors?.email?.message}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="col-12 col-md-6 col-xl-2">
                           <div className="input-block select-gender">
                             <label className="gen-label">
                               Gender<span className="login-danger">*</span>
@@ -165,49 +183,8 @@ function EditProfileDoc() {
                             </span>
                           </div>
                         </div>
-                        <div className="col-12 col-md-6 col-xl-6">
-                          <div className="input-block local-forms">
-                            <label>
-                              Email <span className="login-danger">*</span>
-                            </label>
-                            <input
-                              className="form-control"
-                              type="email"
-                              placeholder="example@email.com"
-                              {...register("email", {
-                                required: "This field is required",
-                              })}
-                            />
-                            <span className="error-message ">
-                              {errors?.email?.message}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-xl-6">
-                          <div className="input-block local-forms">
-                            <label>
-                              Password <span className="login-danger">*</span>
-                            </label>
-                            <input
-                              className="form-control"
-                              type={`${isEyeOpen ? "text" : "password"}`}
-                              placeholder="****************"
-                              {...register("password", {
-                                required: "This field is required",
-                              })}
-                            />{" "}
-                            <PasswordEye
-                              isEyeOpen={isEyeOpen}
-                              setIsEyeOpen={handlePasswordEye}
-                            />
-                            <span className="error-message ">
-                              {errors?.password?.message}
-                            </span>
-                          </div>
-                        </div>
                       </>
                     )}
-
                     {/* Doctor Shedule  */}
                     <div className="form-heading">
                       <h4>Doctor Shedule </h4>
