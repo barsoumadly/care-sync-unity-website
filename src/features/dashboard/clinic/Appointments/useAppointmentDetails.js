@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 
-function useAppointmentDetails() {
+function useAppointmentDetails(appointmentId) {
   const { data, error, isLoading } = useQuery({
-    queryKey: ["appointmentDetails"],
+    queryKey: ["appointmentDetails", appointmentId],
     // queryFn:
   });
   return { data, error, isLoading };
 }
 
-export default usePatientList;
+export default useAppointmentDetails;
