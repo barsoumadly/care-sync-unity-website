@@ -6,6 +6,7 @@ import LoadingSpinner from "../../../../ui/LoadingSpinner";
 function ClinicImages() {
   const { id } = useParams();
   const { data: clinic, isLoading } = useClinicProfile(id);
+
   return (
     <div className="main-wrapper">
       {isLoading ? (
@@ -18,8 +19,8 @@ function ClinicImages() {
             <div className="page-header"></div>
             {/* /Page Header */}
             <div id="lightgallery" className="row">
-              {clinic?.images?.map((imageUrl) => (
-                <Image imageUrl={imageUrl} key={imageUrl} />
+              {clinic?.photos?.map((photo) => (
+                <Image imageUrl={photo.url} key={photo.url} />
               ))}
             </div>
           </div>
@@ -32,7 +33,7 @@ function ClinicImages() {
 function Image({ imageUrl }) {
   return (
     <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 m-b-20">
-      <a href={imageUrl}>
+      <a href={imageUrl} target="blank">
         <img
           style={{ width: "350px", height: "250px" }}
           className="img-thumbnail"
