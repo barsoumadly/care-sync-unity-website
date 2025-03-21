@@ -106,7 +106,7 @@ function PatientsOfDoc() {
                   <div className="row align-items-center">
                     <div className="col">
                       <div className="doctor-table-blk">
-                        <h3>Payment List</h3>
+                        <h3>Patient List</h3>
                         <div className="doctor-search-blk">
                           <div className="top-nav-search table-search-blk">
                             <form>
@@ -117,28 +117,22 @@ function PatientsOfDoc() {
                               />
                               <a className="btn">
                                 <img
-                                  src="../images/dashborad/icons/search-normal.svg"
+                                  src="/images/dashborad/icons/search-normal.svg"
                                   alt=""
                                 />
                               </a>
                             </form>
                           </div>
                           <div className="add-group">
-                            <a
-                              href="add-payment.html"
-                              className="btn btn-primary add-pluss ms-2"
-                            >
+                            <a className="btn btn-primary add-pluss ms-2">
                               <img
-                                src="../images/dashborad/icons/plus.svg"
+                                src="/images/dashborad/icons/plus.svg"
                                 alt=""
                               />
                             </a>
-                            <a
-                              href="javascript:;"
-                              className="btn btn-primary doctor-refresh ms-2"
-                            >
+                            <a className="btn btn-primary doctor-refresh ms-2">
                               <img
-                                src="../images/dashborad/icons/re-fresh.svg"
+                                src="/images/dashborad/icons/re-fresh.svg"
                                 alt=""
                               />
                             </a>
