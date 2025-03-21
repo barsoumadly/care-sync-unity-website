@@ -138,11 +138,6 @@ function ClinicSidebar({ minbar }) {
               Book Appointment
             </NavLink>
           </li>
-          <li>
-            <NavLink to={"/clinic/edit-appointment"} className="link">
-              Edit Appointment
-            </NavLink>
-          </li>
         </ul>
       </li>
 
