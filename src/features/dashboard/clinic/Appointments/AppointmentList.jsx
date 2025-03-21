@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 import AppointmentTableTuples from "./AppointmentTableTuples";
 import CheckChosicModal from "../reusable/CheckChosicModal";
 import useAppointmentList from "./useAppointmentList";
+import LoadingSpinner from "../../../../ui/LoadingSpinner";
+import { useAuth } from "../../../../context/AuthContext";
+import PageWrapper from "../../PageWrapper";
+import PageCard from "../../PageCard";
 
 // const doctorInfo = [
 //   {
@@ -90,25 +94,15 @@ import useAppointmentList from "./useAppointmentList";
 
 function AppointmentList() {
   return (
-    <div className="page-wrapper">
-      <div className="content">
-        {/* Page Header */}
-        <PageHeader />
-        {/* /Page Header */}
-        <div className="row">
-          <div className="col-sm-12">
-            {/* <div className="card card-table show-entire">
-              <div className="card-body"> */}
-            {/* Table Header */}
-            <TableHeader />
-            {/* /Table Header */}
-            <Table />
-          </div>
+    <PageWrapper>
+      <PageHeader />
+      <div className="row">
+        <div className="col-sm-12">
+          <SearchBar />
+          <AppointmentCards />
         </div>
       </div>
-    </div>
-    //   </div>
-    // </div>
+    </PageWrapper>
   );
 }
 
@@ -131,7 +125,7 @@ function PageHeader() {
     </div>
   );
 }
-function TableHeader() {
+function SearchBar() {
   return (
     <div className="page-table-header mb-2">
       <div className="row align-items-center">
@@ -176,68 +170,32 @@ function TableHeader() {
   );
 }
 
-function Table() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [doctorId, setDoctorId] = useState(false);
-  const { data: doctorInfo } = useAppointmentList();
+function AppointmentCards() {
+  const { data: doctorInfo, isLoading } = useAppointmentList();
+  console.log(doctorInfo);
 
-  const handleOpenModal = function (id) {
-    setDoctorId(id);
-    setIsOpen((isOpen) => !isOpen);
-  };
   return (
     <div className="row" style={{ marginTop: "30px" }}>
-      {doctorInfo?.map((doctor) => (
-        <DoctorCard doctor={doctor} key={doctor.id} />
-      ))}
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          {doctorInfo?.map((doctor) => (
+            <DoctorCard doctor={doctor} key={doctor.id} />
+          ))}
+        </>
+      )}
     </div>
-
-    // <>
-    //   <div className="table-responsive">
-    //     <table className="table border-0 custom-table comman-table datatable mb-0">
-    //       <thead>
-    //         <tr>
-    //           <th>
-    //             <div className="form-check check-tables">
-    //               <input
-    //                 className="form-check-input"
-    //                 type="checkbox"
-    //                 defaultValue="something"
-    //               />
-    //             </div>
-    //           </th>
-    //           <th>Name</th>
-    //           <th>Specialization</th>
-    //           <th>Number of Appointments</th>
-    //           <th>Days</th>
-    //           <th />
-    //         </tr>
-    //       </thead>
-    //       <tbody>
-    //         {doctorInfo?.map((doctor) => (
-    //           <AppointmentTableTuples
-    //             doctor={doctor}
-    //             key={doctor.id}
-    //             handleOpenModal={handleOpenModal}
-    //           />
-    //         ))}
-    //       </tbody>
-    //     </table>
-    //   </div>
-    //   {isOpen && (
-    //     <CheckChosicModal handleOpenModal={handleOpenModal} id={doctorId} />
-    //   )}
-    // </>
   );
 }
 
 function DoctorCard({ doctor }) {
   return (
-    <div className="col-sm-6 col-md-6 col-xl-3">
+    <div className="col-sm-6 col-md-6 col-xl-3 ">
       <Link to={`/clinic/${doctor.name}/${doctor.doctorId}`}>
         <div className="blog grid-blog">
           <div className="blog-image">
-            <a href="blog-details.html">
+            <a>
               <img
                 className="img-fluid"
                 src="/images/clinic/clinic.jpg"
