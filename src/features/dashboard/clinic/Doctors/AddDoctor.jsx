@@ -3,9 +3,6 @@ import Button from "../reusable/Button";
 import DynamicDoctorSheduleInput from "./DynamicDoctorSheduleInput";
 import useAddDoctor from "./useAddDoctor";
 import MedicalSpecialties from "../../../../data/MedicalSpecialties";
-import { useState } from "react";
-import PasswordEye from "../../../authentication/PasswordEye";
-import { useNavigate } from "react-router-dom";
 
 function AddDoctor() {
   const {
@@ -21,11 +18,10 @@ function AddDoctor() {
   });
 
   const { addNewDoctor, isDataLoading } = useAddDoctor();
-  const navigate = useNavigate();
 
   function onSubmit(data) {
-    addNewDoctor(data);
-    navigate("/clinic/doctor-list");
+    console.log(data);
+    // addNewDoctor(data);
   }
 
   function handleCancel() {
@@ -62,7 +58,7 @@ function AddDoctor() {
                         <h4>Doctor Details</h4>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-3">
+                    <div className="col-12 col-md-6 col-xl-5">
                       <div className="input-block local-forms">
                         <label>
                           Doctor Name <span className="login-danger">*</span>
@@ -80,27 +76,6 @@ function AddDoctor() {
                         </span>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-3">
-                      <div className="input-block local-forms">
-                        <label>
-                          Specialization <span className="login-danger">*</span>
-                        </label>
-                        <select
-                          className="form-control select"
-                          {...register("specialization", {
-                            required: "This field is required",
-                          })}
-                        >
-                          <option disabled>Select Specialization</option>
-                          {MedicalSpecialties.map((specialty) => (
-                            <option key={specialty}>{specialty}</option>
-                          ))}
-                        </select>
-                      </div>
-                      <span className="error-message ">
-                        {errors?.specialization?.message}
-                      </span>
-                    </div>{" "}
                     <div className="col-12 col-md-6 col-xl-4">
                       <div className="input-block local-forms">
                         <label>
@@ -119,7 +94,7 @@ function AddDoctor() {
                         </span>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-2">
+                    <div className="col-12 col-md-6 col-xl-3">
                       <div className="input-block select-gender">
                         <label className="gen-label">
                           Gender<span className="login-danger">*</span>
@@ -130,7 +105,6 @@ function AddDoctor() {
                               type="radio"
                               name="gender"
                               className="form-check-input mt-0"
-                              defaultChecked={true}
                               value={"male"}
                               {...register("gender", {
                                 required: "This field is required",
@@ -158,29 +132,46 @@ function AddDoctor() {
                         </span>
                       </div>
                     </div>
-                    {/* 
-                    <div className="col-12 col-md-6 col-xl-6">
+                    <div className="col-12 col-md-6 col-xl-5">
                       <div className="input-block local-forms">
                         <label>
-                          Password <span className="login-danger">*</span>
+                          Specialization <span className="login-danger">*</span>
+                        </label>
+                        <select
+                          className="form-control select"
+                          {...register("specialization", {
+                            required: "This field is required",
+                          })}
+                        >
+                          <option disabled>Select Specialization</option>
+                          {MedicalSpecialties.map((specialty) => (
+                            <option key={specialty}>{specialty}</option>
+                          ))}
+                        </select>
+                      </div>
+                      <span className="error-message ">
+                        {errors?.specialization?.message}
+                      </span>
+                    </div>
+                    <div className="col-12 col-md-6 col-xl-4">
+                      <div className="input-block local-forms">
+                        <label>
+                          Examination fees{" "}
+                          <span className="login-danger">*</span>
                         </label>
                         <input
                           className="form-control"
-                          type={`${isEyeOpen ? "text" : "password"}`}
-                          placeholder="****************"
-                          {...register("password", {
+                          type="number"
+                          placeholder="200 EGP"
+                          {...register("price", {
                             required: "This field is required",
                           })}
-                        />{" "}
-                        <PasswordEye
-                          isEyeOpen={isEyeOpen}
-                          setIsEyeOpen={handlePasswordEye}
                         />
                         <span className="error-message ">
-                          {errors?.password?.message}
+                          {errors?.price?.message}
                         </span>
                       </div>
-                    </div> */}
+                    </div>
                     {/* Doctor Shedule  */}
                     <div className="form-heading">
                       <h4>Doctor Shedule </h4>
