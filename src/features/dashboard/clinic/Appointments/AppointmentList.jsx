@@ -1,15 +1,8 @@
-import { useState } from "react";
-import { CgMoreVerticalAlt } from "react-icons/cg";
-import { FaEdit } from "react-icons/fa";
-import { RiDeleteBin6Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import AppointmentTableTuples from "./AppointmentTableTuples";
-import CheckChosicModal from "../reusable/CheckChosicModal";
 import useAppointmentList from "./useAppointmentList";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
-import { useAuth } from "../../../../context/AuthContext";
 import PageWrapper from "../../PageWrapper";
-import PageCard from "../../PageCard";
+import { GiTakeMyMoney } from "react-icons/gi";
 
 // const doctorInfo = [
 //   {
@@ -176,15 +169,10 @@ function AppointmentCards() {
 
   return (
     <div className="row" style={{ marginTop: "30px" }}>
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : (
-        <>
-          {doctorInfo?.map((doctor) => (
-            <DoctorCard doctor={doctor} key={doctor.id} />
-          ))}
-        </>
-      )}
+      {isLoading && <LoadingSpinner />}
+      {doctorInfo?.map((doctor) => (
+        <DoctorCard doctor={doctor} key={doctor.id} />
+      ))}
     </div>
   );
 }
@@ -230,8 +218,8 @@ function DoctorCard({ doctor }) {
                 </div>
               </div>
               <span>
-                <i className="feather-calendar me-1" />
-                05 Sep 2022
+                <GiTakeMyMoney />
+                {doctor?.price ? doctor?.price : 0}
               </span>
             </div>
             <h4 className="blog-title">
@@ -244,8 +232,13 @@ function DoctorCard({ doctor }) {
                     <div
                       className={`custom-badge status-pink`}
                       style={{ margin: "5px", minWidth: "0" }}
+                      key={schedule?.day}
                     >
-                      {schedule?.day}
+                      {schedule?.day
+                        .split("")
+                        .slice(0, 3)
+                        .join("")
+                        .toUpperCase()}
                     </div>
                   )}
                 </>

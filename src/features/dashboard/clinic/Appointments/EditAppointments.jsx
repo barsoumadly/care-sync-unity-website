@@ -1,15 +1,42 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
+import useAppointmentList from "./useAppointmentList";
+import useAppointmentDetails from "./useAppointmentDetails";
+import formatTime from "../../../../utils/formatTime";
 
 function EditAppointments() {
-  const { register, handleSubmit, formState, getValues } = useForm();
+  const { data: doctorInfo, isLoading } = useAppointmentList();
+
+  const { register, handleSubmit, formState, setValue } = useForm();
   const { errors } = formState;
-  console.log(errors);
+
+  const [appointment, setAppointment] = useState([]);
+  const [doctor, setDoctor] = useState();
+  const path = useLocation();
+  const appointmentId = path.pathname.split("/")[3];
+
+  // const { data:appointmentData } = useAppointmentDetails(appointmentId);
+
+  // useEffect(() => {
+  //   setValue("email", appointmentData?.email);
+  //   setValue("gender", appointmentData?.gender);
+  //   setValue("name", appointmentData?.name);
+  //   setValue("scheduleId", appointmentData?.scheduleId);
+  // }, [appointmentData]);
+
+  const hanbleAppointment = function (e) {
+    const Did = e.target.value;
+    const data = doctorInfo.filter((doctor) => doctor.doctorId === Did);
+    setAppointment(data[0].workingDays);
+    setDoctor(Did);
+  };
+
   function onSubmit(data) {
-    console.log(data);
+    const appointmentData = { ...data, doctorId: doctor };
+    console.log(appointmentData);
   }
-  function onError(errors) {
-    console.log(errors);
-  } 
+
   return (
     <div className="page-wrapper">
       <div className="content">
@@ -34,7 +61,7 @@ function EditAppointments() {
           <div className="col-sm-12">
             <div className="card">
               <div className="card-body">
-                <form onSubmit={handleSubmit(onSubmit, onError)}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="row">
                     <div className="col-12">
                       <div className="form-heading">
@@ -44,37 +71,30 @@ function EditAppointments() {
                     <div className="col-12 col-md-6 col-xl-4">
                       <div className="input-block local-forms">
                         <label>
-                          First Name <span className="login-danger">*</span>
+                          Name <span className="login-danger">*</span>
                         </label>
                         <input
                           className="form-control"
                           type="text"
-                          placeholder="Stephen"
-                          {...register("firstName", {
+                          placeholder="adam"
+                          {...register("name", {
                             required: "This field is require",
                           })}
                         />
                         <span className="error-message">
-                          {errors?.firstName?.message}
+                          {errors?.name?.message}
                         </span>
                       </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-4">
                       <div className="input-block local-forms">
-                        <label>
-                          Last Name <span className="login-danger">*</span>
-                        </label>
+                        <label>Email</label>
                         <input
                           className="form-control"
-                          type="text"
-                          placeholder="Bruklin"
-                          {...register("lastName", {
-                            required: "This field is require",
-                          })}
+                          type="email"
+                          placeholder="example@email.com"
+                          {...register("email")}
                         />
-                        <span className="error-message">
-                          {errors?.lastName?.message}
-                        </span>
                       </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-4">
@@ -85,13 +105,13 @@ function EditAppointments() {
                         <div className="form-check-inline">
                           <label className="form-check-label">
                             <input
-                              type="radio"
-                              name="gender"
-                              className="form-check-input"
-                              defaultChecked=""
                               {...register("gender", {
                                 required: "This field is require",
                               })}
+                              type="radio"
+                              className="form-check-input"
+                              value="male"
+                              /* defaultChecked="checked" */
                             />
                             Male
                           </label>
@@ -99,12 +119,12 @@ function EditAppointments() {
                         <div className="form-check-inline">
                           <label className="form-check-label">
                             <input
-                              type="radio"
-                              name="gender"
-                              className="form-check-input"
                               {...register("gender", {
                                 required: "This field is require",
                               })}
+                              type="radio"
+                              className="form-check-input"
+                              value="female"
                             />
                             Female
                           </label>
@@ -115,110 +135,70 @@ function EditAppointments() {
                       </div>
                     </div>
 
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>Email</label>
-                        <input
-                          className="form-control"
-                          type="email"
-                          defaultValue="stephen@gmail.com"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>Consulting Doctor</label>
-                        <select className="form-control select">
-                          <option>Select Doctor</option>
-                          <option>Dr.Bernardo James</option>
-                          <option>Dr.Andrea Lalema</option>
-                          <option>Dr.William Stephin</option>
-                        </select>
-                      </div>
-                    </div>
-
                     <div className="col-12">
                       <div className="form-heading">
                         <h4>Appointment Details</h4>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-4">
-                      <div className="input-block local-forms ">
+                    <div className="col-12 col-md-6 col-xl-5">
+                      <div className="input-block local-forms">
                         <label>
-                          Date of Appointment{" "}
+                          Consulting Doctor{" "}
                           <span className="login-danger">*</span>
                         </label>
-                        <input
-                          className="form-control datetimepicker"
-                          type="date"
-                          {...register("date", {
-                            required: "This field is require",
-                          })}
-                        />
-                        <span className="error-message">
-                          {errors?.date?.message}
-                        </span>
+                        <select
+                          className="form-control select"
+                          required
+                          disabled={isLoading}
+                          onChange={hanbleAppointment}
+                        >
+                          <option>Select Doctor</option>
+                          {doctorInfo?.map((doctor) => (
+                            <option value={doctor?.doctorId}>
+                              {doctor?.name}
+                            </option>
+                          ))}
+                        </select>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-4">
+                    <div className="col-12 col-md-6 col-xl-5">
                       <div className="input-block local-forms">
                         <label>
-                          From <span className="login-danger">*</span>
+                          Doctor Schedule{" "}
+                          <span className="login-danger">*</span>
                         </label>
-                        <div>
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="datetimepicker3"
-                            {...register("from", {
-                              required: "This field is require",
-                              validate: (value) =>
-                                value > getValues("to") ||
-                                "From time must be less than to time",
-                            })}
-                          />
-                          <span className="error-message">
-                            {errors?.from?.message}
-                          </span>
-                        </div>
+                        <select
+                          className="form-control select"
+                          {...register("scheduleId")}
+                          disabled={appointment.length == 0}
+                        >
+                          <option>Select appointment</option>
+                          {appointment?.map((apppoint) => (
+                            <option value={apppoint?._id}>
+                              {"📅 "}
+                              {apppoint?.day}
+                              {"   ⌚ "}
+                              {formatTime(apppoint?.startTime)}
+                              {"-"}
+                              {formatTime(apppoint?.endTime)}
+                            </option>
+                          ))}
+                        </select>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-4">
-                      <div className="input-block local-forms">
-                        <label>
-                          To <span className="login-danger">*</span>
-                        </label>
-                        <div>
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="datetimepicker4"
-                            {...register("to", {
-                              required: "This field is require",
-                              validate: (value) =>
-                                value < getValues("from") ||
-                                "To time must be greater than from time",
-                            })}
-                          />
-                          <span className="error-message">
-                            {errors?.to?.message}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    
-                    
+
                     <div className="col-12">
                       <div className="doctor-submit text-end">
                         <button
                           type="submit"
-                          className="btn btn-primary submit-form me-2">
+                          className="btn btn-primary submit-form me-2"
+                        >
                           Submit
                         </button>
                         <button
                           type="submit"
-                          className="btn btn-primary cancel-form">
+                          className="btn btn-primary cancel-form"
+                        >
                           Cancel
                         </button>
                       </div>
@@ -227,244 +207,6 @@ function EditAppointments() {
                 </form>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="notification-box">
-        <div className="msg-sidebar notifications msg-noti">
-          <div className="topnav-dropdown-header">
-            <span>Messages</span>
-          </div>
-          <div className="drop-scroll msg-list-scroll" id="msg_list">
-            <ul className="list-box">
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">R</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Richard Miles </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item new-message">
-                    <div className="list-left">
-                      <span className="avatar">J</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">John Doe</span>
-                      <span className="message-time">1 Aug</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">T</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Tarah Shropshire </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">M</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Mike Litorus</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">C</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">
-                        {" "}
-                        Catherine Manseau{" "}
-                      </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">D</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Domenic Houston </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">B</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Buster Wigton </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">R</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Rolland Webber </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">C</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Claire Mapes </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">M</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Melita Faucher</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">J</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Jeffery Lalor</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">L</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Loren Gatlin</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">T</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Tarah Shropshire</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="topnav-dropdown-footer">
-            <a href="chat.html">See all messages</a>
           </div>
         </div>
       </div>
