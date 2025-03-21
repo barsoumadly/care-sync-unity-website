@@ -14,6 +14,9 @@ function useEditProfile() {
 
   const { mutate: UpdateProfilePhoto, isPhotoLoading } = useMutation({
     mutationFn: ({ profilePhoto }) => updateProfilePhoto(profilePhoto),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+    },
   });
 
   return { UpdatePatient, UpdateProfilePhoto, isDataLoading, isPhotoLoading };
