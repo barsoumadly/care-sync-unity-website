@@ -3,9 +3,13 @@ import { useAuth } from "../../../../context/AuthContext";
 import { Link } from "react-router-dom";
 import useProfile from "../useProfile";
 import SpinnerMini from "../../../../ui/SpinnerMini";
+import useUser from "../../useUser";
 
 function PatientProfileView() {
   const { data: patientData, isLoading, error } = useProfile();
+  console.log(patientData);
+
+  const { data } = useUser(patientData?.userId?._id);
 
   if (error) toast.error(error?.message);
 
@@ -72,7 +76,10 @@ function PatientProfileView() {
                                 >
                                   X
                                 </div>
-                                <img src={user.profilePhoto} alt="Profile" />
+                                <img
+                                  src={data?.profilePhoto?.url}
+                                  alt="Profile"
+                                />
                               </div>
                               <div className="names-profiles">
                                 <h4>{user.name}</h4>
