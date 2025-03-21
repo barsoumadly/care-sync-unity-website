@@ -77,6 +77,7 @@ const addDoctor = async function (doctorData) {
     email: doctorData.email,
     password: doctorData.password,
     specialization: doctorData.specialization,
+    price: doctorData.price,
   };
 
   try {
@@ -143,14 +144,38 @@ const getAppointmentList = async function () {
   }
 };
 
+const bookAppointment = async function (appointmentData) {
+  const token = JSON.parse(localStorage.getItem("key"));
+  try {
+    await axios.post(`${API_URL}/doctors`, appointmentData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const editAppointment = async function (appointmentData) {
+  const token = JSON.parse(localStorage.getItem("key"));
+  try {
+    await axios.post(`${API_URL}/doctors`, appointmentData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export {
   updateClinicProfile,
   getClinicProfile,
-  addDoctor,
   getClinics,
   getClinic,
+  addDoctor,
   getDoctorList,
   updateDoctor,
   deleteDoctor,
   getAppointmentList,
+  bookAppointment,
+  editAppointment,
 };
