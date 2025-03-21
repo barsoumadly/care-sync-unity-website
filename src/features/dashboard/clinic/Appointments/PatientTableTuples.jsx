@@ -53,7 +53,10 @@ function PatientTableTuples({ patient, handleOpenModal }) {
       </td>
       <td className="text-end">
         <div className="dropdown dropdown-action">
-          <Link to="/clinic/edit-appointment" className="dropdown-item">
+          <Link
+            to={`/clinic/edit-appointment/${patient.id}`}
+            className="dropdown-item"
+          >
             <FaEdit /> Edit
           </Link>
         </div>
