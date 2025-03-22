@@ -3,6 +3,7 @@ import useAppointmentList from "./useAppointmentList";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 import PageWrapper from "../../PageWrapper";
 import { GiTakeMyMoney } from "react-icons/gi";
+import NoData from "../NoData";
 
 // const doctorInfo = [
 //   {
@@ -91,7 +92,6 @@ function AppointmentList() {
       <PageHeader />
       <div className="row">
         <div className="col-sm-12">
-          <SearchBar />
           <AppointmentCards />
         </div>
       </div>
@@ -170,9 +170,22 @@ function AppointmentCards() {
   return (
     <div className="row" style={{ marginTop: "30px" }}>
       {isLoading && <LoadingSpinner />}
-      {doctorInfo?.map((doctor) => (
-        <DoctorCard doctor={doctor} key={doctor.id} />
-      ))}
+      {doctorInfo ? (
+        <>
+          <SearchBar />
+          doctorInfo?.map((doctor) => (
+          <DoctorCard doctor={doctor} key={doctor.id} />
+          ))
+        </>
+      ) : (
+        <NoData
+          name="appointments"
+          button={{
+            link: "/clinic/book-appointment",
+            label: "Book Appointment",
+          }}
+        />
+      )}
     </div>
   );
 }
