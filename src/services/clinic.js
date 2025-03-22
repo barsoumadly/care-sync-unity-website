@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const API_URL = "http://localhost:8000/api/v1/clinics";
 
@@ -64,7 +65,7 @@ const getDoctorList = async function () {
     });
     return response.data.data;
   } catch (error) {
-    console.log(error);
+    return error.response.status;
   }
 };
 
@@ -85,7 +86,7 @@ const addDoctor = async function (doctorData) {
       headers: { Authorization: `Bearer ${token}` },
     });
   } catch (error) {
-    console.log(error);
+    return error.response.data.message;
   }
 };
 
