@@ -21,7 +21,7 @@ function AddDoctor() {
 
   function onSubmit(data) {
     console.log(data);
-    // addNewDoctor(data);
+    addNewDoctor(data);
   }
 
   function handleCancel() {
