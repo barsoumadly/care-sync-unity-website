@@ -8,10 +8,14 @@ function useAddDoctor() {
   const navigate = useNavigate();
   const { mutate: addNewDoctor, isDataLoading } = useMutation({
     mutationFn: addDoctor,
-    onSuccess: () => {
-      toast.success("Doctor successfully added");
-      queryClient.invalidateQueries({ queryKey: ["doctorList"] });
-      navigate("/clinic/doctor-list");
+    onSuccess: (s) => {
+      if (s === "Email address is already registered") {
+        toast.success(s);
+      } else {
+        toast.success("Doctor successfully added");
+        queryClient.invalidateQueries({ queryKey: ["doctorList"] });
+        navigate("/clinic/doctor-list");
+      }
     },
     onError: (err) => toast.error(err.message),
   });
