@@ -5,6 +5,7 @@ import useDoctorList from "./useDoctorList";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 import useDeleteDoctor from "./useDeleteDoctor";
 import { Link } from "react-router-dom";
+import NoData from "../NoData";
 
 // const doctorInfo = [
 //   {
@@ -104,7 +105,10 @@ function DoctorList() {
                     <Table doctorInfo={data} />)
                   </>
                 ) : (
-                  <NoData />
+                  <NoData
+                    name={"doctors"}
+                    button={{ link: "/clinic/add-doctor", label: "Add doctor" }}
+                  />
                 )}
               </div>
             </div>
@@ -262,33 +266,6 @@ function Table({ doctorInfo }) {
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
-
-function NoData() {
-  return (
-    <div className="main-wrapper ">
-      <div className="error-box">
-        <img
-          className="img-fluid"
-          src="/images/clinic/no-data.jpg"
-          alt="Logo"
-        />
-        <h3>
-          <img
-            className="img-fluid mb-0"
-            src="/images/error/icons/danger.svg"
-            alt="Logo"
-          />{" "}
-          No data found
-        </h3>
-        <p>There is no data about the doctors. Please add a new doctor.</p>
-        <Link to="/clinic/add-doctor">
-          {" "}
-          <button className="btn btn-primary go-home">Add doctor</button>
-        </Link>
       </div>
     </div>
   );
