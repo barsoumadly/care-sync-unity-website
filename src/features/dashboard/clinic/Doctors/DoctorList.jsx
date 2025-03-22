@@ -80,7 +80,7 @@ import useDeleteDoctor from "./useDeleteDoctor";
 //   },
 // ];
 function DoctorList() {
-  const { data, isLoading } = useDoctorList();
+  const { data, error, isLoading } = useDoctorList();
   return (
     <div className="page-wrapper">
       <div className="content">
@@ -92,7 +92,14 @@ function DoctorList() {
             <div className="card card-table show-entire">
               <div className="card-body">
                 <CardHeader />
-                {isLoading ? <LoadingSpinner /> : <Table doctorInfo={data} />}
+                {error && <div>{error}</div>}
+                {error ? (
+                  ""
+                ) : isLoading ? (
+                  <LoadingSpinner />
+                ) : (
+                  <Table doctorInfo={data ? data : []} />
+                )}
               </div>
             </div>
           </div>
