@@ -194,7 +194,7 @@ function Chat() {
             <div className="col-xl-8">
               {activeChat ? (
                 <>
-                  <div className="card chat-box" style={{ height: "72vh" }}>
+                  <div className="card chat-box">
                     <div className="chat-search-group">
                       <div className="chat-user-group mb-0 d-flex align-items-center">
                         <div className="img-users call-user">
@@ -340,7 +340,7 @@ function Chat() {
                   </div>
                 </>
               ) : (
-                <div className="card chat-box">
+                <div className="card chat-box" style={{ height: "72vh" }}>
                   <div
                     className="text-center mt-5 py-5"
                     style={{ padding: "0 10%" }}
