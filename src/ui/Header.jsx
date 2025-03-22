@@ -5,8 +5,9 @@ import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 
 function Header({ setShowbar, setMinbar, url }) {
-  const { dropdownOpen, setDropdownOpen } = useState(false);
+  const [ dropdownOpen, setDropdownOpen ] = useState(false);
   const { isProfileCompleted } = useAuth();
+  
   return (
     <div className="header">
       <div className="header-left">
@@ -61,19 +62,21 @@ function Header({ setShowbar, setMinbar, url }) {
         {isProfileCompleted && (
           <>
             {" "}
-            <li className="nav-item dropdown d-none d-md-block">
+            <li 
+            onClick={() => setDropdownOpen((dropdownOpen) => !dropdownOpen)}
+            className="nav-item dropdown d-none d-md-block">
               <a
-                onClick={() => setDropdownOpen((dropdownOpen) => !dropdownOpen)}
+                
                 href="#"
                 className="dropdown-toggle nav-link"
                 data-bs-toggle="dropdown">
-                <img src="/images/dashborad/icons/note-icon-02.svg" alt="" />
+                  <img src="/images/dashborad/icons/note-icon-01.svg" alt="" />
+                
                 <span className="pulse"></span>
               </a>
               <div
-                className={`dropdown-menu notifications ${
-                  dropdownOpen ? "show" : ""
-                }`}>
+                className={`dropdown-menu notifications
+                ${dropdownOpen ? "show" : ""}`}>
                 <div className="topnav-dropdown-header">
                   <span>Notifications</span>
                 </div>
@@ -209,7 +212,7 @@ function Header({ setShowbar, setMinbar, url }) {
             </li>
             <li className="nav-item dropdown d-none d-md-block">
               <a id="open_msg_box" className="hasnotifications nav-link">
-                <img src="/images/dashborad/icons/note-icon-01.svg" alt="" />
+              <img src="/images/dashborad/icons/note-icon-02.svg" alt="" />
                 <span className="pulse"></span>
               </a>
             </li>
