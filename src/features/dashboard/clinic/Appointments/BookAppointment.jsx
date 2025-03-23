@@ -2,14 +2,14 @@ import { useForm } from "react-hook-form";
 import useAppointmentList from "./useAppointmentList";
 import { useState } from "react";
 import formatTime from "../../../../utils/formatTime";
+import useBookAppointment from "./useBookAppointment";
 function BookAppointment() {
   const { data: doctorInfo, isLoading } = useAppointmentList();
   const { register, handleSubmit, formState, getValues } = useForm();
   const { errors } = formState;
-
-  const [seletedAppointment, setSeletedAppointment] = useState();
   const [appointment, setAppointment] = useState([]);
   const [doctor, setDoctor] = useState();
+  const { BookNewAppointment, isLoading: isBookLoading } = useBookAppointment();
 
   const hanbleAppointment = function (e) {
     const Did = e.target.value;
@@ -27,7 +27,9 @@ function BookAppointment() {
   // };
 
   function onSubmit(data) {
-    console.log({ ...data, doctorId: doctor });
+    const appointmentData = { ...data, doctorId: doctor };
+    BookNewAppointment(appointmentData);
+    console.log(appointmentData);
   }
 
   return (
@@ -104,7 +106,6 @@ function BookAppointment() {
                               type="radio"
                               className="form-check-input"
                               value="male"
-                              /* defaultChecked="checked" */
                             />
                             Male
                           </label>
