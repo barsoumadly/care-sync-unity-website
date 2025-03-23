@@ -48,7 +48,7 @@ function CompleteClinicProfile({ clinicData }) {
     setSelectedArea(clinicData?.address.state);
     setValue("street", clinicData?.address.street);
 
-    setImage(clinicData?.photos);
+    if (clinicData) setImage(clinicData?.photos);
     if (userData) setAvatar(userData?.profilePhoto?.url);
   }, [clinicData, userData]);
 
