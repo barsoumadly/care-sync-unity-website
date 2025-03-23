@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 import { updateClinicProfile } from "../../../../services/clinic";
 import { updateProfilePhoto } from "../../../../services/user";
 
