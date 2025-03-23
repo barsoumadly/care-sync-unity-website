@@ -95,20 +95,18 @@ function DoctorList() {
           <div className="col-sm-12">
             <div className="card card-table show-entire">
               <div className="card-body">
-                {" "}
-                {data === 400 || !data ? (
+                {isLoading ? (
+                  <LoadingSpinner />
+                ) : data && data?.length !== 0 ? (
+                  <>
+                    <CardHeader />
+                    <Table doctorInfo={data} />
+                  </>
+                ) : (
                   <NoData
                     name={"doctors"}
                     button={{ link: "/clinic/add-doctor", label: "Add doctor" }}
                   />
-                ) : isLoading ? (
-                  <LoadingSpinner />
-                ) : (
-                  <>
-                    {" "}
-                    <CardHeader />
-                    <Table doctorInfo={data} />
-                  </>
                 )}
               </div>
             </div>
