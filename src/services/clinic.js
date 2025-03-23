@@ -148,7 +148,7 @@ const getAppointmentList = async function () {
 const bookAppointment = async function (appointmentData) {
   const token = JSON.parse(localStorage.getItem("key"));
   try {
-    await axios.post(`${API_URL}/doctors`, appointmentData, {
+    await axios.post(`${API_URL}/appointments/book`, appointmentData, {
       headers: { Authorization: `Bearer ${token}` },
     });
   } catch (error) {
