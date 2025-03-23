@@ -1,17 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
 import { getUser } from "../../services/user";
 
-function usePharmacy(userId) {
-  const { isLoading, data, error } = useQuery({
-    queryKey: ["user", userId],
-    queryFn: () => getUser(userId),
-  });
+function useUser(userId) {
+  if (userId) {
+    const { isLoading, data, error } = useQuery({
+      queryKey: ["user", userId],
+      queryFn: () => getUser?.(userId),
+    });
 
-  return {
-    data,
-    isLoading,
-    error,
-  };
+    return {
+      data,
+      isLoading,
+      error,
+    };
+  } else {
+    return {
+      data: null,
+      isLoading: false,
+      error: null,
+    };
+  }
 }
 
-export default usePharmacy;
+export default useUser;
