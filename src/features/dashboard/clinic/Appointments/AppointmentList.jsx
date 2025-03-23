@@ -171,12 +171,9 @@ function AppointmentCards() {
     <div className="row" style={{ marginTop: "30px" }}>
       {isLoading && <LoadingSpinner />}
       {doctorInfo ? (
-        <>
-          <SearchBar />
-          doctorInfo?.map((doctor) => (
+        doctorInfo?.map((doctor) => (
           <DoctorCard doctor={doctor} key={doctor.id} />
-          ))
-        </>
+        ))
       ) : (
         <NoData
           name="appointments"
@@ -219,7 +216,7 @@ function DoctorCard({ doctor }) {
                 <a>
                   <img
                     className="img-fluid"
-                    src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
+                    src={doctor.profilePhoto.url}
                     alt=""
                   />
                 </a>
