@@ -169,8 +169,9 @@ function AppointmentCards() {
 
   return (
     <div className="row" style={{ marginTop: "30px" }}>
-      {isLoading && <LoadingSpinner />}
-      {doctorInfo ? (
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : doctorInfo && doctorInfo?.length !== 0 ? (
         doctorInfo?.map((doctor) => (
           <DoctorCard doctor={doctor} key={doctor.id} />
         ))
