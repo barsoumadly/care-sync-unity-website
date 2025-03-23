@@ -877,7 +877,7 @@ textarea.form-control {
 }
 .user-menu .dropdown-menu {
   min-width: 145px;
-  padding: 0;
+  margin: -30px 11px 0 0 ;
   visibility: hidden;
   opacity: 0;
   display: block;
@@ -5786,7 +5786,7 @@ html.menu-opened body {
   border-top: 1px solid #eee;
 }
 .notification-box {
-  bottom: 0;
+  
   margin-right: -300px;
   position: fixed;
   right: 0;
@@ -5795,8 +5795,9 @@ html.menu-opened body {
   width: 300px;
   z-index: 101;
   border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
-.open-msg-box .notification-box {
+.notification-box.open-msg-box  {
   margin-right: 0;
 }
 .msg-sidebar {

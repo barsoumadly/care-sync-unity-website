@@ -177,7 +177,10 @@ function ClinicDashboard() {
               <div className="card-body">
                 <div className="activity-top">
                   <div className="activity-boxs comman-flex-center">
-                    <img src="../images/dashborad/icons/dep-icon-01.svg" alt="" />
+                    <img
+                      src="../images/dashborad/icons/dep-icon-01.svg"
+                      alt=""
+                    />
                   </div>
                   <div className="departments-list">
                     <h4>General Physician</h4>
@@ -186,7 +189,10 @@ function ClinicDashboard() {
                 </div>
                 <div className="activity-top">
                   <div className="activity-boxs comman-flex-center">
-                    <img src="../images/dashborad/icons/dep-icon-02.svg" alt="" />
+                    <img
+                      src="../images/dashborad/icons/dep-icon-02.svg"
+                      alt=""
+                    />
                   </div>
                   <div className="departments-list">
                     <h4>Dentist</h4>
@@ -195,7 +201,10 @@ function ClinicDashboard() {
                 </div>
                 <div className="activity-top">
                   <div className="activity-boxs comman-flex-center">
-                    <img src="../images/dashborad/icons/dep-icon-03.svg" alt="" />
+                    <img
+                      src="../images/dashborad/icons/dep-icon-03.svg"
+                      alt=""
+                    />
                   </div>
                   <div className="departments-list">
                     <h4>ENT</h4>
@@ -204,7 +213,10 @@ function ClinicDashboard() {
                 </div>
                 <div className="activity-top">
                   <div className="activity-boxs comman-flex-center">
-                    <img src="../images/dashborad/icons/dep-icon-04.svg" alt="" />
+                    <img
+                      src="../images/dashborad/icons/dep-icon-04.svg"
+                      alt=""
+                    />
                   </div>
                   <div className="departments-list">
                     <h4>Cardiologist</h4>
@@ -213,7 +225,10 @@ function ClinicDashboard() {
                 </div>
                 <div className="activity-top mb-0">
                   <div className="activity-boxs comman-flex-center">
-                    <img src="../images/dashborad/icons/dep-icon-05.svg" alt="" />
+                    <img
+                      src="../images/dashborad/icons/dep-icon-05.svg"
+                      alt=""
+                    />
                   </div>
                   <div className="departments-list">
                     <h4>Opthomology</h4>
@@ -248,10 +263,10 @@ function ClinicDashboard() {
                           </div>
                         </th>
                         <th>No</th>
-                        <th>Patient name</th>
+                        <th>Number Of Patients</th>
                         <th>Doctor</th>
                         <th>Time</th>
-                        <th>Disease</th>
+                        <th>Specialization </th>
                         <th />
                       </tr>
                     </thead>
@@ -571,12 +586,11 @@ function ClinicDashboard() {
                             />
                           </div>
                         </th>
-                        <th>No</th>
+                        <th>Turn</th>
                         <th>Patient name</th>
-                        <th>Age</th>
-                        <th>Date of Birth</th>
-                        <th>Diagnosis</th>
-                        <th>Triage</th>
+                        <th>Doctor's Name</th>
+                        <th>Payment Type</th>
+                        <th>Status</th>
                         <th />
                       </tr>
                     </thead>
@@ -604,7 +618,7 @@ function ClinicDashboard() {
                         </td>
                         <td>21</td>
                         <td>07 January 2002</td>
-                        <td>Heart attack</td>
+
                         <td>
                           <button className="custom-badge status-green ">
                             Non Urgent
@@ -660,7 +674,7 @@ function ClinicDashboard() {
                         </td>
                         <td>23</td>
                         <td>06 January 2002</td>
-                        <td>Jaundice</td>
+
                         <td>
                           <button className="custom-badge status-pink">
                             Emergency
@@ -716,7 +730,7 @@ function ClinicDashboard() {
                         </td>
                         <td>25</td>
                         <td>10 January 2002</td>
-                        <td>Malaria</td>
+
                         <td>
                           <button className="custom-badge status-gray">
                             Out Patient
@@ -772,7 +786,7 @@ function ClinicDashboard() {
                         </td>
                         <td>21</td>
                         <td>09 January 2002</td>
-                        <td>Typhoid</td>
+
                         <td>
                           <button className="custom-badge status-orange">
                             Non Urgent
@@ -810,244 +824,6 @@ function ClinicDashboard() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="notification-box">
-        <div className="msg-sidebar notifications msg-noti">
-          <div className="topnav-dropdown-header">
-            <span>Messages</span>
-          </div>
-          <div className="drop-scroll msg-list-scroll" id="msg_list">
-            <ul className="list-box">
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">R</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Richard Miles </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item new-message">
-                    <div className="list-left">
-                      <span className="avatar">J</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">John Doe</span>
-                      <span className="message-time">1 Aug</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">T</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Tarah Shropshire </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">M</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Mike Litorus</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">C</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">
-                        {" "}
-                        Catherine Manseau{" "}
-                      </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">D</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Domenic Houston </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">B</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Buster Wigton </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">R</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Rolland Webber </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">C</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author"> Claire Mapes </span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">M</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Melita Faucher</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">J</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Jeffery Lalor</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">L</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Loren Gatlin</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="chat.html">
-                  <div className="list-item">
-                    <div className="list-left">
-                      <span className="avatar">T</span>
-                    </div>
-                    <div className="list-body">
-                      <span className="message-author">Tarah Shropshire</span>
-                      <span className="message-time">12:28 AM</span>
-                      <div className="clearfix" />
-                      <span className="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="topnav-dropdown-footer">
-            <a href="chat.html">See all messages</a>
           </div>
         </div>
       </div>

@@ -27,9 +27,6 @@ import Attendance from "../features/dashboard/clinic/Staff/Attendance";
 import AppointmentList from "../features/dashboard/clinic/Appointments/AppointmentList";
 import BookAppointment from "../features/dashboard/clinic/Appointments/BookAppointment";
 import EditAppointments from "../features/dashboard/clinic/Appointments/EditAppointments";
-import ScheduleList from "../features/dashboard/clinic/DoctorSchedule/ScheduleList";
-import AddSchedule from "../features/dashboard/clinic/DoctorSchedule/AddSchedule";
-import EditSchedule from "../features/dashboard/clinic/DoctorSchedule/EditSchedule";
 import EditProfileClinic from "../features/dashboard/clinic/EditProfileClinic";
 import Chat from "../features/dashboard/chat/Chat";
 import Reports from "../features/dashboard/clinic/Reports";
@@ -37,7 +34,7 @@ import Invoice from "../features/dashboard/clinic/Invoice";
 /* Doctor */
 import DoctorLayout from "../features/dashboard/doctor/DoctorLayout";
 import DoctorDashboard from "../features/dashboard/doctor/DoctorDashboard";
-import DoctorShedule from "../features/dashboard/doctor/DoctorShedule";
+ import DoctorShedule from "../features/dashboard/doctor/DoctorShedule"; 
 import DoctorPatientsList from "../features/dashboard/doctor/Patients/PatientList/Patients";
 import DoctorChat from "../features/dashboard/chat/Chat";
 import MyProfile from "../features/dashboard/doctor/MyProfile";

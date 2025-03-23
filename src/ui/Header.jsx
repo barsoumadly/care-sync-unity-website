@@ -5,9 +5,10 @@ import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 
 function Header({ setShowbar, setMinbar, url }) {
-  const [ dropdownOpen, setDropdownOpen ] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [notificationOpen, setNotificationOpen] = useState(false);
   const { isProfileCompleted } = useAuth();
-  
+
   return (
     <div className="header">
       <div className="header-left">
@@ -62,16 +63,15 @@ function Header({ setShowbar, setMinbar, url }) {
         {isProfileCompleted && (
           <>
             {" "}
-            <li 
-            onClick={() => setDropdownOpen((dropdownOpen) => !dropdownOpen)}
-            className="nav-item dropdown d-none d-md-block">
+            <li
+              onClick={() => setDropdownOpen((dropdownOpen) => !dropdownOpen)}
+              className="nav-item dropdown d-none d-md-block">
               <a
-                
                 href="#"
                 className="dropdown-toggle nav-link"
                 data-bs-toggle="dropdown">
-                  <img src="/images/dashborad/icons/note-icon-01.svg" alt="" />
-                
+                <img src="/images/dashborad/icons/note-icon-01.svg" alt="" />
+
                 <span className="pulse"></span>
               </a>
               <div
@@ -211,8 +211,14 @@ function Header({ setShowbar, setMinbar, url }) {
               </div>
             </li>
             <li className="nav-item dropdown d-none d-md-block">
-              <a id="open_msg_box" className="hasnotifications nav-link">
-              <img src="/images/dashborad/icons/note-icon-02.svg" alt="" />
+              <a
+                onClick={() =>
+                  setNotificationOpen((notificationOpen) => !notificationOpen)
+                }
+                href="#"
+                id="open_msg_box"
+                className="hasnotifications nav-link ">
+                <img src="/images/dashborad/icons/note-icon-02.svg" alt="" />
                 <span className="pulse"></span>
               </a>
             </li>
@@ -234,6 +240,248 @@ function Header({ setShowbar, setMinbar, url }) {
           </li>
         )}
       </ul>
+
+      <div
+        className={`notification-box  ${
+          notificationOpen ? "open-msg-box" : ""
+        }`}>
+        <div className="msg-sidebar notifications msg-noti">
+          <div className="topnav-dropdown-header">
+            <span>Messages</span>
+          </div>
+          <div className="drop-scroll msg-list-scroll" id="msg_list">
+            <ul className="list-box">
+              <li>
+                <a href="chat.html">
+                  <div className="list-item">
+                    <div className="list-left">
+                      <span className="avatar">R</span>
+                    </div>
+                    <div className="list-body">
+                      <span className="message-author">Richard Miles </span>
+                      <span className="message-time">12:28 AM</span>
+                      <div className="clearfix" />
+                      <span className="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div className="list-item new-message">
+                    <div className="list-left">
+                      <span className="avatar">J</span>
+                    </div>
+                    <div className="list-body">
+                      <span className="message-author">John Doe</span>
+                      <span className="message-time">1 Aug</span>
+                      <div className="clearfix" />
+                      <span className="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div className="list-item">
+                    <div className="list-left">
+                      <span className="avatar">T</span>
+                    </div>
+                    <div className="list-body">
+                      <span className="message-author"> Tarah Shropshire </span>
+                      <span className="message-time">12:28 AM</span>
+                      <div className="clearfix" />
+                      <span className="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div className="list-item">
+                    <div className="list-left">
+                      <span className="avatar">M</span>
+                    </div>
+                    <div className="list-body">
+                      <span className="message-author">Mike Litorus</span>
+                      <span className="message-time">12:28 AM</span>
+                      <div className="clearfix" />
+                      <span className="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div className="list-item">
+                    <div className="list-left">
+                      <span className="avatar">C</span>
+                    </div>
+                    <div className="list-body">
+                      <span className="message-author">
+                        {" "}
+                        Catherine Manseau{" "}
+                      </span>
+                      <span className="message-time">12:28 AM</span>
+                      <div className="clearfix" />
+                      <span className="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div className="list-item">
+                    <div className="list-left">
+                      <span className="avatar">D</span>
+                    </div>
+                    <div className="list-body">
+                      <span className="message-author"> Domenic Houston </span>
+                      <span className="message-time">12:28 AM</span>
+                      <div className="clearfix" />
+                      <span className="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div className="list-item">
+                    <div className="list-left">
+                      <span className="avatar">B</span>
+                    </div>
+                    <div className="list-body">
+                      <span className="message-author"> Buster Wigton </span>
+                      <span className="message-time">12:28 AM</span>
+                      <div className="clearfix" />
+                      <span className="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div className="list-item">
+                    <div className="list-left">
+                      <span className="avatar">R</span>
+                    </div>
+                    <div className="list-body">
+                      <span className="message-author"> Rolland Webber </span>
+                      <span className="message-time">12:28 AM</span>
+                      <div className="clearfix" />
+                      <span className="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div className="list-item">
+                    <div className="list-left">
+                      <span className="avatar">C</span>
+                    </div>
+                    <div className="list-body">
+                      <span className="message-author"> Claire Mapes </span>
+                      <span className="message-time">12:28 AM</span>
+                      <div className="clearfix" />
+                      <span className="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div className="list-item">
+                    <div className="list-left">
+                      <span className="avatar">M</span>
+                    </div>
+                    <div className="list-body">
+                      <span className="message-author">Melita Faucher</span>
+                      <span className="message-time">12:28 AM</span>
+                      <div className="clearfix" />
+                      <span className="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div className="list-item">
+                    <div className="list-left">
+                      <span className="avatar">J</span>
+                    </div>
+                    <div className="list-body">
+                      <span className="message-author">Jeffery Lalor</span>
+                      <span className="message-time">12:28 AM</span>
+                      <div className="clearfix" />
+                      <span className="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div className="list-item">
+                    <div className="list-left">
+                      <span className="avatar">L</span>
+                    </div>
+                    <div className="list-body">
+                      <span className="message-author">Loren Gatlin</span>
+                      <span className="message-time">12:28 AM</span>
+                      <div className="clearfix" />
+                      <span className="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div className="list-item">
+                    <div className="list-left">
+                      <span className="avatar">T</span>
+                    </div>
+                    <div className="list-body">
+                      <span className="message-author">Tarah Shropshire</span>
+                      <span className="message-time">12:28 AM</span>
+                      <div className="clearfix" />
+                      <span className="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="topnav-dropdown-footer">
+            <a href="chat.html">See all messages</a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
