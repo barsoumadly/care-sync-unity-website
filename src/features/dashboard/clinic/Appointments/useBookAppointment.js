@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { bookAppointment } from "../../../../services/clinic";
+import toast from "react-hot-toast";
 
 function useBookAppointment() {
   const { mutate: BookNewAppointment, isLoading } = useMutation({
