@@ -6,7 +6,7 @@ const API_URL = "http://localhost:8000/api/v1/clinics";
 const updateClinicProfile = async function (clinicData) {
   const formData = new FormData();
 
-  clinicData.images.map((image) => formData.append("photos", image));
+  clinicData?.images?.map((image) => formData.append("photos", image));
   formData.append("name", clinicData.name);
   formData.append("phone", clinicData.phone);
   formData.append("address[city]", clinicData.city);
@@ -16,6 +16,7 @@ const updateClinicProfile = async function (clinicData) {
   formData.append("biography", clinicData.biography);
 
   const token = JSON.parse(localStorage.getItem("key"));
+  console.log(formData.photos);
 
   try {
     await axios.put(`${API_URL}/`, formData, {
