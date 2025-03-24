@@ -34,7 +34,7 @@ import Invoice from "../features/dashboard/clinic/Invoice";
 /* Doctor */
 import DoctorLayout from "../features/dashboard/doctor/DoctorLayout";
 import DoctorDashboard from "../features/dashboard/doctor/DoctorDashboard";
- import DoctorShedule from "../features/dashboard/doctor/DoctorShedule"; 
+import DoctorShedule from "../features/dashboard/doctor/DoctorShedule";
 import DoctorPatientsList from "../features/dashboard/doctor/Patients/PatientList/Patients";
 import DoctorChat from "../features/dashboard/chat/Chat";
 import MyProfile from "../features/dashboard/doctor/MyProfile";
@@ -96,7 +96,7 @@ import Results from "../features/dashboard/patient/analysis/Results";
 import LaboratoryOrderList from "../features/dashboard/laboratory/orders/LaboratoryOrderList";
 import AnalysisOrderList from "../features/dashboard/laboratory/orders/AnalysisOrderList";
 import OrderAddition from "../features/dashboard/laboratory/orders/OrderAddition";
-import ClinicProfileView from "../features/dashboard/clinic/ClinicProfileView";
+import ClinicProfileView from "../features/dashboard/clinic/ClinicProfile/ClinicProfileView";
 
 function AppRoutes() {
   return (
@@ -168,7 +168,7 @@ function AppRoutes() {
           <Route path="chat" element={<Chat />} />
           <Route path="reports" element={<Reports />} />
           <Route path="invoice" element={<Invoice />} />
-          <Route path="view-profile" element={<ClinicProfileView/>}/>
+          <Route path="view-profile" element={<ClinicProfileView />} />
         </Route>
 
         {/* Doctor */}
