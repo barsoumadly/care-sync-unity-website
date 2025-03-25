@@ -1,3 +1,97 @@
+import { Link } from "react-router-dom";
+import LineCH from "./Charts/LineCH";
+import PieCH from "./Charts/PieCH";
+import { CgMoreVerticalAlt } from "react-icons/cg";
+
+const recentPatients = [
+  {
+    id: 1,
+    turn: "R00001",
+    name: "Andrea Lalema",
+    doctorName: "Dr.Jenny Smith",
+    paymentType: "Cash",
+    status: "Non Urgent",
+    src: "../images/dashborad/profiles/avatar-02.jpg",
+    statusColor: "status-green",
+  },
+  {
+    id: 2,
+    turn: "R00002",
+    name: "Mark Hay Smith",
+    doctorName: "Dr.Martin Doe",
+    paymentType: "Paypal",
+    status: "Emergency",
+    src: "../images/dashborad/profiles/avatar-03.jpg",
+    statusColor: "status-pink",
+  },
+  {
+    id: 3,
+    turn: "R00003",
+    name: "Cristina Groves",
+    doctorName: "Dr.William Jerk",
+    paymentType: "Debit Card",
+    status: "Out Patient",
+    src: "../images/dashborad/profiles/avatar-04.jpg",
+    statusColor: "status-gray",
+  },
+  {
+    id: 4,
+    turn: "R00004",
+    name: "Galaviz Lalema",
+    doctorName: "Dr.Angelica Ramos",
+    paymentType: "Cash",
+    status: "Non Urgent",
+    src: "../images/dashborad/profiles/avatar-05.jpg",
+    statusColor: "status-green",
+  },
+];
+const upcomingAppointments = [
+  {
+    id: 1,
+    No: "R00001",
+    numberOfPatients: "Andrea Lalema",
+    doctorName: "Dr.Jenny Smith",
+    time: "12.05.2022 at ",
+    specialization: "Neurology",
+    src: "../images/dashborad/profiles/avatar-01.jpg",
+  },
+  {
+    id: 1,
+    No: "R00002",
+    numberOfPatients: "Cristina Groves",
+    doctorName: "Dr.Angelica Ramos",
+    time: "13.05.2022 at ",
+    specialization: "Cardiology",
+    src: "../images/dashborad/profiles/avatar-05.jpg",
+  },
+  {
+    id: 1,
+    No: "R00003",
+    numberOfPatients: "Bernardo",
+    doctorName: "Dr.Martin Doe",
+    time: "14.05.2022 at ",
+    specialization: "Oncology",
+    src: "../images/dashborad/profiles/avatar-03.jpg",
+  },
+  {
+    id: 1,
+    No: "R00004",
+    numberOfPatients: "Galaviz Lalema",
+    doctorName: "Dr.William Jerk",
+    time: "12.05.2022 at ",
+    specialization: "Neurology",
+    src: "../images/dashborad/profiles/avatar-04.jpg",
+  },
+  {
+    id: 1,
+    No: "R00005",
+    numberOfPatients: "Cristina Groves",
+    doctorName: "Dr.Angelica Ramos",
+    time: "12.05.2022 at ",
+    specialization: "Neurology",
+    src: "../images/dashborad/profiles/avatar-02.jpg",
+  },
+];
 function ClinicDashboard() {
   return (
     <div className="page-wrapper">
@@ -151,6 +245,9 @@ function ClinicDashboard() {
                     </select>
                   </div>
                 </div>
+                <div>
+                  <LineCH />
+                </div>
                 <div id="patient-chart" />
               </div>
             </div>
@@ -162,7 +259,7 @@ function ClinicDashboard() {
                   <h4>Patient by Department</h4>
                 </div>
                 <div id="donut-chart-dash" className="chart-user-icon">
-                  <img src="../images/dashborad/icons/user-icon.svg" alt="" />
+                  <PieCH />
                 </div>
               </div>
             </div>
@@ -244,9 +341,9 @@ function ClinicDashboard() {
                 <h4 className="card-title d-inline-block">
                   Upcoming Appointments
                 </h4>{" "}
-                <a href="appointments.html" className="patient-views float-end">
+                <Link to={"/clinic/doctor-list"} className="patient-views float-end">
                   Show all
-                </a>
+                </Link>
               </div>
               <div className="card-body p-0 table-dash">
                 <div className="table-responsive">
@@ -270,292 +367,67 @@ function ClinicDashboard() {
                         <th />
                       </tr>
                     </thead>
+
                     <tbody>
-                      <tr>
-                        <td>
-                          <div className="form-check check-tables">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue="something"
-                            />
-                          </div>
-                        </td>
-                        <td>R00001</td>
-                        <td>Andrea Lalema</td>
-                        <td className="table-image appoint-doctor">
-                          <img
-                            width={28}
-                            height={28}
-                            className="rounded-circle"
-                            src="../images/dashborad/profiles/avatar-02.jpg"
-                            alt=""
-                          />
-                          <h2>Dr.Jenny Smith</h2>
-                        </td>
-                        <td className="appoint-time">
-                          <span>12.05.2022 at </span>7.00 PM
-                        </td>
-                        <td>
-                          <button className="custom-badge status-green ">
-                            Fracture
-                          </button>
-                        </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-appointment.html">
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_appointment">
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
+                      {upcomingAppointments.map((doc) => (
+                        <tr>
+                          <td>
+                            <div className="form-check check-tables">
+                              <input
+                                className="form-check-input"
+                                type="checkbox"
+                                defaultValue="something"
+                              />
                             </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div className="form-check check-tables">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue="something"
+                          </td>
+                          <td>{doc.No}</td>
+                          <td>{doc.numberOfPatients}</td>
+                          <td className="table-image appoint-doctor">
+                            <img
+                              width={28}
+                              height={28}
+                              className="rounded-circle"
+                              src={doc.src}
+                              alt=""
                             />
-                          </div>
-                        </td>
-                        <td>R00002</td>
-                        <td>Cristina Groves</td>
-                        <td className="table-image appoint-doctor">
-                          <img
-                            width={28}
-                            height={28}
-                            className="rounded-circle"
-                            src="../images/dashborad/profiles/avatar-03.jpg"
-                            alt=""
-                          />
-                          <h2>Dr.Angelica Ramos</h2>
-                        </td>
-                        <td className="appoint-time">
-                          <span>13.05.2022 at </span>7.00 PM
-                        </td>
-                        <td>
-                          <button className="custom-badge status-green">
-                            Fever
-                          </button>
-                        </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
+                            <h2>{doc.doctorName}</h2>
+                          </td>
+                          <td className="appoint-time">
+                            <span>{doc.time} </span>7.00 PM
+                          </td>
+                          <td>
+                            <button className="custom-badge status-green ">
+                              {doc.specialization}
+                            </button>
+                          </td>
+                          <td className="text-end">
+                            <div className="dropdown dropdown-action">
                               <a
-                                className="dropdown-item"
-                                href="edit-appointment.html">
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
                                 href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_appointment">
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
+                                className="action-icon dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <CgMoreVerticalAlt />
                               </a>
+                              <div className="dropdown-menu dropdown-menu-end">
+                                <a
+                                  className="dropdown-item"
+                                  href="edit-appointment.html">
+                                  <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
+                                  Edit
+                                </a>
+                                <a
+                                  className="dropdown-item"
+                                  href="#"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#delete_appointment">
+                                  <i className="fa fa-trash-alt m-r-5" /> Delete
+                                </a>
+                              </div>
                             </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div className="form-check check-tables">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue="something"
-                            />
-                          </div>
-                        </td>
-                        <td>R00003</td>
-                        <td>Bernardo </td>
-                        <td className="table-image appoint-doctor">
-                          <img
-                            width={28}
-                            height={28}
-                            className="rounded-circle"
-                            src="../images/dashborad/profiles/avatar-04.jpg"
-                            alt=""
-                          />
-                          <h2>Dr.Martin Doe</h2>
-                        </td>
-                        <td className="appoint-time">
-                          <span>14.05.2022 at </span>7.00 PM
-                        </td>
-                        <td>
-                          <button className="custom-badge status-green">
-                            Fracture
-                          </button>
-                        </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-appointment.html">
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_appointment">
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div className="form-check check-tables">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue="something"
-                            />
-                          </div>
-                        </td>
-                        <td>R00004</td>
-                        <td>Galaviz Lalema</td>
-                        <td className="table-image appoint-doctor">
-                          <img
-                            width={28}
-                            height={28}
-                            className="rounded-circle"
-                            src="../images/dashborad/profiles/avatar-05.jpg"
-                            alt=""
-                          />
-                          <h2>Dr.William Jerk</h2>
-                        </td>
-                        <td className="appoint-time">
-                          <span>15.05.2022 at </span>7.00 PM
-                        </td>
-                        <td>
-                          <button className="custom-badge status-green">
-                            Fracture
-                          </button>
-                        </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-appointment.html">
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_appointment">
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div className="form-check check-tables">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue="something"
-                            />
-                          </div>
-                        </td>
-                        <td>R00005</td>
-                        <td>Cristina Groves</td>
-                        <td className="table-image appoint-doctor">
-                          <img
-                            width={28}
-                            height={28}
-                            className="rounded-circle"
-                            src="../images/dashborad/profiles/avatar-03.jpg"
-                            alt=""
-                          />
-                          <h2>Dr.Angelica Ramos</h2>
-                        </td>
-                        <td className="appoint-time">
-                          <span>16.05.2022 at </span>7.00 PM
-                        </td>
-                        <td>
-                          <button className="custom-badge status-green">
-                            Fever
-                          </button>
-                        </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-appointment.html">
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_appointment">
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
@@ -568,9 +440,9 @@ function ClinicDashboard() {
             <div className="card">
               <div className="card-header pb-0">
                 <h4 className="card-title d-inline-block">Recent Patients </h4>{" "}
-                <a href="patients.html" className="float-end patient-views">
+                <Link to={"/clinic/appointment-list"} className="float-end patient-views">
                   Show all
-                </a>
+                </Link>
               </div>
               <div className="card-block table-dash">
                 <div className="table-responsive">
@@ -595,230 +467,65 @@ function ClinicDashboard() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>
-                          <div className="form-check check-tables">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue="something"
-                            />
-                          </div>
-                        </td>
-                        <td>R00001</td>
-                        <td className="table-image">
-                          <img
-                            width={28}
-                            height={28}
-                            className="rounded-circle"
-                            src="../images/dashborad/profiles/avatar-02.jpg"
-                            alt=""
-                          />
-                          <h2>Andrea Lalema</h2>
-                        </td>
-                        <td>21</td>
-                        <td>07 January 2002</td>
-
-                        <td>
-                          <button className="custom-badge status-green ">
-                            Non Urgent
-                          </button>
-                        </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-patient.html">
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_appointment">
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
+                      {recentPatients.map((patient) => (
+                        <tr>
+                          <td>
+                            <div className="form-check check-tables">
+                              <input
+                                className="form-check-input"
+                                type="checkbox"
+                                defaultValue="something"
+                              />
                             </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div className="form-check check-tables">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue="something"
+                          </td>
+                          <td>{patient.turn}</td>
+                          <td className="table-image">
+                            <img
+                              width={28}
+                              height={28}
+                              className="rounded-circle"
+                              src={patient.src}
+                              alt=""
                             />
-                          </div>
-                        </td>
-                        <td>R00002</td>
-                        <td className="table-image">
-                          <img
-                            width={28}
-                            height={28}
-                            className="rounded-circle"
-                            src="../images/dashborad/profiles/avatar-03.jpg"
-                            alt=""
-                          />
-                          <h2>Mark Hay Smith</h2>
-                        </td>
-                        <td>23</td>
-                        <td>06 January 2002</td>
+                            <h2>{patient.name}</h2>
+                          </td>
+                          <td>{patient.doctorName}</td>
+                          <td>{patient.paymentType}</td>
 
-                        <td>
-                          <button className="custom-badge status-pink">
-                            Emergency
-                          </button>
-                        </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
+                          <td>
+                            <button
+                              className={`custom-badge ${patient.statusColor}`}>
+                              {patient.status}
+                            </button>
+                          </td>
+                          <td className="text-end">
+                            <div className="dropdown dropdown-action">
                               <a
-                                className="dropdown-item"
-                                href="edit-patient.html">
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
                                 href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_appointment">
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
+                                className="action-icon dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <CgMoreVerticalAlt />
                               </a>
+                              <div className="dropdown-menu dropdown-menu-end">
+                                <a
+                                  className="dropdown-item"
+                                  href="edit-patient.html">
+                                  <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
+                                  Edit
+                                </a>
+                                <a
+                                  className="dropdown-item"
+                                  href="#"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#delete_appointment">
+                                  <i className="fa fa-trash-alt m-r-5" /> Delete
+                                </a>
+                              </div>
                             </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div className="form-check check-tables">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue="something"
-                            />
-                          </div>
-                        </td>
-                        <td>R00003</td>
-                        <td className="table-image">
-                          <img
-                            width={28}
-                            height={28}
-                            className="rounded-circle"
-                            src="../images/dashborad/profiles/avatar-04.jpg"
-                            alt=""
-                          />
-                          <h2>Cristina Groves</h2>
-                        </td>
-                        <td>25</td>
-                        <td>10 January 2002</td>
-
-                        <td>
-                          <button className="custom-badge status-gray">
-                            Out Patient
-                          </button>
-                        </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-patient.html">
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_appointment">
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div className="form-check check-tables">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              defaultValue="something"
-                            />
-                          </div>
-                        </td>
-                        <td>R00004</td>
-                        <td className="table-image">
-                          <img
-                            width={28}
-                            height={28}
-                            className="rounded-circle"
-                            src="../images/dashborad/profiles/avatar-05.jpg"
-                            alt=""
-                          />
-                          <h2>Galaviz Lalema</h2>
-                        </td>
-                        <td>21</td>
-                        <td>09 January 2002</td>
-
-                        <td>
-                          <button className="custom-badge status-orange">
-                            Non Urgent
-                          </button>
-                        </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-patient.html">
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_appointment">
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
