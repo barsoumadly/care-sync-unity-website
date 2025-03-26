@@ -5,59 +5,57 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 function PatientTableTuples({ patient, handleOpenModal }) {
-  const [WaitingList, isWaitingList] = useState(true);
   const [dropdown, setDropdown] = useState(false);
   return (
-    <tr key={patient.id}>
+    <tr>
+      <td></td>
       <td>
-        <div className="form-check check-tables">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            defaultValue="something"
-          />
-        </div>
-      </td>
-      <td>
-        <a href="invoice-view.html">{patient.turn}</a>
+        <a>{patient.turnNumber}</a>
       </td>
       <td className="profile-image">
         <a href="profile.html">
           <img
             width={28}
             height={28}
-            src={patient.image}
+            src={patient?.patient?.profilePhoto?.url}
             className="rounded-circle m-r-5"
             alt=""
           />{" "}
-          {patient.name}
+          {patient.patient.name}
         </a>
       </td>
+      <td>{patient.patient?.phone}</td>
       <td>{patient.paymentType}</td>
-      {/*  <td>01.10.2022</td>
-                        <td>$2450</td> */}
+      <td>{patient.price}</td>
+      <td>{patient.specialization}</td>
+      <td>{patient.createdAt.split("T")[0]}</td>
       <td>
-        <button
+        <div
           className={`custom-badge ${
-            WaitingList ? "status-pink" : "status-green"
+            patient.status === "pending" ? "status-pink" : "status-green"
           } `}
-          onClick={() => isWaitingList((done) => !done)}
         >
-          {WaitingList ? patient.trueStatus : patient.falseStatus}
-        </button>
+          {patient.status}
+        </div>
       </td>
       <td>
         <div className="action-label">
           <button className="custom-badge book-btn">Examination</button>
         </div>
       </td>
-      <td className="text-end">
+      <td>
         <div className="dropdown dropdown-action">
           <Link
             to={`/clinic/edit-appointment/${patient.id}`}
             className="dropdown-item"
           >
-            <FaEdit /> Edit
+            <button
+              type="button"
+              className="btn btn-primary cancel-form me-4"
+              style={{ background: "rgba(51, 52, 72, 0.05)", color: "#333448" }}
+            >
+              <FaEdit /> Edit
+            </button>
           </Link>
         </div>
       </td>
