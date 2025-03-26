@@ -1,8 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
+import { updateAppointment } from "../../../../services/clinic";
+import toast from "react-hot-toast";
 
 function useEditAppointment() {
   const { mutate: EditPatientAppointment, isLoading } = useMutation({
-    // mutationFn: editAppointment,
+    mutationFn: updateAppointment,
     onSuccess: () => {
       toast.success("Appointment successfully deleted");
     },
