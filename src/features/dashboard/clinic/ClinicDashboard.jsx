@@ -404,7 +404,8 @@ function ClinicDashboard() {
                 </h4>{" "}
                 <Link
                   to={"/clinic/doctor-list"}
-                  className="patient-views float-end">
+                  className="patient-views float-end"
+                >
                   Show all
                 </Link>
               </div>
@@ -434,79 +435,88 @@ function ClinicDashboard() {
                     </thead>
 
                     <tbody>
-                      {upcomingAppointments.map((doc) => (
-                        <tr>
-                          <td>
-                            <div className="form-check check-tables">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                defaultValue="something"
-                              />
-                            </div>
-                          </td>
+                      {doctors?.map((doc, index) => {
+                        return (
+                          index < 6 && (
+                            <tr>
+                              <td>
+                                <div className="form-check check-tables">
+                                  <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    defaultValue="something"
+                                  />
+                                </div>
+                              </td>
 
-                          <td className="table-image appoint-doctor">
-                            <img
-                              width={28}
-                              height={28}
-                              className="rounded-circle"
-                              src={doc.user.profilePhoto.url}
-                              alt=""
-                            />
-                            <h2>{doc.user.doctorName}</h2>
-                          </td>
-                          <td>
-                            <button className="custom-badge status-gray ">
-                              {doc.doctor.specialization}
-                            </button>
-                          </td>
-                          <td>{doc.schedule[0].day}</td>
-                          <td className="appoint-time">
-                            <span>{doc.schedule[0].startTime} </span>
-                          </td>
-                          <td className="appoint-time">
-                            <span>{doc.schedule[0].endTime} </span>
-                          </td>
-                          
-                          <td>
-                            <button
-                              className={`custom-badge ${
-                                doc.doctor.status === "active"
-                                  ? "status-green"
-                                  : "status-red"
-                              }`}>
-                              {doc.doctor.status}
-                            </button>
-                          </td>
-                          <td className="text-end">
-                            <div className="dropdown dropdown-action">
-                              <a
-                                href="#"
-                                className="action-icon dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <CgMoreVerticalAlt />
-                              </a>
-                              <div className="dropdown-menu dropdown-menu-end">
-                                <a
-                                  className="dropdown-item"
-                                  href="edit-appointment.html">
-                                  <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                  Edit
-                                </a>
-                                <a
-                                  className="dropdown-item"
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#delete_appointment">
-                                  <i className="fa fa-trash-alt m-r-5" /> Delete
-                                </a>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
+                              <td className="table-image appoint-doctor">
+                                <img
+                                  width={28}
+                                  height={28}
+                                  className="rounded-circle"
+                                  src={doc.user.profilePhoto.url}
+                                  alt=""
+                                />
+                                <h2>{doc.user.name}</h2>
+                              </td>
+                              <td>
+                                <button className="custom-badge status-gray ">
+                                  {doc.doctor.specialization}
+                                </button>
+                              </td>
+                              <td>{doc.schedule[0].day}</td>
+                              <td className="appoint-time">
+                                <span>{doc.schedule[0].startTime} </span>
+                              </td>
+                              <td className="appoint-time">
+                                <span>{doc.schedule[0].endTime} </span>
+                              </td>
+
+                              <td>
+                                <button
+                                  className={`custom-badge ${
+                                    doc.doctor.status === "active"
+                                      ? "status-green"
+                                      : "status-red"
+                                  }`}
+                                >
+                                  {doc.doctor.status}
+                                </button>
+                              </td>
+                              <td className="text-end">
+                                <div className="dropdown dropdown-action">
+                                  <a
+                                    href="#"
+                                    className="action-icon dropdown-toggle"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                  >
+                                    <CgMoreVerticalAlt />
+                                  </a>
+                                  <div className="dropdown-menu dropdown-menu-end">
+                                    <a
+                                      className="dropdown-item"
+                                      href="edit-appointment.html"
+                                    >
+                                      <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
+                                      Edit
+                                    </a>
+                                    <a
+                                      className="dropdown-item"
+                                      href="#"
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#delete_appointment"
+                                    >
+                                      <i className="fa fa-trash-alt m-r-5" />{" "}
+                                      Delete
+                                    </a>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                          )
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -521,7 +531,8 @@ function ClinicDashboard() {
                 <h4 className="card-title d-inline-block">Recent Patients </h4>{" "}
                 <Link
                   to={"/clinic/appointment-list"}
-                  className="float-end patient-views">
+                  className="float-end patient-views"
+                >
                   Show all
                 </Link>
               </div>
@@ -575,7 +586,8 @@ function ClinicDashboard() {
 
                           <td>
                             <button
-                              className={`custom-badge ${patient.statusColor}`}>
+                              className={`custom-badge ${patient.statusColor}`}
+                            >
                               {patient.status}
                             </button>
                           </td>
@@ -585,13 +597,15 @@ function ClinicDashboard() {
                                 href="#"
                                 className="action-icon dropdown-toggle"
                                 data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                                aria-expanded="false"
+                              >
                                 <CgMoreVerticalAlt />
                               </a>
                               <div className="dropdown-menu dropdown-menu-end">
                                 <a
                                   className="dropdown-item"
-                                  href="edit-patient.html">
+                                  href="edit-patient.html"
+                                >
                                   <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
                                   Edit
                                 </a>
@@ -599,7 +613,8 @@ function ClinicDashboard() {
                                   className="dropdown-item"
                                   href="#"
                                   data-bs-toggle="modal"
-                                  data-bs-target="#delete_appointment">
+                                  data-bs-target="#delete_appointment"
+                                >
                                   <i className="fa fa-trash-alt m-r-5" /> Delete
                                 </a>
                               </div>
