@@ -46,7 +46,7 @@ function PatientTableTuples({ patient, handleOpenModal }) {
       <td>
         <div className="dropdown dropdown-action">
           <Link
-            to={`/clinic/edit-appointment/${patient.id}`}
+            to={`/clinic/edit-appointment/${patient.appointmentId}`}
             className="dropdown-item"
           >
             <button
