@@ -49,49 +49,104 @@ const recentPatients = [
 ];
 const upcomingAppointments = [
   {
-    id: 1,
-    No: "R00001",
-    numberOfPatients: "Andrea Lalema",
-    doctorName: "Dr.Jenny Smith",
-    time: "12.05.2022 at ",
-    specialization: "Neurology",
-    src: "../images/dashborad/profiles/avatar-01.jpg",
+    doctor: {
+      specialization: "Neurology",
+      status: "active",
+    },
+    schedule: [
+      {
+        day: "Monday",
+        endTime: "10:13",
+        startTime: "09:13",
+      },
+    ],
+
+    user: {
+      doctorName: "Dr.Jenny Smith",
+      profilePhoto: {
+        url: "../images/dashborad/profiles/avatar-01.jpg",
+      },
+    },
   },
   {
-    id: 1,
-    No: "R00002",
-    numberOfPatients: "Cristina Groves",
-    doctorName: "Dr.Angelica Ramos",
-    time: "13.05.2022 at ",
-    specialization: "Cardiology",
-    src: "../images/dashborad/profiles/avatar-05.jpg",
+    doctor: {
+      specialization: "Neurology",
+      status: "active",
+    },
+    schedule: [
+      {
+        day: "Monday",
+        endTime: "10:13",
+        startTime: "09:13",
+      },
+    ],
+
+    user: {
+      doctorName: "Dr.Jenny Smith",
+      profilePhoto: {
+        url: "../images/dashborad/profiles/avatar-01.jpg",
+      },
+    },
   },
   {
-    id: 1,
-    No: "R00003",
-    numberOfPatients: "Bernardo",
-    doctorName: "Dr.Martin Doe",
-    time: "14.05.2022 at ",
-    specialization: "Oncology",
-    src: "../images/dashborad/profiles/avatar-03.jpg",
+    doctor: {
+      specialization: "Neurology",
+      status: "active",
+    },
+    schedule: [
+      {
+        day: "Monday",
+        endTime: "10:13",
+        startTime: "09:13",
+      },
+    ],
+
+    user: {
+      doctorName: "Dr.Jenny Smith",
+      profilePhoto: {
+        url: "../images/dashborad/profiles/avatar-01.jpg",
+      },
+    },
   },
   {
-    id: 1,
-    No: "R00004",
-    numberOfPatients: "Galaviz Lalema",
-    doctorName: "Dr.William Jerk",
-    time: "12.05.2022 at ",
-    specialization: "Neurology",
-    src: "../images/dashborad/profiles/avatar-04.jpg",
+    doctor: {
+      specialization: "Neurology",
+      status: "active",
+    },
+    schedule: [
+      {
+        day: "Monday",
+        endTime: "10:13",
+        startTime: "09:13",
+      },
+    ],
+
+    user: {
+      doctorName: "Dr.Jenny Smith",
+      profilePhoto: {
+        url: "../images/dashborad/profiles/avatar-01.jpg",
+      },
+    },
   },
   {
-    id: 1,
-    No: "R00005",
-    numberOfPatients: "Cristina Groves",
-    doctorName: "Dr.Angelica Ramos",
-    time: "12.05.2022 at ",
-    specialization: "Neurology",
-    src: "../images/dashborad/profiles/avatar-02.jpg",
+    doctor: {
+      specialization: "Neurology",
+      status: "Not active",
+    },
+    schedule: [
+      {
+        day: "Monday",
+        endTime: "10:13",
+        startTime: "09:13",
+      },
+    ],
+
+    user: {
+      doctorName: "Dr.Jenny Smith",
+      profilePhoto: {
+        url: "../images/dashborad/profiles/avatar-01.jpg",
+      },
+    },
   },
 ];
 function ClinicDashboard() {
@@ -349,8 +404,7 @@ function ClinicDashboard() {
                 </h4>{" "}
                 <Link
                   to={"/clinic/doctor-list"}
-                  className="patient-views float-end"
-                >
+                  className="patient-views float-end">
                   Show all
                 </Link>
               </div>
@@ -368,11 +422,13 @@ function ClinicDashboard() {
                             />
                           </div>
                         </th>
-                        <th>No</th>
-                        <th>Number Of Patients</th>
-                        <th>Doctor</th>
-                        <th>Time</th>
+                        <th>Doctor's Name</th>
                         <th>Specialization </th>
+                        <th>Day</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+
+                        <th>Status</th>
                         <th />
                       </tr>
                     </thead>
@@ -389,24 +445,38 @@ function ClinicDashboard() {
                               />
                             </div>
                           </td>
-                          <td>{doc.No}</td>
-                          <td>{doc.numberOfPatients}</td>
+
                           <td className="table-image appoint-doctor">
                             <img
                               width={28}
                               height={28}
                               className="rounded-circle"
-                              src={doc.src}
+                              src={doc.user.profilePhoto.url}
                               alt=""
                             />
-                            <h2>{doc.doctorName}</h2>
-                          </td>
-                          <td className="appoint-time">
-                            <span>{doc.time} </span>7.00 PM
+                            <h2>{doc.user.doctorName}</h2>
                           </td>
                           <td>
-                            <button className="custom-badge status-green ">
-                              {doc.specialization}
+                            <button className="custom-badge status-gray ">
+                              {doc.doctor.specialization}
+                            </button>
+                          </td>
+                          <td>{doc.schedule[0].day}</td>
+                          <td className="appoint-time">
+                            <span>{doc.schedule[0].startTime} </span>
+                          </td>
+                          <td className="appoint-time">
+                            <span>{doc.schedule[0].endTime} </span>
+                          </td>
+                          
+                          <td>
+                            <button
+                              className={`custom-badge ${
+                                doc.doctor.status === "active"
+                                  ? "status-green"
+                                  : "status-red"
+                              }`}>
+                              {doc.doctor.status}
                             </button>
                           </td>
                           <td className="text-end">
@@ -415,15 +485,13 @@ function ClinicDashboard() {
                                 href="#"
                                 className="action-icon dropdown-toggle"
                                 data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                              >
+                                aria-expanded="false">
                                 <CgMoreVerticalAlt />
                               </a>
                               <div className="dropdown-menu dropdown-menu-end">
                                 <a
                                   className="dropdown-item"
-                                  href="edit-appointment.html"
-                                >
+                                  href="edit-appointment.html">
                                   <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
                                   Edit
                                 </a>
@@ -431,8 +499,7 @@ function ClinicDashboard() {
                                   className="dropdown-item"
                                   href="#"
                                   data-bs-toggle="modal"
-                                  data-bs-target="#delete_appointment"
-                                >
+                                  data-bs-target="#delete_appointment">
                                   <i className="fa fa-trash-alt m-r-5" /> Delete
                                 </a>
                               </div>
@@ -454,8 +521,7 @@ function ClinicDashboard() {
                 <h4 className="card-title d-inline-block">Recent Patients </h4>{" "}
                 <Link
                   to={"/clinic/appointment-list"}
-                  className="float-end patient-views"
-                >
+                  className="float-end patient-views">
                   Show all
                 </Link>
               </div>
@@ -509,8 +575,7 @@ function ClinicDashboard() {
 
                           <td>
                             <button
-                              className={`custom-badge ${patient.statusColor}`}
-                            >
+                              className={`custom-badge ${patient.statusColor}`}>
                               {patient.status}
                             </button>
                           </td>
@@ -520,15 +585,13 @@ function ClinicDashboard() {
                                 href="#"
                                 className="action-icon dropdown-toggle"
                                 data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                              >
+                                aria-expanded="false">
                                 <CgMoreVerticalAlt />
                               </a>
                               <div className="dropdown-menu dropdown-menu-end">
                                 <a
                                   className="dropdown-item"
-                                  href="edit-patient.html"
-                                >
+                                  href="edit-patient.html">
                                   <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
                                   Edit
                                 </a>
@@ -536,8 +599,7 @@ function ClinicDashboard() {
                                   className="dropdown-item"
                                   href="#"
                                   data-bs-toggle="modal"
-                                  data-bs-target="#delete_appointment"
-                                >
+                                  data-bs-target="#delete_appointment">
                                   <i className="fa fa-trash-alt m-r-5" /> Delete
                                 </a>
                               </div>
