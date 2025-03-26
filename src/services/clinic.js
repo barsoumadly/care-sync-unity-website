@@ -184,6 +184,22 @@ const getPatientList = async function (doctorId) {
   }
 };
 
+const getAppointmentDetails = async function (apppointmentId) {
+  const token = JSON.parse(localStorage.getItem("key"));
+
+  try {
+    const response = await axios.get(
+      `${API_URL}/appointments/${apppointmentId}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const updateAppointment = async function (appointmentData) {
   const token = JSON.parse(localStorage.getItem("key"));
   console.log(appointmentData.appointmentId);
@@ -219,5 +235,6 @@ export {
   bookAppointment,
   editAppointment,
   getPatientList,
+  getAppointmentDetails,
   updateAppointment,
 };
