@@ -4,41 +4,35 @@ const recentAppointments = [
   {
     name: "Saint Fatima",
     availableDays: "Mon - Sun",
-    src: "../images/dashborad/profiles/avatar-02.jpg",
+    src: "/images/clinic/clinic.jpg",
     time: "09:00 AM - 06:00 PM",
     noPatients: 5,
   },
   {
     name: " 90th Street",
     availableDays: "Mon - Fri",
-    src: "../images/dashborad/profiles/avatar-02.jpg",
+    src: "/images/clinic/clinic.jpg",
     time: "09:00 AM - 06:00 PM",
     noPatients: 7,
   },
-  {
-    name: "Saint Fatima",
-    availableDays: "Sat - Sun",
-    src: "../images/dashborad/profiles/avatar-02.jpg",
-    time: "09:00 AM - 06:00 PM",
-    noPatients: 0,
-  },
+
   {
     name: "Heliopolis Hospital",
     availableDays: "Web - Sun",
-    src: "../images/dashborad/profiles/avatar-02.jpg",
+    src: "/images/clinic/clinic.jpg",
     time: "09:00 AM - 06:00 PM",
     noPatients: 6,
   },
 ];
-function AppointmentTable(patient) {
+function AppointmentTable() {
   return (
     <div className="row">
       <div className="col-12 col-xl-12">
         <div className="card">
           <div className="card-header pb-0">
-            <h4 className="card-title d-inline-block">Recent Appointments </h4>{" "}
+            <h4 className="card-title d-inline-block">Appointment schedule </h4>{" "}
             <Link
-              to={"/doctor/doctor-shedule"}
+              to="/doctor/doctor-shedule"
               className="float-end patient-views"
             >
               Show all
