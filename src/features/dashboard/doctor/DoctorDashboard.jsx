@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import PieCharts from "./charts/PieChart";
+import AreaCharts from "./charts/AreaCharts";
 
 function DoctorDashboard() {
   return (
@@ -124,7 +126,7 @@ function DoctorDashboard() {
                       <h4>Income</h4>
                       <div className="income-value">
                         <h3>
-                          <span>$</span> 20,560
+                          <span>$</span> 200
                         </h3>
                         <p>
                           <span className="passive-view">
@@ -136,21 +138,22 @@ function DoctorDashboard() {
                       </div>
                       <div className="input-block mb-0">
                         <select className="form-control select">
-                          <option>2022</option>
-                          <option>2021</option>
-                          <option>2020</option>
-                          <option>2019</option>
+                          <option>2024-2025</option>
                         </select>
                       </div>
                     </div>
-                    <div id="apexcharts-area" />
+                    <div id="apexcharts-area">
+                      <AreaCharts />
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="col-12 col-md-12 col-lg-6 col-xl-3 d-flex">
                 <div className="card">
                   <div className="card-body">
-                    <div id="radial-patients" />
+                    <div id="radial-patients">
+                      <PieCharts />
+                    </div>
                   </div>
                 </div>
               </div>
