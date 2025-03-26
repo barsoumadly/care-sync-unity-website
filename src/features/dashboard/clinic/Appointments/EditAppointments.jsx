@@ -4,19 +4,17 @@ import { useLocation } from "react-router-dom";
 import useAppointmentList from "./useAppointmentList";
 import useAppointmentDetails from "./useAppointmentDetails";
 import formatTime from "../../../../utils/formatTime";
+import useEditAppointment from "./useEditAppointment";
 
 function EditAppointments() {
-  const { data: doctorInfo, isLoading } = useAppointmentList();
-
-  const { register, handleSubmit, formState, setValue } = useForm();
-  const { errors } = formState;
-
   const [appointment, setAppointment] = useState([]);
   const [doctor, setDoctor] = useState();
+  const { register, handleSubmit } = useForm();
+  const { data: doctorInfo, isLoading } = useAppointmentList();
+  const { EditPatientAppointment } = useEditAppointment();
+
   const path = useLocation();
   const appointmentId = path.pathname.split("/")[3];
-
-  // const { data:appointmentData } = useAppointmentDetails(appointmentId);
 
   // useEffect(() => {
   //   setValue("email", appointmentData?.email);
@@ -33,7 +31,8 @@ function EditAppointments() {
   };
 
   function onSubmit(data) {
-    const appointmentData = { ...data, doctorId: doctor };
+    const appointmentData = { ...data, doctorId: doctor, appointmentId };
+    EditPatientAppointment(appointmentData);
     console.log(appointmentData);
   }
 
@@ -63,6 +62,7 @@ function EditAppointments() {
               <div className="card-body">
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="row">
+                    {/* 
                     <div className="col-12">
                       <div className="form-heading">
                         <h4>Patient Details</h4>
@@ -110,8 +110,7 @@ function EditAppointments() {
                               })}
                               type="radio"
                               className="form-check-input"
-                              value="male"
-                              /* defaultChecked="checked" */
+                              value="male"                      
                             />
                             Male
                           </label>
@@ -133,7 +132,8 @@ function EditAppointments() {
                           {errors?.gender?.message}
                         </span>
                       </div>
-                    </div>
+                    </div> 
+                    */}
 
                     <div className="col-12">
                       <div className="form-heading">
