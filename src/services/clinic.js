@@ -6,7 +6,7 @@ const API_URL = "http://localhost:8000/api/v1/clinics";
 const updateClinicProfile = async function (clinicData) {
   const formData = new FormData();
 
-  clinicData?.images?.map((image) => formData.append("photos", image));
+  clinicData?.images?.map((image) => formData.append("photos", image.url));
   formData.append("name", clinicData.name);
   formData.append("phone", clinicData.phone);
   formData.append("address[city]", clinicData.city);
