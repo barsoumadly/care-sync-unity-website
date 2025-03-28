@@ -16,6 +16,9 @@ function EditAppointments() {
   const path = useLocation();
   const appointmentId = path.pathname.split("/")[3];
 
+  const { data: appointmentData } = useAppointmentDetails(appointmentId);
+  console.log(appointmentData);
+
   // useEffect(() => {
   //   setValue("email", appointmentData?.email);
   //   setValue("gender", appointmentData?.gender);
