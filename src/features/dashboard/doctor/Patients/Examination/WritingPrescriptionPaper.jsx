@@ -2,6 +2,8 @@ import { useAuth } from "../../../../../context/AuthContext";
 import { useForm } from "react-hook-form";
 import DynamicPrescriptionInput from "./DynamicPrescriptionInput";
 import toast from "react-hot-toast";
+import useWritingPrescription from "./useWritingPrescription";
+import { useLocation } from "react-router-dom";
 
 function PrescriptionPaper({
   setOpenCard,
@@ -11,6 +13,11 @@ function PrescriptionPaper({
 }) {
   const { user } = useAuth();
   const date = new Date().toLocaleDateString();
+  const path = useLocation();
+  const clinic = path.pathname.split("/")[2];
+  // const id = path.pathname.split("/")[3];
+  const id = "67cd509db725342217086ef8";
+  const specialization = "test";
 
   const {
     register,
@@ -20,15 +27,27 @@ function PrescriptionPaper({
     formState: { errors },
   } = useForm({
     defaultValues: {
-      prescriptionPaper: [{}],
+      medicines: [{}],
     },
   });
 
+  const { prescriptionData, mutate, isLoading, error } =
+    useWritingPrescription();
+
   function onSubmit(data) {
-    console.log(data);
+    const PrescriptionData = {
+      ...data,
+      doctorName: user.name,
+      clinicName: clinic,
+      patientId: id,
+      specialization,
+      date: new Date().toLocaleDateString(),
+    };
+    console.log(PrescriptionData);
+    mutate(PrescriptionData);
+
     setIsAdding(true);
     setOpenCard("");
-    toast.success("Prescription successfully saved");
   }
 
   function handleCancel() {
