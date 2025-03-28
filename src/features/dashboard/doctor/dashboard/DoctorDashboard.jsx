@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import PieCharts from "../charts/PieChart";
 import AreaCharts from "../charts/AreaCharts";
-import AppointmentTable from "./appointmentTable";
+import AppointmentTable from "./AppointmentTable";
 
 function DoctorDashboard() {
   return (
