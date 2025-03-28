@@ -16,4 +16,18 @@ const getPrescriptionsByPatientId = async function () {
   }
 };
 
-export { getPrescriptionsByPatientId };
+const createPrescription = async function (data) {
+  const token = JSON.parse(localStorage.getItem("key"));
+
+  try {
+    const response = await axios.post(`${API_URL}`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return await response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { getPrescriptionsByPatientId, createPrescription };
