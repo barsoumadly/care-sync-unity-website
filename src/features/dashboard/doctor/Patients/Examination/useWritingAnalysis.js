@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 function useWritingAnalysis() {
   const { mutate, isLoading, error } = useMutation({
