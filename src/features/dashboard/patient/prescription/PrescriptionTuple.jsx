@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-function PrescriptionTuple({ prescriptionTuple }) {
+function PrescriptionTuple({ prescriptionTuple, prescriptionNumber }) {
   const saveActivePrescription = function (prescription) {
     localStorage.setItem("prescription", JSON.stringify(prescription));
   };
 
-  const doctorSlug = prescriptionTuple.doctor.name
+  const doctorSlug = prescriptionTuple.doctorName
     .toLowerCase()
     .split(" ")
     .join("-");
@@ -19,14 +19,14 @@ function PrescriptionTuple({ prescriptionTuple }) {
       <tr>
         <td className="profile-image">
           <Link to={`/patient/${doctorSlug}/profile`} target="blank">
-            <img
+            {/* <img
               width={28}
               height={28}
               src={prescriptionTuple.doctor.profilePhoto}
               className="rounded-circle m-r-5"
               alt=""
-            />
-            {prescriptionTuple.doctor.name}
+            /> */}
+            {prescriptionTuple.doctorName}
           </Link>
         </td>
         <td className="profile-image">
@@ -34,13 +34,13 @@ function PrescriptionTuple({ prescriptionTuple }) {
             {prescriptionTuple.clinicName}
           </Link>
         </td>
-        <td>{prescriptionTuple.doctor.specialization}</td>
+        <td>{prescriptionTuple.specialization}</td>
         <td>{prescriptionTuple.date}</td>
 
         <td>
           <div class="dropdown action-label">
             <Link
-              to={`/patient/prescription/${prescriptionTuple.id}`}
+              to={`/patient/prescription/${prescriptionNumber}`}
               target="blank"
               class="custom-badge book-btn"
               onClick={() => saveActivePrescription(prescriptionTuple)}
