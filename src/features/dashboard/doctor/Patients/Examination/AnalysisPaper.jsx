@@ -3,10 +3,15 @@ import { useAuth } from "../../../../../context/AuthContext";
 import DynamicAnalysisInput from "./DynamicAnalysisInput";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useLocation } from "react-router-dom";
 
 function AnalysisPaper({ setOpenCard, setIsAdding, clinicName, patientName }) {
   const { user } = useAuth();
+  const path = useLocation();
   const date = new Date().toLocaleDateString();
+  const clinic = path.pathname.split("/")[2];
+  const id = path.pathname.split("/")[3];
+  const specialization = "test";
   const {
     register,
     handleSubmit,
@@ -15,15 +20,22 @@ function AnalysisPaper({ setOpenCard, setIsAdding, clinicName, patientName }) {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      analysisPaper: [{}],
+      analyses: [{}],
     },
   });
 
   function onSubmit(data) {
-    console.log(data);
+    const AnalysesData = {
+      ...data,
+      doctorName: user.name,
+      clinicName: clinic,
+      patientId: id,
+      specialization,
+      date,
+    };
+    console.log(AnalysesData);
     setIsAdding(true);
     setOpenCard("");
-    toast.success("Analysis successfully saved");
   }
 
   function handleCancel() {
@@ -80,27 +92,6 @@ function AnalysisPaper({ setOpenCard, setIsAdding, clinicName, patientName }) {
                     </div>
                   </div>
                 </div>
-                {/* 
-                <MedicineTable>
-                  <thead>
-                    <tr>
-                      <th>Analysis Name</th>
-                      <th>Notes</th>
-                      <th></th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <DynamicMedicineTuple
-                      fields={{
-                        f1: "AnalysisName",
-                        f4: "Notes",
-                      }}
-                      medicineList={analysisList}
-                      setMedicineList={setAnalysisList}
-                    />
-                  </tbody>
-                </MedicineTable> */}
 
                 <DynamicAnalysisInput
                   control={control}
