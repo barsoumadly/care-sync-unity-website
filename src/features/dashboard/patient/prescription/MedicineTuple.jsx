@@ -3,7 +3,8 @@ function MedicineTuple({ medicine }) {
     <tr>
       <td>{medicine.name}</td>
       <td>{medicine.duration}</td>
-      <td>{medicine.amount}</td>
+      <td>{medicine.dosages}</td>
+      <td>{medicine.intakeMethod}</td>
     </tr>
   );
 }
