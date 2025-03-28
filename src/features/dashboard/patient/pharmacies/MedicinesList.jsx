@@ -6,11 +6,7 @@ import useMedicines from "./useMedicines";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 import { useNavigate, useParams } from "react-router-dom";
 import usePharmacyProfile from "./usePharmacyProfile";
-
-const medicinesList = [
-  { name: "Panadol", expirationDate: "08-05-2030", cost: 100 },
-  { name: "Bronchicum", expirationDate: "12-09-2030", cost: 69 },
-];
+import usePrescription from "../prescription/usePrescription";
 
 function MedicinesList() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,10 +15,16 @@ function MedicinesList() {
   const { id } = useParams();
   const { data: pharmacy } = usePharmacyProfile(id);
   const { isLoading, data } = useMedicines(pharmacy?.userId);
+  const {
+    data: [prescription],
+  } = usePrescription();
 
-  const medicinesNames = medicinesList.map((medicine) => medicine?.name);
-  const medicines = data?.medicines.filter((medicine) =>
-    medicinesNames.includes(medicine.name)
+  const medicinesNames = prescription?.medicines?.map(
+    (medicine) => medicine?.name
+  );
+
+  const medicines = data?.medicines?.filter((medicine) =>
+    medicinesNames?.includes(medicine.name)
   );
 
   const navigate = useNavigate();
