@@ -1,16 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import MedicineTuple from "./MedicineTuple";
 import { IoArrowBackOutline } from "react-icons/io5";
-
-const prescriptionItem = {
-  id: 1,
-  medicines: [
-    { id: 1, name: "Panadol", duration: "3 days", amount: "2" },
-    { id: 2, name: "Bronchicum", duration: "1 week", amount: "3" },
-  ],
-};
+import AnalysisTuple from "./AnalysisTuple";
 
 function PrescriptionPaper() {
+  const { id: prescriptionNumber } = useParams();
   const prescription = JSON.parse(localStorage.getItem("prescription"));
 
   return (
@@ -58,7 +52,7 @@ function PrescriptionPaper() {
                         </div>
                         <div className="invoice-head">
                           <h2>Prescription</h2>
-                          <p>Prescription Number : {prescription.id}</p>
+                          <p>Prescription Number : {prescriptionNumber}</p>
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -83,10 +77,10 @@ function PrescriptionPaper() {
                             Written by
                           </strong>
                           <h6 className="invoice-name">
-                            {prescription.doctor.name}
+                            {prescription.doctorName}
                           </h6>
                           <p className="invoice-details invoice-details-two">
-                            Specialization: {prescription.doctor.specialization}
+                            Specialization: {prescription.specialization}
                           </p>
                         </div>
                       </div>
@@ -100,19 +94,23 @@ function PrescriptionPaper() {
                           <p>Issue Date : {prescription.date}</p>
                         </div>
                       </div>
-                      <div className="col-lg-4 col-md-4"></div>
                       <div className="col-lg-4 col-md-4">
                         <div className="invoice-issues-date">
                           <p>
                             Number of Medicines:{" "}
-                            {prescriptionItem.medicines.length}
+                            {prescription?.medicines.length}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="col-lg-4 col-md-4">
+                        <div className="invoice-issues-date">
+                          <p>
+                            Number of Analyses: {prescription?.analyses.length}
                           </p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  {/* /Invoice Item */}
-                  {/* Invoice Item */}
                   <div className="invoice-item invoice-table-wrap">
                     <div className="row">
                       <div className="col-md-12">
@@ -122,11 +120,12 @@ function PrescriptionPaper() {
                               <tr>
                                 <th>Medicine Name</th>
                                 <th>Duration</th>
-                                <th>Amount/Day</th>
+                                <th>Dosages</th>
+                                <th>Intake Method</th>
                               </tr>
                             </thead>
                             <tbody>
-                              {prescriptionItem.medicines.map((medicine) => (
+                              {prescription?.medicines.map((medicine) => (
                                 <MedicineTuple
                                   medicine={medicine}
                                   key={medicine.id}
@@ -138,22 +137,35 @@ function PrescriptionPaper() {
                       </div>
                     </div>
                   </div>
-                  {/* /Invoice Item */}
 
-                  <div className="invoice-sign text-end">
-                    <img
-                      className="img-fluid d-inline-block"
-                      src="/images/sign/signature.png"
-                      alt="sign"
-                      width={300}
-                    />
+                  <div className="invoice-item invoice-table-wrap">
+                    <div className="row">
+                      <div className="col-md-12">
+                        <div className="table-responsive">
+                          <table className="invoice-table table table-center mb-0">
+                            <thead>
+                              <tr>
+                                <th>Analysis Name</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {prescription?.analyses.map((analysis) => (
+                                <AnalysisTuple
+                                  analysis={analysis}
+                                  key={analysis.id}
+                                />
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* /Page Content */}
       </div>
     </div>
   );
