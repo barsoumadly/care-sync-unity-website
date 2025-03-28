@@ -2,7 +2,7 @@ import { useFieldArray } from "react-hook-form";
 
 function DynamicPrescriptionInput({ control, register, errors }) {
   const { fields, append, remove } = useFieldArray({
-    name: "prescriptionPaper",
+    name: "medicines",
     control,
   });
   return (
@@ -19,12 +19,12 @@ function DynamicPrescriptionInput({ control, register, errors }) {
                   className="form-control"
                   type="text"
                   placeholder="Rx:"
-                  {...register(`prescriptionPaper.${index}.rx`, {
+                  {...register(`medicines.${index}.name`, {
                     required: "This field is required",
                   })}
                 />
                 <span className="error-message ">
-                  {errors?.prescriptionPaper?.[index].rx.message}
+                  {errors?.medicines?.[index].name.message}
                 </span>
               </div>{" "}
             </div>
@@ -38,12 +38,12 @@ function DynamicPrescriptionInput({ control, register, errors }) {
                   className="form-control"
                   type="text"
                   placeholder="ex: 5 days"
-                  {...register(`prescriptionPaper.${index}.duration`, {
+                  {...register(`medicines.${index}.duration`, {
                     required: "This field is required",
                   })}
                 />
                 <span className="error-message ">
-                  {errors?.prescriptionPaper?.[index].duration.message}
+                  {errors?.medicines?.[index].duration.message}
                 </span>
               </div>{" "}
             </div>
@@ -57,12 +57,12 @@ function DynamicPrescriptionInput({ control, register, errors }) {
                   className="form-control"
                   placeholder="During the day:"
                   type="text"
-                  {...register(`prescriptionPaper.${index}.dosages`, {
+                  {...register(`medicines.${index}.dosages`, {
                     required: "This field is required",
                   })}
                 />
                 <span className="error-message ">
-                  {errors?.prescriptionPaper?.[index].dosages.message}
+                  {errors?.medicines?.[index].dosages.message}
                 </span>
               </div>{" "}
             </div>
@@ -75,7 +75,7 @@ function DynamicPrescriptionInput({ control, register, errors }) {
                 <select
                   className="form-control select"
                   type="text"
-                  {...register(`prescriptionPaper.${index}.meal`)}
+                  {...register(`medicines.${index}.intakeMethod`)}
                 >
                   <option disabled>Select method</option>
                   <option>Before meal</option>
@@ -92,7 +92,7 @@ function DynamicPrescriptionInput({ control, register, errors }) {
                 <input
                   className="form-control"
                   type="text"
-                  {...register(`prescriptionPaper.${index}.notes`)}
+                  {...register(`medicines.${index}.notes`)}
                 />
               </div>
             </div>
@@ -122,7 +122,13 @@ function DynamicPrescriptionInput({ control, register, errors }) {
             type="button"
             style={{ minWidth: "100%" }}
             onClick={() =>
-              append({ rx: "", duration: "", dosages: "", meal: "", notes: "" })
+              append({
+                name: "",
+                duration: "",
+                dosages: "",
+                intakeMethod: "",
+                notes: "",
+              })
             }
           >
             Add medicine
