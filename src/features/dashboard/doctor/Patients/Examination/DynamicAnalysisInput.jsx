@@ -2,7 +2,7 @@ import { useFieldArray } from "react-hook-form";
 
 function DynamicAnalysisInput({ control, register, errors }) {
   const { fields, append, remove } = useFieldArray({
-    name: "analysisPaper",
+    name: "analyses",
     control,
   });
   return (
@@ -19,12 +19,12 @@ function DynamicAnalysisInput({ control, register, errors }) {
                   className="form-control"
                   type="text"
                   placeholder="Analysis Name:"
-                  {...register(`analysisPaper.${index}.analysisName`, {
+                  {...register(`analyses.${index}.name`, {
                     required: "This field is required",
                   })}
                 />
                 <span className="error-message ">
-                  {errors?.analysisPaper?.[index].analysisName.message}
+                  {errors?.analyses?.[index].name.message}
                 </span>
               </div>{" "}
             </div>
@@ -37,7 +37,7 @@ function DynamicAnalysisInput({ control, register, errors }) {
                 <input
                   className="form-control"
                   type="text"
-                  {...register(`analysisPaper.${index}.notes`)}
+                  {...register(`analyses.${index}.notes`)}
                 />
               </div>
             </div>
@@ -48,7 +48,7 @@ function DynamicAnalysisInput({ control, register, errors }) {
                     className="btn btn-primary submit-form me-2"
                     type="button"
                     style={{ minWidth: "100%" }}
-                    onClick={() => append({ analysisName: "", notes: "" })}
+                    onClick={() => append({ name: "", notes: "" })}
                   >
                     Add
                   </button>
