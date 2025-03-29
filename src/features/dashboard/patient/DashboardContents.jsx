@@ -9,6 +9,9 @@ import { Link } from "react-router-dom";
 import useAnalysisOrders from "./analysis/useAnalysisOrders";
 import { useState } from "react";
 import AppointmentTupleDashboard from "./appointments/AppointmentTupleDashboard";
+import HeartRateChart from "./charts/HeartRateChart";
+import TemperatureChart from "./charts/TemperatureChart";
+import BloodPressureChart from "./charts/BloodPressure";
 
 const appointments = [
   {
@@ -97,9 +100,13 @@ function DashboardContents() {
                   </h5>
                 )}
               </div>
+              <div id="apexcharts-area">
+                <HeartRateChart />
+              </div>
             </div>
           </div>
         </div>
+
         <div className="col-12 col-md-6 col-xl-4 d-flex">
           <div className="card report-blk">
             <div className="card-body">
@@ -124,9 +131,13 @@ function DashboardContents() {
                   </h5>
                 )}
               </div>
+              <div id="apexcharts-area">
+                <TemperatureChart />
+              </div>
             </div>
           </div>
         </div>
+
         <div className="col-12 col-md-6 col-xl-4 d-flex">
           <div className="card report-blk">
             <div className="card-body">
@@ -148,24 +159,21 @@ function DashboardContents() {
                   <h5>
                     <br />
                     {patientData?.bloodPressure || "__"} <span>mm/Hg</span>
+                    <span
+                      style={{
+                        marginLeft: "70px",
+                        color: "black",
+                        fontWeight: "100",
+                      }}
+                    >
+                      Blood Type:
+                    </span>{" "}
+                    {patientData?.bloodType || "__"}
                   </h5>
                 )}
               </div>
-              <div className="dash-content">
-                Blood Type:{" "}
-                <span
-                  style={{
-                    fontSize: "24px",
-                    color: "#2E37A4",
-                    fontWeight: "600",
-                  }}
-                >
-                  {isLoading ? (
-                    <SpinnerMini />
-                  ) : (
-                    ` ${patientData?.bloodType || "__"}`
-                  )}
-                </span>
+              <div id="apexcharts-area">
+                <BloodPressureChart />
               </div>
             </div>
           </div>
