@@ -48,13 +48,11 @@ function AuthenticationFrame({ children }) {
                       <div className="login-right">
                         <div className="login-right-wrap">
                           <div className="account-logo">
-                            <Link to="/">
-                              <img
-                                src="/images/logo/care-sync-unity-logo.png"
-                                alt=""
-                                width={280}
-                              />
-                            </Link>
+                            <img
+                              src="/images/logo/care-sync-unity-logo.png"
+                              alt=""
+                              width={280}
+                            />
                           </div>
                           {/* <!-- Form --> */}
 
