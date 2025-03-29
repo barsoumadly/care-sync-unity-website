@@ -6,18 +6,18 @@ import fs from "fs";
 export default defineConfig(({ mode }) => ({
   preview: {
     port: 443,
-    host: true, // Listen on all addresses
+    host: "0.0.0.0", // Explicitly listen on all interfaces
     https:
       fs.existsSync("./cert.key") && fs.existsSync("./cert.crt")
         ? {
-            key: "./cert.key",
-            cert: "./cert.crt",
+            key: fs.readFileSync("./cert.key"),
+            cert: fs.readFileSync("./cert.crt"),
           }
         : false,
     middleware: [
       (req, res, next) => {
         // Only redirect in production
-        if (mode === "production" && !req.secure) {
+        if (process.env.NODE_ENV === "production" && !req.secure) {
           const host = req.headers.host?.split(":")[0] || req.headers.host; // Remove port if present
           const httpsUrl = `https://${host}${req.url}`;
           res.writeHead(301, { Location: httpsUrl });
