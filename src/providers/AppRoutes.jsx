@@ -33,7 +33,7 @@ import Invoice from "../features/dashboard/clinic/Invoice";
 /* Doctor */
 import DoctorLayout from "../features/dashboard/doctor/DoctorLayout";
 import DoctorDashboard from "../features/dashboard/doctor/dashboard/DoctorDashboard";
-import DoctorShedule from "../features/dashboard/doctor/DoctorShedule";
+import DoctorShedule from "../features/dashboard/doctor/doctor-schedule/DoctorShedule";
 import DoctorPatientsList from "../features/dashboard/doctor/Patients/PatientList/Patients";
 import DoctorChat from "../features/dashboard/chat/Chat";
 import MyProfile from "../features/dashboard/doctor/MyProfile";
