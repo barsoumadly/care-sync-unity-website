@@ -14,6 +14,7 @@ function useAddDoctor() {
       } else {
         toast.success("Doctor successfully added");
         queryClient.invalidateQueries({ queryKey: ["doctorList"] });
+        queryClient.invalidateQueries({ queryKey: ["AppointmentList"] });
         navigate("/clinic/doctor-list");
       }
     },
