@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import ProtectedRoute from "../ui/ProtectedRoute";
 import ProtectedAuth from "../ui/ProtectedAuth";
@@ -6,7 +6,6 @@ import ProtectedAuth from "../ui/ProtectedAuth";
 import AuthenticationLayout from "../ui/AuthenticationLayout";
 // import Loader from "../ui/Loader";
 import PageNotFound from "../ui/PageNotFound";
-import Home from "../ui/Home";
 
 import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
@@ -102,7 +101,8 @@ function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route index element={<Navigate replace to="login" />} />
         {/* Authentication */}
         <Route element={<AuthenticationLayout />}>
           <Route path="register" element={<Register />} />
