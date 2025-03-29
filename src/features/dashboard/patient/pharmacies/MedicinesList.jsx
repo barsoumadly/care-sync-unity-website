@@ -15,9 +15,11 @@ function MedicinesList() {
   const { id } = useParams();
   const { data: pharmacy } = usePharmacyProfile(id);
   const { isLoading, data } = useMedicines(pharmacy?.userId);
-  const {
-    data: [prescription],
-  } = usePrescription();
+  const { data: presc, isLoading: isLoad } = usePrescription();
+
+  const prescription = isLoad ? null : presc[0];
+
+  console.log(prescription);
 
   const medicinesNames = prescription?.medicines?.map(
     (medicine) => medicine?.name
