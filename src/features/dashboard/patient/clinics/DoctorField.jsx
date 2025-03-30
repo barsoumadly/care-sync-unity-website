@@ -49,7 +49,7 @@ function DoctorField({ doctor, onSelectDoctor, onOpenModal }) {
                 className="rounded-circle m-r-5"
                 alt=""
               />
-              {data?.userId?.name}
+              Dr. {data?.userId?.name}
             </a>
           </td>
           <td> {data?.specialization}</td>
