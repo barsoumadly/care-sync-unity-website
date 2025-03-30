@@ -56,7 +56,7 @@ function AppointmentTable() {
                   {recentAppointments?.map((patient, index) => {
                     return (
                       index < 3 && (
-                        <tr>
+                        <tr key={index}>
                           <td></td>
 
                           <td className="table-image">
