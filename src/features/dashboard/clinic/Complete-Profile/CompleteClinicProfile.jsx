@@ -41,12 +41,12 @@ function CompleteClinicProfile({ clinicData }) {
   useEffect(() => {
     setValue("name", clinicData?.name);
     setValue("phone", clinicData?.phone);
-    setValue("founded", clinicData?.founded.split("T")[0]);
+    setValue("founded", clinicData?.founded?.split("T")[0]);
     setValue("biography", clinicData?.biography);
 
-    setSelectedCity(clinicData?.address.city);
-    setSelectedArea(clinicData?.address.state);
-    setValue("street", clinicData?.address.street);
+    setSelectedCity(clinicData?.address?.city);
+    setSelectedArea(clinicData?.address?.state);
+    setValue("street", clinicData?.address?.street);
 
     if (clinicData) setImage(clinicData?.photos);
     if (userData) setAvatar(userData?.profilePhoto?.url);
