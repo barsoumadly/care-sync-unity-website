@@ -7,31 +7,6 @@ import useClinicProfile from "./useClinicProfile";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 
-const doctorsList = [
-  {
-    clinicId: 1,
-    id: 1,
-    name: "Smith Bruklin",
-    profilePhoto:
-      "https://preclinic.dreamstechnologies.com/html/template/assets/img/profiles/avatar-02.jpg",
-    specialization: "Urology",
-    days: "Mon - Wed",
-    time: "2 PM - 5 PM",
-    cost: 220,
-  },
-  {
-    clinicId: 1,
-    id: 2,
-    name: "William Stephin",
-    profilePhoto:
-      "https://static.vecteezy.com/system/resources/previews/030/666/513/large_2x/doctor-high-quality-4k-ultra-hd-hdr-free-photo.jpg",
-    specialization: "Radiology",
-    days: "Sat - Tue",
-    time: "10 AM - 5 PM",
-    cost: 350,
-  },
-];
-
 function DoctorsList() {
   const { id } = useParams();
   const { data: clinic, isLoading } = useClinicProfile(id);
@@ -113,7 +88,7 @@ function DoctorsList() {
                               </tr>
                             </thead>
                             <tbody>
-                              {doctorsList.map((doctor) => (
+                              {clinic?.doctors?.map((doctor) => (
                                 <DoctorField
                                   doctor={doctor}
                                   onOpenModal={handleOpenModal}
