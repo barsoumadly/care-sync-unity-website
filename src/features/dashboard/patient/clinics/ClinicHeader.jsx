@@ -39,7 +39,7 @@ function ClinicHeader({ activeTab, clinic }) {
               <i className="feather-chevron-right" />
             </li>
             <li className="breadcrumb-item active">
-              {clinic?.name} Hospital
+              {clinic?.name}
               {activeTab === "doctor-list"
                 ? " Doctors"
                 : activeTab === "images"
@@ -73,9 +73,7 @@ function ClinicHeader({ activeTab, clinic }) {
                 <div className="row">
                   <div className="col-md-5">
                     <div className="profile-info-left">
-                      <h3 className="user-name m-t-0 mb-0">
-                        {clinic?.name} Hospital
-                      </h3>
+                      <h3 className="user-name m-t-0 mb-0">{clinic?.name}</h3>
                       <small className="text-muted">
                         {clinic?.address?.city}
                       </small>
