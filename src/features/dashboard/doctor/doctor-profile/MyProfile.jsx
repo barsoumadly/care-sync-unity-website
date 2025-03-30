@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import useProfile from "./useProfile";
 
 function MyProfile() {
+  const { data } = useProfile();
+  console.log(data);
+
   return (
     <div className="main-wrapper">
       <div className="page-wrapper">
