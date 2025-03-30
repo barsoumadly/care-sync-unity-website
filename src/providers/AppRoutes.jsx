@@ -96,6 +96,10 @@ import LaboratoryOrderList from "../features/dashboard/laboratory/orders/Laborat
 import AnalysisOrderList from "../features/dashboard/laboratory/orders/AnalysisOrderList";
 import OrderAddition from "../features/dashboard/laboratory/orders/OrderAddition";
 import ClinicProfileView from "../features/dashboard/clinic/ClinicProfile/ClinicProfileView";
+import HospitalsList from "../features/dashboard/patient/hospitals/HospitalsList";
+import HospitalDoctorsList from "../features/dashboard/patient/hospitals/HospitalDoctorList";
+import HospitalProfile from "../features/dashboard/patient/hospitals/HospitalProfile";
+import HospitalImages from "../features/dashboard/patient/hospitals/HospitalImages";
 
 function AppRoutes() {
   return (
@@ -224,6 +228,7 @@ function AppRoutes() {
         >
           <Route path="dashboard" element={<PatientDashboard />} />
           <Route path="clinics" element={<ClinicsList />} />
+          <Route path="hospitals" element={<HospitalsList />} />
           <Route path="chat" element={<PatientChat />} />
           <Route path="appointments" element={<PatientAppointments />} />
           <Route path="view-profile" element={<PatientProfileView />} />
@@ -236,6 +241,18 @@ function AppRoutes() {
           <Route
             path="clinics/:clinicName/:id/images"
             element={<ClinicImages />}
+          />
+          <Route
+            path="hospitals/:hospitalName/:id"
+            element={<HospitalProfile />}
+          />
+          <Route
+            path="hospitals/:hospitalName/:id/doctors"
+            element={<HospitalDoctorsList />}
+          />
+          <Route
+            path="hospitals/:hospitalName/:id/images"
+            element={<HospitalImages />}
           />
           <Route path="payment-gateway" element={<PaymentGateway />} />
           <Route path="pharmacies" element={<PharmacyList />} />
