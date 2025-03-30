@@ -36,7 +36,7 @@ import DoctorDashboard from "../features/dashboard/doctor/dashboard/DoctorDashbo
 import DoctorShedule from "../features/dashboard/doctor/doctor-schedule/DoctorShedule";
 import DoctorPatientsList from "../features/dashboard/doctor/Patients/PatientList/Patients";
 import DoctorChat from "../features/dashboard/chat/Chat";
-import MyProfile from "../features/dashboard/doctor/MyProfile";
+import MyProfile from "../features/dashboard/doctor/doctor-profile/MyProfile";
 import EditProfile from "../features/dashboard/doctor/edit-profile/EditProfile";
 import PatientProfile from "../features/dashboard/doctor/Patients/Examination/PatientProfile";
 import ClinicsListOfDoctor from "../features/dashboard/doctor/Patients/ClinicList/ClinicsListOfDoctor";
