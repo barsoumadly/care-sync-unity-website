@@ -72,6 +72,20 @@ function PharmacyList() {
                         </div>
                       </div>
                       <div className="col-12 col-md-6 col-xl-3">
+                        <div className="input-block local-forms">
+                          <label>Area </label>
+                          <select className="form-control pass-input">
+                            <option value="" disabled selected>
+                              Select your area
+                            </option>
+                            <option value="cairo">Maadi</option>
+                            <option value="giza">Heliopolis</option>
+                            <option value="alex">Ain Shams</option>
+                            <option value="alex">Bab al-Louq</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="col-12 col-md-6 col-xl-3">
                         <div className="doctor-submit">
                           <button
                             type="submit"
