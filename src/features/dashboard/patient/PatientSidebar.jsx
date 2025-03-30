@@ -5,6 +5,7 @@ import {
   FaClinicMedical,
   FaUserEdit,
 } from "react-icons/fa";
+import { FaHospital } from "react-icons/fa";
 import { GiChemicalDrop, GiMedicines } from "react-icons/gi";
 import { IoIosPaper } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
@@ -21,6 +22,16 @@ function PatientSidebar() {
             <MdDashboard />
           </span>
           <span> Dashboard </span>
+        </NavLink>
+      </li>
+
+      {/* Hospitals */}
+      <li className="submenu">
+        <NavLink to={"/patient/hospitals"} className="link">
+          <span className="menu-side">
+            <FaHospital />
+          </span>
+          <span> Hospitals </span>
         </NavLink>
       </li>
 
