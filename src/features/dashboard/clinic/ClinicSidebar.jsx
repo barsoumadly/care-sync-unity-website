@@ -9,8 +9,11 @@ import { IoReceipt } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
-function ClinicSidebar({ minbar }) {
+function ClinicSidebar({ minbar, setShowbar }) {
   const [toggle, setToggle] = useState(0);
+  const handleClick = () => {
+    setShowbar((show) => !show);
+  };
   function hanbleClick(index) {
     if (toggle !== index) {
       setToggle(index);
@@ -25,7 +28,10 @@ function ClinicSidebar({ minbar }) {
         <NavLink
           to={"/clinic/dashboard"}
           className="link"
-          onClick={() => hanbleClick(0)}
+          onClick={() => {
+            hanbleClick(0);
+            handleClick();
+          }}
         >
           <span className="menu-side">
             <MdDashboard />
@@ -39,7 +45,10 @@ function ClinicSidebar({ minbar }) {
         <NavLink
           to={"/clinic/chat"}
           className="link"
-          onClick={() => hanbleClick(0)}
+          onClick={() => {
+            hanbleClick(0);
+            handleClick();
+          }}
         >
           <span className="menu-side">
             <BsChatText />
@@ -66,12 +75,20 @@ function ClinicSidebar({ minbar }) {
           }}
         >
           <li>
-            <NavLink to={"/clinic/doctor-list"} className="link">
+            <NavLink
+              to={"/clinic/doctor-list"}
+              className="link"
+              onClick={handleClick}
+            >
               Doctor List
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/clinic/add-doctor"} className="link">
+            <NavLink
+              to={"/clinic/add-doctor"}
+              className="link"
+              onClick={handleClick}
+            >
               Add Doctor
             </NavLink>
           </li>
@@ -95,17 +112,29 @@ function ClinicSidebar({ minbar }) {
           }}
         >
           <li>
-            <NavLink to={"/clinic/employee-salary"} className="link">
+            <NavLink
+              to={"/clinic/employee-salary"}
+              className="link"
+              onClick={handleClick}
+            >
               Employee salary
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/clinic/add-staff"} className="link">
+            <NavLink
+              to={"/clinic/add-staff"}
+              className="link"
+              onClick={handleClick}
+            >
               Add Staff
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/clinic/attendance"} className="link">
+            <NavLink
+              to={"/clinic/attendance"}
+              className="link"
+              onClick={handleClick}
+            >
               Attendance
             </NavLink>
           </li>
@@ -129,12 +158,20 @@ function ClinicSidebar({ minbar }) {
           }}
         >
           <li>
-            <NavLink to={"/clinic/appointment-list"} className="link">
+            <NavLink
+              to={"/clinic/appointment-list"}
+              className="link"
+              onClick={handleClick}
+            >
               Appointment List
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/clinic/book-appointment"} className="link">
+            <NavLink
+              to={"/clinic/book-appointment"}
+              className="link"
+              onClick={handleClick}
+            >
               Book Appointment
             </NavLink>
           </li>
@@ -146,7 +183,10 @@ function ClinicSidebar({ minbar }) {
         <NavLink
           to={"/clinic/reports"}
           className="link"
-          onClick={() => hanbleClick(0)}
+          onClick={() => {
+            hanbleClick(0);
+            handleClick();
+          }}
         >
           <span className="menu-side">
             <FaFlag />
@@ -171,7 +211,10 @@ function ClinicSidebar({ minbar }) {
         <NavLink
           to={"/clinic/invoice"}
           className="link"
-          onClick={() => hanbleClick(0)}
+          onClick={() => {
+            hanbleClick(0);
+            handleClick();
+          }}
         >
           <span className="menu-side">
             <IoReceipt />
@@ -207,7 +250,10 @@ function ClinicSidebar({ minbar }) {
         <NavLink
           to={"/clinic/edit-profile"}
           className="link"
-          onClick={() => hanbleClick(0)}
+          onClick={() => {
+            hanbleClick(0);
+            handleClick();
+          }}
         >
           <span className="menu-side">
             <FaGear />

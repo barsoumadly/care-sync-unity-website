@@ -21,7 +21,7 @@ function DashboardLayout() {
       />
       {true && (
         <Sidebar minbar={minbar} showbar={showbar}>
-          <ClinicSidebar minbar={minbar} />
+          <ClinicSidebar setShowbar={setShowbar} minbar={minbar} />
         </Sidebar>
       )}
       <main className={minbar ? "mini-sidebar" : ""}>
