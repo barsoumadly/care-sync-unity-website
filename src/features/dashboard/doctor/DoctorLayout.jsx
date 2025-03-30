@@ -7,7 +7,7 @@ import DoctorSidebar from "./DoctorSidebar";
 import { useAuth } from "../../../context/AuthContext";
 
 function DashboardLayout() {
-  const [showbar, setShowbar] = useState(true);
+  const [showbar, setShowbar] = useState(false);
   const [minbar, setMinbar] = useState(false);
   const { isProfileCompleted } = useAuth();
 
@@ -21,7 +21,7 @@ function DashboardLayout() {
 
       {isProfileCompleted && (
         <Sidebar minbar={minbar} showbar={showbar}>
-          <DoctorSidebar />
+          <DoctorSidebar setShowbar={setShowbar} />
         </Sidebar>
       )}
       <main className={minbar ? "mini-sidebar" : ""}>

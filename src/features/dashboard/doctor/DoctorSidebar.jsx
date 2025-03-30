@@ -4,12 +4,19 @@ import { FaCalendarCheck, FaPeopleRoof, FaUserDoctor } from "react-icons/fa6";
 import { MdDashboard } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
-function DoctorSidebar() {
+function DoctorSidebar({ setShowbar }) {
+  const handleClick = () => {
+    setShowbar((show) => !show);
+  };
   return (
     <>
       {/* Dashboard */}
       <li className="submenu">
-        <NavLink to={"/doctor/dashboard"} className="link">
+        <NavLink
+          to={"/doctor/dashboard"}
+          className="link"
+          onClick={handleClick}
+        >
           <span className="menu-side">
             <MdDashboard />
           </span>
@@ -19,7 +26,11 @@ function DoctorSidebar() {
 
       {/* Doctor Shedule */}
       <li className="submenu">
-        <NavLink to={"/doctor/doctor-shedule"} className="link">
+        <NavLink
+          to={"/doctor/doctor-shedule"}
+          className="link"
+          onClick={handleClick}
+        >
           <span className="menu-side">
             <FaCalendarCheck />
           </span>
@@ -29,7 +40,7 @@ function DoctorSidebar() {
 
       {/* Patients */}
       <li className="submenu">
-        <NavLink to={"/doctor/patients"} className="link">
+        <NavLink to={"/doctor/patients"} className="link" onClick={handleClick}>
           <span className="menu-side">
             <FaPeopleRoof />
           </span>
@@ -39,7 +50,7 @@ function DoctorSidebar() {
 
       {/* Chat */}
       <li>
-        <NavLink to={"/doctor/chat"} className="link">
+        <NavLink to={"/doctor/chat"} className="link" onClick={handleClick}>
           <span className="menu-side">
             <BsChatText />
           </span>
@@ -50,7 +61,11 @@ function DoctorSidebar() {
 
       {/* My Profile */}
       <li className="submenu">
-        <NavLink to={"/doctor/view-profile"} className="link">
+        <NavLink
+          to={"/doctor/view-profile"}
+          className="link"
+          onClick={handleClick}
+        >
           <span className="menu-side">
             <FaUserDoctor />
           </span>
@@ -60,7 +75,11 @@ function DoctorSidebar() {
 
       {/* Edit Profile */}
       <li className="submenu">
-        <NavLink to={"/doctor/edit-profile"} className="link">
+        <NavLink
+          to={"/doctor/edit-profile"}
+          className="link"
+          onClick={handleClick}
+        >
           <span className="menu-side">
             <FaUserEdit />
           </span>
