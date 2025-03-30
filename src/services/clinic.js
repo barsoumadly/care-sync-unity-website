@@ -222,6 +222,23 @@ const updateAppointment = async function (appointmentData) {
   }
 };
 
+const examination = async function (appointmentId) {
+  const token = JSON.parse(localStorage.getItem("key"));
+  console.log(appointmentId);
+  const data = {
+    status: "confirmed",
+  };
+
+  try {
+    await axios.put(`${API_URL}/appointments/${appointmentId}`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    toast.success("Medical examination was done");
+  } catch (error) {
+    toast.error(err.message);
+  }
+};
+
 export {
   updateClinicProfile,
   getClinicProfile,
@@ -237,4 +254,5 @@ export {
   getPatientList,
   getAppointmentDetails,
   updateAppointment,
+  examination,
 };
