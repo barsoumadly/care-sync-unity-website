@@ -9,14 +9,12 @@ function SkipLogin({ children }) {
 
   useEffect(
     function () {
-      if (!isRegistered) {
-        if (isAuthenticated) {
-          navigate(
-            `/${user?.role?.toLowerCase().split("_")[0]}/${
-              isProfileCompleted ? "dashboard" : "complete-profile"
-            }`
-          );
-        }
+      if (isAuthenticated) {
+        navigate(
+          `/${user?.role?.toLowerCase().split("_")[0]}/${
+            isProfileCompleted ? "dashboard" : "complete-profile"
+          }`
+        );
       }
     },
 
