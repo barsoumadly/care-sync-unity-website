@@ -232,7 +232,7 @@ function PaymentGateway() {
                         </form>
                         <div className="d-flex">
                           <Link
-                            to="/patient/clinics/doctors-list"
+                            to="/patient/clinics"
                             className="btn btn-primary previous me-2"
                           >
                             Back
