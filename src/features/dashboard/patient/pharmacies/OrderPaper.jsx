@@ -3,8 +3,10 @@ import MedicineTuple from "./MedicineTuple";
 import useMedicineOrders from "../medicines/useMedicineOrders";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 import { addMedicinesOrder } from "../../../../services/medicineOrders";
+import { useState } from "react";
 
 function OrderPaper() {
+  const [paymentType, setPaymentType] = useState("cash");
   const { isLoading, data } = useMedicineOrders();
   const order = JSON.parse(localStorage.getItem("order"));
 
@@ -24,7 +26,10 @@ function OrderPaper() {
   };
 
   const handleCofirm = async function () {
-    await addMedicinesOrder(order);
+    await addMedicinesOrder({
+      ...order,
+      paymentType: paymentType === "cash" ? "un paid" : "paid",
+    });
     localStorage.removeItem("order");
     navigate("/patient/medicine-orders");
   };
@@ -144,6 +149,27 @@ function OrderPaper() {
                             </h4>
                           </div>
                         </div>
+                      </div>
+                    </div>
+                    <div
+                      className="col-12 col-md-6 col-xl-2"
+                      style={{ marginTop: "20px" }}
+                    >
+                      <div className="input-block local-forms">
+                        <label>Payment Type </label>
+                        <select
+                          className="form-control pass-input"
+                          value={paymentType}
+                          onChange={(event) =>
+                            setPaymentType(event.target.value)
+                          }
+                        >
+                          <option value="" disabled selected>
+                            Select payment
+                          </option>
+                          <option value="cash">Cash</option>
+                          <option value="credit">Credit</option>
+                        </select>
                       </div>
                     </div>
                     <div className="doctor-submit text-end">
