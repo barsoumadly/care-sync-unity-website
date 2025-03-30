@@ -24,7 +24,7 @@ function ClinicCard({ clinic }) {
         />
         <div className="card-header" style={{ padding: "5%" }}>
           <h5 className="card-title mb-0" style={{ color: "#2e37a4" }}>
-            <strong>{clinic.name} Hospital</strong>
+            <strong>{clinic.name}</strong>
           </h5>
         </div>
         <div className="card-body card-buttons" style={{ padding: "5%" }}>
