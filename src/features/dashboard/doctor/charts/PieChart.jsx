@@ -16,7 +16,7 @@ const data = [
 
 export default function PieCharts() {
   return (
-    <di>
+    <div>
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>
           <Pie
@@ -48,6 +48,6 @@ export default function PieCharts() {
           />
         </PieChart>
       </ResponsiveContainer>
-    </di>
+    </div>
   );
 }
