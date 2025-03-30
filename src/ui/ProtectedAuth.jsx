@@ -18,9 +18,7 @@ function ProtectedAuth({ children }) {
   );
 
   if (isRegistered) return children;
-
   if (isAuthenticated) return children;
-  return true;
 }
 
 export default ProtectedAuth;
