@@ -6,10 +6,18 @@ import useClinicProfile from "./useClinicProfile";
 
 function AppointmentModal({ selectedDoctor, onOpenModal }) {
   const [paymentType, setPaymentType] = useState("cash");
+  const [day, setDay] = useState(selectedDoctor.schedule[0].day);
   const { id } = useParams();
   const { data: clinic, isLoading } = useClinicProfile(id);
+  const days = selectedDoctor.schedule.map((schedule) => schedule.day);
+  const [selectedDay] = selectedDoctor.schedule.filter(
+    (schedule) => schedule.day === day
+  );
 
-  console.log(selectedDoctor);
+  const time =
+    Number(selectedDay.startTime.split(":")[0]) > 12
+      ? `${selectedDay.startTime} PM`
+      : `${selectedDay.startTime} AM`;
 
   return (
     <Modal onClose={onOpenModal}>
@@ -95,7 +103,16 @@ function AppointmentModal({ selectedDoctor, onOpenModal }) {
                     <label htmlFor="field-5" className="form-label">
                       Date
                     </label>
-                    <input type="date" className="form-control" id="field-5" />
+                    <select
+                      className="form-control"
+                      id="field-5"
+                      value={day}
+                      onChange={(event) => setDay(event.target.value)}
+                    >
+                      {days.map((day) => (
+                        <option value={day}>{day}</option>
+                      ))}
+                    </select>
                   </div>
                 </div>
                 <div className="col-md-6">
@@ -107,7 +124,7 @@ function AppointmentModal({ selectedDoctor, onOpenModal }) {
                       type="text"
                       className="form-control"
                       id="field-6"
-                      placeholder={selectedDoctor.time}
+                      placeholder={time}
                       disabled
                     />
                   </div>
