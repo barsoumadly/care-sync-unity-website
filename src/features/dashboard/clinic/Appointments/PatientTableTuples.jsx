@@ -1,11 +1,18 @@
 import { useState } from "react";
-import { CgMoreVerticalAlt } from "react-icons/cg";
 import { FaEdit } from "react-icons/fa";
-import { RiDeleteBin6Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import useEditAppointment from "./useEditAppointment";
+import { examination } from "../../../../services/clinic";
+import { useQueryClient } from "@tanstack/react-query";
 
 function PatientTableTuples({ patient, handleOpenModal }) {
+  const queryClient = useQueryClient();
   const [dropdown, setDropdown] = useState(false);
+  const hanbleExamination = () => {
+    examination(patient.appointmentId);
+    queryClient.invalidateQueries({ queryKey: ["patientAppointmentList"] });
+  };
+
   return (
     <tr>
       <td></td>
@@ -40,7 +47,9 @@ function PatientTableTuples({ patient, handleOpenModal }) {
       </td>
       <td>
         <div className="action-label">
-          <button className="custom-badge book-btn">Examination</button>
+          <button className="custom-badge book-btn" onClick={hanbleExamination}>
+            Examination
+          </button>
         </div>
       </td>
       <td>
