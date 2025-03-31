@@ -198,7 +198,7 @@ function AppRoutes() {
           <Route path="doctor-shedule" element={<DoctorShedule />} />
           <Route path="patients" element={<ClinicsListOfDoctor />} />
           <Route
-            path=":clinicName/patient-list"
+            path=":clinicName/:clinicId/patient-list"
             element={<DoctorPatientsList />}
           />
           <Route
