@@ -1,7 +1,7 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const API_URL = "http://localhost:8000/api/v1/clinics";
+const API_URL = `${import.meta.env.VITE_API_URL}/clinics`;
 
 const updateClinicProfile = async function (clinicData) {
   const formData = new FormData();
