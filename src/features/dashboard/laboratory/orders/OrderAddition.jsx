@@ -91,7 +91,7 @@ function OrderAddition() {
                           </label>
                           <input
                             className="form-control"
-                            placeholder="ex: 67d55165f3ec"
+                            placeholder="ex: #5493w"
                             required=""
                             type="text"
                             value={patientId}
