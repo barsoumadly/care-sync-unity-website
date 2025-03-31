@@ -205,9 +205,11 @@ function PharmacyDashboard() {
                               <thead>
                                 <tr>
                                   <th>Order Number</th>
-                                  <th>Pharmacy Name</th>
+                                  <th>Patient Name</th>
+                                  <th>Phone Number</th>
+                                  <th>Address</th>
                                   <th>Date</th>
-                                  <th>Status</th>
+                                  <th>Paid Status</th>
                                   <th />
                                 </tr>
                               </thead>
