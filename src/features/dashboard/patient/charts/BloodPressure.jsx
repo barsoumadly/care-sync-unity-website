@@ -54,8 +54,8 @@ export default function BloodPressureChart() {
           data={data}
           margin={{
             top: 10,
-            right: 30,
-            left: 0,
+            right: 7,
+            left: -19,
             bottom: 0,
           }}
         >
