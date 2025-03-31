@@ -75,7 +75,7 @@ export default function HeartRateChart() {
             fill={colors.name.fill}
             strokeWidth={2}
             name="Heart Rate"
-            unit="bpm"
+            unit=" bpm"
             type="monotone"
             dataKey="pv"
           />{" "}
