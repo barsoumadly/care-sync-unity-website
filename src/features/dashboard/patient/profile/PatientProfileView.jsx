@@ -82,8 +82,15 @@ function PatientProfileView() {
                                 />
                               </div>
                               <div className="names-profiles">
-                                <h4>{user.name}</h4>
                                 <h5>PATIENT</h5>
+                                <h4>
+                                  ID:{" "}
+                                  <span style={{ color: "#2e37a4" }}>
+                                    {" "}
+                                    {patientData.publicId}
+                                  </span>{" "}
+                                </h4>
+                                <h4>{user.name}</h4>
                               </div>
                             </div>
                           </div>

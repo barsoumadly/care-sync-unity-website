@@ -497,7 +497,6 @@ function DashboardContents() {
                           <tbody>
                             {analysisOrders
                               ?.reverse()
-                              ?.reverse()
                               ?.slice(0, 3)
                               ?.map((analysis, index) => (
                                 <AnalysisTuple
@@ -603,13 +602,13 @@ function DashboardContents() {
             </div>
           </div>
 
-          <div className="row" style={{ marginTop: "30px" }}>
+          <div className="row" style={{ marginTop: "25px" }}>
             <div className="col-12 col-md-12 col-xl-6">
               <div className="struct-point">
                 <div className="card patient-structure">
                   <div className="card-body">
                     <h5>Appointments</h5>
-                    <h3 style={{ fontSize: "28px" }}>
+                    <h3 style={{ fontSize: "28px", marginLeft: "45px" }}>
                       {appointments.length}
                       <span className="status-pink">
                         <img
@@ -629,8 +628,50 @@ function DashboardContents() {
               <div className="struct-point">
                 <div className="card patient-structure">
                   <div className="card-body">
+                    <h5>Medicines Orders</h5>
+                    <h3 style={{ fontSize: "28px", marginLeft: "45px" }}>
+                      {medicineOrders.length}
+                      <span className="status-green">
+                        <img
+                          src="assets/img/icons/sort-icon-01.svg"
+                          alt=""
+                          className="me-1"
+                        />
+                        +5%
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-12 col-md-12 col-xl-6">
+              <div className="struct-point">
+                <div className="card patient-structure">
+                  <div className="card-body">
+                    <h5>Analyses Orders</h5>
+                    <h3 style={{ fontSize: "28px", marginLeft: "45px" }}>
+                      {analysisOrders.length}
+                      <span className="status-pink">
+                        <img
+                          src="assets/img/icons/sort-icon-01.svg"
+                          alt=""
+                          className="me-1"
+                        />
+                        -7%
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-12 col-md-12 col-xl-6">
+              <div className="struct-point">
+                <div className="card patient-structure">
+                  <div className="card-body">
                     <h5>Total points</h5>
-                    <h3 style={{ fontSize: "28px" }}>
+                    <h3 style={{ fontSize: "28px", marginLeft: "38px" }}>
                       56
                       <span className="status-green">
                         <img
