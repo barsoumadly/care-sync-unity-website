@@ -86,9 +86,7 @@ function DynamicPrescriptionInput({ control, register, errors }) {
 
             <div className="col-12 col-md-6 col-xl-3">
               <div className="input-block local-forms">
-                <label>
-                  Notes <span className="login-danger">*</span>
-                </label>
+                <label>Notes</label>
                 <input
                   className="form-control"
                   type="text"
@@ -97,8 +95,8 @@ function DynamicPrescriptionInput({ control, register, errors }) {
               </div>
             </div>
 
-            {index > 0 && (
-              <div className="col-12 col-md-6 col-xl-1">
+            {index !== 0 && (
+              <div className="col-12 col-md-12 col-xl-1 mb-5">
                 {" "}
                 <div className="doctor-submit">
                   <button
