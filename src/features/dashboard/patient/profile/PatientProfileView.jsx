@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import useProfile from "../useProfile";
 import SpinnerMini from "../../../../ui/SpinnerMini";
 import useUser from "../../useUser";
+import Map from "../../../../ui/Map";
 
 function PatientProfileView() {
   const { data: patientData, isLoading, error } = useProfile();
-  console.log(patientData);
 
-  const { data } = useUser(patientData?.userId?._id);
+  const { data } = useUser(isLoading ? null : patientData?.userId?._id);
 
   if (error) toast.error(error?.message);
 
@@ -53,7 +53,7 @@ function PatientProfileView() {
                       <div className="doctor-profile-head">
                         <div className="profile-bg-img">
                           <img
-                            src="https://media.istockphoto.com/id/91156547/photo/nurse-tending-patient-in-intensive-care.jpg?s=612x612&w=0&k=20&c=zvpZwiwIy_2By-rAJeVQyVQEM5ufF0yo_jLyD1W60mc="
+                            src="https://img.freepik.com/premium-photo/dental-clinic-interior-with-modern-blue-dentistry-equipment_1028938-84105.jpg"
                             alt="Profile"
                             height="370"
                             width="259"
@@ -83,7 +83,7 @@ function PatientProfileView() {
                               </div>
                               <div className="names-profiles">
                                 <h4>{user.name}</h4>
-                                <h5>Patient</h5>
+                                <h5>PATIENT</h5>
                               </div>
                             </div>
                           </div>
@@ -119,9 +119,9 @@ function PatientProfileView() {
                         <div className="heading-detail ">
                           <h4 className="mb-3">About me</h4>
                           <p>
-                            Hello I am Smith Bruklin a Gynaecologist in Sanjivni
-                            Hospital Surat. I love to work with all my hospital
-                            staff and seniour doctors.
+                            Hello I am {user.name} a Programmer in VOIS Company.
+                            I love to work with all my company team and seniour
+                            programmers.
                           </p>
                         </div>
                         <div className="about-me-list">
@@ -161,91 +161,97 @@ function PatientProfileView() {
                         {isLoading ? (
                           <SpinnerMini />
                         ) : (
-                          <div className="skill-blk">
-                            <div className="skill-statistics">
-                              <div className="skills-head">
-                                <h5>Heart Rate</h5>
-                                <p>{patientData?.heartRate}</p>
+                          <>
+                            <div className="skill-blk">
+                              <div className="skill-statistics">
+                                <div className="skills-head">
+                                  <h5>Heart Rate</h5>
+                                  <p>{patientData?.heartRate} bpm</p>
+                                </div>
+                                <div className="progress mb-0">
+                                  <div
+                                    className="progress-bar bg-operations"
+                                    role="progressbar"
+                                    style={{
+                                      width: `${patientData?.heartRate}%`,
+                                    }}
+                                    aria-valuenow={patientData?.heartRate}
+                                    aria-valuemin={60}
+                                    aria-valuemax={100}
+                                  />
+                                </div>
                               </div>
-                              <div className="progress mb-0">
-                                <div
-                                  className="progress-bar bg-operations"
-                                  role="progressbar"
-                                  style={{
-                                    width: `${patientData?.heartRate}%`,
-                                  }}
-                                  aria-valuenow={patientData?.heartRate}
-                                  aria-valuemin={60}
-                                  aria-valuemax={100}
-                                />
+                              <div className="skill-statistics">
+                                <div className="skills-head">
+                                  <h5>Blood Pressure</h5>
+                                  <p>{patientData?.bloodPressure} mm/Hg</p>
+                                </div>
+                                <div className="progress mb-0">
+                                  <div
+                                    className="progress-bar bg-haemoglobin"
+                                    role="progressbar"
+                                    style={{
+                                      width: `${70}%`,
+                                    }}
+                                    aria-valuenow={60}
+                                    aria-valuemin={0}
+                                    aria-valuemax={100}
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="skill-statistics">
-                              <div className="skills-head">
-                                <h5>Blood Pressure</h5>
-                                <p>{patientData?.bloodPressure}</p>
+                              <div className="skill-statistics">
+                                <div className="skills-head">
+                                  <h5>Blood Sugar </h5>
+                                  <p>{patientData?.bloodSugar} mg/dL</p>
+                                </div>
+                                <div className="progress mb-0">
+                                  <div
+                                    className="progress-bar bg-statistics"
+                                    role="progressbar"
+                                    style={{
+                                      width: `${patientData?.bloodSugar}%`,
+                                    }}
+                                    aria-valuenow={patientData?.bloodSugar}
+                                    aria-valuemin={70}
+                                    aria-valuemax={140}
+                                  />
+                                </div>
                               </div>
-                              <div className="progress mb-0">
-                                <div
-                                  className="progress-bar bg-haemoglobin"
-                                  role="progressbar"
-                                  style={{
-                                    width: `${patientData?.bloodPressure}%`,
-                                  }}
-                                  aria-valuenow={patientData?.bloodPressure}
-                                  aria-valuemin={0}
-                                  aria-valuemax={100}
-                                />
-                              </div>
-                            </div>
-                            <div className="skill-statistics">
-                              <div className="skills-head">
-                                <h5>Blood Sugar </h5>
-                                <p>{patientData?.bloodSugar}</p>
-                              </div>
-                              <div className="progress mb-0">
-                                <div
-                                  className="progress-bar bg-statistics"
-                                  role="progressbar"
-                                  style={{
-                                    width: `${patientData?.bloodSugar}%`,
-                                  }}
-                                  aria-valuenow={patientData?.bloodSugar}
-                                  aria-valuemin={70}
-                                  aria-valuemax={140}
-                                />
-                              </div>
-                            </div>
-                            <div className="skill-statistics">
-                              <div className="skills-head">
-                                <h5>Body Mass Index </h5>
-                                <p>
-                                  {Math.round(
-                                    patientData?.weight /
-                                      Math.pow(patientData?.height * 0.01, 2)
-                                  ) || "__"}
-                                </p>
-                              </div>
-                              <div className="progress mb-0">
-                                <div
-                                  className="progress-bar bg-visit"
-                                  role="progressbar"
-                                  style={{
-                                    width: `${Math.round(
+                              <div className="skill-statistics">
+                                <div className="skills-head">
+                                  <h5>Body Mass Index </h5>
+                                  <p>
+                                    {Math.round(
                                       patientData?.weight /
                                         Math.pow(patientData?.height * 0.01, 2)
-                                    )}%`,
-                                  }}
-                                  aria-valuenow={Math.round(
-                                    patientData?.weight /
-                                      Math.pow(patientData?.height * 0.01, 2)
-                                  )}
-                                  aria-valuemin={18.5}
-                                  aria-valuemax={50}
-                                />
+                                    ) || "__"}{" "}
+                                    KG/M2
+                                  </p>
+                                </div>
+                                <div className="progress mb-0">
+                                  <div
+                                    className="progress-bar bg-visit"
+                                    role="progressbar"
+                                    style={{
+                                      width: `${Math.round(
+                                        patientData?.weight /
+                                          Math.pow(
+                                            patientData?.height * 0.01,
+                                            2
+                                          )
+                                      )}%`,
+                                    }}
+                                    aria-valuenow={Math.round(
+                                      patientData?.weight /
+                                        Math.pow(patientData?.height * 0.01, 2)
+                                    )}
+                                    aria-valuemin={18.5}
+                                    aria-valuemax={50}
+                                  />
+                                </div>
                               </div>
                             </div>
-                          </div>
+                          </>
                         )}
                       </div>
                     </div>
@@ -306,22 +312,30 @@ function PatientProfileView() {
                             </div>
                           </div>
                         )}
-                        <div className="hello-park">
-                          <p>
-                            I am a {user.name} seeking to improve my health and
-                            well-being. I am a 30 year old individual striving
-                            to maintain optimal health. I believe in open
-                            communication with my medical providers and am
-                            dedicated to following prescribed treatment plans.
-                          </p>
-                          <p>
-                            I am looking to partner with my healthcare team to
-                            address my health concerns. I value clear
-                            explanations and collaborative decision-making. I am
-                            wanting to improve my overall health. I am dedicated
-                            to working with my doctors and nurses to achieve my
-                            health goals.
-                          </p>
+                        <div className="row">
+                          <div className="hello-park">
+                            <p>
+                              I am a {user.name} seeking to improve my health
+                              and well-being. I am a 30 year old individual
+                              striving to maintain optimal health. I believe in
+                              open communication with my medical providers and
+                              am dedicated to following prescribed treatment
+                              plans.
+                            </p>
+                            <p>
+                              I am looking to partner with my healthcare team to
+                              address my health concerns. I value clear
+                              explanations and collaborative decision-making. I
+                              am wanting to improve my overall health. I am
+                              dedicated to working with my doctors and nurses to
+                              achieve my health goals.
+                            </p>
+                          </div>
+                          <div className="col-lg-6 col-xl-12 col-md-4">
+                            <Map
+                              markerPosition={`119 El Hegaz St, Al Matar, El Nozha, Cairo Governorate 4470108`}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
