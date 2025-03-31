@@ -23,6 +23,28 @@ const recentAppointments = [
     time: "09:00 AM - 06:00 PM",
     noPatients: 6,
   },
+  {
+    name: "Saint Fatima",
+    availableDays: "Mon - Sun",
+    src: "/images/clinic/clinic.jpg",
+    time: "09:00 AM - 06:00 PM",
+    noPatients: 5,
+  },
+  {
+    name: " 90th Street",
+    availableDays: "Mon - Fri",
+    src: "/images/clinic/clinic.jpg",
+    time: "09:00 AM - 06:00 PM",
+    noPatients: 7,
+  },
+
+  {
+    name: "Heliopolis Hospital",
+    availableDays: "Web - Sun",
+    src: "/images/clinic/clinic.jpg",
+    time: "09:00 AM - 06:00 PM",
+    noPatients: 6,
+  },
 ];
 function AppointmentTable() {
   return (
@@ -55,7 +77,7 @@ function AppointmentTable() {
                 <tbody>
                   {recentAppointments?.map((patient, index) => {
                     return (
-                      index < 3 && (
+                      index < 6 && (
                         <tr key={index}>
                           <td></td>
 
