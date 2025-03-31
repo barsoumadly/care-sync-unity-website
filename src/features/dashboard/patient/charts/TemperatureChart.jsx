@@ -75,7 +75,7 @@ export default function TemperatureChart() {
             fill={colors.name.fill}
             strokeWidth={2}
             name="Temperature"
-            unit="°C"
+            unit=" °C"
             type="monotone"
             dataKey="pv"
           />{" "}
