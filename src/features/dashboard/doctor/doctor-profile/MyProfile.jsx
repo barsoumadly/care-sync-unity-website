@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import useProfile from "./useProfile";
+import { useAuth } from "../../../../context/AuthContext";
 
 function MyProfile() {
-  const { data } = useProfile();
-  console.log(data);
+  const { data: doctorProfile } = useProfile();
+  const { user } = useAuth();
+  console.log(doctorProfile);
 
   return (
     <div className="main-wrapper">
@@ -53,24 +55,10 @@ function MyProfile() {
                           <div className="col-lg-4 col-md-4">
                             <div className="profile-user-box">
                               <div className="profile-user-img">
-                                <img
-                                  src="/images/dashborad/profile-user.jpg"
-                                  alt="Profile"
-                                />
-                                <div className="input-block doctor-up-files profile-edit-icon mb-0">
-                                  <div className="uplod d-flex">
-                                    <label className="file-upload profile-upbtn mb-0">
-                                      <img
-                                        src="/images/dashborad/icons/camera-icon.svg"
-                                        alt="Profile"
-                                      />
-                                      <input type="file" />
-                                    </label>
-                                  </div>
-                                </div>
+                                <img src={user.profilePhoto} alt="Profile" />
                               </div>
                               <div className="names-profiles">
-                                <h4>Dr. Bruce Willis</h4>
+                                <h4>Dr. {user.name}</h4>
                                 <h5>Senior Doctor</h5>
                               </div>
                             </div>
@@ -130,7 +118,7 @@ function MyProfile() {
                           <ul className="list-space">
                             <li>
                               <h4>Gender</h4>
-                              <span>Female</span>
+                              <span>{doctorProfile?.gender}</span>
                             </li>
                             <li>
                               <h4>Operation Done</h4>
@@ -301,7 +289,7 @@ function MyProfile() {
                             <div className="col-xl-3 col-md-6">
                               <div className="detail-personal">
                                 <h2>Full Name</h2>
-                                <h3>Dr.Bruce Willis</h3>
+                                <h3>Dr.{user.name}</h3>
                               </div>
                             </div>
                             <div className="col-xl-3 col-md-6">
@@ -313,15 +301,7 @@ function MyProfile() {
                             <div className="col-xl-3 col-md-6">
                               <div className="detail-personal">
                                 <h2>Email</h2>
-                                <h3>
-                                  <a
-                                    href="cdn-cgi/l/email-protection"
-                                    className="__cf_email__"
-                                    data-cfemail="dbb9a9aeb8be9bbeb6bab2b7f5b8b4b6"
-                                  >
-                                    [email&nbsp;protected]
-                                  </a>
-                                </h3>
+                                <h3>{user.email}</h3>
                               </div>
                             </div>
                             <div className="col-xl-3 col-md-6">
