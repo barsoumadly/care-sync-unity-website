@@ -7,45 +7,47 @@ function Schedule({ scheduleData }) {
         <a className="avatar">
           <img
             alt="Mike Litorus"
-            src={scheduleData?.avatar}
+            src={scheduleData?.profilePhoto}
             className="img-fluid rounded-circle"
           />
         </a>
       </div>
       <div className="activity-content timeline-group-blk">
         <div className="timeline-group flex-shrink-0">
-          <h4>{scheduleData?.name}</h4>
+          <h4>{scheduleData?.clinicName}</h4>
           <span className="time">{scheduleData?.date}</span>
         </div>
         <div className="comman-activitys flex-grow-1">
           <h3>
-            {scheduleData?.name}
+            {scheduleData?.clinicName}
             <span>
               {" "}
-              You have {scheduleData?.appointmentNum} appointments today
+              You have {scheduleData?.numberOfAppointments} appointments today
             </span>
           </h3>
-          <p>Address: {scheduleData?.address}</p>
+          <p>
+            Address: {scheduleData?.address}, {scheduleData?.city}
+          </p>
           <ul className="latest-posts latest-posts-act mt-2">
             <li>
               <div className="post-thumb">
                 <div className="link">
-                  <img className="img-fluid" src={scheduleData?.avatar} />
+                  <img className="img-fluid" src={scheduleData?.profilePhoto} />
                 </div>
               </div>
               <div className="post-info">
-                {scheduleData?.time?.map((time, index) => (
-                  <div className="date-posts" key={index}>
-                    <h5>{time.day}</h5>
-                    <span className="ms-2">{time.startTime}</span>
-                  </div>
-                ))}
+                <div className="date-posts">
+                  <h5>{scheduleData?.day}</h5>
+                  <span className="ms-2">
+                    {scheduleData.startTime} - {scheduleData?.endTime}
+                  </span>
+                </div>
               </div>
             </li>
           </ul>
           <div>
             <Link
-              to={`/doctor/${scheduleData?.name}/patient-list`}
+              to={`/doctor/${scheduleData?.clinicName}/patient-list`}
               className="read-more d-flex"
               style={{
                 marginTop: "15px",
@@ -53,7 +55,7 @@ function Schedule({ scheduleData }) {
               }}
             >
               {" "}
-              Read more {scheduleData?.appointmentNum} patients
+              Read more {scheduleData?.numberOfAppointments} patients
               <i className="fa fa-long-arrow-right ms-2" />
             </Link>
           </div>
