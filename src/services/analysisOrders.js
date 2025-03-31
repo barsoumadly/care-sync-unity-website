@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/api/v1/analysis-orders";
+const API_URL = `${import.meta.env.VITE_API_URL}/analysis-orders`;
 
 const addAnalysisOrder = async function (data) {
   const token = JSON.parse(localStorage.getItem("key"));
