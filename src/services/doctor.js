@@ -2,10 +2,10 @@ import axios from "axios";
 
 const API_URL = `${import.meta.env.VITE_API_URL}/doctors`;
 
-const getDoctorProfile = async function (id) {
+const getDoctorProfile = async function () {
   const token = JSON.parse(localStorage.getItem("key"));
   try {
-    const response = await axios.get(`${API_URL}/${id}`, {
+    const response = await axios.get(`${API_URL}/profile`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data.data;
@@ -26,4 +26,46 @@ const updateDoctorProfile = async function (doctorData) {
   }
 };
 
-export { getDoctorProfile, updateDoctorProfile };
+const getDoctorSchedule = async function () {
+  const token = JSON.parse(localStorage.getItem("key"));
+  try {
+    const response = await axios.get(`${API_URL}/schedule`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data.data.schedule;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getMyClinics = async function () {
+  const token = JSON.parse(localStorage.getItem("key"));
+  try {
+    const response = await axios.get(`${API_URL}/my-clinics`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getAppointmentsById = async function (id) {
+  const token = JSON.parse(localStorage.getItem("key"));
+  try {
+    const response = await axios.get(`${API_URL}//appointments/clinic/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  getDoctorProfile,
+  updateDoctorProfile,
+  getDoctorSchedule,
+  getMyClinics,
+  getAppointmentsById,
+};
