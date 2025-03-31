@@ -58,6 +58,7 @@ function DoctorField({ doctor, onSelectDoctor, onOpenModal }) {
               <span>
                 {day}
                 <br />
+                <br />
               </span>
             ))}
           </td>
@@ -65,6 +66,7 @@ function DoctorField({ doctor, onSelectDoctor, onOpenModal }) {
             {startTime.map((time, i) => (
               <span>
                 {time} - {endTime[i]} <br />
+                <br />
               </span>
             ))}
           </td>
