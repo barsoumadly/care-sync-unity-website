@@ -1,4 +1,3 @@
-import React, { useCallback, useState } from "react";
 import {
   Sector,
   Cell,
@@ -9,12 +8,7 @@ import {
   Tooltip,
 } from "recharts";
 
-const data = [
-  { name: "Male", duration: "Male", value: 40, color: "#3b82f6" },
-  { name: "Female", duration: "Female", value: 26, color: "#14b8a6" },
-];
-
-export default function PieCharts() {
+export default function PieCharts({ data }) {
   return (
     <div>
       <ResponsiveContainer width="100%" height={300}>
@@ -29,7 +23,7 @@ export default function PieCharts() {
             cy="50%"
             paddingAngle={3}
           >
-            {data.map((entry) => (
+            {data?.map((entry) => (
               <Cell
                 fill={entry.color}
                 stroke={entry.color}
