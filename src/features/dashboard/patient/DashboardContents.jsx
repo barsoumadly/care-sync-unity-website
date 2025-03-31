@@ -373,13 +373,16 @@ function DashboardContents() {
                             </tr>
                           </thead>
                           <tbody>
-                            {medicineOrders?.reverse()?.map((order, index) => (
-                              <OrderTuple
-                                order={order}
-                                key={order._id}
-                                orderNumber={index + 1}
-                              />
-                            ))}
+                            {medicineOrders
+                              ?.reverse()
+                              .slice(0, 3)
+                              ?.map((order, index) => (
+                                <OrderTuple
+                                  order={order}
+                                  key={order._id}
+                                  orderNumber={index + 1}
+                                />
+                              ))}
                           </tbody>
                         </table>
                       ) : (
@@ -453,6 +456,7 @@ function DashboardContents() {
                             {analysisOrders
                               ?.reverse()
                               ?.reverse()
+                              ?.slice(0, 3)
                               ?.map((analysis, index) => (
                                 <AnalysisTuple
                                   analysis={analysis}
@@ -493,6 +497,108 @@ function DashboardContents() {
                         </div>
                       )}
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="col-12 col-md-12  col-xl-4"
+          style={{ marginTop: "-331px" }}
+        >
+          <div className="card top-departments">
+            <div className="card-header">
+              <h4 className="card-title mb-0">Most Visited Specialization</h4>
+            </div>
+            <div className="card-body">
+              <div className="activity-top">
+                <div className="activity-boxs comman-flex-center">
+                  <img alt="" src="../images/dashborad/icons/dep-icon-01.svg" />
+                </div>
+                <div className="departments-list">
+                  <h4>General Physician</h4>
+                  <p>35%</p>
+                </div>
+              </div>
+              <div className="activity-top">
+                <div className="activity-boxs comman-flex-center">
+                  <img alt="" src="../images/dashborad/icons/dep-icon-02.svg" />
+                </div>
+                <div className="departments-list">
+                  <h4>Dentistry</h4>
+                  <p>24%</p>
+                </div>
+              </div>
+              <div className="activity-top">
+                <div className="activity-boxs comman-flex-center">
+                  <img alt="" src="../images/dashborad/icons/dep-icon-03.svg" />
+                </div>
+                <div className="departments-list">
+                  <h4>Otolaryngology</h4>
+                  <p>20%</p>
+                </div>
+              </div>
+              <div className="activity-top">
+                <div className="activity-boxs comman-flex-center">
+                  <img alt="" src="../images/dashborad/icons/dep-icon-04.svg" />
+                </div>
+                <div className="departments-list">
+                  <h4>Cardiology</h4>
+                  <p>15%</p>
+                </div>
+              </div>
+              <div className="activity-top mb-0">
+                <div className="activity-boxs comman-flex-center">
+                  <img alt="" src="../images/dashborad/icons/dep-icon-05.svg" />
+                </div>
+                <div className="departments-list">
+                  <h4>Ophthalmology</h4>
+                  <p>10%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="row" style={{ marginTop: "-10px" }}>
+            <div className="col-12 col-md-12 col-xl-6">
+              <div className="struct-point">
+                <div className="card patient-structure">
+                  <div className="card-body">
+                    <h5>Appointments</h5>
+                    <h3>
+                      {appointments.length}
+                      <span className="status-pink">
+                        <img
+                          src="assets/img/icons/sort-icon-01.svg"
+                          alt=""
+                          className="me-1"
+                        />
+                        -10%
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-12 col-md-12 col-xl-6">
+              <div className="struct-point">
+                <div className="card patient-structure">
+                  <div className="card-body">
+                    <h5>Total points</h5>
+                    <h3>
+                      56
+                      <span className="status-green">
+                        <img
+                          src="assets/img/icons/sort-icon-02.svg"
+                          alt=""
+                          className="me-1"
+                        />
+                        +20%
+                      </span>
+                    </h3>
                   </div>
                 </div>
               </div>
