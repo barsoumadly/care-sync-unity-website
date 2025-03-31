@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../../../../../context/AuthContext";
 import useWritingPrescription from "./useWritingPrescription";
 
-function Examination({ clinicName, patientName }) {
+function Examination({ patientName }) {
   const [openCard, setOpenCard] = useState("");
   const [isAddingPrescription, setIsAddingPrescription] = useState(false);
   const [isAddingAnalysis, setIsAddingAnalysis] = useState(false);
@@ -15,7 +15,7 @@ function Examination({ clinicName, patientName }) {
   const { user } = useAuth();
   const path = useLocation();
   const date = new Date().toLocaleDateString();
-  const clinic = path.pathname.split("/")[2];
+  const clinicName = path.pathname.split("/")[2].split("%20").join(" ");
   // const id = path.pathname.split("/")[3];
   const id = "67cd509db725342217086ef8";
   const specialization = "test";
@@ -24,7 +24,6 @@ function Examination({ clinicName, patientName }) {
   const {
     register,
     handleSubmit,
-
     control,
     formState: { errors },
   } = useForm({
@@ -38,7 +37,7 @@ function Examination({ clinicName, patientName }) {
     const ExaminationData = {
       ...data,
       doctorName: user.name,
-      clinicName: clinic,
+      clinicName: clinicName,
       patientId: id,
       specialization,
       date,
