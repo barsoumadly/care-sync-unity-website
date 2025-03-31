@@ -5,7 +5,8 @@ import usePrescription from "./usePrescription";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 
 function PrescriptionsList() {
-  const { data: prescriptions, isLoading } = usePrescription();
+  const { data, isLoading } = usePrescription();
+  const prescriptions = isLoading ? [] : [...data];
 
   return (
     <>
@@ -109,13 +110,15 @@ function PrescriptionsList() {
                             </tr>
                           </thead>
                           <tbody>
-                            {prescriptions?.map((prescription, index) => (
-                              <PrescriptionTuple
-                                prescriptionTuple={prescription}
-                                prescriptionNumber={index + 1}
-                                key={prescription.id}
-                              />
-                            ))}
+                            {prescriptions
+                              ?.reverse()
+                              ?.map((prescription, index) => (
+                                <PrescriptionTuple
+                                  prescriptionTuple={prescription}
+                                  prescriptionNumber={index + 1}
+                                  key={prescription.id}
+                                />
+                              ))}
                           </tbody>
                         </table>
                       </div>
