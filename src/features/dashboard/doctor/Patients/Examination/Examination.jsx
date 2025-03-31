@@ -3,11 +3,49 @@ import ExaminationCard from "./ExaminationCard";
 import PrescriptionPaper from "./WritingPrescriptionPaper";
 import AnalysisPaper from "./AnalysisPaper";
 import { useLocation } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useAuth } from "../../../../../context/AuthContext";
+import useWritingPrescription from "./useWritingPrescription";
 
 function Examination({ clinicName, patientName }) {
   const [openCard, setOpenCard] = useState("");
   const [isAddingPrescription, setIsAddingPrescription] = useState(false);
   const [isAddingAnalysis, setIsAddingAnalysis] = useState(false);
+
+  const { user } = useAuth();
+  const path = useLocation();
+  const date = new Date().toLocaleDateString();
+  const clinic = path.pathname.split("/")[2];
+  // const id = path.pathname.split("/")[3];
+  const id = "67cd509db725342217086ef8";
+  const specialization = "test";
+  const { mutate, isLoading, error } = useWritingPrescription();
+
+  const {
+    register,
+    handleSubmit,
+
+    control,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      analyses: [{}],
+      medicines: [{}],
+    },
+  });
+
+  function onSubmit(data) {
+    const AnalysesData = {
+      ...data,
+      doctorName: user.name,
+      clinicName: clinic,
+      patientId: id,
+      specialization,
+      date,
+    };
+    console.log(AnalysesData);
+  }
+
   return (
     <>
       <div className="personal-list-out">
@@ -46,35 +84,48 @@ function Examination({ clinicName, patientName }) {
           </div>
         </div>
       </div>
-
-      {openCard === "medicine" ? (
-        <PrescriptionPaper
-          setOpenCard={setOpenCard}
-          setIsAdding={setIsAddingPrescription}
-          clinicName={clinicName}
-          patientName={patientName}
-        />
-      ) : openCard === "analysis" ? (
-        <AnalysisPaper
-          setOpenCard={setOpenCard}
-          setIsAdding={setIsAddingAnalysis}
-          clinicName={clinicName}
-          patientName={patientName}
-        />
-      ) : (
-        <>
-          <ExaminationCard
-            type={"medicine"}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {openCard === "medicine" ? (
+          <PrescriptionPaper
             setOpenCard={setOpenCard}
-            isAdding={isAddingPrescription}
+            setIsAdding={setIsAddingPrescription}
+            clinicName={clinicName}
+            patientName={patientName}
+            register={register}
+            handleSubmit={handleSubmit}
+            control={control}
+            errors={errors}
           />
-          <ExaminationCard
-            type={"analysis"}
+        ) : openCard === "analysis" ? (
+          <AnalysisPaper
             setOpenCard={setOpenCard}
-            isAdding={isAddingAnalysis}
+            setIsAdding={setIsAddingAnalysis}
+            clinicName={clinicName}
+            patientName={patientName}
+            register={register}
+            handleSubmit={handleSubmit}
+            control={control}
+            errors={errors}
           />
-        </>
-      )}
+        ) : (
+          <>
+            <ExaminationCard
+              setOpenCard={setOpenCard}
+              isAddingPrescription={isAddingPrescription}
+              isAddingAnalysis={isAddingAnalysis}
+            />{" "}
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button
+                className="btn btn-primary mt-4 mb-4 btn-block p-3"
+                type="submit"
+                // onClick={() => setOpenCard("analysis")}
+              >
+                Please click after the examination is complete.
+              </button>
+            </div>
+          </>
+        )}
+      </form>
     </>
   );
 }
