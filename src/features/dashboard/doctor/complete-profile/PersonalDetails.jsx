@@ -66,7 +66,7 @@ function DoctorPersonalDetails({
                   className="form-control"
                   type="text"
                   placeholder="ex: 0123456789"
-                  {...register("phoneNumber", {
+                  {...register("phone", {
                     required: "This field is required",
                     validate: (value) =>
                       telephoneCheck(value) || "Your Phone number isn't Vaild",
