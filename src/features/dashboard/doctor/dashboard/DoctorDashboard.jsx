@@ -3,6 +3,27 @@ import PieCharts from "../charts/PieChart";
 import AreaCharts from "../charts/AreaCharts";
 import AppointmentTable from "./AppointmentTable";
 
+const genderData = [
+  { name: "Male", duration: "Male", value: 40, color: "#3b82f6" },
+  { name: "Female", duration: "Female", value: 26, color: "#14b8a6" },
+];
+
+const appointmentData = [
+  {
+    name: "Saint Fatima",
+    duration: "Saint Fatima",
+    value: 16,
+    color: "#a5c5fb",
+  },
+  { name: "90th Street", duration: "90th Street", value: 26, color: "#14b8a6" },
+  {
+    name: "Heliopolis Hospital",
+    duration: "Heliopolis Hospital",
+    value: 35,
+    color: "#3b82f6",
+  },
+];
+
 function DoctorDashboard() {
   return (
     <>
@@ -120,7 +141,16 @@ function DoctorDashboard() {
               </div>
             </div>
             <div className="row">
-              <div className="col-12 col-md-12 col-lg-12 col-xl-7">
+              <div className="col-12 col-md-12 col-lg-6 col-xl-3 d-flex">
+                <div className="card">
+                  <div className="card-body">
+                    <div id="radial-patients">
+                      <PieCharts data={appointmentData} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-12 col-md-12 col-lg-12 col-xl-6">
                 <div className="card">
                   <div className="card-body">
                     <div className="chart-title patient-visit mb-0">
@@ -153,82 +183,56 @@ function DoctorDashboard() {
                 <div className="card">
                   <div className="card-body">
                     <div id="radial-patients">
-                      <PieCharts />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-md-12 col-lg-6 col-xl-2 d-flex">
-                <div className="struct-point">
-                  <div className="card patient-structure">
-                    <div className="card-body">
-                      <h5>New Patients</h5>
-                      <h3>
-                        56
-                        <span className="status-green">
-                          <img
-                            src="/images/dashborad/icons/sort-icon-01.svg"
-                            alt=""
-                            className="me-1"
-                          />
-                          60%
-                        </span>
-                      </h3>
-                    </div>
-                  </div>
-                  <div className="card patient-structure">
-                    <div className="card-body">
-                      <h5>Old Patients</h5>
-                      <h3>
-                        35
-                        <span className="status-pink">
-                          <img
-                            src="/images/dashborad/icons/sort-icon-02.svg"
-                            alt=""
-                            className="me-1"
-                          />
-                          -20%
-                        </span>
-                      </h3>
+                      <PieCharts data={genderData} />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <div className="row">
               <div className="col-12 col-md-12 col-xl-7">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="chart-title patient-visit">
-                      <h4>Activity Chart</h4>
-                      <div>
-                        <ul className="nav chat-user-total">
-                          <li>
-                            <i
-                              className="fa fa-circle low-users"
-                              aria-hidden="true"
-                            />
-                            Low
-                          </li>
-                          <li>
-                            <i
-                              className="fa fa-circle current-users"
-                              aria-hidden="true"
-                            />
-                            High
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="input-block mb-0">
-                        <select className="form-control select">
-                          <option>This Week</option>
-                          <option>Last Week</option>
-                          <option>This Month</option>
-                          <option>Last Month</option>
-                        </select>
+                <div className="row">
+                  <div className="col-12 col-md-12 col-xl-6">
+                    <div className="struct-point">
+                      <div className="card patient-structure">
+                        <div className="card-body">
+                          <h5>New Patients</h5>
+                          <h3>
+                            56
+                            <span className="status-green">
+                              <img
+                                src="/images/dashborad/icons/sort-icon-01.svg"
+                                alt=""
+                                className="me-1"
+                              />
+                              60%
+                            </span>
+                          </h3>
+                        </div>
                       </div>
                     </div>
-                    <div id="activity-chart" />
+                  </div>
+
+                  <div className="col-12 col-md-12 col-xl-6">
+                    <div className="struct-point">
+                      <div className="card patient-structure">
+                        <div className="card-body">
+                          <h5>Old Patients</h5>
+                          <h3>
+                            35
+                            <span className="status-pink">
+                              <img
+                                src="/images/dashborad/icons/sort-icon-02.svg"
+                                alt=""
+                                className="me-1"
+                              />
+                              -20%
+                            </span>
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <AppointmentTable />
