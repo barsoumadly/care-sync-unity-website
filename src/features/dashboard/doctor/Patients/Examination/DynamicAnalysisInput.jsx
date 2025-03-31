@@ -31,9 +31,7 @@ function DynamicAnalysisInput({ control, register, errors }) {
 
             <div className="col-12 col-md-6 col-xl-5">
               <div className="input-block local-forms">
-                <label>
-                  Notes <span className="login-danger">*</span>
-                </label>
+                <label>Notes</label>
                 <input
                   className="form-control"
                   type="text"
@@ -56,7 +54,7 @@ function DynamicAnalysisInput({ control, register, errors }) {
               </div>
             )}
             {index > 0 && (
-              <div className="col-12 col-md-6 col-xl-2">
+              <div className="col-12 col-md-6 col-xl-2 mb-5">
                 {" "}
                 <div className="doctor-submit">
                   <button
