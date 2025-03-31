@@ -35,7 +35,7 @@ function Examination({ clinicName, patientName }) {
   });
 
   function onSubmit(data) {
-    const AnalysesData = {
+    const ExaminationData = {
       ...data,
       doctorName: user.name,
       clinicName: clinic,
@@ -43,7 +43,8 @@ function Examination({ clinicName, patientName }) {
       specialization,
       date,
     };
-    console.log(AnalysesData);
+    console.log(ExaminationData);
+    mutate(ExaminationData);
   }
 
   return (
