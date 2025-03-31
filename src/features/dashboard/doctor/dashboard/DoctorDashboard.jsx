@@ -145,7 +145,7 @@ function DoctorDashboard() {
                 <div className="card">
                   <div className="card-body">
                     <div id="radial-patients">
-                      <PieCharts data={appointmentData} />
+                      <PieCharts data={appointmentData} label="Appointments" />
                     </div>
                   </div>
                 </div>
