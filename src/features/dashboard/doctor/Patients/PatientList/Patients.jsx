@@ -3,6 +3,7 @@ import SearchBar from "../../SearchBar";
 import Table from "./Table";
 import PatientTuples from "./PatientTuples";
 import { useLocation } from "react-router-dom";
+import usePatientList from "./usePatientList";
 
 const patientList = [
   {
@@ -29,7 +30,9 @@ const patientList = [
 
 function Patients() {
   const CLINIC_NAME = useLocation().pathname.split("/")[2];
-  console.log(CLINIC_NAME);
+  const CLINIC_ID = useLocation().pathname.split("/")[3];
+  const { data } = usePatientList(CLINIC_ID);
+  console.log(data);
 
   return (
     <div className="main-wrapper">
@@ -67,7 +70,6 @@ function Patients() {
                           <PatientTuples
                             num={index}
                             element={element}
-                            clinicName={CLINIC_NAME}
                             button={{
                               name: "Examination",
                               link: `/doctor/${CLINIC_NAME}`,
