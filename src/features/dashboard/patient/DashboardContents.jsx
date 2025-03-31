@@ -12,6 +12,7 @@ import AppointmentTupleDashboard from "./appointments/AppointmentTupleDashboard"
 import HeartRateChart from "./charts/HeartRateChart";
 import TemperatureChart from "./charts/TemperatureChart";
 import BloodPressureChart from "./charts/BloodPressure";
+import BloodSugarChart from "./charts/BloodSugarChart";
 
 const appointments = [
   {
@@ -76,7 +77,7 @@ function DashboardContents() {
   return (
     <>
       <div className="row">
-        <div className="col-12 col-md-6 col-xl-4 d-flex">
+        <div className="col-12 col-md-6 col-xl-3 d-flex">
           <div className="card report-blk">
             <div className="card-body">
               <div className="report-head">
@@ -107,7 +108,7 @@ function DashboardContents() {
           </div>
         </div>
 
-        <div className="col-12 col-md-6 col-xl-4 d-flex">
+        <div className="col-12 col-md-6 col-xl-3 d-flex">
           <div className="card report-blk">
             <div className="card-body">
               <div className="report-head">
@@ -138,7 +139,7 @@ function DashboardContents() {
           </div>
         </div>
 
-        <div className="col-12 col-md-6 col-xl-4 d-flex">
+        <div className="col-12 col-md-6 col-xl-3 d-flex">
           <div className="card report-blk">
             <div className="card-body">
               <div className="report-head">
@@ -159,9 +160,50 @@ function DashboardContents() {
                   <h5>
                     <br />
                     {patientData?.bloodPressure || "__"} <span>mm/Hg</span>
+                    {/* <span
+                      style={{
+                        marginLeft: "10px",
+                        color: "black",
+                        fontWeight: "100",
+                      }}
+                    >
+                      Blood Type:
+                    </span>{" "}
+                    {patientData?.bloodType || "__"} */}
+                  </h5>
+                )}
+              </div>
+              <div id="apexcharts-area">
+                <BloodPressureChart />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-12 col-md-6 col-xl-3 d-flex">
+          <div className="card report-blk">
+            <div className="card-body">
+              <div className="report-head">
+                <h4>
+                  <img
+                    src="https://preclinic.dreamstechnologies.com/html/template/assets/img/icons/report-icon-04.svg"
+                    className="me-2"
+                    alt=""
+                  />
+                  Blood Sugar
+                </h4>
+              </div>
+              <div id="pressure-chart" />
+              <div className="dash-content">
+                {isLoading ? (
+                  <SpinnerMini />
+                ) : (
+                  <h5>
+                    <br />
+                    {patientData?.bloodSugar || "__"} <span>mg/dL</span>
                     <span
                       style={{
-                        marginLeft: "70px",
+                        marginLeft: "23px",
                         color: "black",
                         fontWeight: "100",
                       }}
@@ -173,7 +215,7 @@ function DashboardContents() {
                 )}
               </div>
               <div id="apexcharts-area">
-                <BloodPressureChart />
+                <BloodSugarChart />
               </div>
             </div>
           </div>
@@ -561,13 +603,13 @@ function DashboardContents() {
             </div>
           </div>
 
-          <div className="row" style={{ marginTop: "-10px" }}>
+          <div className="row" style={{ marginTop: "30px" }}>
             <div className="col-12 col-md-12 col-xl-6">
               <div className="struct-point">
                 <div className="card patient-structure">
                   <div className="card-body">
                     <h5>Appointments</h5>
-                    <h3>
+                    <h3 style={{ fontSize: "28px" }}>
                       {appointments.length}
                       <span className="status-pink">
                         <img
@@ -588,7 +630,7 @@ function DashboardContents() {
                 <div className="card patient-structure">
                   <div className="card-body">
                     <h5>Total points</h5>
-                    <h3>
+                    <h3 style={{ fontSize: "28px" }}>
                       56
                       <span className="status-green">
                         <img
