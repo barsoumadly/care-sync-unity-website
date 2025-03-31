@@ -14,4 +14,16 @@ const getDoctorProfile = async function (id) {
   }
 };
 
-export { getDoctorProfile };
+const updateDoctorProfile = async function (doctorData) {
+  const token = JSON.parse(localStorage.getItem("key"));
+
+  try {
+    await axios.put(`${API_URL}/profile`, doctorData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { getDoctorProfile, updateDoctorProfile };
