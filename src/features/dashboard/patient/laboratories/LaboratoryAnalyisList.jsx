@@ -4,6 +4,7 @@ import AnalysisTuple from "./AnalysisTuple";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 import DetailsModal from "./DetailsModal";
 import { useState } from "react";
+import usePrescription from "../prescription/usePrescription";
 
 function LaboratoryAnalysisList() {
   const laboratory = JSON.parse(localStorage.getItem("laboratory"));
@@ -11,7 +12,19 @@ function LaboratoryAnalysisList() {
   const { data, isLoading } = useAnalysis(laboratory.userId);
   const [isOpen, setIsOpen] = useState(false);
   const [activeAnalysis, setActiveAnalysis] = useState(null);
-  const analysis = data?.analysisTests;
+  const { data: presc, isLoading: isLoad } = usePrescription();
+
+  const prescription = isLoad ? null : presc[0];
+
+  const analysesNames = prescription?.analyses?.map(
+    (analysis) => analysis?.name
+  );
+
+  console.log(analysesNames);
+
+  const analyses = data?.analysisTests?.filter((analysis) =>
+    analysesNames?.includes(analysis.name)
+  );
 
   const handleOpenModal = function () {
     setIsOpen((isOpen) => !isOpen);
@@ -49,7 +62,7 @@ function LaboratoryAnalysisList() {
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {analysis?.map((analysis) => (
+                                  {analyses?.map((analysis) => (
                                     <AnalysisTuple
                                       analysis={analysis}
                                       onOpenModal={handleOpenModal}
