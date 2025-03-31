@@ -14,7 +14,7 @@ function LaboratoryAnalysisList() {
   const [activeAnalysis, setActiveAnalysis] = useState(null);
   const { data: presc, isLoading: isLoad } = usePrescription();
 
-  const prescription = isLoad ? null : presc[0];
+  const prescription = isLoad ? null : presc[presc.length - 1];
 
   const analysesNames = prescription?.analyses?.map(
     (analysis) => analysis?.name
