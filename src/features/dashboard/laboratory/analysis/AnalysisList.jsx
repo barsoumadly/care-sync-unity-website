@@ -65,6 +65,7 @@ function AnalysisList() {
                                     <input
                                       className="form-control"
                                       type="text"
+                                      placeholder="ex: Blood Urea"
                                     />
                                   </div>
                                 </div>
