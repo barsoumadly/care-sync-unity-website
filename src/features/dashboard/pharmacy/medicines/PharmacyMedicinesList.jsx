@@ -57,6 +57,7 @@ function PharmacyMedicinesList() {
                                     <input
                                       className="form-control"
                                       type="text"
+                                      placeholder="ex: Panadol"
                                     />
                                   </div>
                                 </div>
