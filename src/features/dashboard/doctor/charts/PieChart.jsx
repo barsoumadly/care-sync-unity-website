@@ -8,9 +8,11 @@ import {
   Tooltip,
 } from "recharts";
 
-export default function PieCharts({ data }) {
+export default function PieCharts({ data, label }) {
   return (
     <div>
+      {" "}
+      <h4 className="card-title d-inline-block">{label} </h4>{" "}
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>
           <Pie
