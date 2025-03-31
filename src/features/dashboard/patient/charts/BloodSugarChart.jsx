@@ -74,8 +74,8 @@ export default function BloodSugarChart() {
             stroke={colors.name.stroke}
             fill={colors.name.fill}
             strokeWidth={2}
-            name="Temperature"
-            unit="°C"
+            name="Blood Sugar"
+            unit=" mg/dL"
             type="monotone"
             dataKey="pv"
           />{" "}
