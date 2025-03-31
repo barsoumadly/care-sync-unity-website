@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function PatientTuples({ num, element, clinicName, button }) {
+export default function PatientTuples({ num, element, button }) {
   return (
     <>
       <td></td>
