@@ -5,46 +5,30 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useLocation } from "react-router-dom";
 
-function AnalysisPaper({ setOpenCard, setIsAdding, clinicName, patientName }) {
+function AnalysisPaper({
+  setOpenCard,
+  setIsAdding,
+  clinicName,
+  patientName,
+  register,
+  control,
+  errors,
+}) {
   const { user } = useAuth();
-  const path = useLocation();
   const date = new Date().toLocaleDateString();
-  const clinic = path.pathname.split("/")[2];
-  const id = path.pathname.split("/")[3];
-  const specialization = "test";
-  const {
-    register,
-    handleSubmit,
-    reset,
-    control,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      analyses: [{}],
-    },
-  });
 
-  function onSubmit(data) {
-    const AnalysesData = {
-      ...data,
-      doctorName: user.name,
-      clinicName: clinic,
-      patientId: id,
-      specialization,
-      date,
-    };
-    console.log(AnalysesData);
-    setIsAdding(true);
+  function onSubmit() {
+    setIsAdding("analysis");
     setOpenCard("");
+    toast.success("Analysis registered successfully!");
   }
 
   function handleCancel() {
-    reset();
     setOpenCard("");
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       <div className="main-wrapper ">
         {/* Page Content */}
         <div className=" container-fluid " style={{ marginTop: "10%" }}>
@@ -106,9 +90,9 @@ function AnalysisPaper({ setOpenCard, setIsAdding, clinicName, patientName }) {
       <div className="col-12">
         <div className="doctor-submit text-end">
           <button
-            type="submit"
+            type="button"
             className="btn btn-primary submit-form me-2"
-            onClick={handleSubmit}
+            onClick={onSubmit}
           >
             Save Prescription
           </button>
@@ -121,7 +105,7 @@ function AnalysisPaper({ setOpenCard, setIsAdding, clinicName, patientName }) {
           </button>
         </div>
       </div>
-    </form>
+    </>
   );
 }
 
