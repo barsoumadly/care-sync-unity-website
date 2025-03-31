@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/api/v1/medicine-orders";
+const API_URL = `${import.meta.env.VITE_API_URL}/medicine-orders`;
 
 const addMedicinesOrder = async function (order) {
   const token = JSON.parse(localStorage.getItem("key"));
