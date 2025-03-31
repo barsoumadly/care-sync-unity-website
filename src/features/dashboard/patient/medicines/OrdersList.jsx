@@ -56,6 +56,16 @@ function OrdersList() {
                             </div>
                           </div>
                           <div className="col-12 col-md-6 col-xl-3">
+                            <div className="input-block local-forms">
+                              <label>Date </label>
+                              <input
+                                className="form-control"
+                                type="date"
+                                placeholder="ex. Royal"
+                              />
+                            </div>
+                          </div>
+                          <div className="col-12 col-md-6 col-xl-3">
                             <div className="doctor-submit">
                               <button
                                 type="submit"
