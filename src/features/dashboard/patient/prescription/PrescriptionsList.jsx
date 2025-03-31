@@ -47,24 +47,41 @@ function PrescriptionsList() {
                     <div className="staff-search-table">
                       <form>
                         <div className="row">
-                          <div className="col-12 col-md-6 col-xl-4">
+                          <div className="col-12 col-md-6 col-xl-3">
                             <div className="input-block local-forms">
                               <label>Doctor Name </label>
-                              <input className="form-control" type="text" />
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="ex: Smith Bruklin"
+                              />
                             </div>
                           </div>
-                          <div className="col-12 col-md-6 col-xl-4">
+                          <div className="col-12 col-md-6 col-xl-3">
+                            <div className="input-block local-forms">
+                              <label>Hospital/Clinic Name </label>
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="ex: Heliopolis "
+                              />
+                            </div>
+                          </div>
+                          <div className="col-12 col-md-6 col-xl-3">
                             <div className="input-block local-forms">
                               <label>Specialization </label>
-                              <select className="form-control select">
-                                <option>Cardiology</option>
-                                <option>Neurology</option>
-                                <option>Oncology</option>
-                                <option>Otolaryngology</option>
+                              <select className="form-control pass-input">
+                                <option value="" disabled selected>
+                                  Select Specialization
+                                </option>
+                                <option value="cairo">Cardiology</option>
+                                <option value="giza">Neurology</option>
+                                <option value="alex">Dentistry</option>
+                                <option value="alex">Otolaryngology</option>
                               </select>
                             </div>
                           </div>
-                          <div className="col-12 col-md-6 col-xl-4">
+                          <div className="col-12 col-md-6 col-xl-3">
                             <div className="doctor-submit">
                               <button
                                 type="submit"
