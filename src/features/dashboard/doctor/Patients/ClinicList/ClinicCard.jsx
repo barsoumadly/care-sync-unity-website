@@ -30,11 +30,19 @@ function ClinicCard({ clinic }) {
         </div>
         <div className="card-body card-buttons" style={{ padding: "5%" }}>
           <p className="card-text">
-            <span style={{ fontWeight: "600" }}>Our Specialization: </span>
-            {clinic.specialization.join(", ")}
+            <span style={{ fontWeight: "600" }}>Our phone: </span>
+            {clinic?.phone}
           </p>
+          <p className="card-text">
+            <span style={{ fontWeight: "600" }}>Our Address: </span>
+            {clinic.address.address}, {clinic.address.city}
+          </p>
+          {/* <p className="card-text">
+            <span style={{ fontWeight: "600" }}>Our Address: </span>
+            {clinic.address}, {clinic.area}, {clinic.city}
+          </p> */}
           <Link
-            to={`/doctor/${clinic.name}/${clinic.slug}`}
+            to={`/doctor/${clinic.name}/${clinic._id}/patient-list`}
             className="btn btn-primary"
             onClick={() => saveActiveClinic(clinic)}
           >
