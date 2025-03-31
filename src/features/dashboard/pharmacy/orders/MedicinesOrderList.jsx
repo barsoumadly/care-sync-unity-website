@@ -16,7 +16,10 @@ function MedicinesOrderList() {
     .reduce((i, j) => i + j);
 
   const handleStatus = async function () {
-    await editMedicineOrderStatus(orderId, { status: "on the way" });
+    await editMedicineOrderStatus(orderId, {
+      status: "on the way",
+      paymentType: data.paymentType === "paid" ? "paid" : "un paid",
+    });
     navigate("/pharmacy/medicine-orders");
   };
 
