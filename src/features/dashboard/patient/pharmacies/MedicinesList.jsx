@@ -19,8 +19,6 @@ function MedicinesList() {
 
   const prescription = isLoad ? null : presc[0];
 
-  console.log(prescription);
-
   const medicinesNames = prescription?.medicines?.map(
     (medicine) => medicine?.name
   );
