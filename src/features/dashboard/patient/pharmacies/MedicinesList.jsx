@@ -17,7 +17,7 @@ function MedicinesList() {
   const { isLoading, data } = useMedicines(pharmacy?.userId);
   const { data: presc, isLoading: isLoad } = usePrescription();
 
-  const prescription = isLoad ? null : presc[0];
+  const prescription = isLoad ? null : presc[presc.length - 1];
 
   const medicinesNames = prescription?.medicines?.map(
     (medicine) => medicine?.name
