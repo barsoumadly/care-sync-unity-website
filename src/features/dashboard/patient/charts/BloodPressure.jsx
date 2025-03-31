@@ -75,7 +75,7 @@ export default function BloodPressureChart() {
             fill={colors.name.fill}
             strokeWidth={2}
             name="Blood Pressure"
-            unit="mm/Hg"
+            unit=" mm/Hg"
             type="monotone"
             dataKey="pv"
           />{" "}
