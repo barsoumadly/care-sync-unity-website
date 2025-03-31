@@ -1,62 +1,31 @@
 import { useAuth } from "../../../../../context/AuthContext";
-import { useForm } from "react-hook-form";
 import DynamicPrescriptionInput from "./DynamicPrescriptionInput";
 import toast from "react-hot-toast";
-import useWritingPrescription from "./useWritingPrescription";
-import { useLocation } from "react-router-dom";
 
 function PrescriptionPaper({
   setOpenCard,
   setIsAdding,
   clinicName,
   patientName,
+  register,
+  control,
+  errors,
 }) {
   const { user } = useAuth();
   const date = new Date().toLocaleDateString();
-  const path = useLocation();
-  const clinic = path.pathname.split("/")[2];
-  // const id = path.pathname.split("/")[3];
-  const id = "67cd509db725342217086ef8";
-  const specialization = "test";
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    control,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      medicines: [{}],
-    },
-  });
-
-  const { prescriptionData, mutate, isLoading, error } =
-    useWritingPrescription();
 
   function onSubmit(data) {
-    const PrescriptionData = {
-      ...data,
-      doctorName: user.name,
-      clinicName: clinic,
-      patientId: id,
-      specialization,
-      date: new Date().toLocaleDateString(),
-    };
-    console.log(PrescriptionData);
-    mutate(PrescriptionData);
-
-    setIsAdding(true);
+    setIsAdding("medicine");
     setOpenCard("");
+    toast.success("Prescription registered successfully!");
   }
 
   function handleCancel() {
-    reset();
     setOpenCard("");
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       <div className="main-wrapper ">
         {/* Page Content */}
         <div className=" container-fluid " style={{ marginTop: "10%" }}>
@@ -118,9 +87,9 @@ function PrescriptionPaper({
       <div className="col-12">
         <div className="doctor-submit text-end">
           <button
-            type="submit"
+            type="button"
             className="btn btn-primary submit-form me-2"
-            onClick={handleSubmit}
+            onClick={onSubmit}
           >
             Save Prescription
           </button>
@@ -133,7 +102,7 @@ function PrescriptionPaper({
           </button>
         </div>
       </div>
-    </form>
+    </>
   );
 }
 
