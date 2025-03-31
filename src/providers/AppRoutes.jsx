@@ -100,6 +100,8 @@ import HospitalsList from "../features/dashboard/patient/hospitals/HospitalsList
 import HospitalDoctorsList from "../features/dashboard/patient/hospitals/HospitalDoctorList";
 import HospitalProfile from "../features/dashboard/patient/hospitals/HospitalProfile";
 import HospitalImages from "../features/dashboard/patient/hospitals/HospitalImages";
+import MedicineOrderPaper from "../features/dashboard/patient/medicines/OrderPaper";
+import AnalysisOrderPaper from "../features/dashboard/patient/analysis/OrderPaper";
 
 function AppRoutes() {
   return (
@@ -267,7 +269,7 @@ function AppRoutes() {
           <Route path="check-order" element={<OrderPaper />} />
           <Route path="laboratories" element={<LaboratoryList />} />
           <Route path="analysis-results" element={<AnalysisResults />} />
-          <Route path="analysis-results/:id" element={<Results />} />
+          <Route path="analysis-results/:id" element={<AnalysisOrderPaper />} />
           <Route
             path="laboratories/:laboratoryName"
             element={<LaboratoryProfile />}
@@ -280,7 +282,7 @@ function AppRoutes() {
           <Route path="prescriptions" element={<PrescriptionsList />} />
           <Route path="prescription/:id" element={<PrescriptionPaper />} />
           <Route path="medicine-orders" element={<OrdersList />} />
-          <Route path="medicine-orders/:id" element={<MedicineList />} />
+          <Route path="medicine-orders/:id" element={<MedicineOrderPaper />} />
         </Route>
 
         {/* Pharmacy */}
