@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router-dom";
 
-function OrderTuple({ order, orderNumber }) {
+function OrderTuple({ order, orderNumber, ordersNum }) {
   const navigate = useNavigate();
+
+  const calculateOrderNumber = function (order) {
+    const orderNum = ordersNum - order === 0 ? 1 : ordersNum - order + 1;
+    localStorage.setItem("orderNumber", orderNum);
+  };
 
   return (
     <tr>
@@ -24,9 +29,10 @@ function OrderTuple({ order, orderNumber }) {
             <button
               className="custom-badge book-btn"
               style={{ marginRight: "20px" }}
-              onClick={() =>
-                navigate(`/laboratory/analysis-orders/${order._id}`)
-              }
+              onClick={() => {
+                navigate(`/laboratory/analysis-orders/${order._id}`);
+                calculateOrderNumber(orderNumber);
+              }}
             >
               Show Order
             </button>
