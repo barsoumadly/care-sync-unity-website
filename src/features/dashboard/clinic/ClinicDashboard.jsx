@@ -454,33 +454,33 @@ function ClinicDashboard() {
                                   width={28}
                                   height={28}
                                   className="rounded-circle"
-                                  src={doc.user.profilePhoto.url}
+                                  src={doc?.user?.profilePhoto?.url}
                                   alt=""
                                 />
-                                <h2>{doc.user.name}</h2>
+                                <h2>{doc?.user?.name}</h2>
                               </td>
                               <td>
                                 <button className="custom-badge status-gray ">
-                                  {doc.doctor.specialization}
+                                  {doc?.doctor?.specialization}
                                 </button>
                               </td>
-                              <td>{doc.schedule[0].day}</td>
+                              <td>{doc?.schedule[0]?.day}</td>
                               <td className="appoint-time">
-                                <span>{doc.schedule[0].startTime} </span>
+                                <span>{doc?.schedule[0]?.startTime} </span>
                               </td>
                               <td className="appoint-time">
-                                <span>{doc.schedule[0].endTime} </span>
+                                <span>{doc?.schedule[0]?.endTime} </span>
                               </td>
 
                               <td>
                                 <button
                                   className={`custom-badge ${
-                                    doc.doctor.status === "active"
+                                    doc?.doctor?.status === "active"
                                       ? "status-green"
                                       : "status-red"
                                   }`}
                                 >
-                                  {doc.doctor.status}
+                                  {doc?.doctor?.status}
                                 </button>
                               </td>
                               <td className="text-end">
