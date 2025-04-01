@@ -13,6 +13,7 @@ import HeartRateChart from "./charts/HeartRateChart";
 import TemperatureChart from "./charts/TemperatureChart";
 import BloodPressureChart from "./charts/BloodPressure";
 import BloodSugarChart from "./charts/BloodSugarChart";
+import useAppointment from "./appointments/useAppointment";
 
 const appointments = [
   {
@@ -69,6 +70,8 @@ function DashboardContents() {
   const { data: patientData, isLoading, error } = useProfile();
   const { data: medicines, isLoading: isLoad1 } = useMedicineOrders();
   const { isLoading: isLoad2, data: analysis } = useAnalysisOrders();
+  const { data, isLoading: isLoad3 } = useAppointment();
+  const appointments = isLoad3 ? [] : [...data];
   const medicineOrders = isLoad1 ? [] : [...medicines];
   const analysisOrders = isLoad2 ? [] : [...analysis];
 
@@ -321,7 +324,10 @@ function DashboardContents() {
               <div className="body-mass-blk">
                 <div className="row">
                   <div className="col-md-12">
-                    <div className="table-responsive">
+                    <div
+                      className="table-responsive"
+                      style={{ overflowX: "hidden" }}
+                    >
                       {isLoad1 ? (
                         <LoadingSpinner />
                       ) : appointments?.length !== 0 ? (
@@ -337,12 +343,15 @@ function DashboardContents() {
                             </tr>
                           </thead>
                           <tbody>
-                            {appointments.map((appointment) => (
-                              <AppointmentTupleDashboard
-                                appointmentTuple={appointment}
-                                key={appointment.id}
-                              />
-                            ))}
+                            {appointments
+                              ?.reverse()
+                              ?.slice(0, 3)
+                              .map((appointment) => (
+                                <AppointmentTupleDashboard
+                                  appointmentTuple={appointment}
+                                  key={appointment.id}
+                                />
+                              ))}
                           </tbody>
                         </table>
                       ) : (
