@@ -1,15 +1,10 @@
 import { Link, useParams } from "react-router-dom";
-import useProfile from "./useProfile";
-import { useAuth } from "../../../context/AuthContext";
 import useDoctor from "./clinics/useDoctor";
 import { IoArrowBackOutline } from "react-icons/io5";
 
 function DoctorProfile() {
   const { doctorId, doctorName } = useParams();
   const { data: doctor, isLoading } = useDoctor(doctorId);
-  const { data: doctorProfile } = useProfile();
-  const { user } = useAuth();
-  console.log(doctor);
 
   return (
     <div className="main-wrapper">
