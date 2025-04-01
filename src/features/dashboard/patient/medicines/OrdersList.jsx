@@ -98,6 +98,7 @@ function OrdersList() {
                                 order={order}
                                 key={order._id}
                                 orderNumber={index + 1}
+                                ordersNum={orders?.length}
                               />
                             ))}
                           </tbody>
