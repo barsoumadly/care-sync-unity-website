@@ -6,6 +6,14 @@ function HospitalCard({ clinic }) {
   const { user } = useAuth();
   const { data: clinicUser } = useUser(clinic.adminId);
 
+  const specializations = [
+    "Neurology",
+    "Dermatology",
+    "Otolaryngology",
+    "Cardiology",
+    "Dentistry",
+  ];
+
   return (
     <div className="col-12 col-md-4 col-lg-3 d-flex">
       <div
@@ -26,6 +34,10 @@ function HospitalCard({ clinic }) {
           <h5 className="card-title mb-0" style={{ color: "#2e37a4" }}>
             <strong>{clinic.name} Hospital</strong>
           </h5>
+          <span style={{ fontWeight: "600" }}>Specializations: </span>
+          {specializations.map((specialization) => (
+            <span>{`${specialization} `}</span>
+          ))}
         </div>
         <div className="card-body card-buttons" style={{ padding: "5%" }}>
           <p className="card-text">
