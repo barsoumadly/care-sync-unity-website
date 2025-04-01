@@ -5,6 +5,7 @@ import useAnalysis from "./useAnalysis";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 
 function OrderPaper() {
+  const orderNumber = localStorage.getItem("orderNumber");
   const { id: orderId } = useParams();
   const { isLoading, data } = useAnalysis(orderId);
   const analysisResults = data?.results;
@@ -60,7 +61,7 @@ function OrderPaper() {
                             </div>
                             <div className="invoice-head">
                               <h2>Analysis Results</h2>
-                              <p>Order Number : #{data?.length + 1} </p>
+                              <p>Order Number : #{orderNumber} </p>
                             </div>
                           </div>
                           <div className="col-md-6">
