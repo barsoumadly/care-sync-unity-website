@@ -5,6 +5,7 @@ import useMedicines from "./useMedicines";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 
 function OrderPaper() {
+  const orderNumber = localStorage.getItem("orderNumber");
   const { id: orderId } = useParams();
   const { isLoading, data } = useMedicines(orderId);
   const medicines = data?.medicines;
@@ -59,7 +60,7 @@ function OrderPaper() {
                           </div>
                           <div className="invoice-head">
                             <h2>Medicines Order</h2>
-                            <p>Order Number : #{data?.length + 1} </p>
+                            <p>Order Number : #{orderNumber} </p>
                           </div>
                         </div>
                         <div className="col-md-6">
