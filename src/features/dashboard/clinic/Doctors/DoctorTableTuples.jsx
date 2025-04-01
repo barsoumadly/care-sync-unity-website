@@ -25,36 +25,38 @@ function DoctorTableTuples({ doctor, handleOpenModal, dropdown, setDropdown }) {
             <img
               width={28}
               height={28}
-              src={doctor.user.profilePhoto.url}
+              src={doctor?.user?.profilePhoto?.url}
               className="rounded-circle m-r-5"
               alt=""
             />{" "}
-            {doctor.user.name}
+            {doctor?.user?.name}
           </Link>
         </td>
 
-        <td>{doctor.doctor.specialization}</td>
+        <td>{doctor?.doctor?.specialization}</td>
 
         <td>
-          <a className="__cf_email__">{doctor.user.email}</a>
+          <a className="__cf_email__">{doctor?.user?.email}</a>
         </td>
-        <td>{doctor.user.createdAt.split("T")[0]}</td>
+        <td>{doctor?.user?.createdAt.split("T")[0]}</td>
         <td className="text-end">
           <div className="dropdown dropdown-action">
             <a
               className="action-icon dropdown-toggle"
-              onClick={() => setDropdown(doctor.doctor._id)}
+              onClick={() => setDropdown(doctor?.doctor?._id)}
             >
               <CgMoreVerticalAlt />
             </a>
             <div
               className="dropdown-menu dropdown-menu-end"
               style={{
-                display: `${dropdown === doctor.doctor._id ? "block" : "none"}`,
+                display: `${
+                  dropdown === doctor?.doctor?._id ? "block" : "none"
+                }`,
               }}
             >
               <Link
-                to={`/clinic/edit-profile-Doc/${doctor.doctor._id}`}
+                to={`/clinic/edit-profile-Doc/${doctor?.doctor?._id}`}
                 className="dropdown-item"
               >
                 <FaEdit /> Edit
@@ -62,8 +64,8 @@ function DoctorTableTuples({ doctor, handleOpenModal, dropdown, setDropdown }) {
               <button
                 className="dropdown-item"
                 onClick={() => {
-                  handleOpenModal(doctor.doctor._id);
-                  setDropdown(doctor.doctor._id);
+                  handleOpenModal(doctor?.doctor?._id);
+                  setDropdown(doctor?.doctor?._id);
                 }}
               >
                 <RiDeleteBin6Fill /> Delete
