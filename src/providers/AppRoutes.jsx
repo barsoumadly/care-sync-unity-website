@@ -102,6 +102,7 @@ import HospitalProfile from "../features/dashboard/patient/hospitals/HospitalPro
 import HospitalImages from "../features/dashboard/patient/hospitals/HospitalImages";
 import MedicineOrderPaper from "../features/dashboard/patient/medicines/OrderPaper";
 import AnalysisOrderPaper from "../features/dashboard/patient/analysis/OrderPaper";
+import DoctorProfile from "../features/dashboard/patient/DoctorProfile";
 
 function AppRoutes() {
   return (
@@ -278,7 +279,10 @@ function AppRoutes() {
             path="laboratories/:laboratoryName/analysis-list"
             element={<LaboratoryAnalysisList />}
           />
-          <Route path=":doctorName/profile" element={<MyProfile />} />
+          <Route
+            path=":doctorName/:doctorId/profile"
+            element={<DoctorProfile />}
+          />
           <Route path="prescriptions" element={<PrescriptionsList />} />
           <Route path="prescription/:id" element={<PrescriptionPaper />} />
           <Route path="medicine-orders" element={<OrdersList />} />
