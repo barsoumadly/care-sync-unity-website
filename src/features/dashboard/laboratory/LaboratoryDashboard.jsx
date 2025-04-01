@@ -4,7 +4,6 @@ import AnalysisOrderChart from "./charts/AnalysisOrderChart";
 import EarningsChart from "./charts/EarningsChart";
 import PatientNumberChart from "./charts/patientNumberChart";
 import LoadingSpinner from "../../../ui/LoadingSpinner";
-import AnalysisTuple from "./analysis/AnalysisTuple";
 import useAnalysisOrders from "./orders/useAnalysisOrders";
 import OrderTuple from "./orders/AnalysisTuple";
 
@@ -211,7 +210,7 @@ function LaboratoryDashboard() {
                               <tbody>
                                 {analysisOrders
                                   ?.reverse()
-                                  ?.reverse()
+                                  ?.slice(0, 3)
                                   ?.map((analysis, index) => (
                                     <OrderTuple
                                       order={analysis}
