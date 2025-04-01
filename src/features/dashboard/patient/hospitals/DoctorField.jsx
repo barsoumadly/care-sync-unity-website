@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 import useDoctor from "./useDoctor";
 
@@ -41,7 +42,12 @@ function DoctorField({ doctor, onSelectDoctor, onOpenModal }) {
       ) : (
         <>
           <td className="profile-image">
-            <a href="profile.html">
+            <Link
+              to={`/patient/${data?.userId?.name?.split(" ").join("-")}/${
+                doctor.id
+              }/profile`}
+              target="blank"
+            >
               <img
                 width={28}
                 height={28}
@@ -50,7 +56,7 @@ function DoctorField({ doctor, onSelectDoctor, onOpenModal }) {
                 alt=""
               />
               Dr. {data?.userId?.name}
-            </a>
+            </Link>
           </td>
           <td> {data?.specialization}</td>
           <td>
