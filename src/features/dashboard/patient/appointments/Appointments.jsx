@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AppointmentTuple from "./AppointmentTuple";
 import AppointmentTurn from "./AppointmentTurn";
 import { Link } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
+import useAppointment from "./useAppointment";
+import LoadingSpinner from "../../../../ui/LoadingSpinner";
 
 const appointments = [
   {
@@ -75,7 +77,9 @@ function Appointments() {
   const [isOpen, setIsOpen] = useState(false);
   const [appointmentTurn, setAppointmentTurn] = useState(null);
 
-  // const appointments = [];
+  const { data, isLoading } = useAppointment();
+
+  const appointments = isLoading ? [] : [...data];
 
   const handleOpenModal = function () {
     setIsOpen((isOpen) => !isOpen);
@@ -121,7 +125,9 @@ function Appointments() {
                   <div className="card-body">
                     {/* /Table Header */}
 
-                    {appointments.length !== 0 ? (
+                    {isLoading ? (
+                      <LoadingSpinner />
+                    ) : appointments.length !== 0 ? (
                       <>
                         <div className="staff-search-table">
                           <form>
@@ -192,13 +198,14 @@ function Appointments() {
                                 <th>Hospital/Clinic Name</th>
                                 <th>Date</th>
                                 <th>Specialization</th>
+                                <th>Type</th>
                                 <th>Price</th>
                                 <th>Status</th>
                                 <th />
                               </tr>
                             </thead>
                             <tbody>
-                              {appointments.map((appointment) => (
+                              {appointments?.reverse()?.map((appointment) => (
                                 <AppointmentTuple
                                   appointmentTuple={appointment}
                                   onOpenModal={handleOpenModal}
