@@ -99,6 +99,7 @@ function AnalysisResults() {
                                 analysis={analysis}
                                 key={analysis._id}
                                 analysisNumber={index + 1}
+                                ordersNum={orders?.length}
                               />
                             ))}
                           </tbody>
