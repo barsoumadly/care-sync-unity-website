@@ -102,6 +102,7 @@ import HospitalProfile from "../features/dashboard/patient/hospitals/HospitalPro
 import HospitalImages from "../features/dashboard/patient/hospitals/HospitalImages";
 import MedicineOrderPaper from "../features/dashboard/patient/medicines/OrderPaper";
 import AnalysisOrderPaper from "../features/dashboard/patient/analysis/OrderPaper";
+import PharmacyOrderPaper from "../features/dashboard/pharmacy/orders/OrderPaper";
 import DoctorProfile from "../features/dashboard/patient/DoctorProfile";
 
 function AppRoutes() {
@@ -314,7 +315,7 @@ function AppRoutes() {
           />
           <Route path="add-medicine" element={<MedicineAddition />} />
           <Route path="medicine-orders" element={<PharmacyOrdersList />} />
-          <Route path="medicine-orders/:id" element={<MedicinesOrderList />} />
+          <Route path="medicine-orders/:id" element={<PharmacyOrderPaper />} />
           <Route path="view-profile" element={<PharmacyProfileView />} />
           <Route path="edit-profile" element={<PharmacyEditProfile />} />
         </Route>
