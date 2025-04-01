@@ -2,6 +2,18 @@ import axios from "axios";
 
 const API_URL = `${import.meta.env.VITE_API_URL}/doctors`;
 
+const getDoctorById = async function (id) {
+  const token = JSON.parse(localStorage.getItem("key"));
+  try {
+    const response = await axios.get(`${API_URL}/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const getDoctorProfile = async function () {
   const token = JSON.parse(localStorage.getItem("key"));
   try {
@@ -64,6 +76,7 @@ const getAppointmentsById = async function (id) {
 
 export {
   getDoctorProfile,
+  getDoctorById,
   updateDoctorProfile,
   getDoctorSchedule,
   getMyClinics,
