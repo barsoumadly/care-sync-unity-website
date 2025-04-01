@@ -1,42 +1,43 @@
 import { Link } from "react-router-dom";
+import useDoctor from "../clinics/useDoctor";
 
 function AppointmentTuple({
   appointmentTuple,
   onOpenModal,
   onChangeAppointmentTurn,
 }) {
-  const doctorSlug = appointmentTuple.doctor.name
-    .toLowerCase()
-    .split(" ")
-    .join("-");
-  const clinicSlug = appointmentTuple.clinicName
-    .toLowerCase()
-    .split(" ")
-    .join("-");
+  const { data: doctor } = useDoctor(appointmentTuple?.doctorId?._id);
 
   return (
     <>
       <tr>
         <td className="profile-image">
-          <Link to={`/patient/${doctorSlug}/profile`}>
+          <a>
             <img
               width={28}
               height={28}
-              src={appointmentTuple.doctor.profilePhoto}
+              src={doctor?.userId?.profilePhoto?.url}
               className="rounded-circle m-r-5"
               alt=""
             />
-            {appointmentTuple.doctor.name}
-          </Link>
+            Dr. {doctor?.userId?.name}
+          </a>
         </td>
         <td className="profile-image">
-          <Link to={`/patient/clinics/${clinicSlug}`}>
-            {appointmentTuple.clinicName}
-          </Link>
+          <a>
+            {appointmentTuple?.clinicId?.name.includes("Clinic")
+              ? appointmentTuple?.clinicId?.name
+              : `${appointmentTuple?.clinicId?.name} Hospital`}
+          </a>
         </td>
-        <td>{appointmentTuple.date}</td>
-        <td>{appointmentTuple.doctor.specialization}</td>
-        <td>{appointmentTuple.cost} EGP</td>
+        <td>{new Date(appointmentTuple?.scheduledAt).toLocaleDateString()}</td>
+        <td>{appointmentTuple?.doctorId?.specialization}</td>
+        <td>
+          {appointmentTuple?.type === "examination"
+            ? "Examination"
+            : "Consultation"}
+        </td>
+        <td>{appointmentTuple?.price} EGP</td>
         <td>
           <div className="dropdown action-label">
             <a
@@ -45,7 +46,7 @@ function AppointmentTuple({
                   ? "status-purple"
                   : appointmentTuple.status === "approved"
                   ? "status-green"
-                  : appointmentTuple.status === "examined"
+                  : appointmentTuple.status === "completed"
                   ? "status-blue"
                   : "status-pink"
               } `}
@@ -53,7 +54,7 @@ function AppointmentTuple({
               {appointmentTuple.status === "pending" && "Pending"}
               {appointmentTuple.status === "approved" && "Approved"}
               {appointmentTuple.status === "declined" && "Declined"}
-              {appointmentTuple.status === "examined" && "Examined"}
+              {appointmentTuple.status === "completed" && "Completed"}
             </a>
           </div>
         </td>
@@ -63,7 +64,7 @@ function AppointmentTuple({
               <button
                 class="custom-badge book-btn"
                 onClick={() => {
-                  onChangeAppointmentTurn(appointmentTuple.turn);
+                  onChangeAppointmentTurn(3);
                   onOpenModal();
                 }}
               >
