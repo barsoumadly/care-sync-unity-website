@@ -71,7 +71,7 @@ function OrderPaper() {
                 </div>
                 <div class="col-sm-5 col-6 text-end">
                   <Link
-                    to="/pharmacy/medicine-orders"
+                    to="/laboratory/analysis-orders"
                     class="btn btn-primary btn-rounded"
                   >
                     <IoArrowBackOutline /> Return Back
