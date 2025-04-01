@@ -103,6 +103,7 @@ import HospitalImages from "../features/dashboard/patient/hospitals/HospitalImag
 import MedicineOrderPaper from "../features/dashboard/patient/medicines/OrderPaper";
 import AnalysisOrderPaper from "../features/dashboard/patient/analysis/OrderPaper";
 import PharmacyOrderPaper from "../features/dashboard/pharmacy/orders/OrderPaper";
+import LaboratoryOrderPaper from "../features/dashboard/laboratory/orders/OrderPaper";
 import DoctorProfile from "../features/dashboard/patient/DoctorProfile";
 
 function AppRoutes() {
@@ -343,7 +344,10 @@ function AppRoutes() {
           <Route path="analysis-list" element={<AnalysisList />} />
           <Route path="add-analysis" element={<AnalysisAddition />} />
           <Route path="analysis-orders" element={<LaboratoryOrderList />} />
-          <Route path="analysis-orders/:id" element={<AnalysisOrderList />} />
+          <Route
+            path="analysis-orders/:id"
+            element={<LaboratoryOrderPaper />}
+          />
           <Route path="add-order" element={<OrderAddition />} />
           <Route
             path="edit-analysis/:analysisId"
