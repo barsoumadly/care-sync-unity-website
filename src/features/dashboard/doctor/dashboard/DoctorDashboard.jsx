@@ -3,6 +3,7 @@ import PieCharts from "../charts/PieChart";
 import AreaCharts from "../charts/AreaCharts";
 import AppointmentTable from "./AppointmentTable";
 import useScheduleList from "../doctor-schedule/useScheduleList";
+import { useAuth } from "../../../../context/AuthContext";
 
 const genderData = [
   { name: "Male", duration: "Male", value: 40, color: "#3b82f6" },
@@ -10,6 +11,7 @@ const genderData = [
 ];
 
 function DoctorDashboard() {
+  const { user } = useAuth();
   const appointmentData = [
     {
       name: "Saint Fatima",
@@ -58,7 +60,7 @@ function DoctorDashboard() {
                 <div className="col-md-6">
                   <div className="morning-user">
                     <h2>
-                      Good Morning, <span>Dr.Smith Wayne</span>
+                      Good Morning, <span>Dr.{user.name}</span>
                     </h2>
                     <p>Have a nice day at work</p>
                   </div>
