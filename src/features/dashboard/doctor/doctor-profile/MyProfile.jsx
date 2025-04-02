@@ -4,7 +4,7 @@ import SideInformation from "./SideInformation";
 import AboutMe from "./AboutMe";
 import DashboardPageHeader from "../DashboardPageHeader";
 function MyProfile() {
-  const { data: doctorProfile } = useProfile();
+  const { data: doctorProfile, isLoading } = useProfile();
 
   console.log(doctorProfile);
 
@@ -23,11 +23,17 @@ function MyProfile() {
           <div className="row">
             {/* Profile card */}
             <div className="col-sm-12">
-              <ProfileIntro doctorProfile={doctorProfile} />
+              <ProfileIntro
+                doctorProfile={doctorProfile}
+                isLoading={isLoading}
+              />
               <div className="row">
-                <SideInformation certification={doctorProfile?.certification} />
+                <SideInformation
+                  certification={doctorProfile?.certification}
+                  isLoading={isLoading}
+                />
                 {/* About me */}
-                <AboutMe doctorProfile={doctorProfile} />
+                <AboutMe doctorProfile={doctorProfile} isLoading={isLoading} />
               </div>
             </div>
           </div>
