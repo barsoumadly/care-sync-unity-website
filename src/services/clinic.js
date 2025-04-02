@@ -226,7 +226,7 @@ const examination = async function (appointmentId) {
   const token = JSON.parse(localStorage.getItem("key"));
   console.log(appointmentId);
   const data = {
-    status: "confirmed",
+    status: "approved",
   };
 
   try {
