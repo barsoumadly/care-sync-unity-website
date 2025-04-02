@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
-
+import MedicalSpecialties from "../../../../data/MedicalSpecialties";
 function telephoneCheck(p) {
   var phoneRe = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
   var digits = p.replace(/\D/g, "");
@@ -35,12 +35,7 @@ function DoctorPersonalDetails({
         {type === "edit" && (
           <div className="col-md-12">
             <div className="profile-img-wrap">
-              <img
-                className="inline-block"
-                src={profilePhoto}
-                // src="\images\dashborad\user.jpg"
-                alt="user"
-              />
+              <img className="inline-block" src={profilePhoto} alt="user" />
               <div className="fileupload btn">
                 <span className="btn-text">edit</span>
                 <input
@@ -57,7 +52,7 @@ function DoctorPersonalDetails({
         )}
         <div className={`${type === "edit" ? "profile-basic" : ""}`}>
           <div className="row">
-            <div className="col-12 col-md-6 col-xl-5">
+            <div className="col-12 col-md-4 col-xl-5">
               <div className="input-block local-forms">
                 <label>
                   Phone Number <span className="login-danger">*</span>
@@ -77,7 +72,7 @@ function DoctorPersonalDetails({
                 </span>
               </div>
             </div>
-            <div className="col-12 col-md-6 col-xl-5">
+            <div className="col-12 col-md-5 col-xl-5">
               <div className="input-block local-forms">
                 <label className="focus-label">
                   Birth Date<span className="login-danger">*</span>
@@ -85,6 +80,7 @@ function DoctorPersonalDetails({
                 <input
                   className="form-control floating datetimepicker"
                   type="date"
+                  data-date-format="DD MMMM YYYY"
                   {...register("birthDate", {
                     required: "This field is required",
                   })}
@@ -93,7 +89,7 @@ function DoctorPersonalDetails({
                 <span className="error-message ">{errors?.age?.message}</span>
               </div>
             </div>
-            <div className="col-12 col-md-6 col-xl-5">
+            <div className="col-12 col-md-4 col-xl-5">
               <div className="input-block local-forms">
                 <label>
                   Gender <span className="login-danger">*</span>
@@ -113,7 +109,7 @@ function DoctorPersonalDetails({
               </div>
               <span className="error-message ">{errors?.gender?.message}</span>
             </div>
-            <div className="col-12 col-md-6 col-xl-5">
+            <div className="col-12 col-md-5 col-xl-5">
               <div className="input-block local-forms">
                 <label>
                   Specialization <span className="login-danger">*</span>
@@ -127,9 +123,9 @@ function DoctorPersonalDetails({
                   <option value="Specialization" disabled>
                     Specialization
                   </option>
-                  <option value="orthopedics">Orthopedics</option>
-                  <option value="radiology">Radiology</option>
-                  <option>Dentist</option>
+                  {MedicalSpecialties?.map((specialty, index) => (
+                    <option value={specialty}>{specialty}</option>
+                  ))}
                 </select>
               </div>{" "}
               <span className="error-message ">{errors?.gender?.message}</span>

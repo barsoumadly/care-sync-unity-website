@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PageWrapper from "../../PageWrapper";
 import PageCard from "../../PageCard";
 import { useForm } from "react-hook-form";
@@ -7,6 +7,10 @@ import DashboardPageHeader from "../DashboardPageHeader";
 import DoctorPersonalDetails from "../complete-profile/PersonalDetails";
 import DoctorProfessionalDetails from "../complete-profile/DoctorProfessionalDetails";
 import DoctorProfilePhoto from "../complete-profile/DoctorProfilePhoto";
+import useDoctorProfile from "./useDoctorProfile";
+import useProfile from "../doctor-profile/useProfile";
+import { useAuth } from "../../../../context/AuthContext";
+import useEditDoctorProfile from "../complete-profile/useEditDoctorProfile";
 
 function EditProfile() {
   const [profilePhoto, setProfilePhoto] = useState();
@@ -16,14 +20,44 @@ function EditProfile() {
     handleSubmit,
     reset,
     control,
+    setValue,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      education: [{}],
-      experience: [{}],
-      certification: [{}],
-    },
-  });
+  } = useForm();
+
+  const { data: doctorData } = useProfile();
+  const { user: userData } = useAuth();
+  const { updateDoctor, UpdatePhoto } = useEditDoctorProfile();
+
+  useEffect(() => {
+    const education = doctorData?.education.map((doc) => {
+      return {
+        ...doc,
+        startingDate: doc.startingDate?.split("T")[0],
+        endingDate: doc.endingDate?.split("T")[0],
+      };
+    });
+
+    const experience = doctorData?.experience.map((doc) => {
+      return {
+        ...doc,
+        startingDate: doc.startingDate?.split("T")[0],
+        endingDate: doc.endingDate?.split("T")[0],
+      };
+    });
+
+    console.log(education);
+
+    setValue("biography", doctorData?.biography);
+    setValue("gender", doctorData?.gender);
+    setValue("phone", doctorData?.phone);
+    setValue("birthDate", doctorData?.birthDate?.split("T")[0]);
+    setValue("specialization", doctorData?.specialization);
+    setValue("education", education);
+    setValue("certification", doctorData?.certification);
+    setValue("experience", experience);
+
+    if (userData) setProfilePhoto(userData?.profilePhoto);
+  }, [doctorData, userData]);
 
   function handleCancel() {
     setProfilePhoto(
@@ -33,11 +67,9 @@ function EditProfile() {
   }
 
   function onSubmit(data) {
-    console.log({
-      ...data,
-      profilePhoto,
-    });
-    toast.success("Edit Successfully");
+    console.log(data, profilePhoto);
+    updateDoctor(data);
+    UpdatePhoto(profilePhoto);
   }
   return (
     <PageWrapper>
@@ -79,7 +111,7 @@ function EditProfile() {
                 className="btn btn-primary cancel-form"
                 onClick={handleCancel}
               >
-                Cancel
+                Remove
               </button>
             </div>
           </div>
