@@ -5,8 +5,7 @@ function DynamicProfileInput({
   register,
   errors,
   arrayName,
-  fieldNamesText,
-  fieldNamesDate,
+  fieldName,
 }) {
   const { fields, append, remove } = useFieldArray({
     name: arrayName,
@@ -16,50 +15,105 @@ function DynamicProfileInput({
     <>
       {fields.map((field, index) => (
         <div className="row" key={index}>
-          {fieldNamesText.map((fieldName, index) => (
-            <div className="col-12 col-md-6 col-xl-5" key={index}>
-              <div className="input-block local-forms">
-                <label>
-                  {fieldName} <span className="login-danger">*</span>
-                </label>
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder={`${fieldName}:`}
-                  {...register(`${arrayName}.${index}.${fieldName}`, {
+          <div className="col-12 col-md-6 col-xl-5">
+            <div className="input-block local-forms">
+              <label>
+                {fieldName.name1} <span className="login-danger">*</span>
+              </label>
+              <input
+                className="form-control"
+                type="text"
+                placeholder={`${fieldName.name1.toLowerCase()}:`}
+                {...register(
+                  `${arrayName}.${index}.${fieldName.name1.toLowerCase()}`,
+                  {
                     required: "This field is required",
-                  })}
-                />
-                <span className="error-message ">
-                  {errors?.[arrayName]?.[index][fieldName]?.message}
-                </span>
-              </div>
+                  }
+                )}
+              />
+              <span className="error-message ">
+                {
+                  errors?.[arrayName]?.[index][fieldName.name1.toLowerCase()]
+                    ?.message
+                }
+              </span>
             </div>
-          ))}
-          {fieldNamesDate?.map((fieldName, index) => (
-            <div className="col-12 col-md-6 col-xl-5" key={index}>
-              <div className="input-block local-forms">
-                <label>
-                  {fieldName} <span className="login-danger">*</span>
-                </label>
-                <input
-                  className="form-control"
-                  type="date"
-                  {...register(
-                    `${arrayName}.${index}.${fieldName
-                      .split(" ")[0]
-                      .toLowerCase()}Date`,
-                    {
-                      required: "This field is required",
-                    }
-                  )}
-                />
-                <span className="error-message ">
-                  {errors?.[arrayName]?.[index][fieldName]?.message}
-                </span>
+          </div>
+
+          <div className="col-12 col-md-6 col-xl-5">
+            <div className="input-block local-forms">
+              <label>
+                {fieldName.name2} <span className="login-danger">*</span>
+              </label>
+              <input
+                className="form-control"
+                type="text"
+                placeholder={`${fieldName.name2.toLowerCase()}:`}
+                {...register(
+                  `${arrayName}.${index}.${fieldName.name2.toLowerCase()}`,
+                  {
+                    required: "This field is required",
+                  }
+                )}
+              />
+              <span className="error-message ">
+                {
+                  errors?.[arrayName]?.[index][fieldName.name2.toLowerCase()]
+                    ?.message
+                }
+              </span>
+            </div>{" "}
+          </div>
+
+          {fieldName.date1 && (
+            <>
+              <div className="col-12 col-md-6 col-xl-5">
+                <div className="input-block local-forms">
+                  <label>
+                    {fieldName.date1} <span className="login-danger">*</span>
+                  </label>
+                  <input
+                    className="form-control"
+                    type="date"
+                    {...register(
+                      `${arrayName}.${index}.${fieldName.date1
+                        .split(" ")[0]
+                        .toLowerCase()}Date`,
+                      {
+                        required: "This field is required",
+                      }
+                    )}
+                  />
+                  <span className="error-message ">
+                    {errors?.[arrayName]?.[index][fieldName.date1]?.message}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+
+              <div className="col-12 col-md-6 col-xl-5">
+                <div className="input-block local-forms">
+                  <label>
+                    {fieldName.date2} <span className="login-danger">*</span>
+                  </label>
+                  <input
+                    className="form-control"
+                    type="date"
+                    {...register(
+                      `${arrayName}.${index}.${fieldName.date2
+                        .split(" ")[0]
+                        .toLowerCase()}Date`,
+                      {
+                        required: "This field is required",
+                      }
+                    )}
+                  />
+                  <span className="error-message ">
+                    {errors?.[arrayName]?.[index][fieldName.date2]?.message}
+                  </span>
+                </div>
+              </div>
+            </>
+          )}
 
           <div className="col-12 col-md-6 col-xl-2 mb-4">
             {" "}
@@ -83,7 +137,7 @@ function DynamicProfileInput({
             style={{ minWidth: "100%" }}
             onClick={() => append({})}
           >
-            + Add More {fieldNamesText[0]}
+            + Add More {arrayName}
           </button>
         </div>
       </div>
