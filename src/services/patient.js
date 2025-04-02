@@ -44,4 +44,17 @@ const getPatientProfile = async function () {
   }
 };
 
-export { updatePatientProfile, getPatientProfile };
+const getPatientById = async function (id) {
+  const token = JSON.parse(localStorage.getItem("key"));
+  try {
+    const response = await axios.get(`${API_URL}/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return await response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { updatePatientProfile, getPatientProfile, getPatientById };
