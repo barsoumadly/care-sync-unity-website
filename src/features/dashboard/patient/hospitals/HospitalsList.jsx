@@ -10,8 +10,6 @@ function HospitalsList() {
 
   const { data: user, isLoading: isLoad } = useProfile();
 
-  console.log(clinicsList);
-
   const nearestClinics = clinicsList
     ?.filter((clinic) => clinic.address.area === user?.address?.area)
     .filter((clinic) => !clinic.name.includes("Clinic"));
