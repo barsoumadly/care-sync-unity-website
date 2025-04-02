@@ -18,7 +18,7 @@ export default function PatientTuples({ num, element, button }) {
         {element?.status !== "pending" && element?.status !== "approved" ? (
           <div className="dropdown action-label">
             <Link
-              to={`${button.link}/${element.id}/patient-profile`}
+              to={`${button.link}/${element.patientId}/patient-profile`}
               style={{ marginTop: "3%", color: "#fff" }}
             >
               <button className="btn btn-primary submit-list-form me-2">
