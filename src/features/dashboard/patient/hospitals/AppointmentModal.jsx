@@ -3,9 +3,11 @@ import { Link, useParams } from "react-router-dom";
 import Modal from "../../../../ui/Modal";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 import useClinicProfile from "./useClinicProfile";
+import useAppointment from "./useAppointment";
 
 function AppointmentModal({ selectedDoctor, onOpenModal }) {
   const [paymentType, setPaymentType] = useState("cash");
+  const [type, setType] = useState("select");
   const [day, setDay] = useState(selectedDoctor.schedule[0].day);
   const { id } = useParams();
   const { data: clinic, isLoading } = useClinicProfile(id);
@@ -18,6 +20,48 @@ function AppointmentModal({ selectedDoctor, onOpenModal }) {
     Number(selectedDay.startTime.split(":")[0]) > 12
       ? `${selectedDay.startTime} PM`
       : `${selectedDay.startTime} AM`;
+
+  const { bookNewAppointment } = useAppointment();
+
+  const saveAppointment = async function () {
+    const price =
+      type === "consultation"
+        ? Math.round(selectedDoctor.price / 2)
+        : selectedDoctor.price;
+
+    const appointment = {
+      clinicId: id,
+      doctorId: selectedDoctor?._id,
+      scheduledAt: day,
+      specialization: selectedDoctor?.specialization,
+      price,
+      type,
+      status: "pending",
+      paymentType,
+    };
+
+    bookNewAppointment(appointment);
+  };
+
+  const saveAppointmentToLocalStorage = function () {
+    const price =
+      type === "consultation"
+        ? Math.round(selectedDoctor.price / 2)
+        : selectedDoctor.price;
+
+    const appointment = {
+      clinicId: id,
+      doctorId: selectedDoctor?._id,
+      scheduledAt: day,
+      specialization: selectedDoctor?.specialization,
+      price,
+      type,
+      status: "pending",
+      paymentType,
+    };
+
+    localStorage.setItem("appointment", JSON.stringify(appointment));
+  };
 
   return (
     <Modal onClose={onOpenModal}>
@@ -47,7 +91,7 @@ function AppointmentModal({ selectedDoctor, onOpenModal }) {
                       type="text"
                       className="form-control"
                       id="field-1"
-                      placeholder={selectedDoctor.userId.name}
+                      value={selectedDoctor.userId.name}
                       disabled
                     />
                   </div>
@@ -61,7 +105,7 @@ function AppointmentModal({ selectedDoctor, onOpenModal }) {
                       type="text"
                       className="form-control"
                       id="field-2"
-                      placeholder={selectedDoctor.specialization}
+                      value={selectedDoctor.specialization}
                       disabled
                     />
                   </div>
@@ -77,7 +121,7 @@ function AppointmentModal({ selectedDoctor, onOpenModal }) {
                       type="text"
                       className="form-control"
                       id="field-3"
-                      placeholder={clinic?.name}
+                      value={clinic?.name}
                       disabled
                     />
                   </div>
@@ -85,15 +129,21 @@ function AppointmentModal({ selectedDoctor, onOpenModal }) {
                 <div className="col-md-6">
                   <div className="mb-3">
                     <label htmlFor="field-3" className="form-label">
-                      Address
+                      Booking Type
                     </label>
-                    <input
+                    <select
                       type="text"
                       className="form-control"
                       id="field-3"
-                      placeholder={clinic.address.address}
-                      disabled
-                    />
+                      value={type}
+                      onChange={(event) => setType(event.target.value)}
+                    >
+                      <option value="select" disabled>
+                        Select an Option
+                      </option>
+                      <option value="examination">Examination</option>
+                      <option value="consultation">Consultation</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -124,7 +174,7 @@ function AppointmentModal({ selectedDoctor, onOpenModal }) {
                       type="text"
                       className="form-control"
                       id="field-6"
-                      placeholder={time}
+                      value={time}
                       disabled
                     />
                   </div>
@@ -132,15 +182,25 @@ function AppointmentModal({ selectedDoctor, onOpenModal }) {
                 <div className="col-md-6">
                   <div className="mb-3">
                     <label htmlFor="field-4" className="form-label">
-                      Cost
+                      Price
                     </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="field-4"
-                      placeholder={selectedDoctor.price}
-                      disabled
-                    />
+                    {type === "consultation" ? (
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="field-4"
+                        value={Math.round(selectedDoctor.price / 2)}
+                        disabled
+                      />
+                    ) : (
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="field-4"
+                        value={selectedDoctor.price}
+                        disabled
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="col-md-6">
@@ -174,6 +234,11 @@ function AppointmentModal({ selectedDoctor, onOpenModal }) {
                   paymentType === "cash"
                     ? "/patient/appointments"
                     : "/patient/payment-gateway"
+                }
+                onClick={
+                  paymentType === "cash"
+                    ? saveAppointment
+                    : saveAppointmentToLocalStorage
                 }
                 type="button"
                 className="btn btn-info"
