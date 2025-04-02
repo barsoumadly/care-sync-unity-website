@@ -57,7 +57,7 @@ function Patients() {
                   {/* /Table Header */}
                   {isLoading ? (
                     <LoadingSpinner />
-                  ) : patientList && patientList?.[0]?.name ? (
+                  ) : patientList && patientList?.[0]?.patientName ? (
                     <Table>
                       <thead>
                         <tr>

@@ -9,7 +9,7 @@ export default function PatientTuples({ num, element, button }) {
       <td style={{ padding: "0 20px" }}>{num + 1}</td>
 
       {/* Data */}
-      <td>{element.name}</td>
+      <td>{element.patientName}</td>
       <td>{element.specialization}</td>
       <td>{element.type}</td>
 
