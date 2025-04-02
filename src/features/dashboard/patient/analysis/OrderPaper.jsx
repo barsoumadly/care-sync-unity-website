@@ -55,7 +55,7 @@ function OrderPaper() {
                           <div className="col-md-6">
                             <div className="invoice-logo">
                               <img
-                                src="/public/images/logo/care-sync-unity-logo.png"
+                                src="/images/logo/care-sync-unity-logo.png"
                                 alt="logo"
                               />
                             </div>
