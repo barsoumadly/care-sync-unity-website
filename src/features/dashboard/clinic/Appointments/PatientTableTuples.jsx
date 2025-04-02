@@ -24,7 +24,7 @@ function PatientTableTuples({ patient, handleOpenModal }) {
           <img
             width={28}
             height={28}
-            src={patient?.patient?.profilePhoto?.url}
+            src={patient?.patient?.profilePhoto}
             className="rounded-circle m-r-5"
             alt=""
           />{" "}
