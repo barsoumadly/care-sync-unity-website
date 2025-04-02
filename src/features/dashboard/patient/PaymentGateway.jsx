@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaUser } from "react-icons/fa6";
 import { MdPayment } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PaymentConfirmed from "./PaymentConfirmed";
 import toast from "react-hot-toast";
 
@@ -12,6 +12,7 @@ function PaymentGateway() {
   const [cardNumber, setCardNumber] = useState("");
   const [verificationNumber, setVerificationNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
+  const navigate = useNavigate();
 
   const handleConfirmedPayment = function () {
     if (
@@ -232,8 +233,9 @@ function PaymentGateway() {
                         </form>
                         <div className="d-flex">
                           <Link
-                            to="/patient/clinics"
+                            // to="/patient/clinics"
                             className="btn btn-primary previous me-2"
+                            onClick={() => navigate(-1)}
                           >
                             Back
                           </Link>

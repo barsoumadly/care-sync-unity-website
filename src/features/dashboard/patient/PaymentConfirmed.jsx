@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
+import useAppointment from "./hospitals/useAppointment";
 
 function PaymentConfirmed({ setIsConfirmed, creditDetails }) {
+  const appointment = JSON.parse(localStorage.getItem("appointment"));
+
+  const { bookNewAppointment } = useAppointment();
+
+  const saveAppointment = function () {
+    bookNewAppointment(appointment);
+  };
+
   return (
     <div className="tab-content" id="myTabContent">
       <div
@@ -70,6 +79,7 @@ function PaymentConfirmed({ setIsConfirmed, creditDetails }) {
             className="btn btn-primary next"
             data-bs-toggle="modal"
             data-bs-target="#save_modal"
+            onClick={saveAppointment}
           >
             Confirm Payment
           </Link>

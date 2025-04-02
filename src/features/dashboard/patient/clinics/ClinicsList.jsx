@@ -14,8 +14,6 @@ function ClinicsList() {
     ?.filter((clinic) => clinic.address.area === user?.address?.area)
     .filter((clinic) => clinic.name.includes("Clinic"));
 
-  console.log(clinicsList);
-
   return (
     <div className="page-wrapper" style={{ minHeight: 270 }}>
       <div className="content container-fluid">
