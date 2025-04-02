@@ -1,8 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
-
+import updateDoctorProfile from "../../../../services/doctor";
+import toast from "react-hot-toast";
 function useEditDoctorProfile() {
-  const { mutate: updateDoctorProfile, isDataLoading } = useMutation({
-    // mutationFn: ({ doctorData }) => updateDoctorProfile(doctorData),
+  const { mutate: updateDoctor, isDataLoading } = useMutation({
+    mutationFn: updateDoctorProfile,
     onSuccess: () => {
       toast.success("Your profile successfully saved");
     },
@@ -14,7 +15,7 @@ function useEditDoctorProfile() {
   });
 
   return {
-    updateDoctorProfile,
+    updateDoctor,
     UpdateProfilePhoto,
     isDataLoading,
     isPhotoLoading,
