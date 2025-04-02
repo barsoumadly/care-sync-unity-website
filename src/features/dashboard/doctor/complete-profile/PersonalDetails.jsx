@@ -83,7 +83,7 @@ function DoctorPersonalDetails({
                   className="form-control floating datetimepicker"
                   type="date"
                   data-date-format="DD MMMM YYYY"
-                  {...register("birthDate", {
+                  {...register("dateOfBirth", {
                     required: "This field is required",
                   })}
                 />
