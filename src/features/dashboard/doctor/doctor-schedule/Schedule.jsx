@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import formatTime from "../../../../utils/formatTime";
 
 function Schedule({ scheduleData }) {
   return (
@@ -22,11 +23,12 @@ function Schedule({ scheduleData }) {
             {scheduleData?.clinicName}
             <span>
               {" "}
-              You have {scheduleData?.numberOfAppointments} appointments today
+              You have {scheduleData?.numberOfAppointments} appointments
             </span>
           </h3>
           <p>
-            Address: {scheduleData?.address}, {scheduleData?.city}
+            Address: {scheduleData?.clinicAddress?.address},{" "}
+            {scheduleData?.clinicAddress?.city}
           </p>
           <ul className="latest-posts latest-posts-act mt-2">
             <li>
@@ -39,7 +41,8 @@ function Schedule({ scheduleData }) {
                 <div className="date-posts">
                   <h5>{scheduleData?.day}</h5>
                   <span className="ms-2">
-                    {scheduleData.startTime} - {scheduleData?.endTime}
+                    {formatTime(scheduleData.startTime)} -{" "}
+                    {formatTime(scheduleData?.endTime)}
                   </span>
                 </div>
               </div>

@@ -10,7 +10,7 @@ export default function formatTime(date) {
 
   // To display "0" as "12"
   hours = hours ? hours : 12;
-  minutes = minutes < 10 ? "0" + minutes : minutes;
+  minutes = minutes < 10 ? minutes : minutes;
 
   return hours + ":" + minutes + " " + newformat;
 }
