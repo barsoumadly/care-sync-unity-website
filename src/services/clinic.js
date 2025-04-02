@@ -222,11 +222,11 @@ const updateAppointment = async function (appointmentData) {
   }
 };
 
-const examination = async function (appointmentId) {
+const examination = async function (appointmentId, status) {
   const token = JSON.parse(localStorage.getItem("key"));
   console.log(appointmentId);
   const data = {
-    status: "approved",
+    status,
   };
 
   try {
