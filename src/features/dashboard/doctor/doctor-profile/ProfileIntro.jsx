@@ -16,7 +16,7 @@ function ProfileIntro({ doctorProfile, isLoading }) {
             </div>
             <div className="doctor-profile-head">
               <div className="profile-bg-img">
-                <img src="/images/dashborad/profile-bg.jpg" alt="Profile" />
+                <img src="/images/profile/Cardiologist.jpg" alt="Profile" />
               </div>
               <div className="row">
                 {isLoading ? (

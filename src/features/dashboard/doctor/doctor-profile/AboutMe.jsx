@@ -61,7 +61,7 @@ function AboutMe({ doctorProfile, isLoading }) {
                     <div className="col-xl-3 col-md-6">
                       <div className="detail-personal">
                         <h2>Location</h2>
-                        <h3>Los Angeles</h3>
+                        <h3>Cairo</h3>
                       </div>
                     </div>
                   </div>
