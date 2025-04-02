@@ -7,13 +7,15 @@ import StaticOfHealth from "./StaticOfHealth";
 import Examination from "./Examination";
 import MedicalHistory from "./MedicalHistory";
 import { useLocation } from "react-router-dom";
+import usePatientData from "./usePatientData";
 
 function PatientProfile() {
   const DATA = useLocation().pathname.split("/");
   const CLINIC_NAME = DATA[2];
-  const PATIENT_ID = DATA[3];
+  const id = DATA[3];
+  const { data: patientData } = usePatientData(id);
 
-  const patientName = "Smith Bruklin";
+  console.log(patientData);
 
   const [option, setOption] = useState(1);
   return (
@@ -33,12 +35,12 @@ function PatientProfile() {
           {/* /Page Header */}
           <div className="row">
             <div className="col-sm-12">
-              <ProfileHeader />
+              <ProfileHeader data={patientData} />
 
               <div className="row">
                 <div className="col-lg-4">
-                  <AboutOfPatient />
-                  <StaticOfHealth />
+                  <AboutOfPatient data={patientData} />
+                  <StaticOfHealth data={patientData} />
                 </div>
                 <div className="col-lg-8">
                   <div className="doctor-personals-grp">
@@ -79,7 +81,7 @@ function PatientProfile() {
                         {option === 1 ? (
                           <Examination
                             clinicName={CLINIC_NAME}
-                            patientName={patientName}
+                            patient={patientData}
                           />
                         ) : (
                           <MedicalHistory />
