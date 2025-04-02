@@ -70,7 +70,7 @@ const getMyClinics = async function () {
 const getAppointmentsById = async function (id) {
   const token = JSON.parse(localStorage.getItem("key"));
   try {
-    const response = await axios.get(`${API_URL}//appointments/clinic/${id}`, {
+    const response = await axios.get(`${API_URL}/appointments/clinic/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data.data;
