@@ -79,7 +79,7 @@ function DoctorShedule() {
                     <div className="activity-box">
                       {isLoading ? (
                         <LoadingSpinner />
-                      ) : data && data?.[0]?._id ? (
+                      ) : data && data?.[0]?.clinicId ? (
                         <ul className="activity-list">
                           {data?.map((sch) => (
                             <Schedule scheduleData={sch} key={sch.id} />
