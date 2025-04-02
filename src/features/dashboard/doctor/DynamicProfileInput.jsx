@@ -75,6 +75,7 @@ function DynamicProfileInput({
                   <input
                     className="form-control"
                     type="date"
+                    data-date-format="DD MMMM YYYY"
                     {...register(
                       `${arrayName}.${index}.${fieldName.date1
                         .split(" ")[0]
@@ -98,6 +99,7 @@ function DynamicProfileInput({
                   <input
                     className="form-control"
                     type="date"
+                    data-date-format="DD MMMM YYYY"
                     {...register(
                       `${arrayName}.${index}.${fieldName.date2
                         .split(" ")[0]

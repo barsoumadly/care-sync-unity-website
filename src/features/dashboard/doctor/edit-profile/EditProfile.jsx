@@ -29,14 +29,32 @@ function EditProfile() {
   const { updateDoctor, UpdatePhoto } = useEditDoctorProfile();
 
   useEffect(() => {
+    const education = doctorData?.education.map((doc) => {
+      return {
+        ...doc,
+        startingDate: doc.startingDate?.split("T")[0],
+        endingDate: doc.endingDate?.split("T")[0],
+      };
+    });
+
+    const experience = doctorData?.experience.map((doc) => {
+      return {
+        ...doc,
+        startingDate: doc.startingDate?.split("T")[0],
+        endingDate: doc.endingDate?.split("T")[0],
+      };
+    });
+
+    console.log(education);
+
     setValue("biography", doctorData?.biography);
     setValue("gender", doctorData?.gender);
     setValue("phone", doctorData?.phone);
-    setValue("birthDate", doctorData?.birthDate);
+    setValue("birthDate", doctorData?.birthDate?.split("T")[0]);
     setValue("specialization", doctorData?.specialization);
-    setValue("education", doctorData?.education);
+    setValue("education", education);
     setValue("certification", doctorData?.certification);
-    setValue("experience", doctorData?.experience);
+    setValue("experience", experience);
 
     if (userData) setProfilePhoto(userData?.profilePhoto);
   }, [doctorData, userData]);

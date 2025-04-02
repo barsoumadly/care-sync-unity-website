@@ -35,12 +35,7 @@ function DoctorPersonalDetails({
         {type === "edit" && (
           <div className="col-md-12">
             <div className="profile-img-wrap">
-              <img
-                className="inline-block"
-                src={profilePhoto}
-                // src="\images\dashborad\user.jpg"
-                alt="user"
-              />
+              <img className="inline-block" src={profilePhoto} alt="user" />
               <div className="fileupload btn">
                 <span className="btn-text">edit</span>
                 <input
@@ -85,6 +80,7 @@ function DoctorPersonalDetails({
                 <input
                   className="form-control floating datetimepicker"
                   type="date"
+                  data-date-format="DD MMMM YYYY"
                   {...register("birthDate", {
                     required: "This field is required",
                   })}
@@ -127,7 +123,7 @@ function DoctorPersonalDetails({
                   <option value="Specialization" disabled>
                     Specialization
                   </option>
-                  {MedicalSpecialties?.map((specialty) => (
+                  {MedicalSpecialties?.map((specialty, index) => (
                     <option value={specialty}>{specialty}</option>
                   ))}
                 </select>
