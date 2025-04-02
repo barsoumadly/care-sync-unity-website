@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-
-function usePatientData() {
+import { getPatientById } from "../../../../../services/patient";
+function usePatientData(id) {
   const { data, error, isLoading } = useQuery({
-    queryKey: ["patientData"],
-    // queryFn:
+    queryKey: ["patientData", id],
+    queryFn: () => getPatientById(id),
   });
   return { data, error, isLoading };
 }
