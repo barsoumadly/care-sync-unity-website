@@ -44,7 +44,7 @@ const getDoctorSchedule = async function () {
     const response = await axios.get(`${API_URL}/schedule`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return response.data.data.schedule;
+    return response.data.data.clinics;
   } catch (error) {
     console.log(error);
   }

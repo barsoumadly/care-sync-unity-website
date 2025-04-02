@@ -16,7 +16,7 @@ function Schedule({ scheduleData }) {
       <div className="activity-content timeline-group-blk">
         <div className="timeline-group flex-shrink-0">
           <h4>{scheduleData?.clinicName}</h4>
-          <span className="time">{scheduleData?.date}</span>
+          <span className="time">{scheduleData?.schedule[0]?.date}</span>
         </div>
         <div className="comman-activitys flex-grow-1">
           <h3>
@@ -38,26 +38,28 @@ function Schedule({ scheduleData }) {
                 </div>
               </div>
               <div className="post-info">
-                <div className="date-posts">
-                  <h5>{scheduleData?.day}</h5>
-                  <span className="ms-2">
-                    {formatTime(scheduleData.startTime)} -{" "}
-                    {formatTime(scheduleData?.endTime)}
-                  </span>
-                </div>
+                {scheduleData?.schedule.map((schedule) => (
+                  <div className="date-posts">
+                    <h5>{schedule?.day}</h5>
+                    <span className="ms-2">
+                      {formatTime(schedule.startTime)} -{" "}
+                      {formatTime(schedule?.endTime)}
+                    </span>
+                  </div>
+                ))}
               </div>
             </li>
           </ul>
           <div>
             <Link
-              to={`/doctor/${scheduleData?.clinicName}/patient-list`}
+              to={`/doctor/${scheduleData?.clinicName}/${scheduleData?.clinicId}/patient-list`}
               className="read-more d-flex"
               style={{
                 marginTop: "15px",
                 fontSize: " 12px",
+                color: "#2e37a4",
               }}
             >
-              {" "}
               Read more {scheduleData?.numberOfAppointments} patients
               <i className="fa fa-long-arrow-right ms-2" />
             </Link>
