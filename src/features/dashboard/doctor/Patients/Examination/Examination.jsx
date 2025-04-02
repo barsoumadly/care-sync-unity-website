@@ -6,8 +6,9 @@ import { useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../../../../context/AuthContext";
 import useWritingPrescription from "./useWritingPrescription";
+import usePatientData from "./usePatientData";
 
-function Examination({ patientName }) {
+function Examination({ patient }) {
   const [openCard, setOpenCard] = useState("");
   const [isAddingPrescription, setIsAddingPrescription] = useState(false);
   const [isAddingAnalysis, setIsAddingAnalysis] = useState(false);
@@ -16,9 +17,10 @@ function Examination({ patientName }) {
   const path = useLocation();
   const date = new Date().toLocaleDateString();
   const clinicName = path.pathname.split("/")[2].split("%20").join(" ");
-  // const id = path.pathname.split("/")[3];
-  const id = "67cd509db725342217086ef8";
+  const id = path.pathname.split("/")[3];
+  // const id = "67cd509db725342217086ef8";
   const specialization = "test";
+
   const { mutate, isLoading, error } = useWritingPrescription();
 
   const {
@@ -53,33 +55,25 @@ function Examination({ patientName }) {
           <div className="col-xl-3 col-md-6">
             <div className="detail-personal">
               <h2>Full Name</h2>
-              <h3>Smith Bruklin</h3>
+              <h3>{patient?.userId?.name}</h3>
             </div>
           </div>
           <div className="col-xl-3 col-md-6">
             <div className="detail-personal">
               <h2>Mobile </h2>
-              <h3>264-625-2583</h3>
+              <h3>{patient?.phone}</h3>
             </div>
           </div>
           <div className="col-xl-3 col-md-6">
             <div className="detail-personal">
               <h2>Email</h2>
-              <h3>
-                <a
-                  href="cdn-cgi/l/email-protection"
-                  className="__cf_email__"
-                  data-cfemail="0a7967637e624a6f676b636624696567"
-                >
-                  [email&nbsp;protected]
-                </a>
-              </h3>
+              <h3>{patient?.userId?.email}</h3>
             </div>
           </div>
           <div className="col-xl-3 col-md-6">
             <div className="detail-personal">
               <h2>Location</h2>
-              <h3>USA</h3>
+              <h3>{patient?.address?.city}</h3>
             </div>
           </div>
         </div>
@@ -90,7 +84,7 @@ function Examination({ patientName }) {
             setOpenCard={setOpenCard}
             setIsAdding={setIsAddingPrescription}
             clinicName={clinicName}
-            patientName={patientName}
+            patientName={patient?.userId?.name}
             register={register}
             handleSubmit={handleSubmit}
             control={control}
@@ -101,7 +95,7 @@ function Examination({ patientName }) {
             setOpenCard={setOpenCard}
             setIsAdding={setIsAddingAnalysis}
             clinicName={clinicName}
-            patientName={patientName}
+            patientName={patient?.userId?.name}
             register={register}
             handleSubmit={handleSubmit}
             control={control}
