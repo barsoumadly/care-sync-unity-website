@@ -1,7 +1,5 @@
 import { useState } from "react";
-
-import { useAuth } from "../../../../context/AuthContext";
-
+import { useForm } from "react-hook-form";
 import { IoPersonSharp } from "react-icons/io5";
 import { FaKitMedical } from "react-icons/fa6";
 import { BsFillImageFill } from "react-icons/bs";
@@ -10,18 +8,16 @@ import DoctorPersonalDetails from "./PersonalDetails";
 import DoctorProfessionalDetails from "./DoctorProfessionalDetails";
 import DoctorProfilePhoto from "./DoctorProfilePhoto";
 import Header from "../../../../ui/Header";
-import { useForm } from "react-hook-form";
 import PageWrapper from "../../PageWrapper";
 import PageCard from "../../PageCard";
 import DashboardPageHeader from "../DashboardPageHeader";
+import useEditDoctorProfile from "./useEditDoctorProfile";
 
 function CompleteDoctorProfile() {
   const [profilePhoto, setProfilePhoto] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"
   );
   const [pageNumber, setPageNumber] = useState(1);
-  // const [doctorData, setDoctorData] = useState({});
-  const { userLogout } = useAuth();
 
   const {
     register,
@@ -36,14 +32,12 @@ function CompleteDoctorProfile() {
     },
   });
 
-  function logout() {
-    userLogout();
-    logout();
-  }
+  const { updateDoctor, UpdatePhoto } = useEditDoctorProfile();
+
   function performSubmit(data) {
     console.log(data, profilePhoto);
-
-    // navigate("/doctor/dashboard");
+    updateDoctor(data);
+    UpdatePhoto(profilePhoto);
   }
   return (
     <>
