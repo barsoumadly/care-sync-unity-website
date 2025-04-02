@@ -15,4 +15,19 @@ const getAppointmentsByPatient = async function () {
   }
 };
 
-export { getAppointmentsByPatient };
+const bookAppointment = async function (appointment) {
+  const token = JSON.parse(localStorage.getItem("key"));
+  try {
+    await axios.post(
+      `${API_URL}/patients/appointments`,
+      { ...appointment },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { getAppointmentsByPatient, bookAppointment };
