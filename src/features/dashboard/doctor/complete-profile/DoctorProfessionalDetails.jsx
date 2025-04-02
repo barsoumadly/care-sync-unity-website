@@ -31,8 +31,12 @@ function DoctorProfessionalDetails({
             control={control}
             register={register}
             errors={errors}
-            fieldNamesText={["Institution", "Degree"]}
-            fieldNamesDate={["Starting Date", "Ending Date"]}
+            fieldName={{
+              name1: "Institution",
+              name2: "Degree",
+              date1: "Starting Date",
+              date2: "Ending Date",
+            }}
             arrayName={"education"}
           />
         </div>
@@ -52,8 +56,12 @@ function DoctorProfessionalDetails({
             control={control}
             register={register}
             errors={errors}
-            fieldNamesText={["Hospital", "Position"]}
-            fieldNamesDate={["Starting Date", "Ending Date"]}
+            fieldName={{
+              name1: "Hospital",
+              name2: "Position",
+              date1: "Starting Date",
+              date2: "Ending Date",
+            }}
             arrayName={"experience"}
           />
         </div>{" "}
@@ -74,7 +82,10 @@ function DoctorProfessionalDetails({
             control={control}
             register={register}
             errors={errors}
-            fieldNamesText={["Certification", "Des"]}
+            fieldName={{
+              name1: "name",
+              name2: "description",
+            }}
             arrayName={"certification"}
           />
         </div>
