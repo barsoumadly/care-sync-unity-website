@@ -50,7 +50,7 @@ function EditProfile() {
     setValue("biography", doctorData?.biography);
     setValue("gender", doctorData?.gender);
     setValue("phone", doctorData?.phone);
-    setValue("birthDate", doctorData?.birthDate?.split("T")[0]);
+    setValue("dateOfBirth", doctorData?.dateOfBirth?.split("T")[0]);
     setValue("specialization", doctorData?.specialization);
     setValue("certification", doctorData?.certification);
     if (education) setValue("education", education);
