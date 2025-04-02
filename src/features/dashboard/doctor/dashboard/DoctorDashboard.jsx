@@ -2,29 +2,35 @@ import { Link } from "react-router-dom";
 import PieCharts from "../charts/PieChart";
 import AreaCharts from "../charts/AreaCharts";
 import AppointmentTable from "./AppointmentTable";
+import useScheduleList from "../doctor-schedule/useScheduleList";
 
 const genderData = [
   { name: "Male", duration: "Male", value: 40, color: "#3b82f6" },
   { name: "Female", duration: "Female", value: 26, color: "#14b8a6" },
 ];
 
-const appointmentData = [
-  {
-    name: "Saint Fatima",
-    duration: "Saint Fatima",
-    value: 16,
-    color: "#a5c5fb",
-  },
-  { name: "90th Street", duration: "90th Street", value: 26, color: "#14b8a6" },
-  {
-    name: "Heliopolis Hospital",
-    duration: "Heliopolis Hospital",
-    value: 35,
-    color: "#3b82f6",
-  },
-];
-
 function DoctorDashboard() {
+  const appointmentData = [
+    {
+      name: "Saint Fatima",
+      duration: "Saint Fatima",
+      value: 16,
+      color: "#a5c5fb",
+    },
+    {
+      name: "90th Street",
+      duration: "90th Street",
+      value: 26,
+      color: "#14b8a6",
+    },
+    {
+      name: "Heliopolis Hospital",
+      duration: "Heliopolis Hospital",
+      value: 35,
+      color: "#3b82f6",
+    },
+  ];
+
   return (
     <>
       <div className="main-wrapper">

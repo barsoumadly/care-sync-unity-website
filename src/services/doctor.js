@@ -11,7 +11,6 @@ const getDoctorById = async function (id) {
     return response.data.data;
   } catch (error) {
     console.log(error);
-    return error;
   }
 };
 
@@ -24,7 +23,6 @@ const getDoctorProfile = async function () {
     return response.data.data;
   } catch (error) {
     console.log(error);
-    return error;
   }
 };
 
@@ -37,7 +35,6 @@ const updateDoctorProfile = async function (doctorData) {
     });
   } catch (error) {
     console.log(error);
-    return error;
   }
 };
 
@@ -50,7 +47,6 @@ const getDoctorSchedule = async function () {
     return response.data.data.schedule;
   } catch (error) {
     console.log(error);
-    return error;
   }
 };
 
@@ -63,7 +59,6 @@ const getMyClinics = async function () {
     return response.data.data;
   } catch (error) {
     console.log(error);
-    return error;
   }
 };
 
@@ -76,7 +71,6 @@ const getAppointmentsById = async function (id) {
     return response.data.data;
   } catch (error) {
     console.log(error);
-    return error;
   }
 };
 
