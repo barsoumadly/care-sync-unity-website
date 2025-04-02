@@ -32,8 +32,8 @@ function DoctorProfessionalDetails({
             register={register}
             errors={errors}
             fieldName={{
-              name1: "Institution",
-              name2: "Degree",
+              name1: "institution",
+              name2: "degree",
               date1: "Starting Date",
               date2: "Ending Date",
             }}
@@ -57,8 +57,8 @@ function DoctorProfessionalDetails({
             register={register}
             errors={errors}
             fieldName={{
-              name1: "Hospital",
-              name2: "Position",
+              name1: "hospital",
+              name2: "position",
               date1: "Starting Date",
               date2: "Ending Date",
             }}

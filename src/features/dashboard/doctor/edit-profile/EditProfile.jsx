@@ -52,9 +52,9 @@ function EditProfile() {
     setValue("phone", doctorData?.phone);
     setValue("birthDate", doctorData?.birthDate?.split("T")[0]);
     setValue("specialization", doctorData?.specialization);
-    setValue("education", education);
     setValue("certification", doctorData?.certification);
-    setValue("experience", experience);
+    if (education) setValue("education", education);
+    if (experience) setValue("experience", experience);
 
     if (userData) setProfilePhoto(userData?.profilePhoto);
   }, [doctorData, userData]);

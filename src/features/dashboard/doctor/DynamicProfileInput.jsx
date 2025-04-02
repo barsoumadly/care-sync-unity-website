@@ -11,6 +11,7 @@ function DynamicProfileInput({
     name: arrayName,
     control,
   });
+
   return (
     <>
       {fields.map((field, index) => (
@@ -24,18 +25,12 @@ function DynamicProfileInput({
                 className="form-control"
                 type="text"
                 placeholder={`${fieldName.name1.toLowerCase()}:`}
-                {...register(
-                  `${arrayName}.${index}.${fieldName.name1.toLowerCase()}`,
-                  {
-                    required: "This field is required",
-                  }
-                )}
+                {...register(`${arrayName}.${index}.${fieldName.name1}`, {
+                  required: "This field is required",
+                })}
               />
               <span className="error-message ">
-                {
-                  errors?.[arrayName]?.[index][fieldName.name1.toLowerCase()]
-                    ?.message
-                }
+                {errors?.[arrayName]?.[index]?.[fieldName.name1]?.message}
               </span>
             </div>
           </div>
@@ -49,18 +44,12 @@ function DynamicProfileInput({
                 className="form-control"
                 type="text"
                 placeholder={`${fieldName.name2.toLowerCase()}:`}
-                {...register(
-                  `${arrayName}.${index}.${fieldName.name2.toLowerCase()}`,
-                  {
-                    required: "This field is required",
-                  }
-                )}
+                {...register(`${arrayName}.${index}.${fieldName.name2}`, {
+                  required: "This field is required",
+                })}
               />
               <span className="error-message ">
-                {
-                  errors?.[arrayName]?.[index][fieldName.name2.toLowerCase()]
-                    ?.message
-                }
+                {errors?.[arrayName]?.[index]?.[fieldName.name2]?.message}
               </span>
             </div>{" "}
           </div>
@@ -86,7 +75,7 @@ function DynamicProfileInput({
                     )}
                   />
                   <span className="error-message ">
-                    {errors?.[arrayName]?.[index][fieldName.date1]?.message}
+                    {errors?.[arrayName]?.[index]?.[fieldName.date1]?.message}
                   </span>
                 </div>
               </div>
@@ -110,7 +99,7 @@ function DynamicProfileInput({
                     )}
                   />
                   <span className="error-message ">
-                    {errors?.[arrayName]?.[index][fieldName.date2]?.message}
+                    {errors?.[arrayName]?.[index]?.[fieldName.date2]?.message}
                   </span>
                 </div>
               </div>
