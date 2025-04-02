@@ -87,10 +87,10 @@ function PatientProfileView() {
                                   ID:{" "}
                                   <span style={{ color: "#2e37a4" }}>
                                     {" "}
-                                    {patientData.publicId}
+                                    {patientData?.publicId}
                                   </span>{" "}
                                 </h4>
-                                <h4>{user.name}</h4>
+                                <h4>{user?.name}</h4>
                               </div>
                             </div>
                           </div>
@@ -126,9 +126,9 @@ function PatientProfileView() {
                         <div className="heading-detail ">
                           <h4 className="mb-3">About me</h4>
                           <p>
-                            Hello I am {user.name} a Programmer in VOIS Company.
-                            I love to work with all my company team and seniour
-                            programmers.
+                            Hello I am {user?.name} a Programmer in VOIS
+                            Company. I love to work with all my company team and
+                            seniour programmers.
                           </p>
                         </div>
                         <div className="about-me-list">
@@ -323,7 +323,7 @@ function PatientProfileView() {
                           <div className="hello-park">
                             <p>
                               I am a {user.name} seeking to improve my health
-                              and well-being. I am a 30 year old individual
+                              and well-being. I am a 25 year old individual
                               striving to maintain optimal health. I believe in
                               open communication with my medical providers and
                               am dedicated to following prescribed treatment
