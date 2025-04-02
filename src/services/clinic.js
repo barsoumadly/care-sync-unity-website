@@ -235,7 +235,7 @@ const examination = async function (appointmentId) {
     });
     toast.success("Medical examination was done");
   } catch (error) {
-    toast.error(err.message);
+    toast.error(error.message);
   }
 };
 
