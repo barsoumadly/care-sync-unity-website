@@ -16,9 +16,11 @@ function DoctorPersonalDetails({
   register,
   errors,
 }) {
+  if (typeof profilePhoto !== "string" && profilePhoto) {
+    profilePhoto = URL.createObjectURL(profilePhoto);
+  }
   const performSubmit = function (event) {
-    const photo = URL.createObjectURL(event.target.files[0]);
-    setProfilePhoto(photo);
+    setProfilePhoto(event.target.files[0]);
   };
   return (
     <>
