@@ -1,6 +1,6 @@
 const MedicalSpecialties = [
   "Anaesthesiology",
-  "Cardiology",
+  "Cardiologist",
   "Dentist",
   "Dermatology",
   "Emergency Medicine",
