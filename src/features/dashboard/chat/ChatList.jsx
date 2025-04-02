@@ -98,7 +98,7 @@ function ChatList({ user }) {
                   />
                   <a className="btn" href="javascript:;">
                     <img
-                      src="/public/images/dashborad/icons/search-normal.svg"
+                      src="/images/dashborad/icons/search-normal.svg"
                       alt="Search"
                     />
                   </a>
