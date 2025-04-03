@@ -21,12 +21,14 @@ function NoData({ name, button }) {
               No data found
             </h3>
             <p>There is no data about the {name}. Please add a new doctor.</p>
-            <Link to={button.link}>
-              {" "}
-              <button className="btn btn-primary go-home">
-                {button.label}
-              </button>
-            </Link>
+            {button && (
+              <Link to={button.link}>
+                {" "}
+                <button className="btn btn-primary go-home">
+                  {button.label}
+                </button>
+              </Link>
+            )}
           </div>
         </div>{" "}
       </div>

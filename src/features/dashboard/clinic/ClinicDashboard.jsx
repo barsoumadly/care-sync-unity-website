@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import usePatientAppointmentList from "./Appointments/usePatientAppointmentList";
 import { examination, getPatientList } from "../../../services/clinic";
 import { useQuery } from "@tanstack/react-query";
+import NoData from "./NoData";
 
 const statusColor = {
   declined: "status-green",
@@ -425,32 +426,13 @@ function RecentPatients({ doctorIds }) {
               Show all
             </Link>
           </div>
-          <div className="card-block table-dash">
-            <div className="table-responsive">
-              <table className="table mb-0 border-0 datatable custom-table">
-                <thead>
-                  <tr>
-                    <th>
-                      <div className="form-check check-tables">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          defaultValue="something"
-                        />
-                      </div>
-                    </th>
-                    <th>Turn</th>
-                    <th>Patient name</th>
-                    <th>Doctor's Name</th>
-                    <th>Payment Type</th>
-                    <th>Status</th>
-                    <th />
-                  </tr>
-                </thead>
-                <tbody>
-                  {recentPatients.map((patient, index) => (
+          {Doctor1 ? (
+            <div className="card-block table-dash">
+              <div className="table-responsive">
+                <table className="table mb-0 border-0 datatable custom-table">
+                  <thead>
                     <tr>
-                      <td>
+                      <th>
                         <div className="form-check check-tables">
                           <input
                             className="form-check-input"
@@ -458,65 +440,98 @@ function RecentPatients({ doctorIds }) {
                             defaultValue="something"
                           />
                         </div>
-                      </td>
-                      <td>{patient?.turnNumber}</td>
-                      <td className="table-image">
-                        <img
-                          width={28}
-                          height={28}
-                          className="rounded-circle"
-                          src={patient?.patient?.profilePhoto}
-                          alt=""
-                        />
-                        <h2>{patient?.patient?.name}</h2>
-                      </td>
-                      <td>{doctorIds?.[index]?.name}</td>
-                      <td>{patient?.paymentType}</td>
-
-                      <td>
-                        <button
-                          className={`custom-badge ${
-                            statusColor?.[patient?.status]
-                          }`}
-                        >
-                          {patient?.status}
-                        </button>
-                      </td>
-                      <td className="text-end">
-                        <div className="dropdown dropdown-action">
-                          <a
-                            href="#"
-                            className="action-icon dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <CgMoreVerticalAlt />
-                          </a>
-                          <div className="dropdown-menu dropdown-menu-end">
-                            <a
-                              className="dropdown-item"
-                              href="edit-patient.html"
-                            >
-                              <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                              Edit
-                            </a>
-                            <a
-                              className="dropdown-item"
-                              href="#"
-                              data-bs-toggle="modal"
-                              data-bs-target="#delete_appointment"
-                            >
-                              <i className="fa fa-trash-alt m-r-5" /> Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
+                      </th>
+                      <th>Turn</th>
+                      <th>Patient name</th>
+                      <th>Doctor's Name</th>
+                      <th>Payment Type</th>
+                      <th>Status</th>
+                      <th />
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {recentPatients.map((patient, index) => (
+                      <tr>
+                        <td>
+                          <div className="form-check check-tables">
+                            <input
+                              className="form-check-input"
+                              type="checkbox"
+                              defaultValue="something"
+                            />
+                          </div>
+                        </td>
+                        <td>{patient?.turnNumber}</td>
+                        <td className="table-image">
+                          <img
+                            width={28}
+                            height={28}
+                            className="rounded-circle"
+                            src={patient?.patient?.profilePhoto}
+                            alt=""
+                          />
+                          <h2>{patient?.patient?.name}</h2>
+                        </td>
+                        <td>{doctorIds?.[index]?.name}</td>
+                        <td>{patient?.paymentType}</td>
+
+                        <td>
+                          <button
+                            className={`custom-badge ${
+                              statusColor?.[patient?.status]
+                            }`}
+                          >
+                            {patient?.status}
+                          </button>
+                        </td>
+                        <td className="text-end">
+                          <div className="dropdown dropdown-action">
+                            <a
+                              href="#"
+                              className="action-icon dropdown-toggle"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                              <CgMoreVerticalAlt />
+                            </a>
+                            <div className="dropdown-menu dropdown-menu-end">
+                              <a
+                                className="dropdown-item"
+                                href="edit-patient.html"
+                              >
+                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
+                                Edit
+                              </a>
+                              <a
+                                className="dropdown-item"
+                                href="#"
+                                data-bs-toggle="modal"
+                                data-bs-target="#delete_appointment"
+                              >
+                                <i className="fa fa-trash-alt m-r-5" /> Delete
+                              </a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="main-wrapper ">
+              <div style={{ margin: "0 auto", textAlign: "center" }}>
+                <img
+                  className="img-fluid"
+                  src="/images/clinic/no-data.jpg"
+                  alt="Logo"
+                  style={{ width: "20%" }}
+                />
+                <p>There is no data about the recent patients.</p>{" "}
+              </div>{" "}
+            </div>
+          )}
         </div>
       </div>
     </div>
