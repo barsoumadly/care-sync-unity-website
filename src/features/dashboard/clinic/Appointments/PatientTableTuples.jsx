@@ -11,7 +11,11 @@ function PatientTableTuples({ patient, handleOpenModal }) {
   const hanbleExamination = () => {
     examination(
       patient.appointmentId,
-      patient.status === "pending" ? "approved" : "completed"
+      patient.status === "pending"
+        ? "approved"
+        : patient.status === "approved"
+        ? "examining"
+        : "completed"
     );
     queryClient.invalidateQueries({ queryKey: ["patientAppointmentList"] });
   };
@@ -43,9 +47,11 @@ function PatientTableTuples({ patient, handleOpenModal }) {
         <div
           className={`custom-badge ${
             patient.status === "pending"
-              ? "status-pink"
+              ? "status-orange"
               : patient.status === "approved"
               ? "status-green"
+              : patient.status === "examining"
+              ? "status-purple"
               : "status-blue"
           } `}
         >
@@ -54,7 +60,7 @@ function PatientTableTuples({ patient, handleOpenModal }) {
       </td>
       <td>
         <div className="action-label">
-          {patient.status !== "completed" && (
+          {patient.status !== "completed" && patient.status !== "examining" && (
             <button
               className="custom-badge book-btn"
               onClick={hanbleExamination}
