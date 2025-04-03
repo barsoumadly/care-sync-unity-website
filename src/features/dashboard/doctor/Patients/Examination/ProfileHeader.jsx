@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createChat } from "../../../../../services/chat-app";
 function ProfileHeader({ data }) {
+  const navigate = useNavigate();
   const year = new Date().getFullYear();
   console.log(year);
 
@@ -10,6 +11,7 @@ function ProfileHeader({ data }) {
       JSON.parse(localStorage.getItem("key"))
     );
     localStorage.setItem("chat", JSON.stringify(response.data.data.chat));
+    navigate(0);
   };
 
   return (
