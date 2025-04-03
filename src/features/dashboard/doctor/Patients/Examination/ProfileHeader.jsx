@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
-
+import { createChat } from "../../../../../services/chat-app";
 function ProfileHeader({ data }) {
   const year = new Date().getFullYear();
   console.log(year);
+
+  const handleCreateChat = async function (id) {
+    const response = await createChat(
+      id,
+      JSON.parse(localStorage.getItem("key"))
+    );
+    localStorage.setItem("chat", JSON.stringify(response.data.data.chat));
+  };
 
   return (
     <div className="card">
@@ -52,6 +60,7 @@ function ProfileHeader({ data }) {
                       <button
                         type="submit"
                         className="btn btn-info follow-btns"
+                        onClick={() => handleCreateChat(data?.userId?._id)}
                       >
                         Message
                       </button>
