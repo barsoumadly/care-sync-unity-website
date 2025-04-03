@@ -4,34 +4,155 @@ import PieCH from "./Charts/PieCH";
 import { CgMoreVerticalAlt } from "react-icons/cg";
 import useAppointmentList from "./Appointments/useAppointmentList";
 import useDoctorList from "./Doctors/useDoctorList";
-import { useEffect, useState } from "react";
-import usePatientAppointmentList from "./Appointments/usePatientAppointmentList";
-import { examination, getPatientList } from "../../../services/clinic";
-import { useQuery } from "@tanstack/react-query";
-import NoData from "./NoData";
 
-const statusColor = {
-  declined: "status-green",
-  approved: "status-pink",
-  rejected: "status-red",
-  completed: "status-purple",
-  pending: "status-orange",
-  examining: "status-grey",
-};
-
-function ClinicDashboard() {
-  const { data: doctors, isLoading: isdoctor } = useAppointmentList();
-  const [patientData, setPatientData] = useState();
-  useEffect(
-    function () {
-      const doctorIds = doctors?.map((doctor) => {
-        if (doctor.appointmentCount)
-          return { doctorId: doctor?.doctorId, name: doctor?.name };
-      });
-      setPatientData(doctorIds);
+const recentPatients = [
+  {
+    id: 1,
+    turn: "R00001",
+    name: "Andrea Lalema",
+    doctorName: "Dr.Jenny Smith",
+    paymentType: "Cash",
+    status: "Non Urgent",
+    src: "../images/dashborad/profiles/avatar-02.jpg",
+    statusColor: "status-green",
+  },
+  {
+    id: 2,
+    turn: "R00002",
+    name: "Mark Hay Smith",
+    doctorName: "Dr.Martin Doe",
+    paymentType: "Paypal",
+    status: "Emergency",
+    src: "../images/dashborad/profiles/avatar-03.jpg",
+    statusColor: "status-pink",
+  },
+  {
+    id: 3,
+    turn: "R00003",
+    name: "Cristina Groves",
+    doctorName: "Dr.William Jerk",
+    paymentType: "Debit Card",
+    status: "Out Patient",
+    src: "../images/dashborad/profiles/avatar-04.jpg",
+    statusColor: "status-gray",
+  },
+  {
+    id: 4,
+    turn: "R00004",
+    name: "Galaviz Lalema",
+    doctorName: "Dr.Angelica Ramos",
+    paymentType: "Cash",
+    status: "Non Urgent",
+    src: "../images/dashborad/profiles/avatar-05.jpg",
+    statusColor: "status-green",
+  },
+];
+const upcomingAppointments = [
+  {
+    doctor: {
+      specialization: "Neurology",
+      status: "active",
     },
-    [doctors]
-  );
+    schedule: [
+      {
+        day: "Monday",
+        endTime: "10:13",
+        startTime: "09:13",
+      },
+    ],
+
+    user: {
+      doctorName: "Dr.Jenny Smith",
+      profilePhoto: {
+        url: "../images/dashborad/profiles/avatar-01.jpg",
+      },
+    },
+  },
+  {
+    doctor: {
+      specialization: "Neurology",
+      status: "active",
+    },
+    schedule: [
+      {
+        day: "Monday",
+        endTime: "10:13",
+        startTime: "09:13",
+      },
+    ],
+
+    user: {
+      doctorName: "Dr.Jenny Smith",
+      profilePhoto: {
+        url: "../images/dashborad/profiles/avatar-01.jpg",
+      },
+    },
+  },
+  {
+    doctor: {
+      specialization: "Neurology",
+      status: "active",
+    },
+    schedule: [
+      {
+        day: "Monday",
+        endTime: "10:13",
+        startTime: "09:13",
+      },
+    ],
+
+    user: {
+      doctorName: "Dr.Jenny Smith",
+      profilePhoto: {
+        url: "../images/dashborad/profiles/avatar-01.jpg",
+      },
+    },
+  },
+  {
+    doctor: {
+      specialization: "Neurology",
+      status: "active",
+    },
+    schedule: [
+      {
+        day: "Monday",
+        endTime: "10:13",
+        startTime: "09:13",
+      },
+    ],
+
+    user: {
+      doctorName: "Dr.Jenny Smith",
+      profilePhoto: {
+        url: "../images/dashborad/profiles/avatar-01.jpg",
+      },
+    },
+  },
+  {
+    doctor: {
+      specialization: "Neurology",
+      status: "Not active",
+    },
+    schedule: [
+      {
+        day: "Monday",
+        endTime: "10:13",
+        startTime: "09:13",
+      },
+    ],
+
+    user: {
+      doctorName: "Dr.Jenny Smith",
+      profilePhoto: {
+        url: "../images/dashborad/profiles/avatar-01.jpg",
+      },
+    },
+  },
+];
+function ClinicDashboard() {
+  const { data: doctors, isLoading: isdoctor } = useDoctorList();
+
+  console.log("doctors: ", doctors);
 
   return (
     <div className="page-wrapper">
@@ -307,7 +428,8 @@ function ClinicDashboard() {
                         <th>Day</th>
                         <th>Start Time</th>
                         <th>End Time</th>
-                        <th>Appointments</th>
+
+                        <th>Status</th>
                         <th />
                       </tr>
                     </thead>
@@ -332,26 +454,34 @@ function ClinicDashboard() {
                                   width={28}
                                   height={28}
                                   className="rounded-circle"
-                                  src={doc?.profilePhoto?.url}
+                                  src={doc?.user?.profilePhoto?.url}
                                   alt=""
                                 />
-                                <h2>{doc?.name}</h2>
+                                <h2>{doc?.user?.name}</h2>
                               </td>
                               <td>
                                 <button className="custom-badge status-gray ">
-                                  {doc?.specialization}
+                                  {doc?.doctor?.specialization}
                                 </button>
                               </td>
-                              <td>{doc?.workingDays[0]?.day}</td>
+                              <td>{doc?.schedule[0]?.day}</td>
                               <td className="appoint-time">
-                                <span>{doc?.workingDays[0]?.startTime} </span>
+                                <span>{doc?.schedule[0]?.startTime} </span>
                               </td>
                               <td className="appoint-time">
-                                <span>{doc?.workingDays[0]?.endTime} </span>
+                                <span>{doc?.schedule[0]?.endTime} </span>
                               </td>
 
-                              <td style={{ padding: "0 50px" }}>
-                                {doc?.appointmentCount}
+                              <td>
+                                <button
+                                  className={`custom-badge ${
+                                    doc?.doctor?.status === "active"
+                                      ? "status-green"
+                                      : "status-red"
+                                  }`}
+                                >
+                                  {doc?.doctor?.status}
+                                </button>
                               </td>
                               <td className="text-end">
                                 <div className="dropdown dropdown-action">
@@ -393,66 +523,25 @@ function ClinicDashboard() {
               </div>
             </div>
           </div>
-          <RecentPatients doctorIds={patientData} />
         </div>
-      </div>
-    </div>
-  );
-}
-
-export default ClinicDashboard;
-
-function RecentPatients({ doctorIds }) {
-  const { data: Doctor1 } = usePatientAppointmentList(doctorIds?.[0]?.doctorId);
-  const { data: Doctor2 } = usePatientAppointmentList(doctorIds?.[1]?.doctorId);
-  const { data: Doctor3 } = usePatientAppointmentList(doctorIds?.[2]?.doctorId);
-
-  const recentPatients = [
-    Doctor1?.[Doctor1.length - 1],
-    Doctor2?.[0],
-    Doctor3?.[Doctor3.length - 1],
-  ];
-
-  return (
-    <div className="row">
-      <div className="col-12 col-xl-12">
-        <div className="card">
-          <div className="card-header pb-0">
-            <h4 className="card-title d-inline-block">Recent Patients </h4>{" "}
-            <Link
-              to={"/clinic/appointment-list"}
-              className="float-end patient-views"
-            >
-              Show all
-            </Link>
-          </div>
-          {Doctor1 ? (
-            <div className="card-block table-dash">
-              <div className="table-responsive">
-                <table className="table mb-0 border-0 datatable custom-table">
-                  <thead>
-                    <tr>
-                      <th>
-                        <div className="form-check check-tables">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            defaultValue="something"
-                          />
-                        </div>
-                      </th>
-                      <th>Turn</th>
-                      <th>Patient name</th>
-                      <th>Doctor's Name</th>
-                      <th>Payment Type</th>
-                      <th>Status</th>
-                      <th />
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {recentPatients.map((patient, index) => (
+        <div className="row">
+          <div className="col-12 col-xl-12">
+            <div className="card">
+              <div className="card-header pb-0">
+                <h4 className="card-title d-inline-block">Recent Patients </h4>{" "}
+                <Link
+                  to={"/clinic/appointment-list"}
+                  className="float-end patient-views"
+                >
+                  Show all
+                </Link>
+              </div>
+              <div className="card-block table-dash">
+                <div className="table-responsive">
+                  <table className="table mb-0 border-0 datatable custom-table">
+                    <thead>
                       <tr>
-                        <td>
+                        <th>
                           <div className="form-check check-tables">
                             <input
                               className="form-check-input"
@@ -460,80 +549,89 @@ function RecentPatients({ doctorIds }) {
                               defaultValue="something"
                             />
                           </div>
-                        </td>
-                        <td>{patient?.turnNumber}</td>
-                        <td className="table-image">
-                          <img
-                            width={28}
-                            height={28}
-                            className="rounded-circle"
-                            src={patient?.patient?.profilePhoto}
-                            alt=""
-                          />
-                          <h2>{patient?.patient?.name}</h2>
-                        </td>
-                        <td>{doctorIds?.[index]?.name}</td>
-                        <td>{patient?.paymentType}</td>
-
-                        <td>
-                          <button
-                            className={`custom-badge ${
-                              statusColor?.[patient?.status]
-                            }`}
-                          >
-                            {patient?.status}
-                          </button>
-                        </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              <CgMoreVerticalAlt />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-patient.html"
-                              >
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_appointment"
-                              >
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
-                            </div>
-                          </div>
-                        </td>
+                        </th>
+                        <th>Turn</th>
+                        <th>Patient name</th>
+                        <th>Doctor's Name</th>
+                        <th>Payment Type</th>
+                        <th>Status</th>
+                        <th />
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {recentPatients.map((patient) => (
+                        <tr>
+                          <td>
+                            <div className="form-check check-tables">
+                              <input
+                                className="form-check-input"
+                                type="checkbox"
+                                defaultValue="something"
+                              />
+                            </div>
+                          </td>
+                          <td>{patient.turn}</td>
+                          <td className="table-image">
+                            <img
+                              width={28}
+                              height={28}
+                              className="rounded-circle"
+                              src={patient.src}
+                              alt=""
+                            />
+                            <h2>{patient.name}</h2>
+                          </td>
+                          <td>{patient.doctorName}</td>
+                          <td>{patient.paymentType}</td>
+
+                          <td>
+                            <button
+                              className={`custom-badge ${patient.statusColor}`}
+                            >
+                              {patient.status}
+                            </button>
+                          </td>
+                          <td className="text-end">
+                            <div className="dropdown dropdown-action">
+                              <a
+                                href="#"
+                                className="action-icon dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                <CgMoreVerticalAlt />
+                              </a>
+                              <div className="dropdown-menu dropdown-menu-end">
+                                <a
+                                  className="dropdown-item"
+                                  href="edit-patient.html"
+                                >
+                                  <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
+                                  Edit
+                                </a>
+                                <a
+                                  className="dropdown-item"
+                                  href="#"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#delete_appointment"
+                                >
+                                  <i className="fa fa-trash-alt m-r-5" /> Delete
+                                </a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          ) : (
-            <div className="main-wrapper ">
-              <div style={{ margin: "0 auto", textAlign: "center" }}>
-                <img
-                  className="img-fluid"
-                  src="/images/clinic/no-data.jpg"
-                  alt="Logo"
-                  style={{ width: "20%" }}
-                />
-                <p>There is no data about the recent patients.</p>{" "}
-              </div>{" "}
-            </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
+export default ClinicDashboard;
