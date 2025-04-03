@@ -2,13 +2,15 @@ import { useState } from "react";
 import ExaminationCard from "./ExaminationCard";
 import PrescriptionPaper from "./WritingPrescriptionPaper";
 import AnalysisPaper from "./AnalysisPaper";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../../../../context/AuthContext";
 import useWritingPrescription from "./useWritingPrescription";
 import usePatientData from "./usePatientData";
+import { examination } from "../../../../../services/clinic";
 
 function Examination({ patient }) {
+  const { appointmentId } = useParams();
   const [openCard, setOpenCard] = useState("");
   const [isAddingPrescription, setIsAddingPrescription] = useState(false);
   const [isAddingAnalysis, setIsAddingAnalysis] = useState(false);
@@ -46,6 +48,7 @@ function Examination({ patient }) {
     };
     console.log(ExaminationData);
     mutate(ExaminationData);
+    examination(appointmentId, "completed");
   }
 
   return (
