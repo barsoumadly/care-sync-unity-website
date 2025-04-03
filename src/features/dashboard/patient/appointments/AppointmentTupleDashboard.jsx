@@ -32,16 +32,19 @@ function AppointmentTupleDashboard({ appointmentTuple }) {
             <a
               className={`custom-badge ${
                 appointmentTuple.status === "pending"
-                  ? "status-purple"
+                  ? "status-orange"
                   : appointmentTuple.status === "approved"
                   ? "status-green"
                   : appointmentTuple.status === "completed"
                   ? "status-blue"
+                  : appointmentTuple.status === "examining"
+                  ? "status-purple"
                   : "status-pink"
               } `}
             >
               {appointmentTuple.status === "pending" && "Pending"}
               {appointmentTuple.status === "approved" && "Approved"}
+              {appointmentTuple.status === "examining" && "Examining"}
               {appointmentTuple.status === "declined" && "Declined"}
               {appointmentTuple.status === "completed" && "Completed"}
             </a>
