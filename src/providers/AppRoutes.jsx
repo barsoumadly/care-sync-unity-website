@@ -205,7 +205,7 @@ function AppRoutes() {
             element={<DoctorPatientsList />}
           />
           <Route
-            path=":clinicName/:patientId/patient-profile"
+            path=":clinicName/:patientId/patient-profile/:appointmentId"
             element={<PatientProfile />}
           />
           <Route path="chat" element={<DoctorChat />} />
