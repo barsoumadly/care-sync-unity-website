@@ -15,10 +15,12 @@ export default function PatientTuples({ num, element, button }) {
 
       {/* Button */}
       <td className="col-6 col-md-2 col-xl-3">
-        {element?.status !== "pending" && element?.status !== "approved" ? (
+        {element?.status !== "pending" &&
+        element?.status !== "approved" &&
+        element.status !== "completed" ? (
           <div className="dropdown action-label">
             <Link
-              to={`${button.link}/${element.patientId}/patient-profile`}
+              to={`${button.link}/${element.patientId}/patient-profile/${element._id}`}
               style={{ marginTop: "3%", color: "#fff" }}
             >
               <button className="btn btn-primary submit-list-form me-2">
