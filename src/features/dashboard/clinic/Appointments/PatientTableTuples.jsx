@@ -23,7 +23,7 @@ function PatientTableTuples({ patient, handleOpenModal }) {
         <a>{patient.turnNumber}</a>
       </td>
       <td className="profile-image">
-        <a href="profile.html">
+        <a>
           <img
             width={28}
             height={28}
@@ -69,20 +69,25 @@ function PatientTableTuples({ patient, handleOpenModal }) {
         </div>
       </td>
       <td>
-        <div className="dropdown dropdown-action">
-          <Link
-            to={`/clinic/edit-appointment/${patient.appointmentId}`}
-            className="dropdown-item"
-          >
-            <button
-              type="button"
-              className="btn btn-primary cancel-form me-4"
-              style={{ background: "rgba(51, 52, 72, 0.05)", color: "#333448" }}
+        {patient.status !== "completed" && (
+          <div className="dropdown dropdown-action">
+            <Link
+              to={`/clinic/edit-appointment/${patient.appointmentId}`}
+              className="dropdown-item"
             >
-              <FaEdit /> Edit
-            </button>
-          </Link>
-        </div>
+              <button
+                type="button"
+                className="btn btn-primary cancel-form me-4"
+                style={{
+                  background: "rgba(51, 52, 72, 0.05)",
+                  color: "#333448",
+                }}
+              >
+                <FaEdit /> Edit
+              </button>
+            </Link>
+          </div>
+        )}
       </td>
     </tr>
   );
