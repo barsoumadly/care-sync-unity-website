@@ -1,54 +1,6 @@
-import { CgMoreVerticalAlt } from "react-icons/cg";
-import { Link } from "react-router-dom";
 import useScheduleList from "../doctor-schedule/useScheduleList";
 import { useEffect } from "react";
-import NoData from "../../clinic/NoData";
-// const recentAppointments = [
-//   {
-//     name: "Saint Fatima",
-//     availableDays: "Mon - Sun",
-//     src: "/images/clinic/clinic.jpg",
-//     time: "09:00 AM - 06:00 PM",
-//     noPatients: 5,
-//   },
-//   {
-//     name: " 90th Street",
-//     availableDays: "Mon - Fri",
-//     src: "/images/clinic/clinic.jpg",
-//     time: "09:00 AM - 06:00 PM",
-//     noPatients: 7,
-//   },
 
-//   {
-//     name: "Heliopolis Hospital",
-//     availableDays: "Web - Sun",
-//     src: "/images/clinic/clinic.jpg",
-//     time: "09:00 AM - 06:00 PM",
-//     noPatients: 6,
-//   },
-//   {
-//     name: "Saint Fatima",
-//     availableDays: "Mon - Sun",
-//     src: "/images/clinic/clinic.jpg",
-//     time: "09:00 AM - 06:00 PM",
-//     noPatients: 5,
-//   },
-//   {
-//     name: " 90th Street",
-//     availableDays: "Mon - Fri",
-//     src: "/images/clinic/clinic.jpg",
-//     time: "09:00 AM - 06:00 PM",
-//     noPatients: 7,
-//   },
-
-//   {
-//     name: "Heliopolis Hospital",
-//     availableDays: "Web - Sun",
-//     src: "/images/clinic/clinic.jpg",
-//     time: "09:00 AM - 06:00 PM",
-//     noPatients: 6,
-//   },
-// ];
 function AppointmentTable() {
   const { data: recentAppointments } = useScheduleList();
   const today = new Date().toDateString().split(" ")[0].toLowerCase();
@@ -58,7 +10,6 @@ function AppointmentTable() {
       data = recentAppointments?.filter(
         (appointment) => today === appointment?.day?.slice(0, 3).toLowerCase()
       );
-      console.log(data);
     },
     [recentAppointments]
   );
