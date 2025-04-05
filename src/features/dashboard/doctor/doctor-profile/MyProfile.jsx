@@ -6,8 +6,6 @@ import DashboardPageHeader from "../DashboardPageHeader";
 function MyProfile() {
   const { data: doctorProfile, isLoading } = useProfile();
 
-  console.log(doctorProfile);
-
   return (
     <div className="main-wrapper">
       <div className="page-wrapper">
