@@ -1,5 +1,14 @@
 import { Link } from "react-router-dom";
 
+const statusColor = {
+  declined: "status-green",
+  approved: "status-pink",
+  rejected: "status-red",
+  completed: "status-purple",
+  pending: "status-orange",
+  examining: "status-grey",
+};
+
 export default function PatientTuples({ num, element, button }) {
   return (
     <>
@@ -12,12 +21,21 @@ export default function PatientTuples({ num, element, button }) {
       <td>{element.patientName}</td>
       <td>{element.specialization}</td>
       <td>{element.type}</td>
+      <td>
+        <button
+          className={`custom-badge ${
+            statusColor[element.status] || "status-orange"
+          }`}
+        >
+          {element.status}
+        </button>
+      </td>
 
       {/* Button */}
       <td className="col-6 col-md-2 col-xl-3">
         {element?.status !== "pending" &&
         element?.status !== "approved" &&
-        element.status !== "completed" ? (
+        element?.status !== "completed" ? (
           <div className="dropdown action-label">
             <Link
               to={`${button.link}/${element.patientId}/patient-profile/${element._id}`}
