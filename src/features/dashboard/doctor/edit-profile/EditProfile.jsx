@@ -45,8 +45,6 @@ function EditProfile() {
       };
     });
 
-    console.log(education);
-
     setValue("biography", doctorData?.biography);
     setValue("gender", doctorData?.gender);
     setValue("phone", doctorData?.phone);
@@ -67,7 +65,6 @@ function EditProfile() {
   }
 
   function onSubmit(data) {
-    console.log(data, profilePhoto);
     updateDoctor(data);
     UpdatePhoto(profilePhoto);
   }
