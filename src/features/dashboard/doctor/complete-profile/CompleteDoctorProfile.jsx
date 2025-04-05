@@ -35,7 +35,6 @@ function CompleteDoctorProfile() {
   const { updateDoctor, UpdatePhoto } = useEditDoctorProfile();
 
   function performSubmit(data) {
-    console.log(data, profilePhoto);
     updateDoctor(data);
     UpdatePhoto(profilePhoto);
   }
