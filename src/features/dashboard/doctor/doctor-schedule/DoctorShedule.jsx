@@ -1,54 +1,10 @@
-import { data, Link } from "react-router-dom";
 import Schedule from "./Schedule";
 import useScheduleList from "./useScheduleList";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 import NoData from "../../clinic/NoData";
-// const scheduleData = [
-//   {
-//     id: 1,
-//     name: "Saint Fatima",
-//     date: "25/4/2023",
-//     avatar: "/images/clinic/clinic.jpg",
-//     appointmentNum: "5",
-//     address:
-//       "3 Omar Bakir Street, Airport, El Nozha District, Cairo Governorate",
-//     time: [
-//       { day: "Su", startTime: "01:00 PM" },
-//       { day: "Mo", startTime: "06:00 PM" },
-//     ],
-//   },
-//   {
-//     id: 2,
-//     name: "90th Street",
-//     date: "5/6/2021",
-//     avatar: "/images/clinic/clinic.jpg",
-//     appointmentNum: "10",
-//     address:
-//       "3 Omar Bakir Street, Airport, El Nozha District, Cairo Governorate",
-//     time: [
-//       { day: "Tu", startTime: "03:00 PM" },
-//       { day: "Th", startTime: "08:00 PM" },
-//     ],
-//   },
-//   {
-//     id: 3,
-//     name: "Heliopolis Hospital",
-//     date: "3/11/2020",
-//     avatar: "/images/clinic/clinic.jpg",
-//     appointmentNum: "20",
-//     address:
-//       "3 Omar Bakir Street, Airport, El Nozha District, Cairo Governorate",
-//     time: [
-//       { day: "Sa", startTime: "08:00 AM" },
-//       { day: "Su", startTime: "08:00 AM" },
-//       { day: "Mo", startTime: "08:00 AM" },
-//       { day: "We", startTime: "08:00 AM" },
-//     ],
-//   },
-// ];
+
 function DoctorShedule() {
   const { data, isLoading } = useScheduleList();
-  console.log(data);
 
   return (
     <div className="main-wrapper">
