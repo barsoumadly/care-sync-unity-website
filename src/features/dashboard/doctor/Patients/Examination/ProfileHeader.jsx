@@ -3,7 +3,6 @@ import { createChat } from "../../../../../services/chat-app";
 function ProfileHeader({ data }) {
   const navigate = useNavigate();
   const year = new Date().getFullYear();
-  console.log(year);
 
   const handleCreateChat = async function (id) {
     const response = await createChat(
