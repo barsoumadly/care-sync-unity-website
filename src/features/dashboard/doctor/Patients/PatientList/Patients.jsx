@@ -6,34 +6,11 @@ import { useLocation } from "react-router-dom";
 import usePatientList from "./usePatientList";
 import LoadingSpinner from "../../../../../ui/LoadingSpinner";
 import NoData from "../../NoData";
-// const patientList = [
-//   {
-//     id: 1,
-//     name: "Andrea Lalema",
-//     specialization: "Cardiology",
-//   },
-//   {
-//     id: 2,
-//     name: "Smith Bruklin",
-//     specialization: "Neurology",
-//   },
-//   {
-//     id: 3,
-//     name: "Bernardo James	",
-//     specialization: "Oncology",
-//   },
-//   {
-//     id: 4,
-//     name: "Bishoy Labib",
-//     specialization: "Orthopedics",
-//   },
-// ];
 
 function Patients() {
   const CLINIC_NAME = useLocation().pathname.split("/")[2];
   const CLINIC_ID = useLocation().pathname.split("/")[3];
   const { data: patientList, isLoading } = usePatientList(CLINIC_ID);
-  console.log(patientList);
 
   return (
     <div className="main-wrapper">
@@ -66,6 +43,7 @@ function Patients() {
                           <th>Name</th>
                           <th>Specialization</th>
                           <th>Type</th>
+                          <th>Status</th>
                           <th></th>
                         </tr>
                       </thead>
