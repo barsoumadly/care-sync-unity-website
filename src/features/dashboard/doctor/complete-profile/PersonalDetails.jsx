@@ -88,7 +88,9 @@ function DoctorPersonalDetails({
                   })}
                 />
 
-                <span className="error-message ">{errors?.age?.message}</span>
+                <span className="error-message ">
+                  {errors?.dateOfBirth?.message}
+                </span>
               </div>
             </div>
             <div className="col-12 col-md-4 col-xl-5">
