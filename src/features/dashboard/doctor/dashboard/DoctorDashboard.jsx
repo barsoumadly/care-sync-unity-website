@@ -4,34 +4,46 @@ import AreaCharts from "../charts/AreaCharts";
 import AppointmentTable from "./AppointmentTable";
 import useScheduleList from "../doctor-schedule/useScheduleList";
 import { useAuth } from "../../../../context/AuthContext";
+import { useEffect, useState } from "react";
 
 const genderData = [
   { name: "Male", duration: "Male", value: 40, color: "#3b82f6" },
   { name: "Female", duration: "Female", value: 26, color: "#14b8a6" },
 ];
 
+const colors = [
+  "#f63bc0",
+  "#de3bf6",
+  "#903bf6",
+  "#423bf6",
+  "#12284c",
+  "#3bd0f6",
+  "#3bf6ce",
+  "#3bf680",
+  "#44f63b",
+];
+
 function DoctorDashboard() {
+  const { data, isLoading } = useScheduleList();
+  const [appointments, setAppointments] = useState();
+
   const { user } = useAuth();
-  const appointmentData = [
-    {
-      name: "Saint Fatima",
-      duration: "Saint Fatima",
-      value: 16,
-      color: "#a5c5fb",
+  useEffect(
+    function () {
+      if (data) {
+        const appointments = data.map((item, index) => {
+          return {
+            name: item?.clinicName,
+            duration: item?.clinicName,
+            value: item?.numberOfAppointments,
+            color: colors[index],
+          };
+        });
+        setAppointments(appointments);
+      }
     },
-    {
-      name: "90th Street",
-      duration: "90th Street",
-      value: 26,
-      color: "#14b8a6",
-    },
-    {
-      name: "Heliopolis Hospital",
-      duration: "Heliopolis Hospital",
-      value: 35,
-      color: "#3b82f6",
-    },
-  ];
+    [data]
+  );
 
   return (
     <>
@@ -153,7 +165,10 @@ function DoctorDashboard() {
                 <div className="card">
                   <div className="card-body">
                     <div id="radial-patients">
-                      <PieCharts data={appointmentData} label="Appointments" />
+                      <PieCharts
+                        data={appointments ? appointments : []}
+                        label="Appointments"
+                      />
                     </div>
                   </div>
                 </div>
@@ -191,7 +206,7 @@ function DoctorDashboard() {
                 <div className="card">
                   <div className="card-body">
                     <div id="radial-patients">
-                      <PieCharts data={genderData} />
+                      <PieCharts data={genderData} label="Gender" />
                     </div>
                   </div>
                 </div>
@@ -251,12 +266,12 @@ function DoctorDashboard() {
                     <h4 className="card-title d-inline-block">
                       Recent Appointments
                     </h4>
-                    <a
-                      href="appointments.html"
-                      className="patient-views float-end"
+                    <Link
+                      to="/doctor/patients"
+                      className="link patient-views float-end"
                     >
                       Show all
-                    </a>
+                    </Link>
                   </div>
                   <div className="card-body">
                     <div className="teaching-card">
