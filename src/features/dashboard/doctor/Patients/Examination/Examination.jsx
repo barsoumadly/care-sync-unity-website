@@ -1,12 +1,12 @@
 import { useState } from "react";
-import ExaminationCard from "./ExaminationCard";
-import PrescriptionPaper from "./WritingPrescriptionPaper";
-import AnalysisPaper from "./AnalysisPaper";
-import { useLocation, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useAuth } from "../../../../../context/AuthContext";
+import { useLocation, useParams } from "react-router-dom";
+import AnalysisPaper from "./AnalysisPaper";
+import ExaminationCard from "./ExaminationCard";
+import CheckChosicModal from "../../CheckChosicModal";
+import PrescriptionPaper from "./WritingPrescriptionPaper";
 import useWritingPrescription from "./useWritingPrescription";
-import usePatientData from "./usePatientData";
+import { useAuth } from "../../../../../context/AuthContext";
 import { examination } from "../../../../../services/clinic";
 
 function Examination({ patient }) {
@@ -14,16 +14,17 @@ function Examination({ patient }) {
   const [openCard, setOpenCard] = useState("");
   const [isAddingPrescription, setIsAddingPrescription] = useState(false);
   const [isAddingAnalysis, setIsAddingAnalysis] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [newData, setNewData] = useState(false);
 
   const { user } = useAuth();
   const path = useLocation();
   const date = new Date().toLocaleDateString();
   const clinicName = path.pathname.split("/")[2].split("%20").join(" ");
   const id = path.pathname.split("/")[3];
-  // const id = "67cd509db725342217086ef8";
   const specialization = "test";
 
-  const { mutate, isLoading, error } = useWritingPrescription();
+  const { mutate } = useWritingPrescription();
 
   const {
     register,
@@ -38,15 +39,19 @@ function Examination({ patient }) {
   });
 
   function onSubmit(data) {
+    setIsOpen((isOpen) => !isOpen);
+    setNewData(data);
+  }
+
+  function onConfirm() {
     const ExaminationData = {
-      ...data,
+      ...newData,
       doctorName: user.name,
       clinicName: clinicName,
       patientId: id,
       specialization,
       date,
     };
-    console.log(ExaminationData);
     mutate(ExaminationData);
     examination(appointmentId, "completed");
   }
@@ -123,6 +128,14 @@ function Examination({ patient }) {
           </>
         )}
       </form>
+
+      {isOpen && (
+        <CheckChosicModal
+          handleOpenModal={() => setIsOpen((isOpen) => !isOpen)}
+          onConfirm={onConfirm}
+          name="Examination"
+        />
+      )}
     </>
   );
 }
