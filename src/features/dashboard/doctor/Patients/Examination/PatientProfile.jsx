@@ -14,9 +14,6 @@ function PatientProfile() {
   const CLINIC_NAME = DATA[2];
   const id = DATA[3];
   const { data: patientData } = usePatientData(id);
-
-  console.log(patientData);
-
   const [option, setOption] = useState(1);
   return (
     <div className="main-wrapper">
