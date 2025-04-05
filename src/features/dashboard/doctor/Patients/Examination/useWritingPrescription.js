@@ -7,7 +7,6 @@ function useWritingPrescription() {
   const { mutate, isLoading, error } = useMutation({
     mutationFn: createPrescription,
     onSuccess: (data) => {
-      console.log(data);
       toast.success("Prescription successfully saved");
     },
     onError: (err) => toast.error(err.message),
