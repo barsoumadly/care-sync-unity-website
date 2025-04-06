@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../../../context/AuthContext";
 
 const statusColor = {
   declined: "status-green",
@@ -10,6 +11,8 @@ const statusColor = {
 };
 
 export default function PatientTuples({ num, element, button }) {
+  // const {user} = useAuth();
+
   return (
     <>
       <td></td>
@@ -18,7 +21,11 @@ export default function PatientTuples({ num, element, button }) {
       <td style={{ padding: "0 20px" }}>{num + 1}</td>
 
       {/* Data */}
-      <td>{element.patientName}</td>
+      <td>
+        {element.guestName !== "Unknown"
+          ? element.guestName
+          : element.patientName}
+      </td>
       <td>{element.specialization}</td>
       <td>{element.type}</td>
       <td>
