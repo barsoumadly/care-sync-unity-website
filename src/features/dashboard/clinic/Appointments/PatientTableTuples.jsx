@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import useEditAppointment from "./useEditAppointment";
 import { examination } from "../../../../services/clinic";
 import { useQueryClient } from "@tanstack/react-query";
+import { useAuth } from "../../../../context/AuthContext";
 
 function PatientTableTuples({ patient, handleOpenModal }) {
+  const { user } = useAuth();
+
   const queryClient = useQueryClient();
   const [dropdown, setDropdown] = useState(false);
   const hanbleExamination = () => {
@@ -35,7 +38,9 @@ function PatientTableTuples({ patient, handleOpenModal }) {
             className="rounded-circle m-r-5"
             alt=""
           />{" "}
-          {patient.patient.name}
+          {patient.patient.name === user?.name
+            ? patient.guestName
+            : patient.patient.name}
         </a>
       </td>
       <td>{patient.patient?.phone}</td>
