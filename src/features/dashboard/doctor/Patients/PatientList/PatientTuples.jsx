@@ -1,18 +1,15 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../../../../../context/AuthContext";
 
 const statusColor = {
-  declined: "status-green",
-  approved: "status-pink",
+  declined: "status-pink",
+  approved: "status-green",
   rejected: "status-red",
-  completed: "status-purple",
+  completed: "status-blue",
   pending: "status-orange",
-  examining: "status-grey",
+  examining: "status-purple",
 };
 
 export default function PatientTuples({ num, element, button }) {
-  // const {user} = useAuth();
-
   return (
     <>
       <td></td>
@@ -43,7 +40,8 @@ export default function PatientTuples({ num, element, button }) {
       <td className="col-6 col-md-2 col-xl-3">
         {element?.status !== "pending" &&
         element?.status !== "approved" &&
-        element?.status !== "completed" ? (
+        element?.status !== "completed" &&
+        element.status !== "declined" ? (
           <div className="dropdown action-label">
             <Link
               to={`${button.link}/${element.patientId}/patient-profile/${element._id}`}
