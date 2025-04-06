@@ -232,18 +232,7 @@ function ClinicDashboard() {
                     <p>24%</p>
                   </div>
                 </div>
-                <div className="activity-top">
-                  <div className="activity-boxs comman-flex-center">
-                    <img
-                      src="../images/dashborad/icons/dep-icon-03.svg"
-                      alt=""
-                    />
-                  </div>
-                  <div className="departments-list">
-                    <h4>ENT</h4>
-                    <p>10%</p>
-                  </div>
-                </div>
+
                 <div className="activity-top">
                   <div className="activity-boxs comman-flex-center">
                     <img
