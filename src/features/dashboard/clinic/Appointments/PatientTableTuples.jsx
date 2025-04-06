@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import useEditAppointment from "./useEditAppointment";
 import { examination } from "../../../../services/clinic";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "../../../../context/AuthContext";
 
-function PatientTableTuples({ patient, handleOpenModal }) {
+function PatientTableTuples({ patient }) {
   const { user } = useAuth();
 
   const queryClient = useQueryClient();
@@ -47,7 +46,8 @@ function PatientTableTuples({ patient, handleOpenModal }) {
       <td>{patient.paymentType}</td>
       <td>{patient.price}</td>
       <td>{patient.specialization}</td>
-      <td>{patient.createdAt.split("T")[0]}</td>
+      <td>{patient.type}</td>
+      <td>{new Date(patient.scheduledAt).toLocaleDateString()}</td>
       <td>
         <div
           className={`custom-badge ${
