@@ -4,71 +4,7 @@ import CheckChosicModal from "../reusable/CheckChosicModal";
 import { useLocation } from "react-router-dom";
 import usePatientAppointmentList from "./usePatientAppointmentList";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
-// const patients = [
-//   {
-//     id: 1,
-//     name: "Andrea Lalema",
-//     image: "../images/dashborad/profiles/avatar-01.jpg",
-//     paymentType: "Credit Card",
-//     trueStatus: "Waiting",
-//     falseStatus: "Done",
-//     turn: "#INV-0004",
-//   },
-//   {
-//     id: 2,
-//     name: "Smith Bruklin",
-//     image: "../images/dashborad/profiles/avatar-02.jpg",
-//     paymentType: "Debit Card",
-//     trueStatus: "Waiting",
-//     falseStatus: "Done",
-//     turn: "#INV-0001",
-//   },
-//   {
-//     id: 3,
-//     name: "Bernardo James",
-//     image: "../images/dashborad/profiles/avatar-03.jpg",
-//     paymentType: "Pay Pal",
-//     trueStatus: "Waiting",
-//     falseStatus: "Done",
-//     turn: "#INV-0002",
-//   },
-//   {
-//     id: 4,
-//     name: "Mark Hay Smith",
-//     image: "../images/dashborad/profiles/avatar-04.jpg",
-//     paymentType: "Credit Card",
-//     trueStatus: "Waiting",
-//     falseStatus: "Done",
-//     turn: "#INV-0003",
-//   },
-//   {
-//     id: 5,
-//     name: "Galaviz Lalema",
-//     image: "../images/dashborad/profiles/avatar-05.jpg",
-//     paymentType: "Debit Card",
-//     trueStatus: "Waiting",
-//     falseStatus: "Done",
-//     turn: "#INV-0004",
-//   },
-//   {
-//     id: 6,
-//     name: "Andrea Lalema",
-//     image: "../images/dashborad/profiles/avatar-06.jpg",
-//     paymentType: "Pay Pal",
-//     trueStatus: "Waiting",
-//     falseStatus: "Done",
-//     turn: "#INV-0003",
-//   },
-//   {
-//     id: 7,
-//     name: "William Stephin",
-//     image: "../images/dashborad/profiles/avatar-03.jpg",
-//     paymentType: "Pay Pal",
-//     trueStatus: "Waiting",
-//     falseStatus: "Done",
-//     turn: "#INV-0005",
-//   },
-// ];
+
 function PatientsOfDoc() {
   const [isOpen, setIsOpen] = useState(false);
   const [patientId, setPatientId] = useState(false);
@@ -206,6 +142,7 @@ function PatientsOfDoc() {
                           <th>Payment Type</th>
                           <th>Paid Amount</th>
                           <th>Specialization</th>
+                          <th>Type</th>
                           <th>Paid Date</th>
                           <th>Status</th>
                           <th />
