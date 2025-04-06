@@ -39,7 +39,7 @@ function Patients() {
                       <thead>
                         <tr>
                           <th></th>
-                          <th>No</th>
+                          <th>Turn</th>
                           <th>Name</th>
                           <th>Specialization</th>
                           <th>Type</th>
