@@ -18,18 +18,9 @@ function BookAppointment() {
     setDoctor(Did);
   };
 
-  // const hanbleSelectedAppointment = function (e) {
-  //   const Dappointment = e.target.value;
-  //   const data = appointment.filter(
-  //     (appointment) => appointment.day === Dappointment
-  //   );
-  //   setSeletedAppointment(data);
-  // };
-
   function onSubmit(data) {
     const appointmentData = { ...data, doctorId: doctor };
     BookNewAppointment(appointmentData);
-    console.log(appointmentData);
   }
 
   return (
@@ -81,7 +72,7 @@ function BookAppointment() {
                         </span>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-4">
+                    <div className="col-12 col-md-6 col-xl-3">
                       <div className="input-block local-forms">
                         <label>Email</label>
                         <input
@@ -92,7 +83,24 @@ function BookAppointment() {
                         />
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-4">
+                    <div className="col-12 col-md-6 col-xl-3">
+                      <div className="input-block local-forms">
+                        <label>
+                          Type <span className="login-danger">*</span>
+                        </label>
+                        <select
+                          className="form-control select"
+                          {...register("type", {
+                            required: "This field is require",
+                          })}
+                        >
+                          <option>Select type</option>
+                          <option value={"examination"}>Examination</option>
+                          <option value={"consultation"}>Consultation</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="col-12 col-md-6 col-xl-2">
                       <div className="input-block select-gender">
                         <label className="gen-label">
                           Gender<span className="login-danger">*</span>
