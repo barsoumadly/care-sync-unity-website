@@ -194,6 +194,7 @@ function BookAppointment() {
                         <button
                           type="submit"
                           className="btn btn-primary submit-form me-2"
+                          disabled={isBookLoading}
                         >
                           Submit
                         </button>
