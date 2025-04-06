@@ -95,8 +95,8 @@ function BookAppointment() {
                           })}
                         >
                           <option>Select type</option>
-                          <option>Examination</option>
-                          <option>Consultation</option>
+                          <option>examination</option>
+                          <option>consultation</option>
                         </select>
                       </div>
                     </div>
