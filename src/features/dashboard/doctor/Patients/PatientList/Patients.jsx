@@ -43,6 +43,7 @@ function Patients() {
                           <th>Name</th>
                           <th>Specialization</th>
                           <th>Type</th>
+                          <th>Date</th>
                           <th>Status</th>
                           <th></th>
                         </tr>

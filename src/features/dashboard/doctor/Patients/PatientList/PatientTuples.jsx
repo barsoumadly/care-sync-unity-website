@@ -28,6 +28,7 @@ export default function PatientTuples({ num, element, button }) {
       </td>
       <td>{element.specialization}</td>
       <td>{element.type}</td>
+      <td>{new Date(element.scheduledAt).toLocaleDateString()}</td>
       <td>
         <button
           className={`custom-badge ${
