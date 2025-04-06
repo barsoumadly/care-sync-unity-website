@@ -95,8 +95,8 @@ function BookAppointment() {
                           })}
                         >
                           <option>Select type</option>
-                          <option value={"examination"}>Examination</option>
-                          <option value={"consultation"}>Consultation</option>
+                          <option>Examination</option>
+                          <option>Consultation</option>
                         </select>
                       </div>
                     </div>
