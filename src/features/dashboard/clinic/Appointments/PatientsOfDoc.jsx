@@ -4,12 +4,14 @@ import CheckChosicModal from "../reusable/CheckChosicModal";
 import { useLocation } from "react-router-dom";
 import usePatientAppointmentList from "./usePatientAppointmentList";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
+import useClinicProfile from "../useClinicProfile";
 
 function PatientsOfDoc() {
   const [isOpen, setIsOpen] = useState(false);
   const [patientId, setPatientId] = useState(false);
   const path = useLocation();
   const doctorId = path.pathname.split("/")[3];
+  const { data } = useClinicProfile();
 
   const { data: patients, isLoading } = usePatientAppointmentList(doctorId);
 
@@ -143,7 +145,7 @@ function PatientsOfDoc() {
                           <th>Paid Amount</th>
                           <th>Specialization</th>
                           <th>Type</th>
-                          <th>Paid Date</th>
+                          <th>Date</th>
                           <th>Status</th>
                           <th />
                         </tr>
@@ -153,6 +155,7 @@ function PatientsOfDoc() {
                           <PatientTableTuples
                             key={patient.patient.id}
                             patient={patient}
+                            data={data}
                             handleOpenModal={handleOpenModal}
                           />
                         ))}
