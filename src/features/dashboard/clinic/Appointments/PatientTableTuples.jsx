@@ -5,8 +5,12 @@ import { examination } from "../../../../services/clinic";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "../../../../context/AuthContext";
 
-function PatientTableTuples({ patient }) {
+function PatientTableTuples({ patient, data }) {
   const { user } = useAuth();
+
+  if (patient?.clinicId !== data?._id) {
+    return;
+  }
 
   const queryClient = useQueryClient();
   const [dropdown, setDropdown] = useState(false);
@@ -42,7 +46,9 @@ function PatientTableTuples({ patient }) {
             : patient.patient.name}
         </a>
       </td>
-      <td>{patient.patient?.phone}</td>
+      <td>
+        {patient.patient?.phone === "N/A" ? "Unknown" : patient.patient?.phone}
+      </td>
       <td>{patient.paymentType}</td>
       <td>{patient.price}</td>
       <td>{patient.specialization}</td>
@@ -57,6 +63,8 @@ function PatientTableTuples({ patient }) {
               ? "status-green"
               : patient.status === "examining"
               ? "status-purple"
+              : patient.status === "declined"
+              ? "status-pink"
               : "status-blue"
           } `}
         >
@@ -65,18 +73,20 @@ function PatientTableTuples({ patient }) {
       </td>
       <td>
         <div className="action-label">
-          {patient.status !== "completed" && patient.status !== "examining" && (
-            <button
-              className="custom-badge book-btn"
-              onClick={hanbleExamination}
-            >
-              {patient.status === "pending"
-                ? "Approve"
-                : patient.status === "approved"
-                ? "Examination"
-                : "Completed"}
-            </button>
-          )}
+          {patient.status !== "completed" &&
+            patient.status !== "examining" &&
+            patient.status !== "declined" && (
+              <button
+                className="custom-badge book-btn"
+                onClick={hanbleExamination}
+              >
+                {patient.status === "pending"
+                  ? "Approve"
+                  : patient.status === "approved"
+                  ? "Examination"
+                  : "Completed"}
+              </button>
+            )}
         </div>
       </td>
       <td>
