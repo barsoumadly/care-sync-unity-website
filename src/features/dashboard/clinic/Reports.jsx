@@ -38,38 +38,26 @@ function Reports() {
                                 placeholder="Search here"
                               />
                               <a className="btn">
-                                <img src="../images/dashborad/icons/search-normal.svg" alt="" />
+                                <img
+                                  src="../images/dashborad/icons/search-normal.svg"
+                                  alt=""
+                                />
                               </a>
                             </form>
                           </div>
                           <div className="add-group">
                             <a
-                              href="add-expense.html"
-                              className="btn btn-primary add-pluss ms-2">
-                              <img src="../images/dashborad/icons/plus.svg" alt="" />
-                            </a>
-                            <a
                               href="javascript:;"
-                              className="btn btn-primary doctor-refresh ms-2">
-                              <img src="../images/dashborad/icons/re-fresh.svg" alt="" />
+                              className="btn btn-primary doctor-refresh ms-2"
+                            >
+                              <img
+                                src="../images/dashborad/icons/re-fresh.svg"
+                                alt=""
+                              />
                             </a>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="col-auto text-end float-end ms-auto download-grp">
-                      <a href="javascript:;" className=" me-2">
-                        <img src="../images/dashborad/icons/pdf-icon-01.svg" alt="" />
-                      </a>
-                      <a href="javascript:;" className=" me-2">
-                        <img src="../images/dashborad/icons/pdf-icon-02.svg" alt="" />
-                      </a>
-                      <a href="javascript:;" className=" me-2">
-                        <img src="../images/dashborad/icons/pdf-icon-03.svg" alt="" />
-                      </a>
-                      <a href="javascript:;">
-                        <img src="../images/dashborad/icons/pdf-icon-04.svg" alt="" />
-                      </a>
                     </div>
                   </div>
                 </div>
@@ -110,7 +98,8 @@ function Reports() {
                         <div className="doctor-submit">
                           <button
                             type="submit"
-                            className="btn btn-primary submit-list-form me-2">
+                            className="btn btn-primary submit-list-form me-2"
+                          >
                             Search
                           </button>
                         </div>
@@ -175,7 +164,8 @@ function Reports() {
                               className="custom-badge status-green dropdown-toggle"
                               href="#"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               Approved
                             </a>
                             <div className="dropdown-menu dropdown-menu-end status-staff">
@@ -200,13 +190,15 @@ function Reports() {
                               href="#"
                               className="action-icon dropdown-toggle"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               <i className="fa fa-ellipsis-v" />
                             </a>
                             <div className="dropdown-menu dropdown-menu-end">
                               <a
                                 className="dropdown-item"
-                                href="edit-expense.html">
+                                href="edit-expense.html"
+                              >
                                 <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
                                 Edit
                               </a>
@@ -214,7 +206,8 @@ function Reports() {
                                 className="dropdown-item"
                                 href="#"
                                 data-bs-toggle="modal"
-                                data-bs-target="#delete_patient">
+                                data-bs-target="#delete_patient"
+                              >
                                 <i className="fa fa-trash-alt m-r-5" /> Delete
                               </a>
                             </div>
@@ -254,7 +247,8 @@ function Reports() {
                               className="custom-badge status-pink dropdown-toggle"
                               href="#"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               Rejected
                             </a>
                             <div className="dropdown-menu dropdown-menu-end status-staff">
@@ -279,13 +273,15 @@ function Reports() {
                               href="#"
                               className="action-icon dropdown-toggle"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               <i className="fa fa-ellipsis-v" />
                             </a>
                             <div className="dropdown-menu dropdown-menu-end">
                               <a
                                 className="dropdown-item"
-                                href="edit-expense.html">
+                                href="edit-expense.html"
+                              >
                                 <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
                                 Edit
                               </a>
@@ -293,7 +289,8 @@ function Reports() {
                                 className="dropdown-item"
                                 href="#"
                                 data-bs-toggle="modal"
-                                data-bs-target="#delete_patient">
+                                data-bs-target="#delete_patient"
+                              >
                                 <i className="fa fa-trash-alt m-r-5" /> Delete
                               </a>
                             </div>
@@ -333,7 +330,8 @@ function Reports() {
                               className="custom-badge status-orange dropdown-toggle"
                               href="#"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               Pending
                             </a>
                             <div className="dropdown-menu dropdown-menu-end status-staff">
@@ -358,13 +356,15 @@ function Reports() {
                               href="#"
                               className="action-icon dropdown-toggle"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               <i className="fa fa-ellipsis-v" />
                             </a>
                             <div className="dropdown-menu dropdown-menu-end">
                               <a
                                 className="dropdown-item"
-                                href="edit-expense.html">
+                                href="edit-expense.html"
+                              >
                                 <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
                                 Edit
                               </a>
@@ -372,7 +372,8 @@ function Reports() {
                                 className="dropdown-item"
                                 href="#"
                                 data-bs-toggle="modal"
-                                data-bs-target="#delete_patient">
+                                data-bs-target="#delete_patient"
+                              >
                                 <i className="fa fa-trash-alt m-r-5" /> Delete
                               </a>
                             </div>
@@ -412,7 +413,8 @@ function Reports() {
                               className="custom-badge status-purple dropdown-toggle"
                               href="#"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               New
                             </a>
                             <div className="dropdown-menu dropdown-menu-end status-staff">
@@ -437,13 +439,15 @@ function Reports() {
                               href="#"
                               className="action-icon dropdown-toggle"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               <i className="fa fa-ellipsis-v" />
                             </a>
                             <div className="dropdown-menu dropdown-menu-end">
                               <a
                                 className="dropdown-item"
-                                href="edit-expense.html">
+                                href="edit-expense.html"
+                              >
                                 <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
                                 Edit
                               </a>
@@ -451,7 +455,8 @@ function Reports() {
                                 className="dropdown-item"
                                 href="#"
                                 data-bs-toggle="modal"
-                                data-bs-target="#delete_patient">
+                                data-bs-target="#delete_patient"
+                              >
                                 <i className="fa fa-trash-alt m-r-5" /> Delete
                               </a>
                             </div>
@@ -491,7 +496,8 @@ function Reports() {
                               className="custom-badge status-green dropdown-toggle"
                               href="#"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               Approved
                             </a>
                             <div className="dropdown-menu dropdown-menu-end status-staff">
@@ -516,13 +522,15 @@ function Reports() {
                               href="#"
                               className="action-icon dropdown-toggle"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               <i className="fa fa-ellipsis-v" />
                             </a>
                             <div className="dropdown-menu dropdown-menu-end">
                               <a
                                 className="dropdown-item"
-                                href="edit-expense.html">
+                                href="edit-expense.html"
+                              >
                                 <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
                                 Edit
                               </a>
@@ -530,7 +538,8 @@ function Reports() {
                                 className="dropdown-item"
                                 href="#"
                                 data-bs-toggle="modal"
-                                data-bs-target="#delete_patient">
+                                data-bs-target="#delete_patient"
+                              >
                                 <i className="fa fa-trash-alt m-r-5" /> Delete
                               </a>
                             </div>
@@ -570,7 +579,8 @@ function Reports() {
                               className="custom-badge status-green dropdown-toggle"
                               href="#"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               Approved
                             </a>
                             <div className="dropdown-menu dropdown-menu-end status-staff">
@@ -595,13 +605,15 @@ function Reports() {
                               href="#"
                               className="action-icon dropdown-toggle"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               <i className="fa fa-ellipsis-v" />
                             </a>
                             <div className="dropdown-menu dropdown-menu-end">
                               <a
                                 className="dropdown-item"
-                                href="edit-expense.html">
+                                href="edit-expense.html"
+                              >
                                 <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
                                 Edit
                               </a>
@@ -609,7 +621,8 @@ function Reports() {
                                 className="dropdown-item"
                                 href="#"
                                 data-bs-toggle="modal"
-                                data-bs-target="#delete_patient">
+                                data-bs-target="#delete_patient"
+                              >
                                 <i className="fa fa-trash-alt m-r-5" /> Delete
                               </a>
                             </div>
@@ -649,7 +662,8 @@ function Reports() {
                               className="custom-badge status-pink dropdown-toggle"
                               href="#"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               Rejected
                             </a>
                             <div className="dropdown-menu dropdown-menu-end status-staff">
@@ -674,13 +688,15 @@ function Reports() {
                               href="#"
                               className="action-icon dropdown-toggle"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               <i className="fa fa-ellipsis-v" />
                             </a>
                             <div className="dropdown-menu dropdown-menu-end">
                               <a
                                 className="dropdown-item"
-                                href="edit-expense.html">
+                                href="edit-expense.html"
+                              >
                                 <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
                                 Edit
                               </a>
@@ -688,7 +704,8 @@ function Reports() {
                                 className="dropdown-item"
                                 href="#"
                                 data-bs-toggle="modal"
-                                data-bs-target="#delete_patient">
+                                data-bs-target="#delete_patient"
+                              >
                                 <i className="fa fa-trash-alt m-r-5" /> Delete
                               </a>
                             </div>
@@ -728,7 +745,8 @@ function Reports() {
                               className="custom-badge status-green dropdown-toggle"
                               href="#"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               Approved
                             </a>
                             <div className="dropdown-menu dropdown-menu-end status-staff">
@@ -753,13 +771,15 @@ function Reports() {
                               href="#"
                               className="action-icon dropdown-toggle"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               <i className="fa fa-ellipsis-v" />
                             </a>
                             <div className="dropdown-menu dropdown-menu-end">
                               <a
                                 className="dropdown-item"
-                                href="edit-expense.html">
+                                href="edit-expense.html"
+                              >
                                 <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
                                 Edit
                               </a>
@@ -767,7 +787,8 @@ function Reports() {
                                 className="dropdown-item"
                                 href="#"
                                 data-bs-toggle="modal"
-                                data-bs-target="#delete_patient">
+                                data-bs-target="#delete_patient"
+                              >
                                 <i className="fa fa-trash-alt m-r-5" /> Delete
                               </a>
                             </div>
@@ -782,7 +803,6 @@ function Reports() {
           </div>
         </div>
       </div>
-      
     </div>
   );
 }
