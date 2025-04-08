@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import PieCharts from "../charts/PieChart";
 import AreaCharts from "../charts/AreaCharts";
-import AppointmentTable from "./AppointmentTable";
+import TodaySchedule from "./TodaySchedule";
 import useScheduleList from "../doctor-schedule/useScheduleList";
 import { useAuth } from "../../../../context/AuthContext";
 import { useEffect, useState } from "react";
+import useAppointments from "./useAppointments";
+import RecentAppointments from "./RecentAppointments";
 
 const genderData = [
   { name: "Male", duration: "Male", value: 40, color: "#3b82f6" },
@@ -24,14 +26,47 @@ const colors = [
 ];
 
 function DoctorDashboard() {
-  const { data, isLoading } = useScheduleList();
+  const { data: recentAppointments, isLoading } = useScheduleList();
+  const { data: patientData } = useAppointments();
   const [appointments, setAppointments] = useState();
-
+  const [time, setTime] = useState();
+  const [data, setData] = useState([]);
   const { user } = useAuth();
+
+  const todayNum = new Date().toLocaleDateString();
+  const patients = patientData?.filter(
+    (appointment) =>
+      todayNum === new Date(appointment?.scheduledAt).toLocaleDateString()
+  );
+
+  const today = new Date().toDateString().split(" ")[0].toLowerCase();
+
   useEffect(
     function () {
-      if (data) {
-        const appointments = data.map((item, index) => {
+      const d = recentAppointments?.filter(
+        (appointment) =>
+          appointment?.schedule.filter((schedule) => {
+            if (
+              today ===
+              schedule?.day?.split("").slice(0, 3).join("").toLowerCase()
+            )
+              setTime(schedule?.startTime);
+
+            return (
+              today ===
+              schedule?.day?.split("").slice(0, 3).join("").toLowerCase()
+            );
+          })?.[0]?.date
+      );
+      setData(d);
+    },
+    [recentAppointments]
+  );
+
+  useEffect(
+    function () {
+      if (recentAppointments) {
+        const appointments = recentAppointments.map((item, index) => {
           return {
             name: item?.clinicName,
             duration: item?.clinicName,
@@ -42,7 +77,7 @@ function DoctorDashboard() {
         setAppointments(appointments);
       }
     },
-    [data]
+    [recentAppointments]
   );
 
   return (
@@ -258,182 +293,19 @@ function DoctorDashboard() {
                     </div>
                   </div>
                 </div>
-                <AppointmentTable />
+                <TodaySchedule
+                  data={data}
+                  isLoading={isLoading}
+                  patients={patients}
+                  time={time}
+                />
               </div>
-              <div className="col-12 col-lg-12 col-xl-5 d-flex">
-                <div className="card flex-fill comman-shadow">
-                  <div className="card-header">
-                    <h4 className="card-title d-inline-block">
-                      Recent Appointments
-                    </h4>
-                    <Link
-                      to="/doctor/patients"
-                      className="link patient-views float-end"
-                    >
-                      Show all
-                    </Link>
-                  </div>
-                  <div className="card-body">
-                    <div className="teaching-card">
-                      <ul className="steps-history">
-                        <li>08:00</li>
-                      </ul>
-                      <ul className="activity-feed">
-                        <li className="feed-item d-flex align-items-center">
-                          <div className="dolor-activity hide-activity">
-                            <ul className="doctor-date-list mb-2">
-                              <li className="stick-line">
-                                <i className="fas fa-circle me-2" />
-                                08:00
-                                <span>Benjamin Bruklin</span>
-                              </li>
-                              <li className="stick-line">
-                                <i className="fas fa-circle me-2" />
-                                08:00
-                                <span>Andrea Lalema</span>
-                              </li>
-                              <li className="dropdown ongoing-blk">
-                                <a
-                                  href="#"
-                                  className="dropdown-toggle active-doctor"
-                                  data-bs-toggle="dropdown"
-                                >
-                                  <i className="fas fa-circle me-2 active-circles" />
-                                  08:00 <span>Andrea Lalema</span>
-                                  <span className="ongoing-drapt">
-                                    Ongoing
-                                    <i className="feather-chevron-down ms-2" />
-                                  </span>
-                                </a>
-                                <ul className="doctor-sub-list dropdown-menu">
-                                  <li className="patient-new-list dropdown-item">
-                                    Patient<span>Marie kennedy</span>
-                                    <a
-                                      href="javascript:;"
-                                      className="new-dot status-green"
-                                    >
-                                      <i className="fas fa-circle me-1 fa-2xs" />
-                                      New
-                                    </a>
-                                  </li>
-                                  <li className="dropdown-item">
-                                    Time<span>8:30 - 9:00 (30min)</span>
-                                  </li>
-                                  <li className="schedule-blk mb-0 pt-2 dropdown-item">
-                                    <ul className="nav schedule-time">
-                                      <li>
-                                        <a href="javascript:;">
-                                          <img
-                                            src="/images/dashborad/icons/trash.svg"
-                                            alt=""
-                                          />
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="javascript:;">
-                                          <img
-                                            src="/images/dashborad/icons/profile.svg"
-                                            alt=""
-                                          />
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href="javascript:;">
-                                          <img
-                                            src="/images/dashborad/icons/edit.svg"
-                                            alt=""
-                                          />
-                                        </a>
-                                      </li>
-                                    </ul>
-                                    <a className="btn btn-primary appoint-start">
-                                      Start Appointment
-                                    </a>
-                                  </li>
-                                </ul>
-                              </li>
-                            </ul>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="teaching-card">
-                      <ul className="steps-history">
-                        <li>09:00</li>
-                      </ul>
-                      <ul className="activity-feed">
-                        <li className="feed-item d-flex align-items-center">
-                          <div className="dolor-activity">
-                            <ul className="doctor-date-list mb-2">
-                              <li>
-                                <i className="fas fa-circle me-2" />
-                                09:00
-                                <span>Galaviz Lalema</span>
-                              </li>
-                              <li>
-                                <i className="fas fa-circle me-2" />
-                                09:20
-                                <span>Benjamin Bruklin</span>
-                              </li>
-                              <li>
-                                <i className="fas fa-circle me-2" />
-                                09:40
-                                <span>Jenny Smith</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="teaching-card">
-                      <ul className="steps-history">
-                        <li>10:00</li>
-                      </ul>
-                      <ul className="activity-feed">
-                        <li className="feed-item d-flex align-items-center">
-                          <div className="dolor-activity">
-                            <ul className="doctor-date-list mb-2">
-                              <li>
-                                <i className="fas fa-circle me-2" />
-                                10:00
-                                <span>Cristina Groves</span>
-                              </li>
-                              <li>
-                                <i className="fas fa-circle me-2" />
-                                10:30
-                                <span>Benjamin Bruklin</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="teaching-card">
-                      <ul className="steps-history">
-                        <li>11:00</li>
-                      </ul>
-                      <ul className="activity-feed">
-                        <li className="feed-item d-flex align-items-center">
-                          <div className="dolor-activity">
-                            <ul className="doctor-date-list mb-2">
-                              <li>
-                                <i className="fas fa-circle me-2" />
-                                11:00
-                                <span>Cristina Groves</span>
-                              </li>
-                              <li>
-                                <i className="fas fa-circle me-2" />
-                                11:30
-                                <span>Benjamin Bruklin</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <RecentAppointments
+                isLoading={isLoading}
+                patients={patients}
+                time={time}
+                clinic={data}
+              />
             </div>
           </div>
         </div>
