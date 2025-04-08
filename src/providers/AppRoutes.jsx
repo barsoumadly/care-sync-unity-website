@@ -1,110 +1,255 @@
+import React, { lazy } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import ProtectedRoute from "../ui/ProtectedRoute";
-import ProtectedAuth from "../ui/ProtectedAuth";
+// Lazy load the components
+const ProtectedRoute = lazy(() => import("../ui/ProtectedRoute"));
+const ProtectedAuth = lazy(() => import("../ui/ProtectedAuth"));
+const PageNotFound = lazy(() => import("../ui/PageNotFound"));
+const ServerDown = lazy(() => import("../ui/ServerDown"));
+const AuthenticationLayout = lazy(() => import("../ui/AuthenticationLayout"));
+const ProtectedCompleteProfile = lazy(() =>
+  import("../ui/ProtectedCompleteProfile")
+);
+const ForgotPassword = lazy(() => import("../pages/ForgotPassword"));
+const ResetPassword = lazy(() => import("../pages/ResetPassword"));
+const Register = lazy(() => import("../pages/Register"));
+const Login = lazy(() => import("../pages/Login"));
+const VerifyEmail = lazy(() => import("../pages/VerifyEmail"));
 
-import AuthenticationLayout from "../ui/AuthenticationLayout";
-// import Loader from "../ui/Loader";
-import PageNotFound from "../ui/PageNotFound";
-
-import ForgotPassword from "../pages/ForgotPassword";
-import ResetPassword from "../pages/ResetPassword";
-import Register from "../pages/Register";
-import Login from "../pages/Login";
-import ProtectedCompleteProfile from "../ui/ProtectedCompleteProfile";
 /* Clinic */
-import ClinicLayout from "../features/dashboard/clinic/ClinicLayout";
-import ClinicDashboard from "../features/dashboard/clinic/ClinicDashboard";
-import DoctorList from "../features/dashboard/clinic/Doctors/DoctorList";
-import AddDoctor from "../features/dashboard/clinic/Doctors/AddDoctor";
+const ClinicLayout = lazy(() =>
+  import("../features/dashboard/clinic/ClinicLayout")
+);
+const ClinicDashboard = lazy(() =>
+  import("../features/dashboard/clinic/ClinicDashboard")
+);
+const DoctorList = lazy(() =>
+  import("../features/dashboard/clinic/Doctors/DoctorList")
+);
+const AddDoctor = lazy(() =>
+  import("../features/dashboard/clinic/Doctors/AddDoctor")
+);
+const EditProfileDoc = lazy(() =>
+  import("../features/dashboard/clinic/Doctors/EditProfileDoc")
+);
+const PatientsOfDoc = lazy(() =>
+  import("../features/dashboard/clinic/Appointments/PatientsOfDoc")
+);
+const EmployeeSalary = lazy(() =>
+  import("../features/dashboard/clinic/Staff/EmployeeSalary")
+);
+const AddStaff = lazy(() =>
+  import("../features/dashboard/clinic/Staff/AddStaff")
+);
+const Attendance = lazy(() =>
+  import("../features/dashboard/clinic/Staff/Attendance")
+);
+const AppointmentList = lazy(() =>
+  import("../features/dashboard/clinic/Appointments/AppointmentList")
+);
+const BookAppointment = lazy(() =>
+  import("../features/dashboard/clinic/Appointments/BookAppointment")
+);
+const EditAppointments = lazy(() =>
+  import("../features/dashboard/clinic/Appointments/EditAppointments")
+);
+const EditProfileClinic = lazy(() =>
+  import("../features/dashboard/clinic/EditProfileClinic")
+);
+const Chat = lazy(() => import("../features/dashboard/chat/Chat"));
+const Reports = lazy(() => import("../features/dashboard/clinic/Reports"));
+const Invoice = lazy(() => import("../features/dashboard/clinic/Invoice"));
+const CompleteClinicProfile = lazy(() =>
+  import("../features/dashboard/clinic/Complete-Profile/CompleteClinicProfile")
+);
 
-import EditProfileDoc from "../features/dashboard/clinic/Doctors/EditProfileDoc";
-import PatientsOfDoc from "../features/dashboard/clinic/Appointments/PatientsOfDoc";
-import EmployeeSalary from "../features/dashboard/clinic/Staff/EmployeeSalary";
-import AddStaff from "../features/dashboard/clinic/Staff/AddStaff";
-import Attendance from "../features/dashboard/clinic/Staff/Attendance";
-import AppointmentList from "../features/dashboard/clinic/Appointments/AppointmentList";
-import BookAppointment from "../features/dashboard/clinic/Appointments/BookAppointment";
-import EditAppointments from "../features/dashboard/clinic/Appointments/EditAppointments";
-import EditProfileClinic from "../features/dashboard/clinic/EditProfileClinic";
-import Chat from "../features/dashboard/chat/Chat";
-import Reports from "../features/dashboard/clinic/Reports";
-import Invoice from "../features/dashboard/clinic/Invoice";
 /* Doctor */
-import DoctorLayout from "../features/dashboard/doctor/DoctorLayout";
-import DoctorDashboard from "../features/dashboard/doctor/dashboard/DoctorDashboard";
-import DoctorShedule from "../features/dashboard/doctor/doctor-schedule/DoctorShedule";
-import DoctorPatientsList from "../features/dashboard/doctor/Patients/PatientList/Patients";
-import DoctorChat from "../features/dashboard/chat/Chat";
-import MyProfile from "../features/dashboard/doctor/doctor-profile/MyProfile";
-import EditProfile from "../features/dashboard/doctor/edit-profile/EditProfile";
-import PatientProfile from "../features/dashboard/doctor/Patients/Examination/PatientProfile";
-import ClinicsListOfDoctor from "../features/dashboard/doctor/Patients/ClinicList/ClinicsListOfDoctor";
-/* Patient */
-import PatientLayout from "../features/dashboard/patient/PatientLayout";
-import PatientDashboard from "../features/dashboard/patient/PatientDashboard";
-import ClinicsList from "../features/dashboard/patient/clinics/ClinicsList";
-import PatientAppointments from "../features/dashboard/patient/appointments/Appointments";
-import PatientChat from "../features/dashboard/chat/Chat";
-import EditProfilePatient from "../features/dashboard/patient/EditProfile";
-import PaymentGateway from "../features/dashboard/patient/PaymentGateway";
-import DoctorsList from "../features/dashboard/patient/clinics/DoctorList";
+const DoctorLayout = lazy(() =>
+  import("../features/dashboard/doctor/DoctorLayout")
+);
+const DoctorDashboard = lazy(() =>
+  import("../features/dashboard/doctor/dashboard/DoctorDashboard")
+);
+const DoctorShedule = lazy(() =>
+  import("../features/dashboard/doctor/doctor-schedule/DoctorShedule")
+);
+const DoctorPatientsList = lazy(() =>
+  import("../features/dashboard/doctor/Patients/PatientList/Patients")
+);
+const DoctorChat = lazy(() => import("../features/dashboard/chat/Chat"));
+const MyProfile = lazy(() =>
+  import("../features/dashboard/doctor/doctor-profile/MyProfile")
+);
+const EditProfile = lazy(() =>
+  import("../features/dashboard/doctor/edit-profile/EditProfile")
+);
+const PatientProfile = lazy(() =>
+  import("../features/dashboard/doctor/Patients/Examination/PatientProfile")
+);
+const ClinicsListOfDoctor = lazy(() =>
+  import("../features/dashboard/doctor/Patients/ClinicList/ClinicsListOfDoctor")
+);
+const CompleteDoctorProfile = lazy(() =>
+  import("../features/dashboard/doctor/complete-profile/CompleteDoctorProfile")
+);
 
-import CompleteDoctorProfile from "../features/dashboard/doctor/complete-profile/CompleteDoctorProfile";
-import CompleteClinicProfile from "../features/dashboard/clinic/Complete-Profile/CompleteClinicProfile";
-import ClinicProfile from "../features/dashboard/patient/clinics/ClinicProfile";
-import ClinicImages from "../features/dashboard/patient/clinics/ClinicImages";
-import VerifyEmail from "../pages/VerifyEmail";
-import ServerDown from "../ui/ServerDown";
-import LaboratoryList from "../features/dashboard/patient/laboratories/LaboratoryList";
-import PharmacyList from "../features/dashboard/patient/pharmacies/PharmacyList";
-import PharmacyProfile from "../features/dashboard/patient/pharmacies/PharmacyProfile";
-import LaboratoryProfile from "../features/dashboard/patient/laboratories/LaboratoryProfile";
-import LaboratoryAnalysisList from "../features/dashboard/patient/laboratories/LaboratoryAnalyisList";
-import PrescriptionsList from "../features/dashboard/patient/prescription/PrescriptionsList";
-import PrescriptionPaper from "../features/dashboard/patient/prescription/PrescriptionPaper";
-import MedicinesList from "../features/dashboard/patient/pharmacies/MedicinesList";
-import MedicineList from "../features/dashboard/patient/medicines/MedicinesList";
-import { useEffect } from "react";
-import { logoutAllTabs } from "../services/auth";
-import PatientProfileView from "../features/dashboard/patient/profile/PatientProfileView";
-import PharmacyLayout from "../features/dashboard/pharmacy/PharmacyLayout";
-import PharmacyDashboard from "../features/dashboard/pharmacy/PharmacyDashboard";
-import LaboratoryLayout from "../features/dashboard/laboratory/LaboratoryLayout";
-import LaboratoryDashboard from "../features/dashboard/laboratory/LaboratoryDashboard";
-import PharmacyMedicinesList from "../features/dashboard/pharmacy/medicines/PharmacyMedicinesList";
-import EditMedicineTuple from "../features/dashboard/pharmacy/medicines/EditMedicineTuple";
-import MedicineAddition from "../features/dashboard/pharmacy/medicines/MedicineAddition";
-import PharmacyProfileView from "../features/dashboard/pharmacy/profile/PharmacyProfileView";
-import PharmacyEditProfile from "../features/dashboard/pharmacy/profile/PharmacyEditProfile";
-import PatientEditProfile from "../features/dashboard/patient/profile/PatientEditProfile";
-import CompletePatientProfile from "../features/dashboard/patient/profile/CompletePatientProfile";
-import PharmacyCompleteProfile from "../features/dashboard/pharmacy/profile/PharmacyCompleteProfile";
-import LaboratoryCompleteProfile from "../features/dashboard/laboratory/profile/LaboratoryCompleteProfile";
-import LaboratoryEditProfile from "../features/dashboard/laboratory/profile/LaboratoryEditProfile";
-import LaboratoryViewProfile from "../features/dashboard/laboratory/profile/LaboratoryViewProfile";
-import AnalysisList from "../features/dashboard/laboratory/analysis/AnalysisList";
-import AnalysisAddition from "../features/dashboard/laboratory/analysis/AnalysisAddition";
-import EditAnalysisTuple from "../features/dashboard/laboratory/analysis/EditAnalysisTuple";
-import OrdersList from "../features/dashboard/patient/medicines/OrdersList";
-import PharmacyOrdersList from "../features/dashboard/pharmacy/orders/PharmacyOrdersList";
-import MedicinesOrderList from "../features/dashboard/pharmacy/orders/MedicinesOrderList";
-import OrderPaper from "../features/dashboard/patient/pharmacies/OrderPaper";
-import AnalysisResults from "../features/dashboard/patient/analysis/AnalysisResults";
-import Results from "../features/dashboard/patient/analysis/Results";
-import LaboratoryOrderList from "../features/dashboard/laboratory/orders/LaboratoryOrderList";
-import AnalysisOrderList from "../features/dashboard/laboratory/orders/AnalysisOrderList";
-import OrderAddition from "../features/dashboard/laboratory/orders/OrderAddition";
-import ClinicProfileView from "../features/dashboard/clinic/ClinicProfile/ClinicProfileView";
-import HospitalsList from "../features/dashboard/patient/hospitals/HospitalsList";
-import HospitalDoctorsList from "../features/dashboard/patient/hospitals/HospitalDoctorList";
-import HospitalProfile from "../features/dashboard/patient/hospitals/HospitalProfile";
-import HospitalImages from "../features/dashboard/patient/hospitals/HospitalImages";
-import MedicineOrderPaper from "../features/dashboard/patient/medicines/OrderPaper";
-import AnalysisOrderPaper from "../features/dashboard/patient/analysis/OrderPaper";
-import PharmacyOrderPaper from "../features/dashboard/pharmacy/orders/OrderPaper";
-import LaboratoryOrderPaper from "../features/dashboard/laboratory/orders/OrderPaper";
-import DoctorProfile from "../features/dashboard/patient/DoctorProfile";
+/* Patient */
+const PatientLayout = lazy(() =>
+  import("../features/dashboard/patient/PatientLayout")
+);
+const PatientDashboard = lazy(() =>
+  import("../features/dashboard/patient/PatientDashboard")
+);
+const ClinicsList = lazy(() =>
+  import("../features/dashboard/patient/clinics/ClinicsList")
+);
+const PatientAppointments = lazy(() =>
+  import("../features/dashboard/patient/appointments/Appointments")
+);
+const PatientChat = lazy(() => import("../features/dashboard/chat/Chat"));
+const PaymentGateway = lazy(() =>
+  import("../features/dashboard/patient/PaymentGateway")
+);
+const DoctorsList = lazy(() =>
+  import("../features/dashboard/patient/clinics/DoctorList")
+);
+const ClinicProfile = lazy(() =>
+  import("../features/dashboard/patient/clinics/ClinicProfile")
+);
+const ClinicImages = lazy(() =>
+  import("../features/dashboard/patient/clinics/ClinicImages")
+);
+const LaboratoryList = lazy(() =>
+  import("../features/dashboard/patient/laboratories/LaboratoryList")
+);
+const PharmacyList = lazy(() =>
+  import("../features/dashboard/patient/pharmacies/PharmacyList")
+);
+const PharmacyProfile = lazy(() =>
+  import("../features/dashboard/patient/pharmacies/PharmacyProfile")
+);
+const LaboratoryProfile = lazy(() =>
+  import("../features/dashboard/patient/laboratories/LaboratoryProfile")
+);
+const LaboratoryAnalysisList = lazy(() =>
+  import("../features/dashboard/patient/laboratories/LaboratoryAnalyisList")
+);
+const PrescriptionsList = lazy(() =>
+  import("../features/dashboard/patient/prescription/PrescriptionsList")
+);
+const PrescriptionPaper = lazy(() =>
+  import("../features/dashboard/patient/prescription/PrescriptionPaper")
+);
+const MedicinesList = lazy(() =>
+  import("../features/dashboard/patient/pharmacies/MedicinesList")
+);
+const PatientProfileView = lazy(() =>
+  import("../features/dashboard/patient/profile/PatientProfileView")
+);
+const PatientEditProfile = lazy(() =>
+  import("../features/dashboard/patient/profile/PatientEditProfile")
+);
+const CompletePatientProfile = lazy(() =>
+  import("../features/dashboard/patient/profile/CompletePatientProfile")
+);
+/* pharmacy */
+const PharmacyLayout = lazy(() =>
+  import("../features/dashboard/pharmacy/PharmacyLayout")
+);
+const PharmacyDashboard = lazy(() =>
+  import("../features/dashboard/pharmacy/PharmacyDashboard")
+);
+const PharmacyMedicinesList = lazy(() =>
+  import("../features/dashboard/pharmacy/medicines/PharmacyMedicinesList")
+);
+const EditMedicineTuple = lazy(() =>
+  import("../features/dashboard/pharmacy/medicines/EditMedicineTuple")
+);
+const MedicineAddition = lazy(() =>
+  import("../features/dashboard/pharmacy/medicines/MedicineAddition")
+);
+const PharmacyProfileView = lazy(() =>
+  import("../features/dashboard/pharmacy/profile/PharmacyProfileView")
+);
+const PharmacyEditProfile = lazy(() =>
+  import("../features/dashboard/pharmacy/profile/PharmacyEditProfile")
+);
+const PharmacyCompleteProfile = lazy(() =>
+  import("../features/dashboard/pharmacy/profile/PharmacyCompleteProfile")
+);
+/* laboratory */
+const LaboratoryLayout = lazy(() =>
+  import("../features/dashboard/laboratory/LaboratoryLayout")
+);
+const LaboratoryDashboard = lazy(() =>
+  import("../features/dashboard/laboratory/LaboratoryDashboard")
+);
+const LaboratoryCompleteProfile = lazy(() =>
+  import("../features/dashboard/laboratory/profile/LaboratoryCompleteProfile")
+);
+const LaboratoryEditProfile = lazy(() =>
+  import("../features/dashboard/laboratory/profile/LaboratoryEditProfile")
+);
+const LaboratoryViewProfile = lazy(() =>
+  import("../features/dashboard/laboratory/profile/LaboratoryViewProfile")
+);
+const AnalysisList = lazy(() =>
+  import("../features/dashboard/laboratory/analysis/AnalysisList")
+);
+const AnalysisAddition = lazy(() =>
+  import("../features/dashboard/laboratory/analysis/AnalysisAddition")
+);
+const EditAnalysisTuple = lazy(() =>
+  import("../features/dashboard/laboratory/analysis/EditAnalysisTuple")
+);
+const OrdersList = lazy(() =>
+  import("../features/dashboard/patient/medicines/OrdersList")
+);
+const PharmacyOrdersList = lazy(() =>
+  import("../features/dashboard/pharmacy/orders/PharmacyOrdersList")
+);
+const OrderPaper = lazy(() =>
+  import("../features/dashboard/patient/pharmacies/OrderPaper")
+);
+const AnalysisResults = lazy(() =>
+  import("../features/dashboard/patient/analysis/AnalysisResults")
+);
+const LaboratoryOrderList = lazy(() =>
+  import("../features/dashboard/laboratory/orders/LaboratoryOrderList")
+);
+const OrderAddition = lazy(() =>
+  import("../features/dashboard/laboratory/orders/OrderAddition")
+);
+const ClinicProfileView = lazy(() =>
+  import("../features/dashboard/clinic/ClinicProfile/ClinicProfileView")
+);
+const HospitalsList = lazy(() =>
+  import("../features/dashboard/patient/hospitals/HospitalsList")
+);
+const HospitalDoctorsList = lazy(() =>
+  import("../features/dashboard/patient/hospitals/HospitalDoctorList")
+);
+const HospitalProfile = lazy(() =>
+  import("../features/dashboard/patient/hospitals/HospitalProfile")
+);
+const HospitalImages = lazy(() =>
+  import("../features/dashboard/patient/hospitals/HospitalImages")
+);
+const MedicineOrderPaper = lazy(() =>
+  import("../features/dashboard/patient/medicines/OrderPaper")
+);
+const AnalysisOrderPaper = lazy(() =>
+  import("../features/dashboard/patient/analysis/OrderPaper")
+);
+const PharmacyOrderPaper = lazy(() =>
+  import("../features/dashboard/pharmacy/orders/OrderPaper")
+);
+const LaboratoryOrderPaper = lazy(() =>
+  import("../features/dashboard/laboratory/orders/OrderPaper")
+);
+const DoctorProfile = lazy(() =>
+  import("../features/dashboard/patient/DoctorProfile")
+);
 
 function AppRoutes() {
   return (
