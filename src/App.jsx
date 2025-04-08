@@ -6,8 +6,7 @@ import AppRoutes from "./providers/AppRoutes";
 import ToastNotifications from "./providers/ToastNotifications ";
 
 function App() {
-  // window.addEventListener(`contextmenu`, (e) => e.preventDefault());
-
+  window.addEventListener(`contextmenu`, (e) => e.preventDefault());
   useEffect(() => {
     logoutAllTabs();
   }, []);
