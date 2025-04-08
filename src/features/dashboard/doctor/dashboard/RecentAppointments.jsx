@@ -31,7 +31,7 @@ function RecentAppointments({ patients, clinic, isLoading, time }) {
         </div>
 
         <div className="card-body">
-          {clinic.map((clinic) => (
+          {clinic?.map((clinic) => (
             <>
               <div className="teaching-card">
                 <ul className="steps-history">
