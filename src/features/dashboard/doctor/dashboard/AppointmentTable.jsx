@@ -1,14 +1,16 @@
-import useScheduleList from "../doctor-schedule/useScheduleList";
 import { useEffect } from "react";
+import useAppointments from "./useAppointments";
 
 function AppointmentTable() {
-  const { data: recentAppointments } = useScheduleList();
-  const today = new Date().toDateString().split(" ")[0].toLowerCase();
+  const { data: recentAppointments, isLoading } = useAppointments();
+  const today = new Date().toLocaleDateString();
+
   let data;
   useEffect(
     function () {
       data = recentAppointments?.filter(
-        (appointment) => today === appointment?.day?.slice(0, 3).toLowerCase()
+        (appointment) =>
+          today === new Date(appointment?.scheduledAt).toLocaleDateString()
       );
     },
     [recentAppointments]
