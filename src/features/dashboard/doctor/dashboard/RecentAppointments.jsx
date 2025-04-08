@@ -18,7 +18,6 @@ function RecentAppointments({ patients, clinic, isLoading, time }) {
       timeArray.push(newTime);
     }
   });
-  console.log(clinic);
 
   return (
     <div className="col-12 col-lg-12 col-xl-5 d-flex">
@@ -48,7 +47,8 @@ function RecentAppointments({ patients, clinic, isLoading, time }) {
                             data-bs-toggle="dropdown"
                           >
                             <i className="fas fa-circle me-2 active-circles" />
-                            {formatTime(time)} <span> {clinic.clinicName}</span>
+                            {formatTime(time)}{" "}
+                            <span> {clinic?.clinicName}</span>
                             <span className="ongoing-drapt">
                               Ongoing
                               <i className="feather-chevron-down ms-2" />

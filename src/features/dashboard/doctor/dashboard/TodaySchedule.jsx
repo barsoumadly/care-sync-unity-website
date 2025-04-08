@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 import formatTime from "../../../../utils/formatTime";
 
@@ -37,18 +36,18 @@ function TodaySchedule({ data, isLoading, patients, time }) {
                               width={28}
                               height={28}
                               className="rounded-circle"
-                              src={clinic.profilePhoto}
+                              src={clinic?.profilePhoto}
                               alt=""
                             />
-                            <h2>{clinic.clinicName}</h2>
+                            <h2>{clinic?.clinicName}</h2>
                           </td>
                           <td>
-                            {clinic.clinicAddress.area},{" "}
-                            {clinic.clinicAddress.city}
+                            {clinic?.clinicAddress?.area},{" "}
+                            {clinic?.clinicAddress?.city}
                           </td>
                           <td>{formatTime(time)}</td>
 
-                          <td>{patients.length} appointments</td>
+                          <td>{patients?.length} appointments</td>
                         </tr>
                       );
                     })}

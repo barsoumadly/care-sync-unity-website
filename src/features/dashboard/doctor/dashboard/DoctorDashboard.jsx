@@ -45,16 +45,16 @@ function DoctorDashboard() {
     function () {
       const d = recentAppointments?.filter(
         (appointment) =>
-          appointment?.schedule.filter((schedule) => {
+          appointment?.schedule?.filter((schedule) => {
             if (
               today ===
-              schedule?.day?.split("").slice(0, 3).join("").toLowerCase()
+              schedule?.day?.split("")?.slice(0, 3)?.join("")?.toLowerCase()
             )
               setTime(schedule?.startTime);
 
             return (
               today ===
-              schedule?.day?.split("").slice(0, 3).join("").toLowerCase()
+              schedule?.day?.split("")?.slice(0, 3)?.join("")?.toLowerCase()
             );
           })?.[0]?.date
       );
@@ -66,7 +66,7 @@ function DoctorDashboard() {
   useEffect(
     function () {
       if (recentAppointments) {
-        const appointments = recentAppointments.map((item, index) => {
+        const appointments = recentAppointments?.map((item, index) => {
           return {
             name: item?.clinicName,
             duration: item?.clinicName,
@@ -107,7 +107,7 @@ function DoctorDashboard() {
                 <div className="col-md-6">
                   <div className="morning-user">
                     <h2>
-                      Good Morning, <span>Dr.{user.name}</span>
+                      Good Morning, <span>Dr.{user?.name}</span>
                     </h2>
                     <p>Have a nice day at work</p>
                   </div>
