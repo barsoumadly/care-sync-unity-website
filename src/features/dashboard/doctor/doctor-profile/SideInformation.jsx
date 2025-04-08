@@ -95,7 +95,7 @@ function SideInformation({ certification, isLoading }) {
               <LoadingSpinner />
             ) : (
               certification?.map((certificate, index) => (
-                <div className="personal-activity">
+                <div className="personal-activity" key={certificate?.name}>
                   <div
                     className={`personal-icons status-${
                       index % 3 === 0

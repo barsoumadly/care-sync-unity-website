@@ -81,8 +81,8 @@ function AboutMe({ doctorProfile, isLoading }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {doctorProfile?.education?.map((edu) => (
-                          <tr>
+                        {doctorProfile?.education?.map((edu, index) => (
+                          <tr key={index}>
                             <td>
                               {edu.startingDate.split("-")[0]}-
                               {edu.endingDate.split("-")[0]}
@@ -107,8 +107,8 @@ function AboutMe({ doctorProfile, isLoading }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {doctorProfile?.experience?.map((exp) => (
-                          <tr>
+                        {doctorProfile?.experience?.map((exp, index) => (
+                          <tr key={index}>
                             <td>
                               {exp?.startingDate?.split("-")[0]}-
                               {exp?.endingDate?.split("-")[0]}

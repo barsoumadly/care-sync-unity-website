@@ -38,7 +38,7 @@ function DoctorShedule() {
                       ) : data && data?.[0]?.clinicId ? (
                         <ul className="activity-list">
                           {data?.map((sch) => (
-                            <Schedule scheduleData={sch} key={sch.id} />
+                            <Schedule scheduleData={sch} key={sch?.clinicId} />
                           ))}
                         </ul>
                       ) : (

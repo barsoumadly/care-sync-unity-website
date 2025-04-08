@@ -39,7 +39,7 @@ function Schedule({ scheduleData }) {
               </div>
               <div className="post-info">
                 {scheduleData?.schedule.map((schedule) => (
-                  <div className="date-posts">
+                  <div className="date-posts" key={schedule?._id}>
                     <h5>{schedule?.day}</h5>
                     <span className="ms-2">
                       {formatTime(schedule.startTime)} -{" "}

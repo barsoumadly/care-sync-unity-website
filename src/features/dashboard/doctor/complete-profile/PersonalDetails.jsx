@@ -128,7 +128,9 @@ function DoctorPersonalDetails({
                     Specialization
                   </option>
                   {MedicalSpecialties?.map((specialty, index) => (
-                    <option value={specialty}>{specialty}</option>
+                    <option value={specialty} key={index}>
+                      {specialty}
+                    </option>
                   ))}
                 </select>
               </div>{" "}

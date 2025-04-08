@@ -31,7 +31,7 @@ function RecentAppointments({ patients, clinic, isLoading, time }) {
 
         <div className="card-body">
           {clinic?.map((clinic) => (
-            <>
+            <div key={clinic?.clinicId}>
               <div className="teaching-card">
                 <ul className="steps-history">
                   <li></li>
@@ -69,7 +69,7 @@ function RecentAppointments({ patients, clinic, isLoading, time }) {
                     <div className="dolor-activity">
                       <ul className="doctor-date-list mb-2">
                         {patients?.map((patient, index) => (
-                          <li>
+                          <li key={patient?._id}>
                             <i className="fas fa-circle me-2" />
                             {formatTime(timeArray[index])}
                             <span>{patient?.guestName}</span>
@@ -80,7 +80,7 @@ function RecentAppointments({ patients, clinic, isLoading, time }) {
                   </li>
                 </ul>{" "}
               </div>
-            </>
+            </div>
           ))}
         </div>
       </div>

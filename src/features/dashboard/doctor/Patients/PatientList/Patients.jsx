@@ -50,7 +50,7 @@ function Patients() {
                       </thead>
                       <tbody>
                         {patientList?.map((element, index) => (
-                          <tr key={element.id}>
+                          <tr key={element?._id}>
                             <PatientTuples
                               num={index}
                               element={element}
