@@ -13,7 +13,7 @@ function TodaySchedule({ data, isLoading, patients, time }) {
             <div className="table-responsive">
               {isLoading ? (
                 <LoadingSpinner />
-              ) : data && patients !== undefined && patients.length ? (
+              ) : data && patients !== undefined && patients?.length ? (
                 <table className="table mb-0 border-0 datatable custom-table">
                   <thead>
                     <tr>

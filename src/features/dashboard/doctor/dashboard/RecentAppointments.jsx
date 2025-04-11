@@ -25,7 +25,7 @@ function RecentAppointments({ patients, clinic, isLoading, time }) {
         <div className="card-header">
           {" "}
           <h4 className="card-title d-inline-block">Recent Appointments</h4>
-          {patients.length ? (
+          {patients?.length ? (
             <Link
               to="/doctor/patients"
               className="link patient-views float-end"
@@ -36,7 +36,7 @@ function RecentAppointments({ patients, clinic, isLoading, time }) {
         </div>
 
         <div className="card-body">
-          {clinic && patients !== undefined && patients.length ? (
+          {clinic && patients !== undefined && patients?.length ? (
             clinic?.map((clinic) => (
               <div key={clinic?.clinicId}>
                 <div className="teaching-card">
