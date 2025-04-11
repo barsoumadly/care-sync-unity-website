@@ -13,7 +13,7 @@ function TodaySchedule({ data, isLoading, patients, time }) {
             <div className="table-responsive">
               {isLoading ? (
                 <LoadingSpinner />
-              ) : data ? (
+              ) : data && patients !== undefined && patients.length ? (
                 <table className="table mb-0 border-0 datatable custom-table">
                   <thead>
                     <tr>
@@ -66,9 +66,9 @@ function TodaySchedule({ data, isLoading, patients, time }) {
                         }}
                       >
                         <img
-                          src="/images/clinic/no-work.jpg"
-                          alt="Logo"
-                          style={{ width: "35%" }}
+                          src="/images/dashborad/appointment.png"
+                          alt="no appointment"
+                          style={{ width: "40%" }}
                         />
                         <h4>
                           There are no appointments today but be prepared.
