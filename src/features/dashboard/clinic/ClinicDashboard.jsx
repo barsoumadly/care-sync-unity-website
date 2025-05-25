@@ -398,7 +398,7 @@ function RecentPatients({ doctorIds }) {
     Doctor2?.[0],
     Doctor3?.[Doctor3.length - 1],
   ];
-
+  console.log(recentPatients);
   return (
     <div className="row">
       <div className="col-12 col-xl-12">
@@ -437,7 +437,7 @@ function RecentPatients({ doctorIds }) {
                 </thead>
                 <tbody>
                   {recentPatients.map((patient, index) =>
-                    index < 3 ? (
+                    index < 3 && patient.status !== "completed" ? (
                       <tr>
                         <td>
                           <div className="form-check check-tables">
