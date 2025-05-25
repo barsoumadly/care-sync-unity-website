@@ -32,7 +32,7 @@ function reducer(state, action) {
       return { ...state, userEmail: action.payload, isRegistered: true };
 
     case "isVerify":
-      return { ...state, isRegistered: false, isAuthenticated: true };
+      return { ...state, isRegistered: false, isAuthenticated: false };
 
     case "logout":
       return {

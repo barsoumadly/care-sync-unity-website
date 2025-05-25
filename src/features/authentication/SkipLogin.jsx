@@ -4,15 +4,15 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../ui/Loader";
 
 function SkipLogin({ children }) {
-  const { user, isAuthenticated, isProfileCompleted, isRegistered } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-
+  console.log("SkipLogin", user);
   useEffect(
     function () {
       if (isAuthenticated) {
         navigate(
           `/${user?.role?.toLowerCase().split("_")[0]}/${
-            isProfileCompleted ? "dashboard" : "complete-profile"
+            user?.profileCompleted ? "dashboard" : "complete-profile"
           }`
         );
       }

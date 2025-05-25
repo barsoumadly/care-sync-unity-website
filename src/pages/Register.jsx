@@ -28,10 +28,9 @@ function Register() {
     try {
       await registerApi(userData);
       toast.success("Successfull");
-      navigate("/verify-email");
-      // setUserRole("PATIENT");
       saveEmail(userData.email);
       userRegister(userData);
+      navigate("/verify-email");
     } catch (error) {
       if (error.message === "Network Error") {
         return navigate("/internal-server-error");

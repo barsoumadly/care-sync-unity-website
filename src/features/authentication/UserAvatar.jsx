@@ -4,7 +4,7 @@ import useUser from "../dashboard/useUser";
 import LoadingSpinner from "../../ui/LoadingSpinner";
 
 function UserAvatar() {
-  const { user, isProfileCompleted } = useAuth();
+  const { user } = useAuth();
   const { data, isLoading } = useUser(user.id);
 
   let { name, role, profilePhoto: avatar } = user;
@@ -22,7 +22,7 @@ function UserAvatar() {
           <div
             className="user-names"
             onClick={() =>
-              isProfileCompleted
+              user?.profileCompleted
                 ? navigate(`/${role[0].toLowerCase()}/view-profile`)
                 : null
             }

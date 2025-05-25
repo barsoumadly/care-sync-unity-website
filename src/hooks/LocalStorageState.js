@@ -5,7 +5,7 @@ import { getUserById } from "../services/auth";
 
 export function LocalStorageState() {
   const navigate = useNavigate();
-  const { userLogin, isRegistered } = useAuth();
+  const { userLogin } = useAuth();
 
   useEffect(() => {
     const getUser = async function (isAuth) {
