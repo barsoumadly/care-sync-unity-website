@@ -437,7 +437,7 @@ function RecentPatients({ doctorIds }) {
                 </thead>
                 <tbody>
                   {recentPatients.map((patient, index) =>
-                    index < 3 && patient.status !== "completed" ? (
+                    index < 3 && patient?.status !== "completed" ? (
                       <tr>
                         <td>
                           <div className="form-check check-tables">
