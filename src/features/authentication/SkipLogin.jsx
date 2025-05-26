@@ -6,7 +6,6 @@ import Loader from "../../ui/Loader";
 function SkipLogin({ children }) {
   const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  console.log("SkipLogin", user);
   useEffect(
     function () {
       if (isAuthenticated) {
