@@ -27,18 +27,10 @@ const colors = [
 
 function DoctorDashboard() {
   const { data: recentAppointments, isLoading } = useScheduleList();
-  // const { data: patientData } = useAppointments();
   const [appointments, setAppointments] = useState();
   const [time, setTime] = useState();
   const [data, setData] = useState([]);
   const { user } = useAuth();
-
-  const todayNum = new Date().toLocaleDateString();
-  // const patients = patientData?.filter(
-  //   (appointment) =>
-  //     todayNum === new Date(appointment?.scheduledAt).toLocaleDateString()
-  // );
-
   const today = new Date().toDateString().split(" ")[0].toLowerCase();
 
   useEffect(
@@ -297,7 +289,6 @@ function DoctorDashboard() {
               </div>
               <RecentAppointments
                 isLoading={isLoading}
-                // patients={patients}
                 time={time}
                 clinic={data}
               />
