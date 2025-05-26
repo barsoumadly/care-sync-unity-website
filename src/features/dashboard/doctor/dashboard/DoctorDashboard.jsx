@@ -27,23 +27,23 @@ const colors = [
 
 function DoctorDashboard() {
   const { data: recentAppointments, isLoading } = useScheduleList();
-  const { data: patientData } = useAppointments();
+  // const { data: patientData } = useAppointments();
   const [appointments, setAppointments] = useState();
   const [time, setTime] = useState();
   const [data, setData] = useState([]);
   const { user } = useAuth();
 
   const todayNum = new Date().toLocaleDateString();
-  const patients = patientData?.filter(
-    (appointment) =>
-      todayNum === new Date(appointment?.scheduledAt).toLocaleDateString()
-  );
+  // const patients = patientData?.filter(
+  //   (appointment) =>
+  //     todayNum === new Date(appointment?.scheduledAt).toLocaleDateString()
+  // );
 
   const today = new Date().toDateString().split(" ")[0].toLowerCase();
 
   useEffect(
     function () {
-      const d = recentAppointments?.filter(
+      const clinicsToday = recentAppointments?.filter(
         (appointment) =>
           appointment?.schedule?.filter((schedule) => {
             if (
@@ -58,7 +58,7 @@ function DoctorDashboard() {
             );
           })?.[0]?.date
       );
-      setData(d);
+      setData(clinicsToday);
     },
     [recentAppointments]
   );
@@ -293,16 +293,11 @@ function DoctorDashboard() {
                     </div>
                   </div>
                 </div>
-                <TodaySchedule
-                  data={data}
-                  isLoading={isLoading}
-                  patients={patients}
-                  time={time}
-                />
+                <TodaySchedule data={data} isLoading={isLoading} time={time} />
               </div>
               <RecentAppointments
                 isLoading={isLoading}
-                patients={patients}
+                // patients={patients}
                 time={time}
                 clinic={data}
               />

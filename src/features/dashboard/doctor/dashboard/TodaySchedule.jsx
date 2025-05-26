@@ -1,7 +1,7 @@
 import LoadingSpinner from "../../../../ui/LoadingSpinner";
 import formatTime from "../../../../utils/formatTime";
 
-function TodaySchedule({ data, isLoading, patients, time }) {
+function TodaySchedule({ data, isLoading, time }) {
   return (
     <div className="row">
       <div className="col-12 col-xl-12">
@@ -13,7 +13,7 @@ function TodaySchedule({ data, isLoading, patients, time }) {
             <div className="table-responsive">
               {isLoading ? (
                 <LoadingSpinner />
-              ) : data && patients !== undefined && patients?.length ? (
+              ) : data !== undefined ? (
                 <table className="table mb-0 border-0 datatable custom-table">
                   <thead>
                     <tr>
@@ -47,7 +47,7 @@ function TodaySchedule({ data, isLoading, patients, time }) {
                           </td>
                           <td>{formatTime(time)}</td>
 
-                          <td>{patients?.length} appointments</td>
+                          <td>{clinic?.numberOfAppointments} appointments</td>
                         </tr>
                       );
                     })}
