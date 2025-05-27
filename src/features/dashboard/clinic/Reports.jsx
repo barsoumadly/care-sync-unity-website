@@ -184,35 +184,7 @@ function Reports() {
                             </div>
                           </div>
                         </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-expense.html"
-                              >
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_patient"
-                              >
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
-                            </div>
-                          </div>
-                        </td>
+                        
                       </tr>
                       <tr>
                         <td>
@@ -267,35 +239,7 @@ function Reports() {
                             </div>
                           </div>
                         </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-expense.html"
-                              >
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_patient"
-                              >
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
-                            </div>
-                          </div>
-                        </td>
+                        
                       </tr>
                       <tr>
                         <td>
@@ -350,35 +294,7 @@ function Reports() {
                             </div>
                           </div>
                         </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-expense.html"
-                              >
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_patient"
-                              >
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
-                            </div>
-                          </div>
-                        </td>
+                       
                       </tr>
                       <tr>
                         <td>
@@ -433,35 +349,7 @@ function Reports() {
                             </div>
                           </div>
                         </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-expense.html"
-                              >
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_patient"
-                              >
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
-                            </div>
-                          </div>
-                        </td>
+                        
                       </tr>
                       <tr>
                         <td>
@@ -516,35 +404,7 @@ function Reports() {
                             </div>
                           </div>
                         </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-expense.html"
-                              >
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_patient"
-                              >
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
-                            </div>
-                          </div>
-                        </td>
+                       
                       </tr>
                       <tr>
                         <td>
@@ -599,35 +459,7 @@ function Reports() {
                             </div>
                           </div>
                         </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-expense.html"
-                              >
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_patient"
-                              >
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
-                            </div>
-                          </div>
-                        </td>
+                        
                       </tr>
                       <tr>
                         <td>
@@ -682,35 +514,7 @@ function Reports() {
                             </div>
                           </div>
                         </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-expense.html"
-                              >
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_patient"
-                              >
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
-                            </div>
-                          </div>
-                        </td>
+                        
                       </tr>
                       <tr>
                         <td>
@@ -765,35 +569,7 @@ function Reports() {
                             </div>
                           </div>
                         </td>
-                        <td className="text-end">
-                          <div className="dropdown dropdown-action">
-                            <a
-                              href="#"
-                              className="action-icon dropdown-toggle"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              <i className="fa fa-ellipsis-v" />
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-end">
-                              <a
-                                className="dropdown-item"
-                                href="edit-expense.html"
-                              >
-                                <i className="fa-solid fa-pen-to-square m-r-5" />{" "}
-                                Edit
-                              </a>
-                              <a
-                                className="dropdown-item"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete_patient"
-                              >
-                                <i className="fa fa-trash-alt m-r-5" /> Delete
-                              </a>
-                            </div>
-                          </div>
-                        </td>
+                        
                       </tr>
                     </tbody>
                   </table>

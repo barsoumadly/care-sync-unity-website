@@ -62,31 +62,7 @@ function AddStaff() {
                         <input className="form-control" type="text" />
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>
-                          Email <span className="login-danger">*</span>
-                        </label>
-                        <input className="form-control" type="email" />
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>
-                          Password <span className="login-danger">*</span>
-                        </label>
-                        <input className="form-control" type="password" />
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-6">
-                      <div className="input-block local-forms">
-                        <label>
-                          Confirm Password{" "}
-                          <span className="login-danger">*</span>
-                        </label>
-                        <input className="form-control" type="password" />
-                      </div>
-                    </div>
+
                     <div className="col-12 col-md-6 col-xl-6">
                       <div className="input-block local-forms cal-icon">
                         <label>
@@ -96,6 +72,15 @@ function AddStaff() {
                           className="form-control datetimepicker"
                           type="text"
                         />
+                      </div>
+                    </div>
+                    
+                    <div className="col-12 col-md-6 col-xl-4">
+                      <div className="input-block local-forms">
+                        <label>
+                          Education <span className="login-danger">*</span>
+                        </label>
+                        <input className="form-control" type="text" />
                       </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-6">
@@ -123,14 +108,6 @@ function AddStaff() {
                             Female
                           </label>
                         </div>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-xl-4">
-                      <div className="input-block local-forms">
-                        <label>
-                          Education <span className="login-danger">*</span>
-                        </label>
-                        <input className="form-control" type="text" />
                       </div>
                     </div>
                     <div className="col-12 col-md-6 col-xl-4">
@@ -274,6 +251,7 @@ function AddStaff() {
                         </div>
                       </div>
                     </div>
+                    
                     <div className="col-12">
                       <div className="doctor-submit text-end">
                         <button
@@ -295,7 +273,6 @@ function AddStaff() {
           </div>
         </div>
       </div>
-      
     </div>
   );
 }

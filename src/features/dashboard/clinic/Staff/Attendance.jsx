@@ -60,20 +60,7 @@ function Attendance() {
                         </div>
                       </div>
                     </div>
-                    <div className="col-auto text-end float-end ms-auto download-grp">
-                      <a href="javascript:;" className=" me-2">
-                        <img src="../images/dashborad/icons/pdf-icon-01.svg" alt="" />
-                      </a>
-                      <a href="javascript:;" className=" me-2">
-                        <img src="../images/dashborad/icons/pdf-icon-02.svg" alt="" />
-                      </a>
-                      <a href="javascript:;" className=" me-2">
-                        <img src="../images/dashborad/icons/pdf-icon-03.svg" alt="" />
-                      </a>
-                      <a href="javascript:;">
-                        <img src="../images/dashborad/icons/pdf-icon-04.svg" alt="" />
-                      </a>
-                    </div>
+                   
                   </div>
                 </div>
                 {/* /Table Header */}
