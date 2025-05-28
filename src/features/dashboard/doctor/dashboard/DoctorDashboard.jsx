@@ -26,6 +26,7 @@ function DoctorDashboard() {
   const [data, setData] = useState([]);
   const { user } = useAuth();
   const today = new Date().toDateString().split(" ")[0].toLowerCase();
+  const hour = new Date().getHours();
 
   useEffect(
     function () {
@@ -95,7 +96,12 @@ function DoctorDashboard() {
                 <div className="col-md-6">
                   <div className="morning-user">
                     <h2>
-                      Good Morning, <span>Dr.{user?.name}</span>
+                      {hour < 12
+                        ? "Good Morning, "
+                        : hour < 17
+                        ? "Good Afternoon, "
+                        : "Good Evening, "}
+                      <span>Dr.{user?.name}</span>
                     </h2>
                     <p>Have a nice day at work</p>
                   </div>
