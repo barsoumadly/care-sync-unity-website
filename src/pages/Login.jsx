@@ -80,6 +80,13 @@ function Login() {
 
   return (
     <>
+      <title>CSU: Login</title>
+      <meta
+        name="description"
+        content="Robust and secure authentication system with role-based access control, enabling seamless and protected login for patients, doctors, clinics, pharmacies, and laboratories within a unified healthcare platform"
+      />
+      <link rel="canonical" href="/login" />
+
       <h2>{isLogin ? "Login" : "Great, now verify your email"}</h2>
       <div className="input-block">
         <label style={{ background: `${isLoading ? "none" : "#ffffff"}` }}>

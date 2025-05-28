@@ -13,6 +13,13 @@ function DashboardLayout() {
 
   return (
     <>
+      <title>CSU: Patient dashboard</title>
+      <meta
+        name="description"
+        content="User-friendly patient dashboard providing secure access to medical records, prescriptions, appointment scheduling, lab results, and direct communication with healthcare providers—all in one convenient platform."
+      />
+      <link rel="canonical" href="/patient" />
+
       <Header
         setShowbar={setShowbar}
         setMinbar={setMinbar}

@@ -36,6 +36,13 @@ function ForgotPassword() {
 
   return (
     <>
+      <title>CSU: Forgot password</title>
+      <meta
+        name="description"
+        content="Robust and secure authentication system with role-based access control, enabling seamless and protected login for patients, doctors, clinics, pharmacies, and laboratories within a unified healthcare platform"
+      />
+      <link rel="canonical" href="/forgot-password" />
+
       <h2>Reset Password</h2>
 
       {/* <!-- Form --> */}

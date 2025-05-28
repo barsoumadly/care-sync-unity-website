@@ -10,9 +10,6 @@ function App() {
   useEffect(() => {
     logoutAllTabs();
   }, []);
-
-  // const [isLoading, setIsLoading] = useState(true);
-  // setTimeout(() => setIsLoading(false), 2000);
   return (
     <AppProviders>
       <AppRoutes />

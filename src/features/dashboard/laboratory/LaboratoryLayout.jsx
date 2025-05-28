@@ -12,6 +12,13 @@ function LaboratoryLayout() {
 
   return (
     <>
+      <title>CSU: Laboratory dashboard</title>
+      <meta
+        name="description"
+        content="Efficient laboratory dashboard for managing test orders, tracking sample statuses, viewing results, and coordinating with clinics and doctors—ensuring accurate and timely diagnostic reporting within the healthcare system."
+      />
+      <link rel="canonical" href="/laboratory" />
+
       <Header
         setShowbar={setShowbar}
         setMinbar={setMinbar}

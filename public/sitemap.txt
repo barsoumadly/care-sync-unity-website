@@ -1,0 +1,9 @@
+https://caresyncunity.live/login
+https://caresyncunity.live/register
+https://caresyncunity.live/forgot-password
+https://caresyncunity.live/reset-password
+https://caresyncunity.live/clinic
+https://caresyncunity.live/doctor
+https://caresyncunity.live/patient
+https://caresyncunity.live/pharmacy
+https://caresyncunity.live/laboratory

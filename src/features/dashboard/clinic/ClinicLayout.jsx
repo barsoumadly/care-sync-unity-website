@@ -14,6 +14,13 @@ function DashboardLayout() {
 
   return (
     <>
+      <title>CSU: Clinic dashboard</title>
+      <meta
+        name="description"
+        content="Comprehensive clinic dashboard offering real-time access to appointments, patient records, doctor schedules, and performance analytics—empowering clinics to deliver efficient and organized healthcare services."
+      />
+      <link rel="canonical" href="/clinic" />
+
       <Header
         setShowbar={setShowbar}
         setMinbar={setMinbar}

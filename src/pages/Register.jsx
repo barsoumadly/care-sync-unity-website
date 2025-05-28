@@ -55,6 +55,13 @@ function Register() {
 
   return (
     <>
+      <title>CSU: Register</title>
+      <meta
+        name="description"
+        content="Robust and secure authentication system with role-based access control, enabling seamless and protected login for patients, doctors, clinics, pharmacies, and laboratories within a unified healthcare platform"
+      />
+      <link rel="canonical" href="/register" />
+
       <h2>Getting Started</h2>
 
       {/* <!-- Form --> */}

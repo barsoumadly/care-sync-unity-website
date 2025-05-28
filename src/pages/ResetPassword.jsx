@@ -132,6 +132,13 @@ function ResetPassword() {
 
   return (
     <>
+      <title>CSU: Reset password</title>
+      <meta
+        name="description"
+        content="Robust and secure authentication system with role-based access control, enabling seamless and protected login for patients, doctors, clinics, pharmacies, and laboratories within a unified healthcare platform"
+      />
+      <link rel="canonical" href="/reset-password" />
+
       <h2>Reset Password</h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">

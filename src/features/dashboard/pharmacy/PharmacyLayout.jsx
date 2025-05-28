@@ -12,12 +12,18 @@ function PharmacyLayout() {
 
   return (
     <>
+      {" "}
+      <title>CSU: Pharmacies dashboard</title>
+      <meta
+        name="description"
+        content="Efficient pharmacy dashboard enabling real-time prescription management and order fulfillment—seamlessly integrated with patients for streamlined medication dispensing."
+      />
+      <link rel="canonical" href="/pharmacies" />
       <Header
         setShowbar={setShowbar}
         setMinbar={setMinbar}
         url={"/pharmacy/dashboard"}
       />
-
       {isProfileCompleted && (
         <Sidebar minbar={minbar} showbar={showbar}>
           <PharmacySidbar />
