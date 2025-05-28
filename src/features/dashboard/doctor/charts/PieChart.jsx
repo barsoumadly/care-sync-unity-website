@@ -17,8 +17,14 @@ export default function PieCharts({ data, label }) {
         <PieChart>
           <Pie
             data={data}
-            nameKey="duration"
-            dataKey="value"
+            nameKey={`${
+              label === "Clinics income for a month"
+                ? "durationIncome"
+                : "duration"
+            }`}
+            dataKey={`${
+              label === "Clinics income for a month" ? "valueIncome" : "value"
+            }`}
             innerRadius={85}
             outerRadius={110}
             cx="40%"

@@ -27,31 +27,34 @@ export default function PatientTuples({ num, element, button }) {
       <td>{element.type}</td>
       <td>{new Date(element.scheduledAt).toLocaleDateString()}</td>
       <td>
-        <button
+        <div
           className={`custom-badge ${
             statusColor[element.status] || "status-orange"
           }`}
         >
           {element.status}
-        </button>
+        </div>
       </td>
 
       {/* Button */}
       <td className="col-6 col-md-2 col-xl-3">
-        {element?.status !== "pending" &&
-        element?.status !== "approved" &&
-        element?.status !== "completed" &&
-        element.status !== "declined" ? (
-          <div className="dropdown action-label">
-            <Link
-              to={`${button.link}/${element.patientId}/patient-profile/${element._id}`}
-              style={{ marginTop: "3%", color: "#fff" }}
-            >
-              <button className="btn btn-primary submit-list-form me-2">
-                {button.name}
-              </button>
-            </Link>
-          </div>
+        {element?.status === "examining" ? (
+          element?.patientGender === "Unknown" ? (
+            <td>
+              <div className="custom-badge status-red">No account</div>
+            </td>
+          ) : (
+            <div className="dropdown action-label">
+              <Link
+                to={`${button.link}/${element.patientId}/patient-profile/${element._id}`}
+                style={{ marginTop: "3%", color: "#fff" }}
+              >
+                <button className="btn btn-primary submit-list-form me-2">
+                  {button.name}
+                </button>
+              </Link>
+            </div>
+          )
         ) : (
           ""
         )}

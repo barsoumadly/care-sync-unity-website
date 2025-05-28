@@ -877,7 +877,7 @@ textarea.form-control {
 }
 .user-menu .dropdown-menu {
   min-width: 145px;
-  margin: -30px 11px 0 0 ;
+  margin: -30px 11px 0 0;
   visibility: hidden;
   opacity: 0;
   display: block;
@@ -5786,7 +5786,6 @@ html.menu-opened body {
   border-top: 1px solid #eee;
 }
 .notification-box {
-  
   margin-right: -300px;
   position: fixed;
   right: 0;
@@ -5797,7 +5796,7 @@ html.menu-opened body {
   border-left: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
 }
-.notification-box.open-msg-box  {
+.notification-box.open-msg-box {
   margin-right: 0;
 }
 .msg-sidebar {
@@ -6640,38 +6639,39 @@ a.btn.add-links:hover {
 .status-red,
 a.status-red {
   background-color: #ffe5e6;
-  color: #fe0000;
+  color: #fe0000;cursor: default;
 }
 .status-green,
 a.status-green {
   background: rgba(0, 211, 199, 0.1);
-  color: #00d3c7;
+  color: #00d3c7;cursor: default;
 }
 .status-orange,
 a.status-orange {
   background-color: #fef5e4;
-  color: #ff9b01;
+  color: #ff9b01;cursor: default;
 }
 .status-blue,
 a.status-blue {
   background-color: #e5f3fe;
-  color: #008cff;
+  color: #008cff;cursor: default;
 }
 .status-purple,
 a.status-purple {
   background-color: #f3e7fd;
-  color: #8f13fd;
+  color: #8f13fd;cursor: default;
 }
 .status-pink,
 a.status-pink {
   background-color: #ffe5f6;
-  color: #ff01a2;
+  color: #ff01a2;cursor: default;
 }
 .status-grey,
 a.status-grey {
   background-color: #ddd;
-  color: #818181;
+  color: #818181;cursor: default;
 }
+
 .btn-grey {
   background-color: #b2b2b2;
   border: 1px solid #b2b2b2;

@@ -13,36 +13,36 @@ const data = [
   {
     name: "Nov",
 
-    pv: 380,
+    pv: 38,
   },
   {
     name: "Dec",
 
-    pv: 430,
+    pv: 43,
   },
   {
     name: "Jan",
-    pv: 240,
+    pv: 24,
   },
   {
     name: "Feb",
 
-    pv: 138,
+    pv: 13,
   },
   {
     name: "Mar",
 
-    pv: 680,
+    pv: 68,
   },
   {
     name: "Apr",
 
-    pv: 282,
+    pv: 28,
   },
   {
     name: "May",
 
-    pv: 480,
+    pv: 48,
   },
 ];
 
@@ -72,7 +72,7 @@ export default function AreaCharts() {
             tickLine={{ stroke: colors.text }}
           />
           <YAxis
-            unit="$"
+            unit="Ke£"
             tick={{ fill: colors.text }}
             tickLine={{ stroke: colors.text }}
           />
@@ -82,7 +82,7 @@ export default function AreaCharts() {
             fill={colors.name.fill}
             strokeWidth={2}
             name="Total profits"
-            unit="$"
+            unit="Ke£"
             type="monotone"
             dataKey="pv"
           />{" "}

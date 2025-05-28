@@ -5,13 +5,7 @@ import TodaySchedule from "./TodaySchedule";
 import useScheduleList from "../doctor-schedule/useScheduleList";
 import { useAuth } from "../../../../context/AuthContext";
 import { useEffect, useState } from "react";
-import useAppointments from "./useAppointments";
 import RecentAppointments from "./RecentAppointments";
-
-const genderData = [
-  { name: "Male", duration: "Male", value: 40, color: "#3b82f6" },
-  { name: "Female", duration: "Female", value: 26, color: "#14b8a6" },
-];
 
 const colors = [
   "#f63bc0",
@@ -62,7 +56,9 @@ function DoctorDashboard() {
           return {
             name: item?.clinicName,
             duration: item?.clinicName,
+            durationIncome: `${item?.clinicName} income`,
             value: item?.numberOfAppointments,
+            valueIncome: 3504 * (index + 1),
             color: colors[index],
           };
         });
@@ -177,7 +173,8 @@ function DoctorDashboard() {
                     </div>
                     <div className="doctor-content dash-count flex-grow-1">
                       <h4>
-                        $<span className="counter-up">530</span>
+                        <span className="counter-up">530</span>
+                        <span>E£</span>
                         <span />
                         <span className="status-green">+50%</span>
                       </h4>
@@ -204,10 +201,10 @@ function DoctorDashboard() {
                 <div className="card">
                   <div className="card-body">
                     <div className="chart-title patient-visit mb-0">
-                      <h4>Income</h4>
+                      <h4>Total income</h4>
                       <div className="income-value">
                         <h3>
-                          <span>$</span> 200
+                          200<span>E£</span>
                         </h3>
                         <p>
                           <span className="passive-view">
@@ -233,7 +230,10 @@ function DoctorDashboard() {
                 <div className="card">
                   <div className="card-body">
                     <div id="radial-patients">
-                      <PieCharts data={genderData} label="Gender" />
+                      <PieCharts
+                        data={appointments}
+                        label="Clinics income for a month"
+                      />
                     </div>
                   </div>
                 </div>
