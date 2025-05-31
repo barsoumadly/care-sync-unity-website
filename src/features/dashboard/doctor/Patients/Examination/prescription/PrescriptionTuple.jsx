@@ -12,9 +12,9 @@ function PrescriptionTuple({ prescriptionTuple }) {
         <td>{prescriptionTuple?.date}</td>
 
         <td>
-          <div class="dropdown action-label">
+          <div className="dropdown action-label">
             <button
-              class="custom-badge book-btn"
+              className="custom-badge book-btn"
               onClick={() => setShowMedicines((show) => !show)}
             >
               Show medicines {showMedicines ? <FaCircleUp /> : <FaCircleDown />}

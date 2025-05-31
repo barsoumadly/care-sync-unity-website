@@ -116,11 +116,10 @@ function Examination({ patient }) {
               isAddingPrescription={isAddingPrescription}
               isAddingAnalysis={isAddingAnalysis}
             />{" "}
-            <div class="d-grid gap-2 col-6 mx-auto">
+            <div className="d-grid gap-2 col-6 mx-auto">
               <button
                 className="btn btn-primary mt-4 mb-4 btn-block p-3"
                 type="submit"
-                // onClick={() => setOpenCard("analysis")}
               >
                 Please click after the examination is complete.
               </button>

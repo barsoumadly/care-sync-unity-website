@@ -49,6 +49,7 @@ function PatientProfile() {
                               <a
                                 className={`${option === 1 ? "active" : ""}`}
                                 onClick={() => setOption(1)}
+                                style={{ cursor: "pointer" }}
                               >
                                 <span className="set-about-icon me-2">
                                   <img
@@ -63,6 +64,7 @@ function PatientProfile() {
                               <a
                                 onClick={() => setOption(2)}
                                 className={`${option === 2 ? "active" : ""}`}
+                                style={{ cursor: "pointer" }}
                               >
                                 <span className="set-about-icon me-2">
                                   <img

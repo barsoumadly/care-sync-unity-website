@@ -26,21 +26,17 @@ function PrescriptionPaper({ prescription }) {
                         </thead>
                         <tbody>
                           {prescription?.medicines.map((medicine, index) => (
-                            <>
-                              {" "}
-                              <tr>
-                                {" "}
-                                <AnalysisTuple
-                                  analysis={prescription?.analyses[index]}
-                                  key={prescription?.analyses[index]?.id}
-                                />
-                                <td>{(2.3 * (index + 1)).toFixed(1)}</td>
-                                <MedicineTuple
-                                  medicine={medicine}
-                                  key={medicine.id}
-                                />{" "}
-                              </tr>
-                            </>
+                            <tr>
+                              <AnalysisTuple
+                                analysis={prescription?.analyses?.[index]}
+                                key={prescription?.analyses[index]?._id}
+                              />
+                              <td>{(2.3 * (index + 1)).toFixed(1)}</td>
+                              <MedicineTuple
+                                medicine={medicine}
+                                key={medicine?._id}
+                              />{" "}
+                            </tr>
                           ))}
                         </tbody>
                       </table>

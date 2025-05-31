@@ -162,7 +162,7 @@ function PrescriptionsList() {
                             <PrescriptionTuple
                               prescriptionTuple={prescription}
                               prescriptionNumber={index + 1}
-                              key={prescription.id}
+                              key={prescription._id}
                             />
                           ) : null
                         )}
