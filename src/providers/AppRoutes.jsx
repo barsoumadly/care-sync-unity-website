@@ -2,6 +2,7 @@ import React, { lazy } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 // Lazy load the components
+const Home = lazy(() => import("../pages/Home"));
 const ProtectedRoute = lazy(() => import("../ui/ProtectedRoute"));
 const ProtectedAuth = lazy(() => import("../ui/ProtectedAuth"));
 const PageNotFound = lazy(() => import("../ui/PageNotFound"));
@@ -255,8 +256,7 @@ function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
-        <Route index element={<Navigate replace to="login" />} />
+        <Route path="/" element={<Home />} />
         {/* Authentication */}
         <Route element={<AuthenticationLayout />}>
           <Route path="register" element={<Register />} />
