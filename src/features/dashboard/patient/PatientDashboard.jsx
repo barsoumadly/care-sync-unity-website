@@ -44,7 +44,7 @@ function PatientDashboard() {
               <div className="col-md-6 position-blk">
                 <div className="morning-img">
                   <img
-                    src="https://preclinic.dreamstechnologies.com/html/template/assets/img/morning-img-03.png"
+                    src="/public/images/dashborad/morning-img-01.png"
                     alt=""
                   />
                 </div>

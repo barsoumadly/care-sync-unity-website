@@ -86,7 +86,7 @@ function DashboardContents() {
               <div className="report-head">
                 <h4>
                   <img
-                    src="https://preclinic.dreamstechnologies.com/html/template/assets/img/icons/report-icon-01.svg"
+                    src="/public/images/dashborad/icons/report-icon-01.svg"
                     className="me-2"
                     alt=""
                   />
@@ -117,7 +117,7 @@ function DashboardContents() {
               <div className="report-head">
                 <h4>
                   <img
-                    src="https://preclinic.dreamstechnologies.com/html/template/assets/img/icons/report-icon-02.svg"
+                    src="/public/images/dashborad/icons/report-icon-02.svg"
                     className="me-2"
                     alt=""
                   />
@@ -148,7 +148,7 @@ function DashboardContents() {
               <div className="report-head">
                 <h4>
                   <img
-                    src="https://preclinic.dreamstechnologies.com/html/template/assets/img/icons/report-icon-03.svg"
+                    src="/public/images/dashborad/icons/report-icon-03.svg"
                     className="me-2"
                     alt=""
                   />
@@ -189,7 +189,7 @@ function DashboardContents() {
               <div className="report-head">
                 <h4>
                   <img
-                    src="https://preclinic.dreamstechnologies.com/html/template/assets/img/icons/report-icon-04.svg"
+                    src="/public/images/dashborad/icons/report-icon-04.svg"
                     className="me-2"
                     alt=""
                   />

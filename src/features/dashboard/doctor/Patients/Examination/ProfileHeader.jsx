@@ -1,9 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { createChat } from "../../../../../services/chat-app";
 function ProfileHeader({ data }) {
   const navigate = useNavigate();
   const year = new Date().getFullYear();
-
+  const { state: specialization } = useLocation();
   const handleCreateChat = async function (id) {
     const response = await createChat(
       id,
@@ -51,7 +51,7 @@ function ProfileHeader({ data }) {
                     </div>
                     <div className="doctor-follows">
                       <h5>specialty</h5>
-                      <h4>Medical </h4>
+                      <h4>{specialization} </h4>
                     </div>
                   </div>
                 </div>

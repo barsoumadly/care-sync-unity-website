@@ -4,8 +4,8 @@ import { BroadcastChannel } from "broadcast-channel";
 const logoutChannel = new BroadcastChannel("logout");
 
 // API URL is defined in vite.config.js
-const API_URL = import.meta.env.VITE_API_URL;
-//const API_URL = "http://localhost:8000/api/v1";
+// const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = "http://localhost:8000/api/v1";
 
 const register = async function (userData) {
   await axios.post(`${API_URL}/auth/register`, userData);

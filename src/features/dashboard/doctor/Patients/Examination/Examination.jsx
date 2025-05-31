@@ -22,7 +22,7 @@ function Examination({ patient }) {
   const date = new Date().toLocaleDateString();
   const clinicName = path.pathname.split("/")[2].split("%20").join(" ");
   const id = path.pathname.split("/")[3];
-  const specialization = "test";
+  const { state: specialization } = useLocation();
 
   const { mutate } = useWritingPrescription();
 
