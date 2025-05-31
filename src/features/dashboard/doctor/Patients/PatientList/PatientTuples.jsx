@@ -41,7 +41,7 @@ export default function PatientTuples({ num, element, button }) {
 
       {/* Button */}
       <td className="col-6 col-md-2 col-xl-3">
-        {element?.status !== "examining" ? (
+        {element?.status === "examining" ? (
           element?.patientGender === "Unknown" ? (
             <td>
               <a className="custom-badge status-red">No account</a>
